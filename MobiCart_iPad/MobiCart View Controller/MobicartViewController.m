@@ -1,0 +1,81 @@
+//
+//  MobicartViewController.m
+//  Mobicart
+//
+//  Created by Mobicart on 05/03/11.
+//  Copyright mobicart. All rights reserved.
+//
+
+#import "MobicartViewController.h"
+
+@implementation MobicartViewController
+
+
+/*
+// The designated initializer. Override to perform setup that is required before the view is loaded.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+*/
+
+/*
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView {
+}
+*/
+
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+*/
+-(void)showSplash
+{
+    UIViewController *modalViewController = [[UIViewController alloc] init];
+    
+    modalViewController.view = modelView;
+    
+    [self presentModalViewController:modalViewController animated:NO];
+    
+    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:0.5];
+    
+}
+
+//hide splash screen
+
+- (void)hideSplash{
+    [[self modalViewController] dismissModalViewControllerAnimated:YES];
+    
+    
+}
+
+
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+@end

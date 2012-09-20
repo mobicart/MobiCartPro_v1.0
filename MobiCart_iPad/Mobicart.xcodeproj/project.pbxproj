@@ -1,0 +1,1841 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		318878F7137BBF730053490C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318878F6137BBF730053490C /* OpenGLES.framework */; };
+		31AAE5C41469767700EAAE17 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AAE5C21469767700EAAE17 /* libz.1.1.3.dylib */; };
+		4E9EA08115C81338001039A5 /* button_add_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04215C81338001039A5 /* button_add_press.png */; };
+		4E9EA08215C81338001039A5 /* button_add_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04315C81338001039A5 /* button_add_up.png */; };
+		4E9EA08315C81338001039A5 /* button_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04415C81338001039A5 /* button_black.png */; };
+		4E9EA08415C81338001039A5 /* button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04515C81338001039A5 /* button_blue.png */; };
+		4E9EA08515C81338001039A5 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04615C81338001039A5 /* button_green.png */; };
+		4E9EA08615C81338001039A5 /* button_green_big_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04715C81338001039A5 /* button_green_big_press.png */; };
+		4E9EA08715C81338001039A5 /* button_green_big_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04815C81338001039A5 /* button_green_big_up.png */; };
+		4E9EA08815C81338001039A5 /* button_green_small_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04915C81338001039A5 /* button_green_small_press.png */; };
+		4E9EA08915C81338001039A5 /* button_green_small_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04A15C81338001039A5 /* button_green_small_up.png */; };
+		4E9EA08A15C81338001039A5 /* cards_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04B15C81338001039A5 /* cards_all.png */; };
+		4E9EA08B15C81338001039A5 /* cards_americanexpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04C15C81338001039A5 /* cards_americanexpress.png */; };
+		4E9EA08C15C81338001039A5 /* cards_americanexpress_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04D15C81338001039A5 /* cards_americanexpress_s.png */; };
+		4E9EA08D15C81338001039A5 /* cards_diners.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04E15C81338001039A5 /* cards_diners.png */; };
+		4E9EA08E15C81338001039A5 /* cards_diners_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA04F15C81338001039A5 /* cards_diners_s.png */; };
+		4E9EA08F15C81338001039A5 /* cards_discover.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05015C81338001039A5 /* cards_discover.png */; };
+		4E9EA09015C81338001039A5 /* cards_discover_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05115C81338001039A5 /* cards_discover_s.png */; };
+		4E9EA09115C81338001039A5 /* cards_isracard_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05215C81338001039A5 /* cards_isracard_s.png */; };
+		4E9EA09215C81338001039A5 /* cards_jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05315C81338001039A5 /* cards_jcb.png */; };
+		4E9EA09315C81338001039A5 /* cards_jcb_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05415C81338001039A5 /* cards_jcb_s.png */; };
+		4E9EA09415C81338001039A5 /* cards_leumimastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05515C81338001039A5 /* cards_leumimastercard.png */; };
+		4E9EA09515C81338001039A5 /* cards_leumivisa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05615C81338001039A5 /* cards_leumivisa.png */; };
+		4E9EA09615C81338001039A5 /* cards_mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05715C81338001039A5 /* cards_mastercard.png */; };
+		4E9EA09715C81338001039A5 /* cards_mastercard_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05815C81338001039A5 /* cards_mastercard_s.png */; };
+		4E9EA09815C81338001039A5 /* cards_paypal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05915C81338001039A5 /* cards_paypal.png */; };
+		4E9EA09915C81338001039A5 /* cards_paypal_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05A15C81338001039A5 /* cards_paypal_s.png */; };
+		4E9EA09A15C81338001039A5 /* cards_visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05B15C81338001039A5 /* cards_visa.png */; };
+		4E9EA09B15C81338001039A5 /* cards_visa_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05C15C81338001039A5 /* cards_visa_s.png */; };
+		4E9EA09C15C81338001039A5 /* checkbox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05D15C81338001039A5 /* checkbox_checked.png */; };
+		4E9EA09D15C81338001039A5 /* checkbox_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05E15C81338001039A5 /* checkbox_unchecked.png */; };
+		4E9EA09E15C81338001039A5 /* cvv_americanexpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA05F15C81338001039A5 /* cvv_americanexpress.png */; };
+		4E9EA09F15C81338001039A5 /* cvv_mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06015C81338001039A5 /* cvv_mastercard.png */; };
+		4E9EA0A015C81338001039A5 /* cvv_other.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06115C81338001039A5 /* cvv_other.png */; };
+		4E9EA0A115C81338001039A5 /* cvv_visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06215C81338001039A5 /* cvv_visa.png */; };
+		4E9EA0A215C81338001039A5 /* icon_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06315C81338001039A5 /* icon_card.png */; };
+		4E9EA0A315C81338001039A5 /* icon_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06415C81338001039A5 /* icon_info.png */; };
+		4E9EA0A415C81338001039A5 /* icon_V.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06515C81338001039A5 /* icon_V.png */; };
+		4E9EA0A515C81338001039A5 /* lock_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06615C81338001039A5 /* lock_small.png */; };
+		4E9EA0A615C81338001039A5 /* logo_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06715C81338001039A5 /* logo_big.png */; };
+		4E9EA0A715C81338001039A5 /* logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06815C81338001039A5 /* logo_small.png */; };
+		4E9EA0A815C81338001039A5 /* sandbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06915C81338001039A5 /* sandbox.png */; };
+		4E9EA0A915C81338001039A5 /* seal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06A15C81338001039A5 /* seal.png */; };
+		4E9EA0AA15C81338001039A5 /* security_button_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06B15C81338001039A5 /* security_button_press.png */; };
+		4E9EA0AB15C81338001039A5 /* security_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06C15C81338001039A5 /* security_button_up.png */; };
+		4E9EA0AC15C81338001039A5 /* security_icon_arow_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06D15C81338001039A5 /* security_icon_arow_press.png */; };
+		4E9EA0AD15C81338001039A5 /* security_icon_arow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06E15C81338001039A5 /* security_icon_arow_up.png */; };
+		4E9EA0AE15C81338001039A5 /* security_icon_fingerprint_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA06F15C81338001039A5 /* security_icon_fingerprint_press.png */; };
+		4E9EA0AF15C81338001039A5 /* security_icon_fingerprint_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07015C81338001039A5 /* security_icon_fingerprint_up.png */; };
+		4E9EA0B015C81338001039A5 /* texbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07115C81338001039A5 /* texbox.png */; };
+		4E9EA0B115C81338001039A5 /* topHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07215C81338001039A5 /* topHeader.png */; };
+		4E9EA0B215C81338001039A5 /* ZooZCardSelection.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07315C81338001039A5 /* ZooZCardSelection.nib */; };
+		4E9EA0B315C81338001039A5 /* ZooZCardSelection_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07415C81338001039A5 /* ZooZCardSelection_ipad.nib */; };
+		4E9EA0B415C81338001039A5 /* ZooZEndPayment.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07515C81338001039A5 /* ZooZEndPayment.nib */; };
+		4E9EA0B515C81338001039A5 /* ZooZEndPayment_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07615C81338001039A5 /* ZooZEndPayment_ipad.nib */; };
+		4E9EA0B615C81338001039A5 /* ZooZGenWebController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07715C81338001039A5 /* ZooZGenWebController.nib */; };
+		4E9EA0B715C81338001039A5 /* ZooZGenWebController_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07815C81338001039A5 /* ZooZGenWebController_ipad.nib */; };
+		4E9EA0B815C81338001039A5 /* zoozi18n.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07915C81338001039A5 /* zoozi18n.bundle */; };
+		4E9EA0B915C81338001039A5 /* ZooZNewCardController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07A15C81338001039A5 /* ZooZNewCardController.nib */; };
+		4E9EA0BA15C81338001039A5 /* ZooZNewCardController_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07B15C81338001039A5 /* ZooZNewCardController_ipad.nib */; };
+		4E9EA0BB15C81338001039A5 /* ZooZPasscodeSave.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07C15C81338001039A5 /* ZooZPasscodeSave.nib */; };
+		4E9EA0BC15C81338001039A5 /* ZooZPassCodeSave_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07D15C81338001039A5 /* ZooZPassCodeSave_ipad.nib */; };
+		4E9EA0BD15C81338001039A5 /* ZooZPasscodeVerify.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07E15C81338001039A5 /* ZooZPasscodeVerify.nib */; };
+		4E9EA0BE15C81338001039A5 /* ZooZPasscodeVerify_ipad.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EA07F15C81338001039A5 /* ZooZPasscodeVerify_ipad.nib */; };
+		4E9EA0BF15C81338001039A5 /* ZooZSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9EA08015C81338001039A5 /* ZooZSDK.framework */; };
+		4ECF9BEA15F9EE430007A29B /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1115F9EE430007A29B /* ASIAuthenticationDialog.m */; };
+		4ECF9BEB15F9EE430007A29B /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1415F9EE430007A29B /* ASIDataCompressor.m */; };
+		4ECF9BEC15F9EE430007A29B /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1615F9EE430007A29B /* ASIDataDecompressor.m */; };
+		4ECF9BED15F9EE430007A29B /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1815F9EE430007A29B /* ASIDownloadCache.m */; };
+		4ECF9BEE15F9EE430007A29B /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1A15F9EE430007A29B /* ASIFormDataRequest.m */; };
+		4ECF9BEF15F9EE430007A29B /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B1C15F9EE430007A29B /* ASIHTTPRequest.m */; };
+		4ECF9BF015F9EE430007A29B /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2015F9EE430007A29B /* ASIInputStream.m */; };
+		4ECF9BF115F9EE430007A29B /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2215F9EE430007A29B /* ASINetworkQueue.m */; };
+		4ECF9BF215F9EE430007A29B /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2615F9EE430007A29B /* NSMutableURLRequest+Parameters.m */; };
+		4ECF9BF315F9EE430007A29B /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2A15F9EE430007A29B /* NSString+URLEncode.m */; };
+		4ECF9BF415F9EE430007A29B /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2C15F9EE430007A29B /* NSString+URLEncoding.m */; };
+		4ECF9BF515F9EE430007A29B /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B2E15F9EE430007A29B /* NSURL+Base.m */; };
+		4ECF9BF615F9EE430007A29B /* AFItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3115F9EE430007A29B /* AFItemView.m */; };
+		4ECF9BF715F9EE430007A29B /* AFOpenFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3415F9EE430007A29B /* AFOpenFlowView.m */; };
+		4ECF9BF815F9EE430007A29B /* AFUIImageReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3615F9EE430007A29B /* AFUIImageReflection.m */; };
+		4ECF9BF915F9EE430007A29B /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3915F9EE430007A29B /* LeavesCache.m */; };
+		4ECF9BFA15F9EE430007A29B /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3B15F9EE430007A29B /* LeavesView.m */; };
+		4ECF9BFB15F9EE430007A29B /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B3D15F9EE430007A29B /* LeavesViewController.m */; };
+		4ECF9BFC15F9EE430007A29B /* AppRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B4615F9EE430007A29B /* AppRecord.m */; };
+		4ECF9BFD15F9EE430007A29B /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B4815F9EE430007A29B /* CustomImageView.m */; };
+		4ECF9BFE15F9EE430007A29B /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B4A15F9EE430007A29B /* IconDownloader.m */; };
+		4ECF9BFF15F9EE430007A29B /* OAAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B4D15F9EE430007A29B /* OAAttachment.m */; };
+		4ECF9C0015F9EE430007A29B /* OACall.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B4F15F9EE430007A29B /* OACall.m */; };
+		4ECF9C0115F9EE430007A29B /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5115F9EE430007A29B /* OAConsumer.m */; };
+		4ECF9C0215F9EE430007A29B /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5315F9EE430007A29B /* OADataFetcher.m */; };
+		4ECF9C0315F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5515F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.m */; };
+		4ECF9C0415F9EE430007A29B /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5715F9EE430007A29B /* OAMutableURLRequest.m */; };
+		4ECF9C0515F9EE430007A29B /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5915F9EE430007A29B /* OAPlaintextSignatureProvider.m */; };
+		4ECF9C0615F9EE430007A29B /* OAProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5B15F9EE430007A29B /* OAProblem.m */; };
+		4ECF9C0715F9EE430007A29B /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5D15F9EE430007A29B /* OARequestParameter.m */; };
+		4ECF9C0815F9EE430007A29B /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B5F15F9EE430007A29B /* OAServiceTicket.m */; };
+		4ECF9C0915F9EE430007A29B /* OATestServer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6115F9EE430007A29B /* OATestServer.rb */; };
+		4ECF9C0A15F9EE430007A29B /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6315F9EE430007A29B /* OAToken.m */; };
+		4ECF9C0B15F9EE430007A29B /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6515F9EE430007A29B /* OATokenManager.m */; };
+		4ECF9C0C15F9EE430007A29B /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6715F9EE430007A29B /* README */; };
+		4ECF9C0D15F9EE430007A29B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6A15F9EE430007A29B /* Reachability.m */; };
+		4ECF9C0E15F9EE430007A29B /* ASIFormDataRequest+OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6D15F9EE430007A29B /* ASIFormDataRequest+OAuth.m */; };
+		4ECF9C0F15F9EE430007A29B /* ASIHTTPRequest+OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B6F15F9EE430007A29B /* ASIHTTPRequest+OAuth.m */; };
+		4ECF9C1015F9EE430007A29B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B7115F9EE430007A29B /* NSData+Base64.m */; };
+		4ECF9C1115F9EE430007A29B /* libServerAPIiPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ECF9B7315F9EE430007A29B /* libServerAPIiPad.a */; };
+		4ECF9C1215F9EE430007A29B /* DBMobicart.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF9B7615F9EE430007A29B /* DBMobicart.sqlite3 */; };
+		4ECF9C1315F9EE430007A29B /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B7A15F9EE430007A29B /* Base64Transcoder.c */; };
+		4ECF9C1415F9EE430007A29B /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B7C15F9EE430007A29B /* hmac.c */; };
+		4ECF9C1515F9EE430007A29B /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B7E15F9EE430007A29B /* sha1.c */; };
+		4ECF9C1615F9EE430007A29B /* TableViewCell_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8315F9EE430007A29B /* TableViewCell_Common.m */; };
+		4ECF9C1715F9EE430007A29B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8615F9EE430007A29B /* Annotation.m */; };
+		4ECF9C1815F9EE430007A29B /* HSSegmentControl_Customized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8815F9EE430007A29B /* HSSegmentControl_Customized.m */; };
+		4ECF9C1915F9EE430007A29B /* SegmentControl_Customized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8A15F9EE430007A29B /* SegmentControl_Customized.m */; };
+		4ECF9C1A15F9EE430007A29B /* SingletonLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8C15F9EE430007A29B /* SingletonLocation.m */; };
+		4ECF9C1B15F9EE430007A29B /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B8E15F9EE430007A29B /* Utilities.m */; };
+		4ECF9C1C15F9EE430007A29B /* savedPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9115F9EE430007A29B /* savedPreferences.m */; };
+		4ECF9C1D15F9EE430007A29B /* StockCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9415F9EE430007A29B /* StockCalculation.m */; };
+		4ECF9C1E15F9EE430007A29B /* TaxCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9715F9EE430007A29B /* TaxCalculation.m */; };
+		4ECF9C1F15F9EE430007A29B /* View1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9A15F9EE430007A29B /* View1.m */; };
+		4ECF9C2015F9EE430007A29B /* View2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9C15F9EE430007A29B /* View2.m */; };
+		4ECF9C2115F9EE430007A29B /* View3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9B9E15F9EE430007A29B /* View3.m */; };
+		4ECF9C2215F9EE430007A29B /* HSMobicartParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BA115F9EE430007A29B /* HSMobicartParser.m */; };
+		4ECF9C2315F9EE430007A29B /* MobicartParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BA315F9EE430007A29B /* MobicartParser.m */; };
+		4ECF9C2415F9EE430007A29B /* EbookScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BA715F9EE430007A29B /* EbookScrollView.m */; };
+		4ECF9C2515F9EE430007A29B /* GlobalPrefrences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BA915F9EE430007A29B /* GlobalPrefrences.m */; };
+		4ECF9C2615F9EE430007A29B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BAB15F9EE430007A29B /* HomeViewController.m */; };
+		4ECF9C2715F9EE430007A29B /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BAF15F9EE430007A29B /* AboutUsViewController.m */; };
+		4ECF9C2815F9EE430007A29B /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BB215F9EE430007A29B /* ContactUsViewController.m */; };
+		4ECF9C2915F9EE430007A29B /* MobiCartWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BB515F9EE430007A29B /* MobiCartWebView.m */; };
+		4ECF9C2A15F9EE430007A29B /* MoreTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BB715F9EE430007A29B /* MoreTableViewDataSource.m */; };
+		4ECF9C2B15F9EE430007A29B /* Page1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BBA15F9EE430007A29B /* Page1ViewController.m */; };
+		4ECF9C2C15F9EE430007A29B /* Page2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BBC15F9EE430007A29B /* Page2ViewController.m */; };
+		4ECF9C2D15F9EE430007A29B /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BBE15F9EE430007A29B /* PrivacyViewController.m */; };
+		4ECF9C2E15F9EE430007A29B /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BC015F9EE430007A29B /* TermsViewController.m */; };
+		4ECF9C2F15F9EE430007A29B /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BC315F9EE430007A29B /* DetailsViewController.m */; };
+		4ECF9C3015F9EE430007A29B /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BC515F9EE430007A29B /* MyAccountViewController.m */; };
+		4ECF9C3115F9EE430007A29B /* OrderHistroyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BC715F9EE430007A29B /* OrderHistroyViewController.m */; };
+		4ECF9C3215F9EE430007A29B /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BC915F9EE430007A29B /* WishlistViewController.m */; };
+		4ECF9C3315F9EE430007A29B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BCC15F9EE430007A29B /* NewsViewController.m */; };
+		4ECF9C3415F9EE430007A29B /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BCF15F9EE430007A29B /* CheckoutViewController.m */; };
+		4ECF9C3515F9EE430007A29B /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BD115F9EE430007A29B /* ShoppingCartViewController.m */; };
+		4ECF9C3615F9EE430007A29B /* CoverFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BD415F9EE430007A29B /* CoverFlowViewController.m */; };
+		4ECF9C3715F9EE430007A29B /* DepartmentListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BD615F9EE430007A29B /* DepartmentListingViewController.m */; };
+		4ECF9C3815F9EE430007A29B /* GlobalSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BD815F9EE430007A29B /* GlobalSearch.m */; };
+		4ECF9C3915F9EE430007A29B /* ProductDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BDA15F9EE430007A29B /* ProductDetails.m */; };
+		4ECF9C3A15F9EE430007A29B /* ReadReviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BDC15F9EE430007A29B /* ReadReviews.m */; };
+		4ECF9C3B15F9EE430007A29B /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BDE15F9EE430007A29B /* StoreViewController.m */; };
+		4ECF9C3C15F9EE430007A29B /* webViewVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BE015F9EE430007A29B /* webViewVideo.m */; };
+		4ECF9C3D15F9EE430007A29B /* MobicartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BE415F9EE430007A29B /* MobicartViewController.m */; };
+		4ECF9C3E15F9EE430007A29B /* MobicartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF9BE515F9EE430007A29B /* MobicartViewController.xib */; };
+		4ECF9C3F15F9EE430007A29B /* MobicartAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BE715F9EE430007A29B /* MobicartAppDelegate.m */; };
+		4ECF9C4015F9EE430007A29B /* MobicartStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF9BE915F9EE430007A29B /* MobicartStart.m */; };
+		66879058160AE47400609F7E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66879057160AE47400609F7E /* Icon.png */; };
+		669556A715FDA707001A8594 /* about_us.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566115FDA707001A8594 /* about_us.png */; };
+		669556A815FDA707001A8594 /* account_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566215FDA707001A8594 /* account_icon.png */; };
+		669556A915FDA707001A8594 /* add_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566315FDA707001A8594 /* add_cart.png */; };
+		669556AA15FDA707001A8594 /* add_to_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566415FDA707001A8594 /* add_to_cart.png */; };
+		669556AB15FDA707001A8594 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566515FDA707001A8594 /* arrow_left.png */; };
+		669556AC15FDA707001A8594 /* bgview.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566615FDA707001A8594 /* bgview.png */; };
+		669556AD15FDA707001A8594 /* black_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566715FDA707001A8594 /* black_star.png */; };
+		669556AE15FDA707001A8594 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566815FDA707001A8594 /* block.png */; };
+		669556AF15FDA707001A8594 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566915FDA707001A8594 /* book.png */; };
+		669556B015FDA707001A8594 /* box_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566A15FDA707001A8594 /* box_tick.png */; };
+		669556B115FDA707001A8594 /* checkout_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566B15FDA707001A8594 /* checkout_btn.png */; };
+		669556B215FDA707001A8594 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566C15FDA707001A8594 /* clock.png */; };
+		669556B315FDA707001A8594 /* coming_soon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566D15FDA707001A8594 /* coming_soon.png */; };
+		669556B415FDA707001A8594 /* coming_soon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566E15FDA707001A8594 /* coming_soon_large.png */; };
+		669556B515FDA707001A8594 /* Contact_us.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695566F15FDA707001A8594 /* Contact_us.png */; };
+		669556B615FDA707001A8594 /* copyright_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567015FDA707001A8594 /* copyright_logo.png */; };
+		669556B715FDA707001A8594 /* cut_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567115FDA707001A8594 /* cut_line.png */; };
+		669556B815FDA707001A8594 /* department.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567215FDA707001A8594 /* department.png */; };
+		669556B915FDA707001A8594 /* dot_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567315FDA707001A8594 /* dot_line.png */; };
+		669556BA15FDA707001A8594 /* dotted_line_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567415FDA707001A8594 /* dotted_line_02.png */; };
+		669556BB15FDA707001A8594 /* drop_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567515FDA707001A8594 /* drop_down.png */; };
+		669556BC15FDA707001A8594 /* dropdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567615FDA707001A8594 /* dropdown.png */; };
+		669556BD15FDA707001A8594 /* edit_cart_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567715FDA707001A8594 /* edit_cart_btn.png */; };
+		669556BE15FDA707001A8594 /* favorite_star-off-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567815FDA707001A8594 /* favorite_star-off-transparent.png */; };
+		669556BF15FDA707001A8594 /* favorite_star-on-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567915FDA707001A8594 /* favorite_star-on-transparent.png */; };
+		669556C015FDA707001A8594 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567A15FDA707001A8594 /* home_icon.png */; };
+		669556C115FDA707001A8594 /* horizontal-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567B15FDA707001A8594 /* horizontal-line.png */; };
+		669556C215FDA707001A8594 /* instock_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567C15FDA707001A8594 /* instock_btn.png */; };
+		669556C315FDA707001A8594 /* instock_btn_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567D15FDA707001A8594 /* instock_btn_large.png */; };
+		669556C415FDA707001A8594 /* large_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567E15FDA707001A8594 /* large_placeholder.png */; };
+		669556C515FDA707001A8594 /* light_topimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695567F15FDA707001A8594 /* light_topimg.png */; };
+		669556C615FDA707001A8594 /* more_icon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568015FDA707001A8594 /* more_icon_01.png */; };
+		669556C715FDA707001A8594 /* more_icon_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568115FDA707001A8594 /* more_icon_02.png */; };
+		669556C815FDA707001A8594 /* more_icon_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568215FDA707001A8594 /* more_icon_03.png */; };
+		669556C915FDA707001A8594 /* more_icon_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568315FDA707001A8594 /* more_icon_04.png */; };
+		669556CA15FDA707001A8594 /* new_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568415FDA707001A8594 /* new_email.png */; };
+		669556CB15FDA707001A8594 /* new_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568515FDA707001A8594 /* new_search.png */; };
+		669556CC15FDA707001A8594 /* new_wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568615FDA707001A8594 /* new_wishlist.png */; };
+		669556CD15FDA707001A8594 /* new_youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568715FDA707001A8594 /* new_youtube.png */; };
+		669556CE15FDA707001A8594 /* news_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568815FDA707001A8594 /* news_icon.png */; };
+		669556CF15FDA707001A8594 /* next_page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568915FDA707001A8594 /* next_page.png */; };
+		669556D015FDA707001A8594 /* noImage_l.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568A15FDA707001A8594 /* noImage_l.png */; };
+		669556D115FDA707001A8594 /* noImage_M.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568B15FDA707001A8594 /* noImage_M.png */; };
+		669556D215FDA707001A8594 /* noImage_S_New.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568C15FDA707001A8594 /* noImage_S_New.png */; };
+		669556D315FDA707001A8594 /* number_oval.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568D15FDA707001A8594 /* number_oval.png */; };
+		669556D415FDA707001A8594 /* oval_shape_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568E15FDA707001A8594 /* oval_shape_black.png */; };
+		669556D515FDA707001A8594 /* page_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695568F15FDA707001A8594 /* page_1.png */; };
+		669556D615FDA707001A8594 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569015FDA707001A8594 /* Placeholder.png */; };
+		669556D715FDA707001A8594 /* post_a_review.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569115FDA707001A8594 /* post_a_review.png */; };
+		669556D815FDA707001A8594 /* post_review.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569215FDA707001A8594 /* post_review.png */; };
+		669556D915FDA707001A8594 /* pre_page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569315FDA707001A8594 /* pre_page.png */; };
+		669556DA15FDA707001A8594 /* privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569415FDA707001A8594 /* privacy.png */; };
+		669556DB15FDA707001A8594 /* product_list_ph.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569515FDA707001A8594 /* product_list_ph.png */; };
+		669556DC15FDA707001A8594 /* search_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569615FDA707001A8594 /* search_new.png */; };
+		669556DD15FDA707001A8594 /* seperator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569715FDA707001A8594 /* seperator.png */; };
+		669556DE15FDA707001A8594 /* seperator_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569815FDA707001A8594 /* seperator_shadow.png */; };
+		669556DF15FDA707001A8594 /* shop_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569915FDA707001A8594 /* shop_box.png */; };
+		669556E015FDA707001A8594 /* sold_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569A15FDA707001A8594 /* sold_out.png */; };
+		669556E115FDA707001A8594 /* sold_out_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569B15FDA707001A8594 /* sold_out_large.png */; };
+		669556E215FDA707001A8594 /* store_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569C15FDA707001A8594 /* store_icon.png */; };
+		669556E315FDA707001A8594 /* submit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569D15FDA707001A8594 /* submit_btn.png */; };
+		669556E415FDA707001A8594 /* terms.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569E15FDA707001A8594 /* terms.png */; };
+		669556E515FDA707001A8594 /* vertical_dotted_lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 6695569F15FDA707001A8594 /* vertical_dotted_lines.png */; };
+		669556E615FDA707001A8594 /* yellow_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 669556A015FDA707001A8594 /* yellow_star.png */; };
+		669556E715FDA707001A8594 /* yellow_start_details.png in Resources */ = {isa = PBXBuildFile; fileRef = 669556A115FDA707001A8594 /* yellow_start_details.png */; };
+		669556EA15FDA707001A8594 /* pickup_coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 669556A615FDA707001A8594 /* pickup_coin.wav */; };
+		669556F315FDA88F001A8594 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */; };
+		938F10A31322156700898160 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938F10A21322156700898160 /* QuartzCore.framework */; };
+		939C40A0137ACADB005DA2E8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939C409F137ACADB005DA2E8 /* AudioToolbox.framework */; };
+		93A26D3613540FB900729F28 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A26D3513540FB900729F28 /* CoreLocation.framework */; };
+		93A26D3813540FB900729F28 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A26D3713540FB900729F28 /* MapKit.framework */; };
+		9A921E8E13D7E1030007650C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921E8D13D7E1030007650C /* CFNetwork.framework */; };
+		9A921E9F13D7E11C0007650C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921E9E13D7E11C0007650C /* MobileCoreServices.framework */; };
+		9A921EA713D7E1590007650C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921EA613D7E1590007650C /* AVFoundation.framework */; };
+		9A921ED313D7E1770007650C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921ED213D7E1770007650C /* SystemConfiguration.framework */; };
+		9A921EE713D7E18D0007650C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921EE613D7E18D0007650C /* Security.framework */; };
+		9A921EED13D7E1C40007650C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A921EEC13D7E1C40007650C /* CoreText.framework */; };
+		9A9B367813796B3D00C8B00B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9B367713796B3D00C8B00B /* MessageUI.framework */; };
+		9A9F47CF135C4822005E6B05 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F47CE135C4821005E6B05 /* libsqlite3.0.dylib */; };
+		CC59BED915107F46007A4FC2 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC59BED815107F46007A4FC2 /* libxml2.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* Mobi-Cart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobi-Cart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		318878F6137BBF730053490C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		31AAE5C21469767700EAAE17 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		32CA4F630368D1EE00C91783 /* Mobicart_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mobicart_Prefix.pch; sourceTree = "<group>"; };
+		4E34C16515F8CEBA00BE8EA3 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
+		4E9EA04215C81338001039A5 /* button_add_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_add_press.png; sourceTree = "<group>"; };
+		4E9EA04315C81338001039A5 /* button_add_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_add_up.png; sourceTree = "<group>"; };
+		4E9EA04415C81338001039A5 /* button_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_black.png; sourceTree = "<group>"; };
+		4E9EA04515C81338001039A5 /* button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_blue.png; sourceTree = "<group>"; };
+		4E9EA04615C81338001039A5 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green.png; sourceTree = "<group>"; };
+		4E9EA04715C81338001039A5 /* button_green_big_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green_big_press.png; sourceTree = "<group>"; };
+		4E9EA04815C81338001039A5 /* button_green_big_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green_big_up.png; sourceTree = "<group>"; };
+		4E9EA04915C81338001039A5 /* button_green_small_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green_small_press.png; sourceTree = "<group>"; };
+		4E9EA04A15C81338001039A5 /* button_green_small_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green_small_up.png; sourceTree = "<group>"; };
+		4E9EA04B15C81338001039A5 /* cards_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_all.png; sourceTree = "<group>"; };
+		4E9EA04C15C81338001039A5 /* cards_americanexpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_americanexpress.png; sourceTree = "<group>"; };
+		4E9EA04D15C81338001039A5 /* cards_americanexpress_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_americanexpress_s.png; sourceTree = "<group>"; };
+		4E9EA04E15C81338001039A5 /* cards_diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_diners.png; sourceTree = "<group>"; };
+		4E9EA04F15C81338001039A5 /* cards_diners_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_diners_s.png; sourceTree = "<group>"; };
+		4E9EA05015C81338001039A5 /* cards_discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_discover.png; sourceTree = "<group>"; };
+		4E9EA05115C81338001039A5 /* cards_discover_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_discover_s.png; sourceTree = "<group>"; };
+		4E9EA05215C81338001039A5 /* cards_isracard_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_isracard_s.png; sourceTree = "<group>"; };
+		4E9EA05315C81338001039A5 /* cards_jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_jcb.png; sourceTree = "<group>"; };
+		4E9EA05415C81338001039A5 /* cards_jcb_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_jcb_s.png; sourceTree = "<group>"; };
+		4E9EA05515C81338001039A5 /* cards_leumimastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_leumimastercard.png; sourceTree = "<group>"; };
+		4E9EA05615C81338001039A5 /* cards_leumivisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_leumivisa.png; sourceTree = "<group>"; };
+		4E9EA05715C81338001039A5 /* cards_mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_mastercard.png; sourceTree = "<group>"; };
+		4E9EA05815C81338001039A5 /* cards_mastercard_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_mastercard_s.png; sourceTree = "<group>"; };
+		4E9EA05915C81338001039A5 /* cards_paypal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_paypal.png; sourceTree = "<group>"; };
+		4E9EA05A15C81338001039A5 /* cards_paypal_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_paypal_s.png; sourceTree = "<group>"; };
+		4E9EA05B15C81338001039A5 /* cards_visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_visa.png; sourceTree = "<group>"; };
+		4E9EA05C15C81338001039A5 /* cards_visa_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_visa_s.png; sourceTree = "<group>"; };
+		4E9EA05D15C81338001039A5 /* checkbox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_checked.png; sourceTree = "<group>"; };
+		4E9EA05E15C81338001039A5 /* checkbox_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_unchecked.png; sourceTree = "<group>"; };
+		4E9EA05F15C81338001039A5 /* cvv_americanexpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvv_americanexpress.png; sourceTree = "<group>"; };
+		4E9EA06015C81338001039A5 /* cvv_mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvv_mastercard.png; sourceTree = "<group>"; };
+		4E9EA06115C81338001039A5 /* cvv_other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvv_other.png; sourceTree = "<group>"; };
+		4E9EA06215C81338001039A5 /* cvv_visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvv_visa.png; sourceTree = "<group>"; };
+		4E9EA06315C81338001039A5 /* icon_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_card.png; sourceTree = "<group>"; };
+		4E9EA06415C81338001039A5 /* icon_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_info.png; sourceTree = "<group>"; };
+		4E9EA06515C81338001039A5 /* icon_V.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_V.png; sourceTree = "<group>"; };
+		4E9EA06615C81338001039A5 /* lock_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_small.png; sourceTree = "<group>"; };
+		4E9EA06715C81338001039A5 /* logo_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_big.png; sourceTree = "<group>"; };
+		4E9EA06815C81338001039A5 /* logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_small.png; sourceTree = "<group>"; };
+		4E9EA06915C81338001039A5 /* sandbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sandbox.png; sourceTree = "<group>"; };
+		4E9EA06A15C81338001039A5 /* seal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seal.png; sourceTree = "<group>"; };
+		4E9EA06B15C81338001039A5 /* security_button_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_button_press.png; sourceTree = "<group>"; };
+		4E9EA06C15C81338001039A5 /* security_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_button_up.png; sourceTree = "<group>"; };
+		4E9EA06D15C81338001039A5 /* security_icon_arow_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_icon_arow_press.png; sourceTree = "<group>"; };
+		4E9EA06E15C81338001039A5 /* security_icon_arow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_icon_arow_up.png; sourceTree = "<group>"; };
+		4E9EA06F15C81338001039A5 /* security_icon_fingerprint_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_icon_fingerprint_press.png; sourceTree = "<group>"; };
+		4E9EA07015C81338001039A5 /* security_icon_fingerprint_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_icon_fingerprint_up.png; sourceTree = "<group>"; };
+		4E9EA07115C81338001039A5 /* texbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texbox.png; sourceTree = "<group>"; };
+		4E9EA07215C81338001039A5 /* topHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topHeader.png; sourceTree = "<group>"; };
+		4E9EA07315C81338001039A5 /* ZooZCardSelection.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZCardSelection.nib; sourceTree = "<group>"; };
+		4E9EA07415C81338001039A5 /* ZooZCardSelection_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZCardSelection_ipad.nib; sourceTree = "<group>"; };
+		4E9EA07515C81338001039A5 /* ZooZEndPayment.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZEndPayment.nib; sourceTree = "<group>"; };
+		4E9EA07615C81338001039A5 /* ZooZEndPayment_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZEndPayment_ipad.nib; sourceTree = "<group>"; };
+		4E9EA07715C81338001039A5 /* ZooZGenWebController.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZGenWebController.nib; sourceTree = "<group>"; };
+		4E9EA07815C81338001039A5 /* ZooZGenWebController_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZGenWebController_ipad.nib; sourceTree = "<group>"; };
+		4E9EA07915C81338001039A5 /* zoozi18n.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = zoozi18n.bundle; sourceTree = "<group>"; };
+		4E9EA07A15C81338001039A5 /* ZooZNewCardController.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZNewCardController.nib; sourceTree = "<group>"; };
+		4E9EA07B15C81338001039A5 /* ZooZNewCardController_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZNewCardController_ipad.nib; sourceTree = "<group>"; };
+		4E9EA07C15C81338001039A5 /* ZooZPasscodeSave.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZPasscodeSave.nib; sourceTree = "<group>"; };
+		4E9EA07D15C81338001039A5 /* ZooZPassCodeSave_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZPassCodeSave_ipad.nib; sourceTree = "<group>"; };
+		4E9EA07E15C81338001039A5 /* ZooZPasscodeVerify.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZPasscodeVerify.nib; sourceTree = "<group>"; };
+		4E9EA07F15C81338001039A5 /* ZooZPasscodeVerify_ipad.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZooZPasscodeVerify_ipad.nib; sourceTree = "<group>"; };
+		4E9EA08015C81338001039A5 /* ZooZSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZooZSDK.framework; sourceTree = "<group>"; };
+		4ECF9B1015F9EE430007A29B /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		4ECF9B1115F9EE430007A29B /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		4ECF9B1215F9EE430007A29B /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		4ECF9B1315F9EE430007A29B /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		4ECF9B1415F9EE430007A29B /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
+		4ECF9B1515F9EE430007A29B /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		4ECF9B1615F9EE430007A29B /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
+		4ECF9B1715F9EE430007A29B /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		4ECF9B1815F9EE430007A29B /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		4ECF9B1915F9EE430007A29B /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		4ECF9B1A15F9EE430007A29B /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		4ECF9B1B15F9EE430007A29B /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		4ECF9B1C15F9EE430007A29B /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		4ECF9B1D15F9EE430007A29B /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		4ECF9B1E15F9EE430007A29B /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		4ECF9B1F15F9EE430007A29B /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		4ECF9B2015F9EE430007A29B /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		4ECF9B2115F9EE430007A29B /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		4ECF9B2215F9EE430007A29B /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		4ECF9B2315F9EE430007A29B /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		4ECF9B2515F9EE430007A29B /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		4ECF9B2615F9EE430007A29B /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
+		4ECF9B2715F9EE430007A29B /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		4ECF9B2815F9EE430007A29B /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		4ECF9B2915F9EE430007A29B /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		4ECF9B2A15F9EE430007A29B /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
+		4ECF9B2B15F9EE430007A29B /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		4ECF9B2C15F9EE430007A29B /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		4ECF9B2D15F9EE430007A29B /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
+		4ECF9B2E15F9EE430007A29B /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
+		4ECF9B3015F9EE430007A29B /* AFItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFItemView.h; sourceTree = "<group>"; };
+		4ECF9B3115F9EE430007A29B /* AFItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFItemView.m; sourceTree = "<group>"; };
+		4ECF9B3215F9EE430007A29B /* AFOpenFlowConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOpenFlowConstants.h; sourceTree = "<group>"; };
+		4ECF9B3315F9EE430007A29B /* AFOpenFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOpenFlowView.h; sourceTree = "<group>"; };
+		4ECF9B3415F9EE430007A29B /* AFOpenFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFOpenFlowView.m; sourceTree = "<group>"; };
+		4ECF9B3515F9EE430007A29B /* AFUIImageReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFUIImageReflection.h; sourceTree = "<group>"; };
+		4ECF9B3615F9EE430007A29B /* AFUIImageReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFUIImageReflection.m; sourceTree = "<group>"; };
+		4ECF9B3815F9EE430007A29B /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
+		4ECF9B3915F9EE430007A29B /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
+		4ECF9B3A15F9EE430007A29B /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
+		4ECF9B3B15F9EE430007A29B /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
+		4ECF9B3C15F9EE430007A29B /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
+		4ECF9B3D15F9EE430007A29B /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
+		4ECF9B4015F9EE430007A29B /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		4ECF9B4115F9EE430007A29B /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		4ECF9B4215F9EE430007A29B /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		4ECF9B4315F9EE430007A29B /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		4ECF9B4515F9EE430007A29B /* AppRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppRecord.h; sourceTree = "<group>"; };
+		4ECF9B4615F9EE430007A29B /* AppRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppRecord.m; sourceTree = "<group>"; };
+		4ECF9B4715F9EE430007A29B /* CustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
+		4ECF9B4815F9EE430007A29B /* CustomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageView.m; sourceTree = "<group>"; };
+		4ECF9B4915F9EE430007A29B /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		4ECF9B4A15F9EE430007A29B /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		4ECF9B4C15F9EE430007A29B /* OAAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAttachment.h; sourceTree = "<group>"; };
+		4ECF9B4D15F9EE430007A29B /* OAAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAAttachment.m; sourceTree = "<group>"; };
+		4ECF9B4E15F9EE430007A29B /* OACall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACall.h; sourceTree = "<group>"; };
+		4ECF9B4F15F9EE430007A29B /* OACall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACall.m; sourceTree = "<group>"; };
+		4ECF9B5015F9EE430007A29B /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		4ECF9B5115F9EE430007A29B /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
+		4ECF9B5215F9EE430007A29B /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
+		4ECF9B5315F9EE430007A29B /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OADataFetcher.m; sourceTree = "<group>"; };
+		4ECF9B5415F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		4ECF9B5515F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		4ECF9B5615F9EE430007A29B /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		4ECF9B5715F9EE430007A29B /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
+		4ECF9B5815F9EE430007A29B /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		4ECF9B5915F9EE430007A29B /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
+		4ECF9B5A15F9EE430007A29B /* OAProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAProblem.h; sourceTree = "<group>"; };
+		4ECF9B5B15F9EE430007A29B /* OAProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAProblem.m; sourceTree = "<group>"; };
+		4ECF9B5C15F9EE430007A29B /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		4ECF9B5D15F9EE430007A29B /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
+		4ECF9B5E15F9EE430007A29B /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
+		4ECF9B5F15F9EE430007A29B /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServiceTicket.m; sourceTree = "<group>"; };
+		4ECF9B6015F9EE430007A29B /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		4ECF9B6115F9EE430007A29B /* OATestServer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = OATestServer.rb; sourceTree = "<group>"; };
+		4ECF9B6215F9EE430007A29B /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
+		4ECF9B6315F9EE430007A29B /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
+		4ECF9B6415F9EE430007A29B /* OATokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OATokenManager.h; sourceTree = "<group>"; };
+		4ECF9B6515F9EE430007A29B /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
+		4ECF9B6615F9EE430007A29B /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		4ECF9B6715F9EE430007A29B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4ECF9B6915F9EE430007A29B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4ECF9B6A15F9EE430007A29B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		4ECF9B6C15F9EE430007A29B /* ASIFormDataRequest+OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASIFormDataRequest+OAuth.h"; sourceTree = "<group>"; };
+		4ECF9B6D15F9EE430007A29B /* ASIFormDataRequest+OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASIFormDataRequest+OAuth.m"; sourceTree = "<group>"; };
+		4ECF9B6E15F9EE430007A29B /* ASIHTTPRequest+OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASIHTTPRequest+OAuth.h"; sourceTree = "<group>"; };
+		4ECF9B6F15F9EE430007A29B /* ASIHTTPRequest+OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASIHTTPRequest+OAuth.m"; sourceTree = "<group>"; };
+		4ECF9B7015F9EE430007A29B /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		4ECF9B7115F9EE430007A29B /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		4ECF9B7315F9EE430007A29B /* libServerAPIiPad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libServerAPIiPad.a; sourceTree = "<group>"; };
+		4ECF9B7415F9EE430007A29B /* ServerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPI.h; sourceTree = "<group>"; };
+		4ECF9B7615F9EE430007A29B /* DBMobicart.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = DBMobicart.sqlite3; sourceTree = "<group>"; };
+		4ECF9B7715F9EE430007A29B /* Sql_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sql_Database.h; sourceTree = "<group>"; };
+		4ECF9B7815F9EE430007A29B /* SqlQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlQuery.h; sourceTree = "<group>"; };
+		4ECF9B7A15F9EE430007A29B /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		4ECF9B7B15F9EE430007A29B /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		4ECF9B7C15F9EE430007A29B /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
+		4ECF9B7D15F9EE430007A29B /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		4ECF9B7E15F9EE430007A29B /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		4ECF9B7F15F9EE430007A29B /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		4ECF9B8215F9EE430007A29B /* TableViewCell_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell_Common.h; sourceTree = "<group>"; };
+		4ECF9B8315F9EE430007A29B /* TableViewCell_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell_Common.m; sourceTree = "<group>"; };
+		4ECF9B8515F9EE430007A29B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		4ECF9B8615F9EE430007A29B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		4ECF9B8715F9EE430007A29B /* HSSegmentControl_Customized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSegmentControl_Customized.h; sourceTree = "<group>"; };
+		4ECF9B8815F9EE430007A29B /* HSSegmentControl_Customized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSegmentControl_Customized.m; sourceTree = "<group>"; };
+		4ECF9B8915F9EE430007A29B /* SegmentControl_Customized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentControl_Customized.h; sourceTree = "<group>"; };
+		4ECF9B8A15F9EE430007A29B /* SegmentControl_Customized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentControl_Customized.m; sourceTree = "<group>"; };
+		4ECF9B8B15F9EE430007A29B /* SingletonLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonLocation.h; sourceTree = "<group>"; };
+		4ECF9B8C15F9EE430007A29B /* SingletonLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonLocation.m; sourceTree = "<group>"; };
+		4ECF9B8D15F9EE430007A29B /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		4ECF9B8E15F9EE430007A29B /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		4ECF9B9015F9EE430007A29B /* savedPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = savedPreferences.h; sourceTree = "<group>"; };
+		4ECF9B9115F9EE430007A29B /* savedPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = savedPreferences.m; sourceTree = "<group>"; };
+		4ECF9B9315F9EE430007A29B /* StockCalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockCalculation.h; sourceTree = "<group>"; };
+		4ECF9B9415F9EE430007A29B /* StockCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockCalculation.m; sourceTree = "<group>"; };
+		4ECF9B9615F9EE430007A29B /* TaxCalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxCalculation.h; sourceTree = "<group>"; };
+		4ECF9B9715F9EE430007A29B /* TaxCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxCalculation.m; sourceTree = "<group>"; };
+		4ECF9B9915F9EE430007A29B /* View1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View1.h; sourceTree = "<group>"; };
+		4ECF9B9A15F9EE430007A29B /* View1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View1.m; sourceTree = "<group>"; };
+		4ECF9B9B15F9EE430007A29B /* View2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View2.h; sourceTree = "<group>"; };
+		4ECF9B9C15F9EE430007A29B /* View2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View2.m; sourceTree = "<group>"; };
+		4ECF9B9D15F9EE430007A29B /* View3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View3.h; sourceTree = "<group>"; };
+		4ECF9B9E15F9EE430007A29B /* View3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View3.m; sourceTree = "<group>"; };
+		4ECF9BA015F9EE430007A29B /* HSMobicartParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMobicartParser.h; sourceTree = "<group>"; };
+		4ECF9BA115F9EE430007A29B /* HSMobicartParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMobicartParser.m; sourceTree = "<group>"; };
+		4ECF9BA215F9EE430007A29B /* MobicartParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobicartParser.h; sourceTree = "<group>"; };
+		4ECF9BA315F9EE430007A29B /* MobicartParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobicartParser.m; sourceTree = "<group>"; };
+		4ECF9BA615F9EE430007A29B /* EbookScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EbookScrollView.h; sourceTree = "<group>"; };
+		4ECF9BA715F9EE430007A29B /* EbookScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EbookScrollView.m; sourceTree = "<group>"; };
+		4ECF9BA815F9EE430007A29B /* GlobalPrefrences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPrefrences.h; sourceTree = "<group>"; };
+		4ECF9BA915F9EE430007A29B /* GlobalPrefrences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPrefrences.m; sourceTree = "<group>"; };
+		4ECF9BAA15F9EE430007A29B /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4ECF9BAB15F9EE430007A29B /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		4ECF9BAE15F9EE430007A29B /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		4ECF9BAF15F9EE430007A29B /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		4ECF9BB115F9EE430007A29B /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		4ECF9BB215F9EE430007A29B /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
+		4ECF9BB415F9EE430007A29B /* MobiCartWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobiCartWebView.h; sourceTree = "<group>"; };
+		4ECF9BB515F9EE430007A29B /* MobiCartWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobiCartWebView.m; sourceTree = "<group>"; };
+		4ECF9BB615F9EE430007A29B /* MoreTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreTableViewDataSource.h; sourceTree = "<group>"; };
+		4ECF9BB715F9EE430007A29B /* MoreTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewDataSource.m; sourceTree = "<group>"; };
+		4ECF9BB915F9EE430007A29B /* Page1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page1ViewController.h; sourceTree = "<group>"; };
+		4ECF9BBA15F9EE430007A29B /* Page1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page1ViewController.m; sourceTree = "<group>"; };
+		4ECF9BBB15F9EE430007A29B /* Page2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page2ViewController.h; sourceTree = "<group>"; };
+		4ECF9BBC15F9EE430007A29B /* Page2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page2ViewController.m; sourceTree = "<group>"; };
+		4ECF9BBD15F9EE430007A29B /* PrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
+		4ECF9BBE15F9EE430007A29B /* PrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
+		4ECF9BBF15F9EE430007A29B /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
+		4ECF9BC015F9EE430007A29B /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		4ECF9BC215F9EE430007A29B /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		4ECF9BC315F9EE430007A29B /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		4ECF9BC415F9EE430007A29B /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		4ECF9BC515F9EE430007A29B /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		4ECF9BC615F9EE430007A29B /* OrderHistroyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderHistroyViewController.h; sourceTree = "<group>"; };
+		4ECF9BC715F9EE430007A29B /* OrderHistroyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderHistroyViewController.m; sourceTree = "<group>"; };
+		4ECF9BC815F9EE430007A29B /* WishlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishlistViewController.h; sourceTree = "<group>"; };
+		4ECF9BC915F9EE430007A29B /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishlistViewController.m; sourceTree = "<group>"; };
+		4ECF9BCB15F9EE430007A29B /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		4ECF9BCC15F9EE430007A29B /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		4ECF9BCE15F9EE430007A29B /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		4ECF9BCF15F9EE430007A29B /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
+		4ECF9BD015F9EE430007A29B /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
+		4ECF9BD115F9EE430007A29B /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
+		4ECF9BD315F9EE430007A29B /* CoverFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverFlowViewController.h; sourceTree = "<group>"; };
+		4ECF9BD415F9EE430007A29B /* CoverFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverFlowViewController.m; sourceTree = "<group>"; };
+		4ECF9BD515F9EE430007A29B /* DepartmentListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentListingViewController.h; sourceTree = "<group>"; };
+		4ECF9BD615F9EE430007A29B /* DepartmentListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentListingViewController.m; sourceTree = "<group>"; };
+		4ECF9BD715F9EE430007A29B /* GlobalSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSearch.h; sourceTree = "<group>"; };
+		4ECF9BD815F9EE430007A29B /* GlobalSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalSearch.m; sourceTree = "<group>"; };
+		4ECF9BD915F9EE430007A29B /* ProductDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetails.h; sourceTree = "<group>"; };
+		4ECF9BDA15F9EE430007A29B /* ProductDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetails.m; sourceTree = "<group>"; };
+		4ECF9BDB15F9EE430007A29B /* ReadReviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadReviews.h; sourceTree = "<group>"; };
+		4ECF9BDC15F9EE430007A29B /* ReadReviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadReviews.m; sourceTree = "<group>"; };
+		4ECF9BDD15F9EE430007A29B /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		4ECF9BDE15F9EE430007A29B /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
+		4ECF9BDF15F9EE430007A29B /* webViewVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webViewVideo.h; sourceTree = "<group>"; };
+		4ECF9BE015F9EE430007A29B /* webViewVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webViewVideo.m; sourceTree = "<group>"; };
+		4ECF9BE115F9EE430007A29B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4ECF9BE315F9EE430007A29B /* MobicartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobicartViewController.h; sourceTree = "<group>"; };
+		4ECF9BE415F9EE430007A29B /* MobicartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobicartViewController.m; sourceTree = "<group>"; };
+		4ECF9BE515F9EE430007A29B /* MobicartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobicartViewController.xib; sourceTree = "<group>"; };
+		4ECF9BE615F9EE430007A29B /* MobicartAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobicartAppDelegate.h; sourceTree = "<group>"; };
+		4ECF9BE715F9EE430007A29B /* MobicartAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobicartAppDelegate.m; sourceTree = "<group>"; };
+		4ECF9BE815F9EE430007A29B /* MobicartStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobicartStart.h; sourceTree = "<group>"; };
+		4ECF9BE915F9EE430007A29B /* MobicartStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobicartStart.m; sourceTree = "<group>"; };
+		66879057160AE47400609F7E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = "Resources/Replaceable Image/Icon.png"; sourceTree = SOURCE_ROOT; };
+		6695566115FDA707001A8594 /* about_us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_us.png; sourceTree = "<group>"; };
+		6695566215FDA707001A8594 /* account_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_icon.png; sourceTree = "<group>"; };
+		6695566315FDA707001A8594 /* add_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_cart.png; sourceTree = "<group>"; };
+		6695566415FDA707001A8594 /* add_to_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_to_cart.png; sourceTree = "<group>"; };
+		6695566515FDA707001A8594 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		6695566615FDA707001A8594 /* bgview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgview.png; sourceTree = "<group>"; };
+		6695566715FDA707001A8594 /* black_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_star.png; sourceTree = "<group>"; };
+		6695566815FDA707001A8594 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
+		6695566915FDA707001A8594 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		6695566A15FDA707001A8594 /* box_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_tick.png; sourceTree = "<group>"; };
+		6695566B15FDA707001A8594 /* checkout_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkout_btn.png; sourceTree = "<group>"; };
+		6695566C15FDA707001A8594 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		6695566D15FDA707001A8594 /* coming_soon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coming_soon.png; sourceTree = "<group>"; };
+		6695566E15FDA707001A8594 /* coming_soon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coming_soon_large.png; sourceTree = "<group>"; };
+		6695566F15FDA707001A8594 /* Contact_us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact_us.png; sourceTree = "<group>"; };
+		6695567015FDA707001A8594 /* copyright_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyright_logo.png; sourceTree = "<group>"; };
+		6695567115FDA707001A8594 /* cut_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cut_line.png; sourceTree = "<group>"; };
+		6695567215FDA707001A8594 /* department.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = department.png; sourceTree = "<group>"; };
+		6695567315FDA707001A8594 /* dot_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot_line.png; sourceTree = "<group>"; };
+		6695567415FDA707001A8594 /* dotted_line_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted_line_02.png; sourceTree = "<group>"; };
+		6695567515FDA707001A8594 /* drop_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop_down.png; sourceTree = "<group>"; };
+		6695567615FDA707001A8594 /* dropdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown.png; sourceTree = "<group>"; };
+		6695567715FDA707001A8594 /* edit_cart_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_cart_btn.png; sourceTree = "<group>"; };
+		6695567815FDA707001A8594 /* favorite_star-off-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite_star-off-transparent.png"; sourceTree = "<group>"; };
+		6695567915FDA707001A8594 /* favorite_star-on-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite_star-on-transparent.png"; sourceTree = "<group>"; };
+		6695567A15FDA707001A8594 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
+		6695567B15FDA707001A8594 /* horizontal-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "horizontal-line.png"; sourceTree = "<group>"; };
+		6695567C15FDA707001A8594 /* instock_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instock_btn.png; sourceTree = "<group>"; };
+		6695567D15FDA707001A8594 /* instock_btn_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instock_btn_large.png; sourceTree = "<group>"; };
+		6695567E15FDA707001A8594 /* large_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = large_placeholder.png; sourceTree = "<group>"; };
+		6695567F15FDA707001A8594 /* light_topimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light_topimg.png; sourceTree = "<group>"; };
+		6695568015FDA707001A8594 /* more_icon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_icon_01.png; sourceTree = "<group>"; };
+		6695568115FDA707001A8594 /* more_icon_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_icon_02.png; sourceTree = "<group>"; };
+		6695568215FDA707001A8594 /* more_icon_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_icon_03.png; sourceTree = "<group>"; };
+		6695568315FDA707001A8594 /* more_icon_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_icon_04.png; sourceTree = "<group>"; };
+		6695568415FDA707001A8594 /* new_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_email.png; sourceTree = "<group>"; };
+		6695568515FDA707001A8594 /* new_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_search.png; sourceTree = "<group>"; };
+		6695568615FDA707001A8594 /* new_wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_wishlist.png; sourceTree = "<group>"; };
+		6695568715FDA707001A8594 /* new_youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_youtube.png; sourceTree = "<group>"; };
+		6695568815FDA707001A8594 /* news_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news_icon.png; sourceTree = "<group>"; };
+		6695568915FDA707001A8594 /* next_page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_page.png; sourceTree = "<group>"; };
+		6695568A15FDA707001A8594 /* noImage_l.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage_l.png; sourceTree = "<group>"; };
+		6695568B15FDA707001A8594 /* noImage_M.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage_M.png; sourceTree = "<group>"; };
+		6695568C15FDA707001A8594 /* noImage_S_New.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage_S_New.png; sourceTree = "<group>"; };
+		6695568D15FDA707001A8594 /* number_oval.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_oval.png; sourceTree = "<group>"; };
+		6695568E15FDA707001A8594 /* oval_shape_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oval_shape_black.png; sourceTree = "<group>"; };
+		6695568F15FDA707001A8594 /* page_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_1.png; sourceTree = "<group>"; };
+		6695569015FDA707001A8594 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		6695569115FDA707001A8594 /* post_a_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = post_a_review.png; sourceTree = "<group>"; };
+		6695569215FDA707001A8594 /* post_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = post_review.png; sourceTree = "<group>"; };
+		6695569315FDA707001A8594 /* pre_page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pre_page.png; sourceTree = "<group>"; };
+		6695569415FDA707001A8594 /* privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = privacy.png; sourceTree = "<group>"; };
+		6695569515FDA707001A8594 /* product_list_ph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = product_list_ph.png; sourceTree = "<group>"; };
+		6695569615FDA707001A8594 /* search_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_new.png; sourceTree = "<group>"; };
+		6695569715FDA707001A8594 /* seperator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperator.png; sourceTree = "<group>"; };
+		6695569815FDA707001A8594 /* seperator_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperator_shadow.png; sourceTree = "<group>"; };
+		6695569915FDA707001A8594 /* shop_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop_box.png; sourceTree = "<group>"; };
+		6695569A15FDA707001A8594 /* sold_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sold_out.png; sourceTree = "<group>"; };
+		6695569B15FDA707001A8594 /* sold_out_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sold_out_large.png; sourceTree = "<group>"; };
+		6695569C15FDA707001A8594 /* store_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = store_icon.png; sourceTree = "<group>"; };
+		6695569D15FDA707001A8594 /* submit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_btn.png; sourceTree = "<group>"; };
+		6695569E15FDA707001A8594 /* terms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terms.png; sourceTree = "<group>"; };
+		6695569F15FDA707001A8594 /* vertical_dotted_lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_dotted_lines.png; sourceTree = "<group>"; };
+		669556A015FDA707001A8594 /* yellow_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_star.png; sourceTree = "<group>"; };
+		669556A115FDA707001A8594 /* yellow_start_details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_start_details.png; sourceTree = "<group>"; };
+		669556A615FDA707001A8594 /* pickup_coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pickup_coin.wav; sourceTree = "<group>"; };
+		669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../../../../Desktop/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Mobicart-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mobicart-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		938F10A21322156700898160 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		939C409F137ACADB005DA2E8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		93A26D3513540FB900729F28 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		93A26D3713540FB900729F28 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9A921E8D13D7E1030007650C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9A921E9E13D7E11C0007650C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9A921EA613D7E1590007650C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9A921ED213D7E1770007650C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9A921EE613D7E18D0007650C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9A921EEC13D7E1C40007650C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9A9B367713796B3D00C8B00B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9A9F47CE135C4821005E6B05 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		CC59BED815107F46007A4FC2 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC59BED915107F46007A4FC2 /* libxml2.dylib in Frameworks */,
+				31AAE5C41469767700EAAE17 /* libz.1.1.3.dylib in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				938F10A31322156700898160 /* QuartzCore.framework in Frameworks */,
+				93A26D3613540FB900729F28 /* CoreLocation.framework in Frameworks */,
+				93A26D3813540FB900729F28 /* MapKit.framework in Frameworks */,
+				9A9F47CF135C4822005E6B05 /* libsqlite3.0.dylib in Frameworks */,
+				9A9B367813796B3D00C8B00B /* MessageUI.framework in Frameworks */,
+				939C40A0137ACADB005DA2E8 /* AudioToolbox.framework in Frameworks */,
+				318878F7137BBF730053490C /* OpenGLES.framework in Frameworks */,
+				9A921E8E13D7E1030007650C /* CFNetwork.framework in Frameworks */,
+				9A921E9F13D7E11C0007650C /* MobileCoreServices.framework in Frameworks */,
+				9A921EA713D7E1590007650C /* AVFoundation.framework in Frameworks */,
+				9A921ED313D7E1770007650C /* SystemConfiguration.framework in Frameworks */,
+				9A921EE713D7E18D0007650C /* Security.framework in Frameworks */,
+				9A921EED13D7E1C40007650C /* CoreText.framework in Frameworks */,
+				4E9EA0BF15C81338001039A5 /* ZooZSDK.framework in Frameworks */,
+				4ECF9C1115F9EE430007A29B /* libServerAPIiPad.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Mobi-Cart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				4E34C16515F8CEBA00BE8EA3 /* UserDetails.h */,
+				4ECF9BE715F9EE430007A29B /* MobicartAppDelegate.m */,
+				4ECF9BE815F9EE430007A29B /* MobicartStart.h */,
+				4ECF9BE915F9EE430007A29B /* MobicartStart.m */,
+				4ECF9BE615F9EE430007A29B /* MobicartAppDelegate.h */,
+				4ECF9BE115F9EE430007A29B /* Constants.h */,
+				4ECF9B0D15F9EE430007A29B /* Classes */,
+				4ECF9BE215F9EE430007A29B /* MobiCart View Controller */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Mobicart_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6695565F15FDA707001A8594 /* Images */,
+				669556A215FDA707001A8594 /* Replaceable Image */,
+				669556A515FDA707001A8594 /* Sound */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Mobicart-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E9EA04015C81338001039A5 /* ZooZSDK.embeddedframework */,
+				31AAE5C21469767700EAAE17 /* libz.1.1.3.dylib */,
+				CC59BED815107F46007A4FC2 /* libxml2.dylib */,
+				9A921ED213D7E1770007650C /* SystemConfiguration.framework */,
+				9A921EA613D7E1590007650C /* AVFoundation.framework */,
+				9A921E9E13D7E11C0007650C /* MobileCoreServices.framework */,
+				9A921E8D13D7E1030007650C /* CFNetwork.framework */,
+				939C409F137ACADB005DA2E8 /* AudioToolbox.framework */,
+				93A26D3713540FB900729F28 /* MapKit.framework */,
+				93A26D3513540FB900729F28 /* CoreLocation.framework */,
+				938F10A21322156700898160 /* QuartzCore.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				9A9F47CE135C4821005E6B05 /* libsqlite3.0.dylib */,
+				9A9B367713796B3D00C8B00B /* MessageUI.framework */,
+				318878F6137BBF730053490C /* OpenGLES.framework */,
+				9A921EEC13D7E1C40007650C /* CoreText.framework */,
+				9A921EE613D7E18D0007650C /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E9EA04015C81338001039A5 /* ZooZSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				4E9EA04115C81338001039A5 /* Resources */,
+				4E9EA08015C81338001039A5 /* ZooZSDK.framework */,
+			);
+			path = ZooZSDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		4E9EA04115C81338001039A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E9EA04215C81338001039A5 /* button_add_press.png */,
+				4E9EA04315C81338001039A5 /* button_add_up.png */,
+				4E9EA04415C81338001039A5 /* button_black.png */,
+				4E9EA04515C81338001039A5 /* button_blue.png */,
+				4E9EA04615C81338001039A5 /* button_green.png */,
+				4E9EA04715C81338001039A5 /* button_green_big_press.png */,
+				4E9EA04815C81338001039A5 /* button_green_big_up.png */,
+				4E9EA04915C81338001039A5 /* button_green_small_press.png */,
+				4E9EA04A15C81338001039A5 /* button_green_small_up.png */,
+				4E9EA04B15C81338001039A5 /* cards_all.png */,
+				4E9EA04C15C81338001039A5 /* cards_americanexpress.png */,
+				4E9EA04D15C81338001039A5 /* cards_americanexpress_s.png */,
+				4E9EA04E15C81338001039A5 /* cards_diners.png */,
+				4E9EA04F15C81338001039A5 /* cards_diners_s.png */,
+				4E9EA05015C81338001039A5 /* cards_discover.png */,
+				4E9EA05115C81338001039A5 /* cards_discover_s.png */,
+				4E9EA05215C81338001039A5 /* cards_isracard_s.png */,
+				4E9EA05315C81338001039A5 /* cards_jcb.png */,
+				4E9EA05415C81338001039A5 /* cards_jcb_s.png */,
+				4E9EA05515C81338001039A5 /* cards_leumimastercard.png */,
+				4E9EA05615C81338001039A5 /* cards_leumivisa.png */,
+				4E9EA05715C81338001039A5 /* cards_mastercard.png */,
+				4E9EA05815C81338001039A5 /* cards_mastercard_s.png */,
+				4E9EA05915C81338001039A5 /* cards_paypal.png */,
+				4E9EA05A15C81338001039A5 /* cards_paypal_s.png */,
+				4E9EA05B15C81338001039A5 /* cards_visa.png */,
+				4E9EA05C15C81338001039A5 /* cards_visa_s.png */,
+				4E9EA05D15C81338001039A5 /* checkbox_checked.png */,
+				4E9EA05E15C81338001039A5 /* checkbox_unchecked.png */,
+				4E9EA05F15C81338001039A5 /* cvv_americanexpress.png */,
+				4E9EA06015C81338001039A5 /* cvv_mastercard.png */,
+				4E9EA06115C81338001039A5 /* cvv_other.png */,
+				4E9EA06215C81338001039A5 /* cvv_visa.png */,
+				4E9EA06315C81338001039A5 /* icon_card.png */,
+				4E9EA06415C81338001039A5 /* icon_info.png */,
+				4E9EA06515C81338001039A5 /* icon_V.png */,
+				4E9EA06615C81338001039A5 /* lock_small.png */,
+				4E9EA06715C81338001039A5 /* logo_big.png */,
+				4E9EA06815C81338001039A5 /* logo_small.png */,
+				4E9EA06915C81338001039A5 /* sandbox.png */,
+				4E9EA06A15C81338001039A5 /* seal.png */,
+				4E9EA06B15C81338001039A5 /* security_button_press.png */,
+				4E9EA06C15C81338001039A5 /* security_button_up.png */,
+				4E9EA06D15C81338001039A5 /* security_icon_arow_press.png */,
+				4E9EA06E15C81338001039A5 /* security_icon_arow_up.png */,
+				4E9EA06F15C81338001039A5 /* security_icon_fingerprint_press.png */,
+				4E9EA07015C81338001039A5 /* security_icon_fingerprint_up.png */,
+				4E9EA07115C81338001039A5 /* texbox.png */,
+				4E9EA07215C81338001039A5 /* topHeader.png */,
+				4E9EA07315C81338001039A5 /* ZooZCardSelection.nib */,
+				4E9EA07415C81338001039A5 /* ZooZCardSelection_ipad.nib */,
+				4E9EA07515C81338001039A5 /* ZooZEndPayment.nib */,
+				4E9EA07615C81338001039A5 /* ZooZEndPayment_ipad.nib */,
+				4E9EA07715C81338001039A5 /* ZooZGenWebController.nib */,
+				4E9EA07815C81338001039A5 /* ZooZGenWebController_ipad.nib */,
+				4E9EA07915C81338001039A5 /* zoozi18n.bundle */,
+				4E9EA07A15C81338001039A5 /* ZooZNewCardController.nib */,
+				4E9EA07B15C81338001039A5 /* ZooZNewCardController_ipad.nib */,
+				4E9EA07C15C81338001039A5 /* ZooZPasscodeSave.nib */,
+				4E9EA07D15C81338001039A5 /* ZooZPassCodeSave_ipad.nib */,
+				4E9EA07E15C81338001039A5 /* ZooZPasscodeVerify.nib */,
+				4E9EA07F15C81338001039A5 /* ZooZPasscodeVerify_ipad.nib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4ECF9B0D15F9EE430007A29B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B0E15F9EE430007A29B /* Global Classes */,
+				4ECF9BA415F9EE430007A29B /* TabBar Item */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4ECF9B0E15F9EE430007A29B /* Global Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B0F15F9EE430007A29B /* ASIHTTP Library */,
+				4ECF9B2415F9EE430007A29B /* Category */,
+				4ECF9B2F15F9EE430007A29B /* Cover Flow */,
+				4ECF9B3715F9EE430007A29B /* Curl Pages Library */,
+				4ECF9B3E15F9EE430007A29B /* Custom Views */,
+				4ECF9B3F15F9EE430007A29B /* Json Library */,
+				4ECF9B4415F9EE430007A29B /* Lazy Loading */,
+				4ECF9B4B15F9EE430007A29B /* Oauth Library  */,
+				4ECF9B6815F9EE430007A29B /* Reachablity */,
+				4ECF9B6B15F9EE430007A29B /* Security Header */,
+				4ECF9B7215F9EE430007A29B /* Server API  */,
+				4ECF9B7515F9EE430007A29B /* SQL Handller */,
+				4ECF9B7915F9EE430007A29B /* Transcoder */,
+				4ECF9B8015F9EE430007A29B /* Utils */,
+				4ECF9B9815F9EE430007A29B /* Views */,
+				4ECF9B9F15F9EE430007A29B /* Xml Parsar */,
+			);
+			path = "Global Classes";
+			sourceTree = "<group>";
+		};
+		4ECF9B0F15F9EE430007A29B /* ASIHTTP Library */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B1015F9EE430007A29B /* ASIAuthenticationDialog.h */,
+				4ECF9B1115F9EE430007A29B /* ASIAuthenticationDialog.m */,
+				4ECF9B1215F9EE430007A29B /* ASICacheDelegate.h */,
+				4ECF9B1315F9EE430007A29B /* ASIDataCompressor.h */,
+				4ECF9B1415F9EE430007A29B /* ASIDataCompressor.m */,
+				4ECF9B1515F9EE430007A29B /* ASIDataDecompressor.h */,
+				4ECF9B1615F9EE430007A29B /* ASIDataDecompressor.m */,
+				4ECF9B1715F9EE430007A29B /* ASIDownloadCache.h */,
+				4ECF9B1815F9EE430007A29B /* ASIDownloadCache.m */,
+				4ECF9B1915F9EE430007A29B /* ASIFormDataRequest.h */,
+				4ECF9B1A15F9EE430007A29B /* ASIFormDataRequest.m */,
+				4ECF9B1B15F9EE430007A29B /* ASIHTTPRequest.h */,
+				4ECF9B1C15F9EE430007A29B /* ASIHTTPRequest.m */,
+				4ECF9B1D15F9EE430007A29B /* ASIHTTPRequestConfig.h */,
+				4ECF9B1E15F9EE430007A29B /* ASIHTTPRequestDelegate.h */,
+				4ECF9B1F15F9EE430007A29B /* ASIInputStream.h */,
+				4ECF9B2015F9EE430007A29B /* ASIInputStream.m */,
+				4ECF9B2115F9EE430007A29B /* ASINetworkQueue.h */,
+				4ECF9B2215F9EE430007A29B /* ASINetworkQueue.m */,
+				4ECF9B2315F9EE430007A29B /* ASIProgressDelegate.h */,
+			);
+			path = "ASIHTTP Library";
+			sourceTree = "<group>";
+		};
+		4ECF9B2415F9EE430007A29B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B2515F9EE430007A29B /* NSMutableURLRequest+Parameters.h */,
+				4ECF9B2615F9EE430007A29B /* NSMutableURLRequest+Parameters.m */,
+				4ECF9B2715F9EE430007A29B /* NSObject+SBJSON.h */,
+				4ECF9B2815F9EE430007A29B /* NSString+SBJSON.h */,
+				4ECF9B2915F9EE430007A29B /* NSString+URLEncode.h */,
+				4ECF9B2A15F9EE430007A29B /* NSString+URLEncode.m */,
+				4ECF9B2B15F9EE430007A29B /* NSString+URLEncoding.h */,
+				4ECF9B2C15F9EE430007A29B /* NSString+URLEncoding.m */,
+				4ECF9B2D15F9EE430007A29B /* NSURL+Base.h */,
+				4ECF9B2E15F9EE430007A29B /* NSURL+Base.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		4ECF9B2F15F9EE430007A29B /* Cover Flow */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B3015F9EE430007A29B /* AFItemView.h */,
+				4ECF9B3115F9EE430007A29B /* AFItemView.m */,
+				4ECF9B3215F9EE430007A29B /* AFOpenFlowConstants.h */,
+				4ECF9B3315F9EE430007A29B /* AFOpenFlowView.h */,
+				4ECF9B3415F9EE430007A29B /* AFOpenFlowView.m */,
+				4ECF9B3515F9EE430007A29B /* AFUIImageReflection.h */,
+				4ECF9B3615F9EE430007A29B /* AFUIImageReflection.m */,
+			);
+			path = "Cover Flow";
+			sourceTree = "<group>";
+		};
+		4ECF9B3715F9EE430007A29B /* Curl Pages Library */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B3815F9EE430007A29B /* LeavesCache.h */,
+				4ECF9B3915F9EE430007A29B /* LeavesCache.m */,
+				4ECF9B3A15F9EE430007A29B /* LeavesView.h */,
+				4ECF9B3B15F9EE430007A29B /* LeavesView.m */,
+				4ECF9B3C15F9EE430007A29B /* LeavesViewController.h */,
+				4ECF9B3D15F9EE430007A29B /* LeavesViewController.m */,
+			);
+			path = "Curl Pages Library";
+			sourceTree = "<group>";
+		};
+		4ECF9B3E15F9EE430007A29B /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4ECF9B3F15F9EE430007A29B /* Json Library */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B4015F9EE430007A29B /* SBJSON.h */,
+				4ECF9B4115F9EE430007A29B /* SBJsonBase.h */,
+				4ECF9B4215F9EE430007A29B /* SBJsonParser.h */,
+				4ECF9B4315F9EE430007A29B /* SBJsonWriter.h */,
+			);
+			path = "Json Library";
+			sourceTree = "<group>";
+		};
+		4ECF9B4415F9EE430007A29B /* Lazy Loading */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B4515F9EE430007A29B /* AppRecord.h */,
+				4ECF9B4615F9EE430007A29B /* AppRecord.m */,
+				4ECF9B4715F9EE430007A29B /* CustomImageView.h */,
+				4ECF9B4815F9EE430007A29B /* CustomImageView.m */,
+				4ECF9B4915F9EE430007A29B /* IconDownloader.h */,
+				4ECF9B4A15F9EE430007A29B /* IconDownloader.m */,
+			);
+			path = "Lazy Loading";
+			sourceTree = "<group>";
+		};
+		4ECF9B4B15F9EE430007A29B /* Oauth Library  */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B4C15F9EE430007A29B /* OAAttachment.h */,
+				4ECF9B4D15F9EE430007A29B /* OAAttachment.m */,
+				4ECF9B4E15F9EE430007A29B /* OACall.h */,
+				4ECF9B4F15F9EE430007A29B /* OACall.m */,
+				4ECF9B5015F9EE430007A29B /* OAConsumer.h */,
+				4ECF9B5115F9EE430007A29B /* OAConsumer.m */,
+				4ECF9B5215F9EE430007A29B /* OADataFetcher.h */,
+				4ECF9B5315F9EE430007A29B /* OADataFetcher.m */,
+				4ECF9B5415F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.h */,
+				4ECF9B5515F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.m */,
+				4ECF9B5615F9EE430007A29B /* OAMutableURLRequest.h */,
+				4ECF9B5715F9EE430007A29B /* OAMutableURLRequest.m */,
+				4ECF9B5815F9EE430007A29B /* OAPlaintextSignatureProvider.h */,
+				4ECF9B5915F9EE430007A29B /* OAPlaintextSignatureProvider.m */,
+				4ECF9B5A15F9EE430007A29B /* OAProblem.h */,
+				4ECF9B5B15F9EE430007A29B /* OAProblem.m */,
+				4ECF9B5C15F9EE430007A29B /* OARequestParameter.h */,
+				4ECF9B5D15F9EE430007A29B /* OARequestParameter.m */,
+				4ECF9B5E15F9EE430007A29B /* OAServiceTicket.h */,
+				4ECF9B5F15F9EE430007A29B /* OAServiceTicket.m */,
+				4ECF9B6015F9EE430007A29B /* OASignatureProviding.h */,
+				4ECF9B6115F9EE430007A29B /* OATestServer.rb */,
+				4ECF9B6215F9EE430007A29B /* OAToken.h */,
+				4ECF9B6315F9EE430007A29B /* OAToken.m */,
+				4ECF9B6415F9EE430007A29B /* OATokenManager.h */,
+				4ECF9B6515F9EE430007A29B /* OATokenManager.m */,
+				4ECF9B6615F9EE430007A29B /* OAuthConsumer.h */,
+				4ECF9B6715F9EE430007A29B /* README */,
+			);
+			path = "Oauth Library ";
+			sourceTree = "<group>";
+		};
+		4ECF9B6815F9EE430007A29B /* Reachablity */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B6915F9EE430007A29B /* Reachability.h */,
+				4ECF9B6A15F9EE430007A29B /* Reachability.m */,
+			);
+			path = Reachablity;
+			sourceTree = "<group>";
+		};
+		4ECF9B6B15F9EE430007A29B /* Security Header */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B6C15F9EE430007A29B /* ASIFormDataRequest+OAuth.h */,
+				4ECF9B6D15F9EE430007A29B /* ASIFormDataRequest+OAuth.m */,
+				4ECF9B6E15F9EE430007A29B /* ASIHTTPRequest+OAuth.h */,
+				4ECF9B6F15F9EE430007A29B /* ASIHTTPRequest+OAuth.m */,
+				4ECF9B7015F9EE430007A29B /* NSData+Base64.h */,
+				4ECF9B7115F9EE430007A29B /* NSData+Base64.m */,
+			);
+			path = "Security Header";
+			sourceTree = "<group>";
+		};
+		4ECF9B7215F9EE430007A29B /* Server API  */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B7315F9EE430007A29B /* libServerAPIiPad.a */,
+				4ECF9B7415F9EE430007A29B /* ServerAPI.h */,
+			);
+			path = "Server API ";
+			sourceTree = "<group>";
+		};
+		4ECF9B7515F9EE430007A29B /* SQL Handller */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B7615F9EE430007A29B /* DBMobicart.sqlite3 */,
+				4ECF9B7715F9EE430007A29B /* Sql_Database.h */,
+				4ECF9B7815F9EE430007A29B /* SqlQuery.h */,
+			);
+			path = "SQL Handller";
+			sourceTree = "<group>";
+		};
+		4ECF9B7915F9EE430007A29B /* Transcoder */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B7A15F9EE430007A29B /* Base64Transcoder.c */,
+				4ECF9B7B15F9EE430007A29B /* Base64Transcoder.h */,
+				4ECF9B7C15F9EE430007A29B /* hmac.c */,
+				4ECF9B7D15F9EE430007A29B /* hmac.h */,
+				4ECF9B7E15F9EE430007A29B /* sha1.c */,
+				4ECF9B7F15F9EE430007A29B /* sha1.h */,
+			);
+			path = Transcoder;
+			sourceTree = "<group>";
+		};
+		4ECF9B8015F9EE430007A29B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B8115F9EE430007A29B /* Custom Cell */,
+				4ECF9B8415F9EE430007A29B /* Custom Class */,
+				4ECF9B8F15F9EE430007A29B /* Preferences class */,
+				4ECF9B9215F9EE430007A29B /* Stock Calulation */,
+				4ECF9B9515F9EE430007A29B /* Tax Calulation */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4ECF9B8115F9EE430007A29B /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B8215F9EE430007A29B /* TableViewCell_Common.h */,
+				4ECF9B8315F9EE430007A29B /* TableViewCell_Common.m */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		4ECF9B8415F9EE430007A29B /* Custom Class */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B8515F9EE430007A29B /* Annotation.h */,
+				4ECF9B8615F9EE430007A29B /* Annotation.m */,
+				4ECF9B8715F9EE430007A29B /* HSSegmentControl_Customized.h */,
+				4ECF9B8815F9EE430007A29B /* HSSegmentControl_Customized.m */,
+				4ECF9B8915F9EE430007A29B /* SegmentControl_Customized.h */,
+				4ECF9B8A15F9EE430007A29B /* SegmentControl_Customized.m */,
+				4ECF9B8B15F9EE430007A29B /* SingletonLocation.h */,
+				4ECF9B8C15F9EE430007A29B /* SingletonLocation.m */,
+				4ECF9B8D15F9EE430007A29B /* Utilities.h */,
+				4ECF9B8E15F9EE430007A29B /* Utilities.m */,
+			);
+			path = "Custom Class";
+			sourceTree = "<group>";
+		};
+		4ECF9B8F15F9EE430007A29B /* Preferences class */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B9015F9EE430007A29B /* savedPreferences.h */,
+				4ECF9B9115F9EE430007A29B /* savedPreferences.m */,
+			);
+			path = "Preferences class";
+			sourceTree = "<group>";
+		};
+		4ECF9B9215F9EE430007A29B /* Stock Calulation */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B9315F9EE430007A29B /* StockCalculation.h */,
+				4ECF9B9415F9EE430007A29B /* StockCalculation.m */,
+			);
+			path = "Stock Calulation";
+			sourceTree = "<group>";
+		};
+		4ECF9B9515F9EE430007A29B /* Tax Calulation */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B9615F9EE430007A29B /* TaxCalculation.h */,
+				4ECF9B9715F9EE430007A29B /* TaxCalculation.m */,
+			);
+			path = "Tax Calulation";
+			sourceTree = "<group>";
+		};
+		4ECF9B9815F9EE430007A29B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9B9915F9EE430007A29B /* View1.h */,
+				4ECF9B9A15F9EE430007A29B /* View1.m */,
+				4ECF9B9B15F9EE430007A29B /* View2.h */,
+				4ECF9B9C15F9EE430007A29B /* View2.m */,
+				4ECF9B9D15F9EE430007A29B /* View3.h */,
+				4ECF9B9E15F9EE430007A29B /* View3.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4ECF9B9F15F9EE430007A29B /* Xml Parsar */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BA015F9EE430007A29B /* HSMobicartParser.h */,
+				4ECF9BA115F9EE430007A29B /* HSMobicartParser.m */,
+				4ECF9BA215F9EE430007A29B /* MobicartParser.h */,
+				4ECF9BA315F9EE430007A29B /* MobicartParser.m */,
+			);
+			path = "Xml Parsar";
+			sourceTree = "<group>";
+		};
+		4ECF9BA415F9EE430007A29B /* TabBar Item */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BA515F9EE430007A29B /* Home */,
+				4ECF9BAC15F9EE430007A29B /* More View */,
+				4ECF9BC115F9EE430007A29B /* My Account */,
+				4ECF9BCA15F9EE430007A29B /* News */,
+				4ECF9BCD15F9EE430007A29B /* Shopping Cart */,
+				4ECF9BD215F9EE430007A29B /* Store */,
+			);
+			path = "TabBar Item";
+			sourceTree = "<group>";
+		};
+		4ECF9BA515F9EE430007A29B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BA615F9EE430007A29B /* EbookScrollView.h */,
+				4ECF9BA715F9EE430007A29B /* EbookScrollView.m */,
+				4ECF9BA815F9EE430007A29B /* GlobalPrefrences.h */,
+				4ECF9BA915F9EE430007A29B /* GlobalPrefrences.m */,
+				4ECF9BAA15F9EE430007A29B /* HomeViewController.h */,
+				4ECF9BAB15F9EE430007A29B /* HomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4ECF9BAC15F9EE430007A29B /* More View */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BAD15F9EE430007A29B /* About Us */,
+				4ECF9BB015F9EE430007A29B /* Contact Us */,
+				4ECF9BB315F9EE430007A29B /* MobiCart WebView */,
+				4ECF9BB615F9EE430007A29B /* MoreTableViewDataSource.h */,
+				4ECF9BB715F9EE430007A29B /* MoreTableViewDataSource.m */,
+				4ECF9BB815F9EE430007A29B /* Pages */,
+			);
+			path = "More View";
+			sourceTree = "<group>";
+		};
+		4ECF9BAD15F9EE430007A29B /* About Us */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BAE15F9EE430007A29B /* AboutUsViewController.h */,
+				4ECF9BAF15F9EE430007A29B /* AboutUsViewController.m */,
+			);
+			path = "About Us";
+			sourceTree = "<group>";
+		};
+		4ECF9BB015F9EE430007A29B /* Contact Us */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BB115F9EE430007A29B /* ContactUsViewController.h */,
+				4ECF9BB215F9EE430007A29B /* ContactUsViewController.m */,
+			);
+			path = "Contact Us";
+			sourceTree = "<group>";
+		};
+		4ECF9BB315F9EE430007A29B /* MobiCart WebView */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BB415F9EE430007A29B /* MobiCartWebView.h */,
+				4ECF9BB515F9EE430007A29B /* MobiCartWebView.m */,
+			);
+			path = "MobiCart WebView";
+			sourceTree = "<group>";
+		};
+		4ECF9BB815F9EE430007A29B /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BB915F9EE430007A29B /* Page1ViewController.h */,
+				4ECF9BBA15F9EE430007A29B /* Page1ViewController.m */,
+				4ECF9BBB15F9EE430007A29B /* Page2ViewController.h */,
+				4ECF9BBC15F9EE430007A29B /* Page2ViewController.m */,
+				4ECF9BBD15F9EE430007A29B /* PrivacyViewController.h */,
+				4ECF9BBE15F9EE430007A29B /* PrivacyViewController.m */,
+				4ECF9BBF15F9EE430007A29B /* TermsViewController.h */,
+				4ECF9BC015F9EE430007A29B /* TermsViewController.m */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		4ECF9BC115F9EE430007A29B /* My Account */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BC215F9EE430007A29B /* DetailsViewController.h */,
+				4ECF9BC315F9EE430007A29B /* DetailsViewController.m */,
+				4ECF9BC415F9EE430007A29B /* MyAccountViewController.h */,
+				4ECF9BC515F9EE430007A29B /* MyAccountViewController.m */,
+				4ECF9BC615F9EE430007A29B /* OrderHistroyViewController.h */,
+				4ECF9BC715F9EE430007A29B /* OrderHistroyViewController.m */,
+				4ECF9BC815F9EE430007A29B /* WishlistViewController.h */,
+				4ECF9BC915F9EE430007A29B /* WishlistViewController.m */,
+			);
+			path = "My Account";
+			sourceTree = "<group>";
+		};
+		4ECF9BCA15F9EE430007A29B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BCB15F9EE430007A29B /* NewsViewController.h */,
+				4ECF9BCC15F9EE430007A29B /* NewsViewController.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		4ECF9BCD15F9EE430007A29B /* Shopping Cart */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BCE15F9EE430007A29B /* CheckoutViewController.h */,
+				4ECF9BCF15F9EE430007A29B /* CheckoutViewController.m */,
+				4ECF9BD015F9EE430007A29B /* ShoppingCartViewController.h */,
+				4ECF9BD115F9EE430007A29B /* ShoppingCartViewController.m */,
+			);
+			path = "Shopping Cart";
+			sourceTree = "<group>";
+		};
+		4ECF9BD215F9EE430007A29B /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BD315F9EE430007A29B /* CoverFlowViewController.h */,
+				4ECF9BD415F9EE430007A29B /* CoverFlowViewController.m */,
+				4ECF9BD515F9EE430007A29B /* DepartmentListingViewController.h */,
+				4ECF9BD615F9EE430007A29B /* DepartmentListingViewController.m */,
+				4ECF9BD715F9EE430007A29B /* GlobalSearch.h */,
+				4ECF9BD815F9EE430007A29B /* GlobalSearch.m */,
+				4ECF9BD915F9EE430007A29B /* ProductDetails.h */,
+				4ECF9BDA15F9EE430007A29B /* ProductDetails.m */,
+				4ECF9BDB15F9EE430007A29B /* ReadReviews.h */,
+				4ECF9BDC15F9EE430007A29B /* ReadReviews.m */,
+				4ECF9BDD15F9EE430007A29B /* StoreViewController.h */,
+				4ECF9BDE15F9EE430007A29B /* StoreViewController.m */,
+				4ECF9BDF15F9EE430007A29B /* webViewVideo.h */,
+				4ECF9BE015F9EE430007A29B /* webViewVideo.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		4ECF9BE215F9EE430007A29B /* MobiCart View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF9BE315F9EE430007A29B /* MobicartViewController.h */,
+				4ECF9BE415F9EE430007A29B /* MobicartViewController.m */,
+				4ECF9BE515F9EE430007A29B /* MobicartViewController.xib */,
+			);
+			path = "MobiCart View Controller";
+			sourceTree = "<group>";
+		};
+		6695565F15FDA707001A8594 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6695566015FDA707001A8594 /* iPad2 */,
+			);
+			name = Images;
+			path = ../../../Downloads/iPad_lib/Resources/Images;
+			sourceTree = "<group>";
+		};
+		6695566015FDA707001A8594 /* iPad2 */ = {
+			isa = PBXGroup;
+			children = (
+				6695566115FDA707001A8594 /* about_us.png */,
+				6695566215FDA707001A8594 /* account_icon.png */,
+				6695566315FDA707001A8594 /* add_cart.png */,
+				6695566415FDA707001A8594 /* add_to_cart.png */,
+				6695566515FDA707001A8594 /* arrow_left.png */,
+				6695566615FDA707001A8594 /* bgview.png */,
+				6695566715FDA707001A8594 /* black_star.png */,
+				6695566815FDA707001A8594 /* block.png */,
+				6695566915FDA707001A8594 /* book.png */,
+				6695566A15FDA707001A8594 /* box_tick.png */,
+				6695566B15FDA707001A8594 /* checkout_btn.png */,
+				6695566C15FDA707001A8594 /* clock.png */,
+				6695566D15FDA707001A8594 /* coming_soon.png */,
+				6695566E15FDA707001A8594 /* coming_soon_large.png */,
+				6695566F15FDA707001A8594 /* Contact_us.png */,
+				6695567015FDA707001A8594 /* copyright_logo.png */,
+				6695567115FDA707001A8594 /* cut_line.png */,
+				6695567215FDA707001A8594 /* department.png */,
+				6695567315FDA707001A8594 /* dot_line.png */,
+				6695567415FDA707001A8594 /* dotted_line_02.png */,
+				6695567515FDA707001A8594 /* drop_down.png */,
+				6695567615FDA707001A8594 /* dropdown.png */,
+				6695567715FDA707001A8594 /* edit_cart_btn.png */,
+				6695567815FDA707001A8594 /* favorite_star-off-transparent.png */,
+				6695567915FDA707001A8594 /* favorite_star-on-transparent.png */,
+				6695567A15FDA707001A8594 /* home_icon.png */,
+				6695567B15FDA707001A8594 /* horizontal-line.png */,
+				6695567C15FDA707001A8594 /* instock_btn.png */,
+				6695567D15FDA707001A8594 /* instock_btn_large.png */,
+				6695567E15FDA707001A8594 /* large_placeholder.png */,
+				6695567F15FDA707001A8594 /* light_topimg.png */,
+				6695568015FDA707001A8594 /* more_icon_01.png */,
+				6695568115FDA707001A8594 /* more_icon_02.png */,
+				6695568215FDA707001A8594 /* more_icon_03.png */,
+				6695568315FDA707001A8594 /* more_icon_04.png */,
+				6695568415FDA707001A8594 /* new_email.png */,
+				6695568515FDA707001A8594 /* new_search.png */,
+				6695568615FDA707001A8594 /* new_wishlist.png */,
+				6695568715FDA707001A8594 /* new_youtube.png */,
+				6695568815FDA707001A8594 /* news_icon.png */,
+				6695568915FDA707001A8594 /* next_page.png */,
+				6695568A15FDA707001A8594 /* noImage_l.png */,
+				6695568B15FDA707001A8594 /* noImage_M.png */,
+				6695568C15FDA707001A8594 /* noImage_S_New.png */,
+				6695568D15FDA707001A8594 /* number_oval.png */,
+				6695568E15FDA707001A8594 /* oval_shape_black.png */,
+				6695568F15FDA707001A8594 /* page_1.png */,
+				6695569015FDA707001A8594 /* Placeholder.png */,
+				6695569115FDA707001A8594 /* post_a_review.png */,
+				6695569215FDA707001A8594 /* post_review.png */,
+				6695569315FDA707001A8594 /* pre_page.png */,
+				6695569415FDA707001A8594 /* privacy.png */,
+				6695569515FDA707001A8594 /* product_list_ph.png */,
+				6695569615FDA707001A8594 /* search_new.png */,
+				6695569715FDA707001A8594 /* seperator.png */,
+				6695569815FDA707001A8594 /* seperator_shadow.png */,
+				6695569915FDA707001A8594 /* shop_box.png */,
+				6695569A15FDA707001A8594 /* sold_out.png */,
+				6695569B15FDA707001A8594 /* sold_out_large.png */,
+				6695569C15FDA707001A8594 /* store_icon.png */,
+				6695569D15FDA707001A8594 /* submit_btn.png */,
+				6695569E15FDA707001A8594 /* terms.png */,
+				6695569F15FDA707001A8594 /* vertical_dotted_lines.png */,
+				669556A015FDA707001A8594 /* yellow_star.png */,
+				669556A115FDA707001A8594 /* yellow_start_details.png */,
+			);
+			path = iPad2;
+			sourceTree = "<group>";
+		};
+		669556A215FDA707001A8594 /* Replaceable Image */ = {
+			isa = PBXGroup;
+			children = (
+				66879057160AE47400609F7E /* Icon.png */,
+				669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */,
+			);
+			name = "Replaceable Image";
+			path = "../../../Downloads/iPad_lib/Resources/Replaceable Image";
+			sourceTree = "<group>";
+		};
+		669556A515FDA707001A8594 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				669556A615FDA707001A8594 /* pickup_coin.wav */,
+			);
+			name = Sound;
+			path = ../../../Downloads/iPad_lib/Resources/Sound;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* Mobicart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Mobicart" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mobicart;
+			productName = Mobicart;
+			productReference = 1D6058910D05DD3D006BFB54 /* Mobi-Cart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Mobicart" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Mobicart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				4E9EA08115C81338001039A5 /* button_add_press.png in Resources */,
+				4E9EA08215C81338001039A5 /* button_add_up.png in Resources */,
+				4E9EA08315C81338001039A5 /* button_black.png in Resources */,
+				4E9EA08415C81338001039A5 /* button_blue.png in Resources */,
+				4E9EA08515C81338001039A5 /* button_green.png in Resources */,
+				4E9EA08615C81338001039A5 /* button_green_big_press.png in Resources */,
+				4E9EA08715C81338001039A5 /* button_green_big_up.png in Resources */,
+				4E9EA08815C81338001039A5 /* button_green_small_press.png in Resources */,
+				4E9EA08915C81338001039A5 /* button_green_small_up.png in Resources */,
+				4E9EA08A15C81338001039A5 /* cards_all.png in Resources */,
+				4E9EA08B15C81338001039A5 /* cards_americanexpress.png in Resources */,
+				4E9EA08C15C81338001039A5 /* cards_americanexpress_s.png in Resources */,
+				4E9EA08D15C81338001039A5 /* cards_diners.png in Resources */,
+				4E9EA08E15C81338001039A5 /* cards_diners_s.png in Resources */,
+				4E9EA08F15C81338001039A5 /* cards_discover.png in Resources */,
+				4E9EA09015C81338001039A5 /* cards_discover_s.png in Resources */,
+				4E9EA09115C81338001039A5 /* cards_isracard_s.png in Resources */,
+				4E9EA09215C81338001039A5 /* cards_jcb.png in Resources */,
+				4E9EA09315C81338001039A5 /* cards_jcb_s.png in Resources */,
+				4E9EA09415C81338001039A5 /* cards_leumimastercard.png in Resources */,
+				4E9EA09515C81338001039A5 /* cards_leumivisa.png in Resources */,
+				4E9EA09615C81338001039A5 /* cards_mastercard.png in Resources */,
+				4E9EA09715C81338001039A5 /* cards_mastercard_s.png in Resources */,
+				4E9EA09815C81338001039A5 /* cards_paypal.png in Resources */,
+				4E9EA09915C81338001039A5 /* cards_paypal_s.png in Resources */,
+				4E9EA09A15C81338001039A5 /* cards_visa.png in Resources */,
+				4E9EA09B15C81338001039A5 /* cards_visa_s.png in Resources */,
+				4E9EA09C15C81338001039A5 /* checkbox_checked.png in Resources */,
+				4E9EA09D15C81338001039A5 /* checkbox_unchecked.png in Resources */,
+				4E9EA09E15C81338001039A5 /* cvv_americanexpress.png in Resources */,
+				4E9EA09F15C81338001039A5 /* cvv_mastercard.png in Resources */,
+				4E9EA0A015C81338001039A5 /* cvv_other.png in Resources */,
+				4E9EA0A115C81338001039A5 /* cvv_visa.png in Resources */,
+				4E9EA0A215C81338001039A5 /* icon_card.png in Resources */,
+				4E9EA0A315C81338001039A5 /* icon_info.png in Resources */,
+				4E9EA0A415C81338001039A5 /* icon_V.png in Resources */,
+				4E9EA0A515C81338001039A5 /* lock_small.png in Resources */,
+				4E9EA0A615C81338001039A5 /* logo_big.png in Resources */,
+				4E9EA0A715C81338001039A5 /* logo_small.png in Resources */,
+				4E9EA0A815C81338001039A5 /* sandbox.png in Resources */,
+				4E9EA0A915C81338001039A5 /* seal.png in Resources */,
+				4E9EA0AA15C81338001039A5 /* security_button_press.png in Resources */,
+				4E9EA0AB15C81338001039A5 /* security_button_up.png in Resources */,
+				4E9EA0AC15C81338001039A5 /* security_icon_arow_press.png in Resources */,
+				4E9EA0AD15C81338001039A5 /* security_icon_arow_up.png in Resources */,
+				4E9EA0AE15C81338001039A5 /* security_icon_fingerprint_press.png in Resources */,
+				4E9EA0AF15C81338001039A5 /* security_icon_fingerprint_up.png in Resources */,
+				4E9EA0B015C81338001039A5 /* texbox.png in Resources */,
+				4E9EA0B115C81338001039A5 /* topHeader.png in Resources */,
+				4E9EA0B215C81338001039A5 /* ZooZCardSelection.nib in Resources */,
+				4E9EA0B315C81338001039A5 /* ZooZCardSelection_ipad.nib in Resources */,
+				4E9EA0B415C81338001039A5 /* ZooZEndPayment.nib in Resources */,
+				4E9EA0B515C81338001039A5 /* ZooZEndPayment_ipad.nib in Resources */,
+				4E9EA0B615C81338001039A5 /* ZooZGenWebController.nib in Resources */,
+				4E9EA0B715C81338001039A5 /* ZooZGenWebController_ipad.nib in Resources */,
+				4E9EA0B815C81338001039A5 /* zoozi18n.bundle in Resources */,
+				4E9EA0B915C81338001039A5 /* ZooZNewCardController.nib in Resources */,
+				4E9EA0BA15C81338001039A5 /* ZooZNewCardController_ipad.nib in Resources */,
+				4E9EA0BB15C81338001039A5 /* ZooZPasscodeSave.nib in Resources */,
+				4E9EA0BC15C81338001039A5 /* ZooZPassCodeSave_ipad.nib in Resources */,
+				4E9EA0BD15C81338001039A5 /* ZooZPasscodeVerify.nib in Resources */,
+				4E9EA0BE15C81338001039A5 /* ZooZPasscodeVerify_ipad.nib in Resources */,
+				4ECF9C0915F9EE430007A29B /* OATestServer.rb in Resources */,
+				4ECF9C0C15F9EE430007A29B /* README in Resources */,
+				4ECF9C1215F9EE430007A29B /* DBMobicart.sqlite3 in Resources */,
+				4ECF9C3E15F9EE430007A29B /* MobicartViewController.xib in Resources */,
+				669556A715FDA707001A8594 /* about_us.png in Resources */,
+				669556A815FDA707001A8594 /* account_icon.png in Resources */,
+				669556A915FDA707001A8594 /* add_cart.png in Resources */,
+				669556AA15FDA707001A8594 /* add_to_cart.png in Resources */,
+				669556AB15FDA707001A8594 /* arrow_left.png in Resources */,
+				669556AC15FDA707001A8594 /* bgview.png in Resources */,
+				669556AD15FDA707001A8594 /* black_star.png in Resources */,
+				669556AE15FDA707001A8594 /* block.png in Resources */,
+				669556AF15FDA707001A8594 /* book.png in Resources */,
+				669556B015FDA707001A8594 /* box_tick.png in Resources */,
+				669556B115FDA707001A8594 /* checkout_btn.png in Resources */,
+				669556B215FDA707001A8594 /* clock.png in Resources */,
+				669556B315FDA707001A8594 /* coming_soon.png in Resources */,
+				669556B415FDA707001A8594 /* coming_soon_large.png in Resources */,
+				669556B515FDA707001A8594 /* Contact_us.png in Resources */,
+				669556B615FDA707001A8594 /* copyright_logo.png in Resources */,
+				669556B715FDA707001A8594 /* cut_line.png in Resources */,
+				669556B815FDA707001A8594 /* department.png in Resources */,
+				669556B915FDA707001A8594 /* dot_line.png in Resources */,
+				669556BA15FDA707001A8594 /* dotted_line_02.png in Resources */,
+				669556BB15FDA707001A8594 /* drop_down.png in Resources */,
+				669556BC15FDA707001A8594 /* dropdown.png in Resources */,
+				669556BD15FDA707001A8594 /* edit_cart_btn.png in Resources */,
+				669556BE15FDA707001A8594 /* favorite_star-off-transparent.png in Resources */,
+				669556BF15FDA707001A8594 /* favorite_star-on-transparent.png in Resources */,
+				669556C015FDA707001A8594 /* home_icon.png in Resources */,
+				669556C115FDA707001A8594 /* horizontal-line.png in Resources */,
+				669556C215FDA707001A8594 /* instock_btn.png in Resources */,
+				669556C315FDA707001A8594 /* instock_btn_large.png in Resources */,
+				669556C415FDA707001A8594 /* large_placeholder.png in Resources */,
+				669556C515FDA707001A8594 /* light_topimg.png in Resources */,
+				669556C615FDA707001A8594 /* more_icon_01.png in Resources */,
+				669556C715FDA707001A8594 /* more_icon_02.png in Resources */,
+				669556C815FDA707001A8594 /* more_icon_03.png in Resources */,
+				669556C915FDA707001A8594 /* more_icon_04.png in Resources */,
+				669556CA15FDA707001A8594 /* new_email.png in Resources */,
+				669556CB15FDA707001A8594 /* new_search.png in Resources */,
+				669556CC15FDA707001A8594 /* new_wishlist.png in Resources */,
+				669556CD15FDA707001A8594 /* new_youtube.png in Resources */,
+				669556CE15FDA707001A8594 /* news_icon.png in Resources */,
+				669556CF15FDA707001A8594 /* next_page.png in Resources */,
+				669556D015FDA707001A8594 /* noImage_l.png in Resources */,
+				669556D115FDA707001A8594 /* noImage_M.png in Resources */,
+				669556D215FDA707001A8594 /* noImage_S_New.png in Resources */,
+				669556D315FDA707001A8594 /* number_oval.png in Resources */,
+				669556D415FDA707001A8594 /* oval_shape_black.png in Resources */,
+				669556D515FDA707001A8594 /* page_1.png in Resources */,
+				669556D615FDA707001A8594 /* Placeholder.png in Resources */,
+				669556D715FDA707001A8594 /* post_a_review.png in Resources */,
+				669556D815FDA707001A8594 /* post_review.png in Resources */,
+				669556D915FDA707001A8594 /* pre_page.png in Resources */,
+				669556DA15FDA707001A8594 /* privacy.png in Resources */,
+				669556DB15FDA707001A8594 /* product_list_ph.png in Resources */,
+				669556DC15FDA707001A8594 /* search_new.png in Resources */,
+				669556DD15FDA707001A8594 /* seperator.png in Resources */,
+				669556DE15FDA707001A8594 /* seperator_shadow.png in Resources */,
+				669556DF15FDA707001A8594 /* shop_box.png in Resources */,
+				669556E015FDA707001A8594 /* sold_out.png in Resources */,
+				669556E115FDA707001A8594 /* sold_out_large.png in Resources */,
+				669556E215FDA707001A8594 /* store_icon.png in Resources */,
+				669556E315FDA707001A8594 /* submit_btn.png in Resources */,
+				669556E415FDA707001A8594 /* terms.png in Resources */,
+				669556E515FDA707001A8594 /* vertical_dotted_lines.png in Resources */,
+				669556E615FDA707001A8594 /* yellow_star.png in Resources */,
+				669556E715FDA707001A8594 /* yellow_start_details.png in Resources */,
+				669556EA15FDA707001A8594 /* pickup_coin.wav in Resources */,
+				669556F315FDA88F001A8594 /* Default-Landscape~ipad.png in Resources */,
+				66879058160AE47400609F7E /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				4ECF9BEA15F9EE430007A29B /* ASIAuthenticationDialog.m in Sources */,
+				4ECF9BEB15F9EE430007A29B /* ASIDataCompressor.m in Sources */,
+				4ECF9BEC15F9EE430007A29B /* ASIDataDecompressor.m in Sources */,
+				4ECF9BED15F9EE430007A29B /* ASIDownloadCache.m in Sources */,
+				4ECF9BEE15F9EE430007A29B /* ASIFormDataRequest.m in Sources */,
+				4ECF9BEF15F9EE430007A29B /* ASIHTTPRequest.m in Sources */,
+				4ECF9BF015F9EE430007A29B /* ASIInputStream.m in Sources */,
+				4ECF9BF115F9EE430007A29B /* ASINetworkQueue.m in Sources */,
+				4ECF9BF215F9EE430007A29B /* NSMutableURLRequest+Parameters.m in Sources */,
+				4ECF9BF315F9EE430007A29B /* NSString+URLEncode.m in Sources */,
+				4ECF9BF415F9EE430007A29B /* NSString+URLEncoding.m in Sources */,
+				4ECF9BF515F9EE430007A29B /* NSURL+Base.m in Sources */,
+				4ECF9BF615F9EE430007A29B /* AFItemView.m in Sources */,
+				4ECF9BF715F9EE430007A29B /* AFOpenFlowView.m in Sources */,
+				4ECF9BF815F9EE430007A29B /* AFUIImageReflection.m in Sources */,
+				4ECF9BF915F9EE430007A29B /* LeavesCache.m in Sources */,
+				4ECF9BFA15F9EE430007A29B /* LeavesView.m in Sources */,
+				4ECF9BFB15F9EE430007A29B /* LeavesViewController.m in Sources */,
+				4ECF9BFC15F9EE430007A29B /* AppRecord.m in Sources */,
+				4ECF9BFD15F9EE430007A29B /* CustomImageView.m in Sources */,
+				4ECF9BFE15F9EE430007A29B /* IconDownloader.m in Sources */,
+				4ECF9BFF15F9EE430007A29B /* OAAttachment.m in Sources */,
+				4ECF9C0015F9EE430007A29B /* OACall.m in Sources */,
+				4ECF9C0115F9EE430007A29B /* OAConsumer.m in Sources */,
+				4ECF9C0215F9EE430007A29B /* OADataFetcher.m in Sources */,
+				4ECF9C0315F9EE430007A29B /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				4ECF9C0415F9EE430007A29B /* OAMutableURLRequest.m in Sources */,
+				4ECF9C0515F9EE430007A29B /* OAPlaintextSignatureProvider.m in Sources */,
+				4ECF9C0615F9EE430007A29B /* OAProblem.m in Sources */,
+				4ECF9C0715F9EE430007A29B /* OARequestParameter.m in Sources */,
+				4ECF9C0815F9EE430007A29B /* OAServiceTicket.m in Sources */,
+				4ECF9C0A15F9EE430007A29B /* OAToken.m in Sources */,
+				4ECF9C0B15F9EE430007A29B /* OATokenManager.m in Sources */,
+				4ECF9C0D15F9EE430007A29B /* Reachability.m in Sources */,
+				4ECF9C0E15F9EE430007A29B /* ASIFormDataRequest+OAuth.m in Sources */,
+				4ECF9C0F15F9EE430007A29B /* ASIHTTPRequest+OAuth.m in Sources */,
+				4ECF9C1015F9EE430007A29B /* NSData+Base64.m in Sources */,
+				4ECF9C1315F9EE430007A29B /* Base64Transcoder.c in Sources */,
+				4ECF9C1415F9EE430007A29B /* hmac.c in Sources */,
+				4ECF9C1515F9EE430007A29B /* sha1.c in Sources */,
+				4ECF9C1615F9EE430007A29B /* TableViewCell_Common.m in Sources */,
+				4ECF9C1715F9EE430007A29B /* Annotation.m in Sources */,
+				4ECF9C1815F9EE430007A29B /* HSSegmentControl_Customized.m in Sources */,
+				4ECF9C1915F9EE430007A29B /* SegmentControl_Customized.m in Sources */,
+				4ECF9C1A15F9EE430007A29B /* SingletonLocation.m in Sources */,
+				4ECF9C1B15F9EE430007A29B /* Utilities.m in Sources */,
+				4ECF9C1C15F9EE430007A29B /* savedPreferences.m in Sources */,
+				4ECF9C1D15F9EE430007A29B /* StockCalculation.m in Sources */,
+				4ECF9C1E15F9EE430007A29B /* TaxCalculation.m in Sources */,
+				4ECF9C1F15F9EE430007A29B /* View1.m in Sources */,
+				4ECF9C2015F9EE430007A29B /* View2.m in Sources */,
+				4ECF9C2115F9EE430007A29B /* View3.m in Sources */,
+				4ECF9C2215F9EE430007A29B /* HSMobicartParser.m in Sources */,
+				4ECF9C2315F9EE430007A29B /* MobicartParser.m in Sources */,
+				4ECF9C2415F9EE430007A29B /* EbookScrollView.m in Sources */,
+				4ECF9C2515F9EE430007A29B /* GlobalPrefrences.m in Sources */,
+				4ECF9C2615F9EE430007A29B /* HomeViewController.m in Sources */,
+				4ECF9C2715F9EE430007A29B /* AboutUsViewController.m in Sources */,
+				4ECF9C2815F9EE430007A29B /* ContactUsViewController.m in Sources */,
+				4ECF9C2915F9EE430007A29B /* MobiCartWebView.m in Sources */,
+				4ECF9C2A15F9EE430007A29B /* MoreTableViewDataSource.m in Sources */,
+				4ECF9C2B15F9EE430007A29B /* Page1ViewController.m in Sources */,
+				4ECF9C2C15F9EE430007A29B /* Page2ViewController.m in Sources */,
+				4ECF9C2D15F9EE430007A29B /* PrivacyViewController.m in Sources */,
+				4ECF9C2E15F9EE430007A29B /* TermsViewController.m in Sources */,
+				4ECF9C2F15F9EE430007A29B /* DetailsViewController.m in Sources */,
+				4ECF9C3015F9EE430007A29B /* MyAccountViewController.m in Sources */,
+				4ECF9C3115F9EE430007A29B /* OrderHistroyViewController.m in Sources */,
+				4ECF9C3215F9EE430007A29B /* WishlistViewController.m in Sources */,
+				4ECF9C3315F9EE430007A29B /* NewsViewController.m in Sources */,
+				4ECF9C3415F9EE430007A29B /* CheckoutViewController.m in Sources */,
+				4ECF9C3515F9EE430007A29B /* ShoppingCartViewController.m in Sources */,
+				4ECF9C3615F9EE430007A29B /* CoverFlowViewController.m in Sources */,
+				4ECF9C3715F9EE430007A29B /* DepartmentListingViewController.m in Sources */,
+				4ECF9C3815F9EE430007A29B /* GlobalSearch.m in Sources */,
+				4ECF9C3915F9EE430007A29B /* ProductDetails.m in Sources */,
+				4ECF9C3A15F9EE430007A29B /* ReadReviews.m in Sources */,
+				4ECF9C3B15F9EE430007A29B /* StoreViewController.m in Sources */,
+				4ECF9C3C15F9EE430007A29B /* webViewVideo.m in Sources */,
+				4ECF9C3D15F9EE430007A29B /* MobicartViewController.m in Sources */,
+				4ECF9C3F15F9EE430007A29B /* MobicartAppDelegate.m in Sources */,
+				4ECF9C4015F9EE430007A29B /* MobicartStart.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ZooZSDK.embeddedframework\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mobicart_Prefix.pch;
+				INFOPLIST_FILE = "Mobicart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/PayPal_MobilePayments_Library\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Classes/Global Classes/Server API \"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ZooZSDK.embeddedframework\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mobicart_Prefix.pch;
+				INFOPLIST_FILE = "Mobicart-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/PayPal_MobilePayments_Library\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Classes/Global Classes/Server API \"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos5.1;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos5.1;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Release;
+		};
+		CCB81699152EE5AD009340C8 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos5.1;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Distribution;
+		};
+		CCB8169A152EE5AD009340C8 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wladimir Baranoff-Rossine (XVTB378K7Q)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ZooZSDK.embeddedframework\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mobicart_Prefix.pch;
+				INFOPLIST_FILE = "Mobicart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/PayPal_MobilePayments_Library\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Classes/Global Classes/Server API \"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "Mobi-Cart";
+				PROVISIONING_PROFILE = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "331386A9-66AA-4039-B3AA-F842E6DD5067";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Distribution;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Mobicart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				CCB8169A152EE5AD009340C8 /* Distribution */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Distribution;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Mobicart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				CCB81699152EE5AD009340C8 /* Distribution */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Distribution;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

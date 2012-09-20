@@ -1,0 +1,271 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* MobicartApp */ = {
+		activeExec = 0;
+		executables = (
+			F6BCB1B913C8EDB8001E7817 /* MobicartApp */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = F6BCB1B913C8EDB8001E7817 /* MobicartApp */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* MobicartApp */;
+		breakpoints = (
+			F67F747613C99F6800E3CB34 /* ShoppingCartViewController.m:1417 */,
+		);
+		codeSenseManager = F6BCB20813C8EDD3001E7817 /* Code sense */;
+		executables = (
+			F6BCB1B913C8EDB8001E7817 /* MobicartApp */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 331980312;
+			PBXWorkspaceStateSaveDate = 331980312;
+		};
+		perUserProjectItems = {
+			F67F747913C99F6C00E3CB34 /* PBXTextBookmark */ = F67F747913C99F6C00E3CB34 /* PBXTextBookmark */;
+			F67F749B13C9A22700E3CB34 /* PBXTextBookmark */ = F67F749B13C9A22700E3CB34 /* PBXTextBookmark */;
+			F67F74A413C9A45700E3CB34 /* PBXTextBookmark */ = F67F74A413C9A45700E3CB34 /* PBXTextBookmark */;
+			F67F750C13CA01F600E3CB34 /* PBXTextBookmark */ = F67F750C13CA01F600E3CB34 /* PBXTextBookmark */;
+			F67F750D13CA01F600E3CB34 /* PBXTextBookmark */ = F67F750D13CA01F600E3CB34 /* PBXTextBookmark */;
+			F67F750E13CA01F600E3CB34 /* PBXTextBookmark */ = F67F750E13CA01F600E3CB34 /* PBXTextBookmark */;
+			F67F750F13CA01F600E3CB34 /* PBXTextBookmark */ = F67F750F13CA01F600E3CB34 /* PBXTextBookmark */;
+			F6BCB21613C8FA44001E7817 /* PBXTextBookmark */ = F6BCB21613C8FA44001E7817 /* PBXTextBookmark */;
+			F6BCB21713C8FA44001E7817 /* PBXTextBookmark */ = F6BCB21713C8FA44001E7817 /* PBXTextBookmark */;
+		};
+		sourceControlManager = F6BCB20713C8EDD3001E7817 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	4CD1C76E123F5F5500C16C13 /* TableViewCell_Common.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 535}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1234}";
+		};
+	};
+	4CD1C76F123F5F5500C16C13 /* TableViewCell_Common.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1097, 3757}}";
+			sepNavSelRange = "{6091, 248}";
+			sepNavVisRange = "{5677, 1242}";
+		};
+	};
+	4CD1C784123F5F6400C16C13 /* ShoppingCartViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1202, 624}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1151}";
+		};
+	};
+	4CD1C785123F5F6400C16C13 /* ShoppingCartViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {439, 23244}}";
+			sepNavSelRange = "{39693, 0}";
+			sepNavVisRange = "{39516, 541}";
+		};
+	};
+	4CD1C793123F5F6400C16C13 /* NewsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 14313}}";
+			sepNavSelRange = "{7200, 0}";
+			sepNavVisRange = "{7087, 1284}";
+		};
+	};
+	939C457C130E9C8200C74B7A /* MobiCartStart.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 9074}}";
+			sepNavSelRange = "{22168, 0}";
+			sepNavVisRange = "{24288, 975}";
+		};
+	};
+	93FE19AA12D1D3680000CF11 /* ReadReviewsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 539}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 727}";
+		};
+	};
+	93FE19AB12D1D3680000CF11 /* ReadReviewsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 6409}}";
+			sepNavSelRange = "{8252, 1}";
+			sepNavVisRange = "{6992, 1943}";
+		};
+	};
+	F67F747613C99F6800E3CB34 /* ShoppingCartViewController.m:1417 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 4CD1C785123F5F6400C16C13 /* ShoppingCartViewController.m */;
+		functionName = "-tableView:commitEditingStyle:forRowAtIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 1417;
+		location = Flybe;
+		modificationTime = 331982315.101906;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	F67F747913C99F6C00E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4CD1C784123F5F6400C16C13 /* ShoppingCartViewController.h */;
+		name = "ShoppingCartViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1151;
+		vrLoc = 0;
+	};
+	F67F749B13C9A22700E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4CD1C76E123F5F5500C16C13 /* TableViewCell_Common.h */;
+		name = "TableViewCell_Common.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 0;
+	};
+	F67F74A413C9A45700E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4CD1C76F123F5F5500C16C13 /* TableViewCell_Common.m */;
+		name = "TableViewCell_Common.m: 195";
+		rLen = 248;
+		rLoc = 6091;
+		rType = 0;
+		vrLen = 1242;
+		vrLoc = 5677;
+	};
+	F67F750C13CA01F600E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4CD1C793123F5F6400C16C13 /* NewsViewController.m */;
+		name = "NewsViewController.m: 213";
+		rLen = 0;
+		rLoc = 7200;
+		rType = 0;
+		vrLen = 1284;
+		vrLoc = 7087;
+	};
+	F67F750D13CA01F600E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4CD1C785123F5F6400C16C13 /* ShoppingCartViewController.m */;
+		name = "ShoppingCartViewController.m: 1055";
+		rLen = 0;
+		rLoc = 37923;
+		rType = 0;
+		vrLen = 2219;
+		vrLoc = 36333;
+	};
+	F67F750E13CA01F600E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 939C457C130E9C8200C74B7A /* MobiCartStart.m */;
+		name = "MobiCartStart.m: 488";
+		rLen = 0;
+		rLoc = 17756;
+		rType = 0;
+		vrLen = 1965;
+		vrLoc = 16606;
+	};
+	F67F750F13CA01F600E3CB34 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 939C457C130E9C8200C74B7A /* MobiCartStart.m */;
+		name = "MobiCartStart.m: 585";
+		rLen = 0;
+		rLoc = 22168;
+		rType = 0;
+		vrLen = 975;
+		vrLoc = 24288;
+	};
+	F6BCB1B913C8EDB8001E7817 /* MobicartApp */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = MobicartApp;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	F6BCB20713C8EDD3001E7817 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	F6BCB20813C8EDD3001E7817 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	F6BCB21613C8FA44001E7817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93FE19AA12D1D3680000CF11 /* ReadReviewsViewController.h */;
+		name = "ReadReviewsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 727;
+		vrLoc = 0;
+	};
+	F6BCB21713C8FA44001E7817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93FE19AB12D1D3680000CF11 /* ReadReviewsViewController.m */;
+		name = "ReadReviewsViewController.m: 236";
+		rLen = 1;
+		rLoc = 8252;
+		rType = 0;
+		vrLen = 1943;
+		vrLoc = 6992;
+	};
+}

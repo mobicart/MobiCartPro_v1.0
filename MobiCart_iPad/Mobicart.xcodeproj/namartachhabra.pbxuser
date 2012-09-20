@@ -1,0 +1,368 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* Mobicart */ = {
+		activeExec = 0;
+		executables = (
+			6C957983140789D00046AB0A /* Mobicart */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 6C957983140789D00046AB0A /* Mobicart */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* Mobicart */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* Mobicart */,
+		);
+		breakpoints = (
+			6C9579AA14079BB50046AB0A /* ShoppingCartViewController.m:970 */,
+			6C9579B714079C960046AB0A /* ShoppingCartViewController.m:1188 */,
+			6C9579C114079FAF0046AB0A /* WishlistViewController.m:393 */,
+			6C9579F91407A8FE0046AB0A /* WishlistViewController.m:479 */,
+			6C9579FB1407A9010046AB0A /* WishlistViewController.m:449 */,
+		);
+		codeSenseManager = 6C95798F140789DB0046AB0A /* Code sense */;
+		executables = (
+			6C957983140789D00046AB0A /* Mobicart */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					506,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 336038352;
+			PBXWorkspaceStateSaveDate = 336038352;
+		};
+		perUserProjectItems = {
+			6C9579A514079B180046AB0A /* PBXTextBookmark */ = 6C9579A514079B180046AB0A /* PBXTextBookmark */;
+			6C9579A614079B180046AB0A /* PBXTextBookmark */ = 6C9579A614079B180046AB0A /* PBXTextBookmark */;
+			6C9579A714079B180046AB0A /* PBXTextBookmark */ = 6C9579A714079B180046AB0A /* PBXTextBookmark */;
+			6C9579AE14079BC30046AB0A /* PBXTextBookmark */ = 6C9579AE14079BC30046AB0A /* PBXTextBookmark */;
+			6C9579AF14079BC30046AB0A /* PBXTextBookmark */ = 6C9579AF14079BC30046AB0A /* PBXTextBookmark */;
+			6C9579B014079BC30046AB0A /* PBXTextBookmark */ = 6C9579B014079BC30046AB0A /* PBXTextBookmark */;
+			6C957A051407AC000046AB0A /* PBXTextBookmark */ = 6C957A051407AC000046AB0A /* PBXTextBookmark */;
+			6C957A061407AC000046AB0A /* PBXTextBookmark */ = 6C957A061407AC000046AB0A /* PBXTextBookmark */;
+			6C957A071407AC000046AB0A /* PBXTextBookmark */ = 6C957A071407AC000046AB0A /* PBXTextBookmark */;
+			6C957A0E1407ACDE0046AB0A /* PBXTextBookmark */ = 6C957A0E1407ACDE0046AB0A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 6C95798E140789DB0046AB0A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	6C957983140789D00046AB0A /* Mobicart */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Mobicart;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	6C95798E140789DB0046AB0A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	6C95798F140789DB0046AB0A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	6C95799514078A470046AB0A /* Reachability.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {755, 1079}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1579}";
+		};
+	};
+	6C95799614078A680046AB0A /* Reachability.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {755, 3354}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1579}";
+		};
+	};
+	6C9579A514079B180046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9A928B2513DEA1BE0042040B /* ASIHTTPRequest.m */;
+		name = "ASIHTTPRequest.m: 16";
+		rLen = 0;
+		rLoc = 421;
+		rType = 0;
+		vrLen = 776;
+		vrLoc = 0;
+	};
+	6C9579A614079B180046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6C95799514078A470046AB0A /* Reachability.h */;
+		name = "Reachability.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 0;
+	};
+	6C9579A714079B180046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6C95799614078A680046AB0A /* Reachability.m */;
+		name = "Reachability.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 0;
+	};
+	6C9579AA14079BB50046AB0A /* ShoppingCartViewController.m:970 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 93333EB21386516A0004B7A5 /* ShoppingCartViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 970;
+		location = Mobicart;
+		modificationTime = 336046346.820286;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	6C9579AE14079BC30046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9A964B5013D164DB00225CC7 /* UserDetails.h */;
+		name = "UserDetails.h: 20";
+		rLen = 0;
+		rLoc = 547;
+		rType = 0;
+		vrLen = 691;
+		vrLoc = 0;
+	};
+	6C9579AF14079BC30046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333EB41386516A0004B7A5 /* StoreViewController.m */;
+		name = "StoreViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 887;
+		vrLoc = 0;
+	};
+	6C9579B014079BC30046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333E951386516A0004B7A5 /* CheckoutViewController.h */;
+		name = "CheckoutViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 654;
+		vrLoc = 0;
+	};
+	6C9579B714079C960046AB0A /* ShoppingCartViewController.m:1188 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 93333EB21386516A0004B7A5 /* ShoppingCartViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 1188;
+		location = Mobicart;
+		modificationTime = 336046346.820401;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	6C9579C114079FAF0046AB0A /* WishlistViewController.m:393 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 93333EC21386516A0004B7A5 /* WishlistViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 22;
+		ignoreCount = 0;
+		lineNumber = 393;
+		location = Mobicart;
+		modificationTime = 336046774.039384;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	6C9579F91407A8FE0046AB0A /* WishlistViewController.m:479 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 93333EC21386516A0004B7A5 /* WishlistViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 479;
+		location = Mobicart;
+		modificationTime = 336046346.820762;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	6C9579FB1407A9010046AB0A /* WishlistViewController.m:449 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 93333EC21386516A0004B7A5 /* WishlistViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 15;
+		ignoreCount = 0;
+		lineNumber = 449;
+		location = Mobicart;
+		modificationTime = 336046736.936305;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	6C957A051407AC000046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333EB11386516A0004B7A5 /* ShoppingCartViewController.h */;
+		name = "ShoppingCartViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1262;
+		vrLoc = 0;
+	};
+	6C957A061407AC000046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333EB21386516A0004B7A5 /* ShoppingCartViewController.m */;
+		name = "ShoppingCartViewController.m: 339";
+		rLen = 23;
+		rLoc = 11868;
+		rType = 0;
+		vrLen = 1670;
+		vrLoc = 10759;
+	};
+	6C957A071407AC000046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333EC21386516A0004B7A5 /* WishlistViewController.m */;
+		name = "WishlistViewController.m: 248";
+		rLen = 0;
+		rLoc = 9037;
+		rType = 0;
+		vrLen = 1566;
+		vrLoc = 7817;
+	};
+	6C957A0E1407ACDE0046AB0A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 93333EC21386516A0004B7A5 /* WishlistViewController.m */;
+		name = "WishlistViewController.m: 307";
+		rLen = 0;
+		rLoc = 11291;
+		rType = 0;
+		vrLen = 1564;
+		vrLoc = 9860;
+	};
+	93333E951386516A0004B7A5 /* CheckoutViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 572}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 654}";
+		};
+	};
+	93333EB11386516A0004B7A5 /* ShoppingCartViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1202, 546}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1262}";
+		};
+	};
+	93333EB21386516A0004B7A5 /* ShoppingCartViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1027, 24323}}";
+			sepNavSelRange = "{11868, 23}";
+			sepNavVisRange = "{10759, 1670}";
+		};
+	};
+	93333EB41386516A0004B7A5 /* StoreViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {684, 14547}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 887}";
+		};
+	};
+	93333EC21386516A0004B7A5 /* WishlistViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {2175, 11648}}";
+			sepNavSelRange = "{11291, 0}";
+			sepNavVisRange = "{9860, 1564}";
+		};
+	};
+	9A928B2513DEA1BE0042040B /* ASIHTTPRequest.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {523, 65780}}";
+			sepNavSelRange = "{421, 0}";
+			sepNavVisRange = "{232, 424}";
+		};
+	};
+	9A964B5013D164DB00225CC7 /* UserDetails.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {755, 337}}";
+			sepNavSelRange = "{547, 0}";
+			sepNavVisRange = "{0, 691}";
+		};
+	};
+}
