@@ -574,7 +574,7 @@
 		669556A015FDA707001A8594 /* yellow_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_star.png; sourceTree = "<group>"; };
 		669556A115FDA707001A8594 /* yellow_start_details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_start_details.png; sourceTree = "<group>"; };
 		669556A615FDA707001A8594 /* pickup_coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pickup_coin.wav; sourceTree = "<group>"; };
-		669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../../../../Desktop/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mobicart-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mobicart-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		938F10A21322156700898160 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		939C409F137ACADB005DA2E8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1239,7 +1239,7 @@
 				6695566015FDA707001A8594 /* iPad2 */,
 			);
 			name = Images;
-			path = ../../../Downloads/iPad_lib/Resources/Images;
+			path = Resources/Images;
 			sourceTree = "<group>";
 		};
 		6695566015FDA707001A8594 /* iPad2 */ = {
@@ -1321,7 +1321,7 @@
 				669556F115FDA88F001A8594 /* Default-Landscape~ipad.png */,
 			);
 			name = "Replaceable Image";
-			path = "../../../Downloads/iPad_lib/Resources/Replaceable Image";
+			path = "Resources/Replaceable Image";
 			sourceTree = "<group>";
 		};
 		669556A515FDA707001A8594 /* Sound */ = {
@@ -1330,7 +1330,7 @@
 				669556A615FDA707001A8594 /* pickup_coin.wav */,
 			);
 			name = Sound;
-			path = ../../../Downloads/iPad_lib/Resources/Sound;
+			path = Resources/Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
