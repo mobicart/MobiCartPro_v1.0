@@ -213,47 +213,47 @@ NSMutableArray *arrSelectedTitles;
     {
 		for (int i=0; i<[arrSelected_Titles count]; i++) 
         {
-			if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Home"]])
+			if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Home"])
             {
                 _savedPreferences.strTitleHome = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.home"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Store"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Store"])
             {
                _savedPreferences.strTitleStore = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.store"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"News"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"News"])
             {
                  _savedPreferences.strTitleNews = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.news"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"My Account"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"My Account"])
             {
                 _savedPreferences.strTitleMyAccount = @"My Account";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"About Us"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"About Us"])
             {
                 _savedPreferences.strTitleAboutUs = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.aboutus"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Contact Us"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Contact Us"])
             {
                  _savedPreferences.strTitleContactUs = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.contactus"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Shopping Cart"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Shopping Cart"])
             {
                 _savedPreferences.strTitleShoppingCart = @"Shopping Cart";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Terms"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Terms"])
             {
                  _savedPreferences.strTitleTerms_Conditions = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.tandc"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Privacy"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Privacy"])
             {
 				_savedPreferences.strTitlePrivacy = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.privacy"];                
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Page 1"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Page 1"])
             {
                 _savedPreferences.strTitlePage1 = @"Page 1";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:[NSString stringWithString:@"Page 2"]])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Page 2"])
             {
                 _savedPreferences.strTitlePage2 = @"Page 2";
             }
