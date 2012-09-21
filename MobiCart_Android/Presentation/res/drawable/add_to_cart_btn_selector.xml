@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" 
+    >
+      <shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle" 
+  >
+    <gradient
+        android:startColor="#197eb6"
+        android:endColor="#0d83b0"
+        android:gradientRadius="1"
+        android:type="linear" />
+        
+        <corners 
+        android:radius="5sp"
+         />
+        <size
+        android:width="60dip"
+        android:height="30dip"
+        />
+        
+</shape>
+
+  
+    </item>
+	<item android:drawable="@drawable/add_to_cart_btn">
+	</item>
+</selector>
+    
+   
+    
+    
+  

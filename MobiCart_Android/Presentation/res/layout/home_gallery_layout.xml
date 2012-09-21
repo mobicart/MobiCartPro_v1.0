@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginTop="10dip"
+  android:background="@drawable/home_page_bottom_box"
+  >
+  <RelativeLayout
+  android:id="@+id/home_gallery_iv"
+  android:layout_width="70dip"
+  android:layout_height="60dip"
+  android:layout_centerInParent="true"
+  android:layout_margin="12dip"
+  android:gravity="center"
+  android:paddingLeft="2dip"
+  android:paddingTop="2dip"
+  android:paddingRight="4dip"
+  android:paddingBottom="4dip"
+  android:background="@drawable/product_placeholder_standard"
+  />
+ 
+ <RelativeLayout
+  android:id="@+id/home_gallery_price_rl"
+  android:layout_width="65dip"
+  android:layout_height="wrap_content"
+  android:layout_below="@+id/home_gallery_price_rl1"
+  android:layout_marginRight="5dip"
+  android:layout_marginTop="8dip"
+  android:layout_marginLeft="19dip"
+  android:padding="1dip"
+  android:background="@drawable/rounded_button"
+  >
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/home_gallery_price_tv"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:gravity="center_horizontal|bottom"
+  android:text="AU$13455.00"
+  android:textColor="#ffffff"
+  android:textSize="9sp"
+  android:minLines="1" 
+  android:paddingLeft="1dip" 
+  android:paddingRight="1dip" 
+  android:paddingTop="1dip" 
+  android:ellipsize="none"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/home_gallery_price_tax_tv"
+  style="@style/TextFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_below="@+id/home_gallery_price_tv"
+  android:layout_width="fill_parent"
+  android:gravity="center_horizontal|top"
+  android:text="inc. vat"
+  android:textColor="#ffffff"
+  android:textSize="10sp"
+  android:minLines="1" 
+  android:paddingBottom="1dip"
+  android:paddingLeft="1dip"
+  android:ellipsize="none"
+  />
+  </RelativeLayout>
+</RelativeLayout>

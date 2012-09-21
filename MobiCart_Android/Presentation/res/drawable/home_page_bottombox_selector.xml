@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" 
+         android:layout_width="50dip"
+  		android:layout_height="50dip"
+    >
+    <shape>
+            <gradient
+                android:startColor="#d7d7d7"
+                android:centerColor="#bebebe"
+                android:endColor="#d7d7d7"
+                android:angle="270" 
+                android:type="linear"
+                 />
+            <corners
+                android:radius="5dp" />
+            
+        </shape>
+    </item>
+	<item android:drawable="@drawable/home_page_bottom_box">
+	</item>
+</selector>

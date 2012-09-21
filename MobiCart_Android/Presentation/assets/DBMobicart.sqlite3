@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS "tblAccountDetails";
+CREATE TABLE "tblAccountDetails" ("_id" INTEGER, "sUserName" VARCHAR, "eMailAddress" VARCHAR, "sPassword" VARCHAR, "sStreetAddress" VARCHAR, "sCity" VARCHAR, "sState" VARCHAR, "sPinCode" VARCHAR, "sCountry" VARCHAR, "sDelievryStreetAddress" VARCHAR, "sDelievryCity" VARCHAR, "sDelievryState" VARCHAR, "sDelievryPincode" VARCHAR, "sDelievryCountry" VARCHAR);
+DROP TABLE IF EXISTS "tblCartList";
+CREATE TABLE "tblCartList" ("_id" INTEGER PRIMARY KEY  NOT NULL ,"productId" INTEGER,"quantity" INTEGER," productName" TEXT,"productPrice" DOUBLE,"productTax" TEXT, "productDiscount" INTEGER, "productOptionId" TEXT, "availableQuantity" INTEGER);
+DROP TABLE IF EXISTS "tblProductOptions";
+CREATE TABLE "tblProductOptions" ("_id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "optionName" TEXT, "title" TEXT, "toBeShippedQuantity" INTEGER, "productId" INTEGER, "quantity" INTEGER, "availableQuantity" INTEGER, "optionId" TEXT);
+DROP TABLE IF EXISTS "tblWishList";
+CREATE TABLE "tblWishList" ("_id" INTEGER PRIMARY KEY  NOT NULL ,"productId" INTEGER,"fAverageRating" DOUBLE,"fPrice" DOUBLE,"productImage" TEXT,"productName" TEXT,"sStatus" TEXT,"availQty" INTEGER);
+DROP TABLE IF EXISTS "tblWishlistOptions";
+CREATE TABLE "tblWishlistOptions" ("_id" INTEGER,"optionName" TEXT,"title" TEXT, "productId" INTEGER, "quantity" INTEGER, "availableQuantity" INTEGER, "optionId" INTEGER);

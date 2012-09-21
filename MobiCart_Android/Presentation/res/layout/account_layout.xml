@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@drawable/account_bg">
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/account_title_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="30dip"
+  android:layout_alignParentTop="true"
+  android:gravity="center_vertical"
+  android:background="@drawable/bar_image"
+  android:text="@string/account_title"
+  android:textColor="#ffffff"
+  android:paddingLeft="13dip"
+  />
+  <RelativeLayout
+  android:id="@+id/account_RL"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="8dip"
+  android:layout_below="@+id/account_title_TV"
+  android:layout_marginRight="8dip"
+  android:background="@drawable/bg1"
+  android:layout_marginTop="14dip"
+  android:padding="0dip"
+  >
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/account_viewWishlist_Btn"
+  style="@style/TextFontBtn"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="20dip"
+  android:layout_marginLeft="18dip"
+  android:layout_alignParentTop="true"
+  android:layout_marginRight="12dip"
+  android:layout_marginTop="16dip"
+  android:layout_marginBottom="24dip"
+  android:text="@string/account_viewWishlist"
+  android:textColor="#545454"
+  android:background="#e5e5e5"
+  android:gravity="left"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/account_myAccount_Btn"
+  style="@style/TextFontBtn"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="30dip"
+  android:layout_marginLeft="18dip"
+  android:layout_below="@id/account_viewWishlist_Btn"
+  android:layout_marginRight="12dip"
+  android:layout_marginBottom="18dip"
+  android:text="@string/account_myAccount"
+  android:textColor="#545454"
+  android:background="#e5e5e5"
+  android:gravity="left"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/account_orderHistory_Btn"
+  style="@style/TextFontBtn"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="30dip"
+  android:layout_marginLeft="18dip"
+  android:layout_below="@id/account_myAccount_Btn"
+  android:layout_marginRight="12dip"
+  android:layout_marginBottom="18dip"
+  android:text="@string/account_orderHistory"
+  android:textColor="#545454"
+  android:background="#e5e5e5"
+  android:gravity="left"
+  />
+ </RelativeLayout>
+</RelativeLayout>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="wrap_content"
+  android:layout_height="54dip"
+  android:background="@drawable/table_bg">
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/departments_row_title_tv"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="200dip"
+  android:layout_height="wrap_content"
+  android:layout_alignParentLeft="true"
+  android:layout_centerVertical="true"
+  android:layout_marginLeft="12dip"
+  android:text="" 
+  android:textColor="#ff26668c"
+  android:textSize="16sp"
+  android:maxLines="1"
+ 
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/departments_count_dummy"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="50dip"
+  android:layout_height="30dip"
+  android:layout_centerVertical="true" 
+  android:layout_toLeftOf="@+id/departments_row_arrow_iv"
+  android:layout_marginLeft="5dip"
+  android:layout_marginRight="17dip"
+  android:padding="1dip"
+  android:text="40"
+  android:textSize="16sp"
+  android:textColor="#ff26668c"
+  android:gravity="center"  
+  android:background="@drawable/oval_img" 
+  />
+ <ImageView
+  android:id="@+id/departments_row_arrow_iv"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:src="@drawable/department_arrow"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="13dip"
+  android:layout_centerVertical="true" 
+  />
+</RelativeLayout>

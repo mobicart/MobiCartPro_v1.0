@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Rating_Bar" parent="@android:style/Widget.RatingBar" >
+ 	<item name="android:progressDrawable">@drawable/rating_orange</item>
+ 	<item name="android:numStars">5</item>
+    <item name="android:rating">0</item>
+    <item name="android:stepSize">1</item>
+  	<item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+   	</style>
+	<style name="RatingBar" parent="@android:style/Widget.RatingBar" >
+	<item name="android:progressDrawable">@drawable/rating_orange</item>
+	<item name="android:numStars">5</item>
+    <item name="android:rating">0</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    </style>
+     
+	<style name="rating_bar" parent="@android:style/Widget.RatingBar">
+    <item name="android:progressDrawable">@drawable/rating_yello</item>
+    <item name ="android:numStars">5</item>
+    <item name="android:rating">0</item>
+    <item name="android:stepSize">0.5</item>
+    </style>  
+   
+    <style name="ratingbar" parent="@android:style/Widget.RatingBar">
+    <item name="android:progressDrawable">@drawable/rating_small_orange</item> 
+    <item name ="android:numStars">5</item>
+    <item name="android:rating">0</item>
+    </style>  
+    
+    <style name="RoundedCorner" parent="@android:style/Widget.Button">
+   
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">12sp</item>
+  	<item name="android:bottomRightRadius">0dp</item>
+     <item name="android:bottomLeftRadius">0dip</item>
+     <item name="android:topLeftRadius">15dp</item>
+     <item name="android:topRightRadius">15dp</item>
+    <item name="android:shape">oval</item>
+    </style> 
+     
+    <style name="TextFont" parent="@android:style/Widget.TextView">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">12sp</item>
+    </style> 
+    
+    <style name="TitleFont" parent="@android:style/Widget.TextView">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">13sp</item>
+    <item name="android:maxLines">1</item>
+  	<item name="android:ellipsize">end</item>
+  	</style>  
+  	
+  	<style name="TextFontBtn" parent="@android:style/Widget.Button">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">15sp</item>
+    <item name="android:maxLines">1</item>
+  	<item name="android:ellipsize">end</item>
+  	</style> 
+  	<style name="FormTextFont" parent="@android:style/Widget.TextView">
+    <item name="android:layout_width">105dip</item>
+    <item name="android:layout_height">35dip</item>
+    <item name="android:textSize">15sp</item>
+    </style> 
+ </resources>

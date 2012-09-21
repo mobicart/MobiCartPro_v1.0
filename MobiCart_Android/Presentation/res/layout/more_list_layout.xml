@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="54dip"
+  android:background="@drawable/list_row_selector"
+  >
+ <ImageView
+  android:id="@+id/more_listImg_IV"
+  android:layout_height="35dip"
+  android:layout_width="30dip"
+  android:layout_centerVertical="true" 
+  android:layout_marginLeft="12dip"
+  android:layout_marginRight="10dip"
+  android:layout_alignParentLeft="true"
+  android:src="@drawable/delievery_active"
+  />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/more_listTitle_TV"
+  style="@style/TextFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_toRightOf="@id/more_listImg_IV"
+  android:layout_centerVertical="true" 
+  android:textColor="#545454"
+  android:textSize="14sp"
+  android:maxLines="1"
+  android:ellipsize="end"
+  />
+ <ImageView
+  android:id="@+id/more_listArrow_IV"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="9dip"
+  android:layout_centerVertical="true" 
+  android:src="@drawable/department_arrow"/>
+</RelativeLayout>

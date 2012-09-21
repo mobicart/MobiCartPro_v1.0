@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:focusable="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="none"
+    android:background="#ffffff"
+   >
+    <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:focusable="true"
+     android:fadingEdge="none"
+     android:background="#ffffff"
+    >
+	<include android:id="@+id/nav_bar" layout="@layout/navigation_bar_layout" ></include>
+	<FrameLayout android:id="@android:id/tabcontent"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:focusable="false"
+	android:layout_above="@android:id/tabs"
+	android:layout_below="@+id/nav_bar"
+	android:fadingEdge="none">
+	</FrameLayout>
+	<TabWidget android:id="@android:id/tabs"
+	android:baselineAligned="true" 
+	android:layout_width="fill_parent"
+	android:layout_alignParentBottom="true" 
+	android:layout_height="wrap_content"
+	android:focusable="true" 
+	
+	/>
+</RelativeLayout>
+</TabHost>

@@ -1,0 +1,2 @@
+auth#wladimir@mobi-cart.com#888252887f8d7698e89a3ebd6f2940d3#paypal#com.mobicart.renamed_package#dff895e1-0909-457d-aa50-decb84331b4c#"http://www.exampleapp.com/ipn"#use_paypal_livemode#false#notification_sender_id#sdtg
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  >
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/review_listTitle_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="8dip"
+  android:layout_marginLeft="11dip"
+  android:text="TextView"
+  android:textColor="#000000"
+  android:ellipsize="end"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/review_listDesc_TV"
+  style="@style/TextFont"
+  mobicart:ttf_name="Helvetica Neue.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="fill_parent"
+  android:layout_marginLeft="11dip"
+  android:layout_marginRight="24dip"
+  android:layout_marginTop="4dip"
+  android:layout_below="@id/review_listTitle_TV"
+  android:text="TextView"
+  android:textColor="#000000"
+  android:minLines="2"
+  android:visibility="gone"
+  />
+  <RatingBar
+  android:id="@+id/review_listrating_RatingBar"
+  android:layout_height="25dip"
+  android:layout_width="wrap_content"
+  android:layout_below="@+id/review_listDesc_TV"
+  android:layout_alignParentBottom="true"
+  android:layout_marginLeft="11dip"
+  android:layout_marginTop="5dip"
+  android:isIndicator="true" 
+  style="@style/ratingbar"
+  />
+</RelativeLayout>

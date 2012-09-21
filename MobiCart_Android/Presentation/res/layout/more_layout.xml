@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:id="@+id/relative1"
+  android:background="@drawable/main_bg"
+  android:fadingEdge="none"
+  >
+  <ImageView
+  android:id="@+id/more_bottomImage_IV"
+  android:layout_width="fill_parent"
+  android:layout_height="60dip"
+  android:layout_alignParentBottom="true"
+  android:background="@drawable/gradient"
+  android:scaleType="center"
+  android:src="@drawable/powered_by"
+  android:visibility="gone"/>
+  <ListView
+  android:id="@+id/more_LV"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:layout_alignParentTop="true"
+  android:layout_above="@id/more_bottomImage_IV"
+  android:scrollingCache="false"
+  android:dividerHeight="0.5dip"
+  android:divider="#d9d7d7"
+  android:background="@drawable/account_bg"
+  android:fadingEdge="none"
+  />
+</RelativeLayout>

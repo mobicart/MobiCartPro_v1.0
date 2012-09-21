@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/account_bg" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_alignParentTop="true"
+        layout="@layout/common_navbar_layout" />
+    <!--
+ NOT USED REMOVE  
+ <ImageView
+  android:id="@+id/contact_addressIcon_IV"
+  android:layout_width="14dip"
+  android:layout_height="14dip"
+  android:layout_below="@id/header"
+  android:layout_marginTop="9dip"
+  android:layout_marginLeft="12dip"
+  android:background="@drawable/home_icon_contactus"
+ />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/contact_addressInfo1_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="7dip"
+  android:layout_marginTop="10dip"
+  android:layout_toRightOf="@+id/contact_addressIcon_IV"
+  android:textColor="#3b3a3a"
+  android:layout_below="@id/header"
+  android:text="Address:"
+ />
+    -->
+    <ScrollView 
+        android:id="@+id/addressSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="112dip"
+        android:layout_below="@id/header"
+        android:fadingEdge="none"
+        >
+            <com.mobicart.renamed_package.utils.MyCommonView
+                android:id="@+id/contact_addressInfo2_TV"
+                style="@style/TitleFont"
+              	 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:maxLines="10"
+                android:textColor="#3b3a3a"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="5dip"
+                mobicart:ttf_name="Helvetica Neue Bold.ttf" />
+     </ScrollView>  
+    <RelativeLayout
+        android:id="@+id/mapRL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressSpinner"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:paddingTop="10dip" >
+
+        <com.google.android.maps.MapView
+            android:id="@+id/myGMap"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:apiKey="@string/map_api_key"
+            android:clickable="true"
+            android:enabled="true"
+            android:padding="1dip" />
+
+        <LinearLayout
+            android:id="@+id/zoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

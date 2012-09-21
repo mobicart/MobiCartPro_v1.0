@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" 
+    >
+      <shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle" 
+  >
+    <gradient
+        android:startColor="#c7c5c5"
+        android:endColor="#909090"
+        android:gradientRadius="1"
+        android:type="linear" />
+        
+        <corners 
+        android:radius="5sp"
+         />
+               
+</shape>
+
+  
+    </item>
+	<item android:drawable="@drawable/table_background_standard">
+	</item>
+</selector>

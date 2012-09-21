@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:background="@drawable/account_bg"
+  android:layout_height="wrap_content">
+ <include android:id="@+id/header" layout="@layout/common_navbar_layout" android:layout_width="fill_parent" android:layout_height="30dip"  android:layout_alignParentTop="true"/>
+ <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="40dip"
+  android:id="@+id/tilte_RL"
+  android:layout_below="@+id/header"
+  android:background="@drawable/review_bg1"
+  >
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/checkout_Name_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="80dip"
+  android:layout_centerVertical="true"
+  android:text="@string/checkout_listName"
+  android:textColor="#545454"
+  android:maxLength="15"
+  android:paddingLeft="12dip"
+  />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/checkout_Qty_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_marginLeft="5dip"
+  android:layout_centerVertical="true"
+  android:layout_toRightOf="@id/checkout_Name_TV"
+  android:text="@string/checkout_listQty"
+  android:textColor="#545454"
+  />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/checkout_totalCost_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="15dip"
+  android:layout_centerVertical="true"
+  android:text="@string/checkout_listtotalCost"
+  android:textColor="#545454"
+  />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/checkout_Options_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_centerVertical="true"
+  android:layout_toLeftOf="@id/checkout_totalCost_TV"
+  android:layout_toRightOf="@+id/checkout_Qty_TV"
+  android:layout_marginLeft="8dip"
+  android:layout_marginRight="30dip"
+  android:text="@string/checkout_listOptions"
+  android:textColor="#545454"
+  />
+ </RelativeLayout>
+ <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:id="@+id/list_RL"
+  android:layout_below="@+id/tilte_RL"
+ >
+ <ListView
+  android:id="@+id/checkout_Items_LV"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:background="#ffffffff"
+  android:layout_marginTop="1dip"
+  android:dividerHeight="0.5dip"
+  android:divider="#ffffffff"
+  android:fadingEdge="none"
+  />
+ </RelativeLayout>
+</RelativeLayout>

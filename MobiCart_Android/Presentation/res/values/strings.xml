@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, SplashAct!</string>
+     <!--************Application Name *************-->
+    <string name="app_name">apk_name_renamable</string>
+    <!--************Application Name *************-->
+     <!--************Search Bar*************-->
+    <string name="search_label">Search</string>
+    <string name="home_search_hint">Enter keyword to search</string>
+    
+    <!--************Store Tab*************-->
+    <string name="store_departments_list_header">SELECT A DEPARTMENT </string>
+   
+   <!--************SignUp*************-->
+    <string name="signUp_title">Enter Your Account Details</string>
+    <string name="signup_pwd">Password</string>
+    <string name="signup_cmfpwd">Confirm</string>
+    <string name="signup_billing">BILLING</string>
+    <string name="signup_name">Name</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_street">Street</string>
+    <string name="signup_city">City</string>
+    <string name="signup_state">State</string>
+    <string name="signup_zip">Zip Code</string>
+    <string name="signup_country">Country</string>
+    <string name="signup_checkdata">Same delivery address?</string>
+    <string name="signup_submit">Submit</string>
+    
+    
+    <!--************Sign Up Validation*************-->
+    <string name="signUp_EnterValidName">Enter Valid Name</string>
+    <string name="signUp_AllFieldsRequired">All Fields Required</string>
+    <string name="signUp_EnterValidEmail">Enter Valid Email</string>
+    <string name="signUp_EnterValidStreetAddress">Enter Valid Street Address</string>
+    <string name="signUp_EnterValidState">Enter Valid State</string>
+    <string name="signUp_EnterValidCountry">Enter Valid Country</string>
+    <string name="signUp_EnterValidZip">Enter Valid Zip</string>
+    <string name="signUp_EnterValidCity">Enter Valid City</string>
+    <string name="signUp_PasswordNotMatched">Password Not Matched</string>
+    <string name="signUp_EnterValidPwd">Enter Valid Password</string>
+    <string name="signUp_PwdMustBeOf6Char">Password must be Of AtLeast Six Characters</string>
+    <string name="signUp_RequiredFieldValidator">All Fields are Required</string>
+    <string name="signUp_PasswordFieldValidator">Password Field can not be empty</string>
+    
+    <!--************Account Details*************-->
+    <string name="myAccount_title">My Account Info</string>
+    <string name="myAccountemail">Email</string>
+    <string name="myAccountstreet">Street</string>
+    <string name="myAccountcity">City</string>
+    <string name="myAccountstate">State</string>
+    <string name="myAccountzip">Zip Code</string>
+    <string name="myAccountcountry">Country</string>
+    <string name="Delivery_title">Delivery Details</string>
+    <string name="Delivery_street">Street</string>
+    <string name="Delivery_city">City</string>
+    <string name="Delivery_country">Country</string>
+    <string name="Delivery_state">State</string>
+    <string name="Delivery_zip">Zip</string>
+    <string name="myAccountEdit">Edit</string>
+    
+    
+    <string name="Spinner_Card">Choose Payment Card</string>
+    
+    <!--************Checkout********-->
+    <string name="checkout_listName">Name</string>
+    <string name="checkout_listQty">Qty</string>
+    <string name="checkout_listtotalCost">Total cost</string> 
+    <string name="checkout_listOptions">Options</string>
+    <string name="checkout_listCountry">Country:</string>
+    <string name="checkout_listSubtotal">Sub total:</string> 
+    <string name="checkout_listVat">Tax:</string>
+    <string name="shipping_title">Shipping:</string> 
+    <string name="shipping_tax_title">Tax Shipping:</string> 
+    <string name="checkout_listTotal">Grand Total:</string> 
+    <string name="checkout_listpaypal_Title">Pay with a Credit Card</string>
+    <string name="checkout_listOr">Or</string> 
+    <string name="checkout_listPay">Pay</string>
+    
+    <!--************Write Review********-->
+    <string name="review_writeReview_Btn">Write Review</string>
+    
+    <!--************Watch Video********-->
+    <string name="video_back">Back</string>
+     
+    <!--************Post Review********-->
+    <string name="postReview_title">POST REVIEW</string>
+    <string name="postReview_title_rateIt">Rate it:</string>
+    <string name="postReview_Btn">Post Review</string>
+    
+    <!--************Product List**********-->
+    <string name="productList_title">SORT BY:</string>
+    <string name="productList_price">Price</string>
+    <string name="productList_status">Status</string>
+    <string name="productList_AtoZ">A to Z</string>
+    
+    <!--************News And Twitter**********-->
+    <string name="news_news_RB">News</string>
+    <string name="news_twitter_RB">Twitter</string>
+    <string name="news_newstitle">NEWS</string>
+        
+    <!--************Product Details********-->
+    <string name="productDetail_spinner1">Select Option</string>
+    <string name="productDetail_AddToCart">Add to cart</string>
+    <string name="productDetail_postReview">Post Review</string>
+       
+    <!--************Account*************-->
+    <string name="account_title">MY ACCOUNT</string>
+    <string name="account_viewWishlist">View Wishlist</string> 
+    <string name="account_myAccount">My Account</string> 
+    <string name="account_orderHistory">View Order History</string> 
+    <string name="account_logout">Logout</string>  
+    <string name="accountDialog_title">ACCOUNT INFO</string>  
+    <string name="accountDialog_subTitle">You must login first</string>  
+    <string name="accountDialog_login">Log into Account</string> 
+    <string name="accountDialog_createAccount">Create Account</string>  
+    <string name="accountDialog_cancel">Cancel</string>  
+    
+	
+    
+      <!--************Cart Details*************-->
+     <string name="cart_list_product_size">Size:</string>
+     <string name="cart_list_product_color">Colour:</string>
+     <string name="cart_list_product_type">Type:</string>
+     <string name="cart_list_product_qty">QTY</string>
+     <string name="cart_list_product_subTotal">Sub total:</string> 
+     <string name="cart_list_footer_choose_cntry">Country:</string> 
+     <string name="cart_list_footer_state">State:</string> 
+     <string name="cart_list_footer_vat">Tax:</string>   
+     <string name="cart_list_Shiping">Shipping:</string> 
+     <string name="cart_list_sTax">Tax Shipping:</string> 
+     <string name="cart_list_total">Total:</string> 
+     <string name="cart_list_footer_checkout">Checkout</string>
+     
+     <!--************Add To Wishlist Dialog*************-->
+     <string name="dialog_title">Product Details</string>
+     <string name="dialog_desc">Product has been added to the wishlist</string>
+	 
+	 <!--************Login*************-->
+	 <string name="login_Heading"> Log into your Account</string>
+   	 <string name="login_email"> Email:</string>
+     <string name="login_pwd"> Password:</string>
+   	 <string name="login_log">Log in</string>
+   	 <string name="login_CreateAccount">Create account</string>
+   	
+   	     
+   	 <!-- ****************************Contactus Map Api Key***************************************************-->
+   <string name="map_api_key">0ca5xD_sH2wlv1f1Q5seV8IXSQ28Xeom4fVa04g</string>
+   
+    </resources>

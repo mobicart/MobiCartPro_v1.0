@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  >
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/dialog_title_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_alignParentTop="true"
+  android:layout_marginTop="10dip"
+  android:gravity="center"
+  android:text="Product Details"
+  android:textColor="#ffffff"
+  android:textSize="16sp"
+  android:ellipsize="end"
+  android:textStyle="bold"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/dialog_desc_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue.ttf"
+  android:layout_below="@id/dialog_title_TV"
+  android:layout_marginTop="10dip"
+  android:gravity="center"
+  android:text="Product has been added to the wishlist"
+  android:textColor="#ffffff"
+  android:ellipsize="end"
+  />
+</RelativeLayout>

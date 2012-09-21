@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_bg" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_alignParentTop="true"
+        layout="@layout/common_navbar_layout" />
+
+    <WebView
+        android:id="@+id/aboutUs_text_WV"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/header"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="12dip"
+        android:layout_marginBottom="12dip"
+        android:background="@drawable/main_bg"
+        android:ellipsize="none"
+        android:scrollbars="vertical"
+        android:fadingEdge="none"        
+        mobicart:ttf_name="Helvetica Neue.ttf"
+        />
+    <!--
+ <ScrollView
+  android:id="@+id/about_SV"
+  android:layout_width="fill_parent" 
+  android:layout_height="wrap_content"
+  android:layout_below="@id/header"
+  android:paddingLeft="12dip"
+  android:paddingTop="12dip"
+  android:paddingBottom="12dip"
+  android:fillViewport="true"
+  android:fadingEdge="none">
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/aboutUs_text_TV"
+  android:text=""
+  android:textColor="#363636"
+  android:ellipsize="none"
+  android:paddingRight="5dip"
+  style="@style/TextFont"
+  mobicart:ttf_name="Helvetica Neue.ttf"
+  />
+   
+  
+  </ScrollView>
+    -->
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+    android:id="@+id/tabsLayout"
+    android:layout_width="64dip"
+    android:layout_height="64dip"
+    android:background="@drawable/tab_bg_selector"
+    android:gravity="center"
+    android:paddingTop="4dip"
+    android:paddingBottom="4dip">
+   <ImageView
+        android:id="@+id/icon1"
+        android:paddingTop="2dip"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+ <TextView
+        android:id="@+id/tab_backround_tv"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Hello"
+        android:textColor="@drawable/tab_text_selector"
+        />
+</RelativeLayout>

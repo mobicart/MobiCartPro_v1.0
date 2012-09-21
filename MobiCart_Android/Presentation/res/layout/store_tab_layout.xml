@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:id="@+id/storeTab_top_RL"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@drawable/home_page_bg"
+  >
+ <EditText
+  android:id="@+id/store_search_et"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" 
+  android:layout_alignParentTop="true"
+  android:background="@drawable/search_bar_dpi"
+  android:hint="@string/home_search_hint"
+  android:textSize="17sp"
+  android:gravity="bottom"
+  android:editable="true"
+  android:paddingBottom="12dip"
+  android:paddingLeft="45dip"
+  android:paddingRight="83dip"
+  android:singleLine="true"
+  android:imeOptions="actionSearch"
+  android:maxLength="30"
+  android:cursorVisible="false"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/store_search_button"
+  style="@style/TextFontBtn"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" 
+  android:background="@drawable/cancel_btn_withouttext_dpi"
+  android:layout_alignParentRight="true"
+  android:visibility="gone"
+  android:paddingTop="6dip"
+  android:paddingBottom="6dip"
+  android:layout_marginTop="8dip"
+  android:layout_marginRight="8dp"
+  android:textColor="#ffffff"
+  />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/store_departments_list_header_tv"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="30dip"
+  android:background="@drawable/bar_image"
+  android:layout_below="@+id/store_search_et"
+  android:text="@string/store_departments_list_header"
+  android:gravity="center_vertical"
+  android:paddingLeft="12dip"
+  android:textColor="#ffffffff"
+  />
+  <ListView  
+  android:id="@+id/store_departments_lv"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:dividerHeight="0.5dip"
+  android:divider="#d9d7d7"
+  android:scrollingCache="false"
+  android:layout_below="@+id/store_departments_list_header_tv"
+  android:background="@drawable/account_bg"
+  android:fadingEdge="none"
+  ></ListView>
+</RelativeLayout>

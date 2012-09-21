@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:id="@+id/common_nav_bar_heading"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:background="@drawable/bar_image"
+  >
+  <ImageView
+  android:id="@+id/common_nav_bar_heading_IV"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="11dip"
+  android:layout_marginRight="5dip"
+  android:layout_centerVertical="true"
+  /> 
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/common_nav_bar_heading_TV"
+  android:layout_centerVertical="true"
+  android:layout_toRightOf="@id/common_nav_bar_heading_IV"
+  android:textColor="#ffffff"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  />
+  </RelativeLayout>

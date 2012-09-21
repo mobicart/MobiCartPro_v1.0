@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:background="@drawable/table_background_standardimage"><!--
+ <com.mobicart.renamed_package.utils.LoaderImageView
+  android:id="@+id/listImg_IV"
+  android:layout_width="35dip"
+  android:layout_height="35dip"
+  android:layout_alignParentTop="true"
+  android:layout_marginLeft="10dip"
+  android:layout_centerVertical="true"
+  android:scaleType="fitCenter"
+  />
+    
+  -->
+  <RelativeLayout 
+  android:id="@+id/listImg_IV"
+  android:layout_width="40dip"
+  android:layout_height="40dip"
+  android:layout_alignParentTop="true"
+  android:layout_marginLeft="5dip"
+  android:layout_centerVertical="true"
+  android:gravity="center"
+  ></RelativeLayout>
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/list_item_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_toRightOf="@+id/listImg_IV"
+  android:layout_marginTop="10dip"
+  android:layout_marginLeft="10dip"
+  android:layout_marginRight="25dip"
+  android:text="First step of life"
+  android:textColor="#414040"
+  android:maxLines="1"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+   android:id="@+id/news_Date_TV"
+   style="@style/TitleFont"
+   mobicart:ttf_name="Helvetica Neue Bold.ttf"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_below="@+id/list_item_TV"
+   android:layout_marginLeft="9dip"
+   android:layout_toRightOf="@+id/listImg_IV"
+   android:text=""
+   android:layout_marginTop="3dip"
+   android:textSize="12sp"
+   android:textColor="#0076a3"
+   android:singleLine="true" 
+  />
+  <ImageView
+  android:id="@+id/list_arrow_IV"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="14dip"
+  android:layout_centerVertical="true" 
+  android:src="@drawable/department_arrow"/>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <include
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+       android:layout_below="@+id/cart_nav_bar"
+        layout="@layout/common_navbar_layout"
+         android:layout_alignParentTop="true" />
+
+    <ListView
+        android:id="@+id/yourcart_items_ListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/header"
+        android:background="#ffffffff"
+        android:divider="#d9d7d7"
+        android:dividerHeight="0.5dip"
+        android:footerDividersEnabled="false"
+        android:scrollingCache="false"
+        android:fadingEdge="none" />
+
+</RelativeLayout>

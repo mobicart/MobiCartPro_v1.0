@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:minHeight="40dip"
+  android:background="@drawable/gradient"
+  >
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/cart_Name_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="80dip"
+  android:layout_alignParentLeft="true"
+  android:layout_marginLeft="16dip"
+  android:textColor="#000000"
+  android:text="Android"
+  android:textSize="13sp"
+  android:ellipsize="end"
+  android:maxLength="20"
+  android:paddingTop="5dip"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView 
+  android:id="@+id/cart_Qty_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_toRightOf="@id/cart_Name_TV"
+  android:layout_marginLeft="6dip"
+  android:text="5"
+  android:textSize="15sp"
+  android:textColor="#000000"
+  android:paddingTop="5dip"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/cart_totalCost_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="25dip"
+  android:textColor="#000000"
+  android:text="$340.00"
+  android:paddingTop="5dip"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/cart_size_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_toRightOf="@+id/cart_Qty_TV"
+  android:text="Size"
+  android:textColor="#000000"
+  android:layout_marginLeft="50dip"
+  android:visibility="invisible"
+  android:paddingTop="5dip"
+  />
+  <TableLayout 
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="wrap_content"
+ android:layout_height="fill_parent"
+ android:layout_toRightOf="@+id/cart_Qty_TV"
+ android:layout_marginLeft="18dip"
+ android:layout_marginTop="1dip"
+ android:stretchColumns="0,1"
+ android:id="@+id/option_table">
+ </TableLayout>
+</RelativeLayout>

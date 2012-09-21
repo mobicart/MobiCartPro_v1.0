@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/account_bg" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_alignParentTop="true"
+        layout="@layout/common_navbar_layout" />
+
+    <ScrollView
+        android:id="@+id/terms_SV"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/about_us_tab_bottomImage_IV"
+        android:layout_below="@id/header"
+        android:fillViewport="true"
+        android:paddingBottom="12dip"
+        android:paddingLeft="12dip"
+        android:paddingTop="12dip" 
+        android:fadingEdge="none">
+
+        <com.mobicart.renamed_package.utils.MyCommonView
+            android:id="@+id/terms_text_TV"
+            style="@style/TextFont"
+            android:ellipsize="none"
+            android:paddingRight="5dip"
+            android:text=""
+            android:textColor="#363636"
+            mobicart:ttf_name="Helvetica Neue.ttf" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/about_us_tab_bottomImage_IV"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/about_SV"
+        android:background="@drawable/gradient"
+        android:scaleType="center"
+        android:src="@drawable/powered_by"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  >
+  <include android:id="@+id/header" layout="@layout/common_navbar_layout" android:layout_width="fill_parent" android:layout_height="30dip"  android:layout_alignParentTop="true"/>
+  <RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:layout_below="@+id/header"
+  android:background="#efebef"
+  >
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/news_dec_item"
+  style="@style/TextFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_alignParentLeft="true"
+  android:layout_width="fill_parent"
+  android:layout_marginLeft="12dip"
+  android:layout_marginTop="12dip"
+  android:textColor="#414040"
+  android:textSize="16sp"
+  android:ellipsize="none"
+  android:text="titititititititt"
+ />
+ <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/news_dec_Date"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_below="@+id/news_dec_item"
+  android:layout_marginLeft="12dip"
+  android:textSize="12sp"
+  android:textColor="#0076a3"
+  android:singleLine="true"  
+  android:text="14-3-1234"
+  android:layout_marginTop="12dip"
+  />
+   
+  <WebView
+  android:id="@+id/news_desctext_TV"
+  mobicart:ttf_name="Helvetica Neue.ttf"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:ellipsize="none"
+  android:layout_below="@+id/news_dec_Date"
+  android:scrollbars="vertical"
+  android:layout_marginTop="15dip"
+  android:layout_marginLeft="12dip"
+  android:layout_marginRight="5dip"
+  />
+  
+  
+</RelativeLayout>
+</RelativeLayout>

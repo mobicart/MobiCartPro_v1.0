@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mobicart="http://schemas.android.com/apk/res/com.mobicart.renamed_package"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@drawable/account_bg">
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/review_title_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_alignParentTop="true"
+  android:background="@drawable/bar_image"
+  android:textColor="#ffffff"
+  android:ellipsize="end"
+  android:paddingLeft="12dip"
+  android:paddingTop="10dip"
+  />
+  <RelativeLayout
+  android:id="@+id/review_title_RL"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:layout_below="@id/review_title_TV"
+  android:background="@drawable/bar_image">
+  <RatingBar
+  android:id="@+id/review_Ratingbar"
+  android:layout_height="19dip"
+  android:layout_width="wrap_content"
+  android:layout_marginLeft="9dip"
+  android:layout_centerVertical="true"
+  android:isIndicator="true" 
+  style="@style/RatingBar"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/review_count_TV"
+  style="@style/TitleFont"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:layout_toRightOf="@id/review_Ratingbar"
+  android:layout_centerVertical="true"
+  android:layout_marginLeft="8dip"
+  android:text=""
+  android:textColor="#ffffff"
+  android:textSize="13sp"
+  />
+  <com.mobicart.renamed_package.utils.MyCommonView
+  android:id="@+id/review_writeReview_Btn"
+  style="@style/TextFontBtn"
+  mobicart:ttf_name="Helvetica Neue Bold.ttf"
+  android:layout_alignParentRight="true"
+  android:layout_marginRight="5dip"
+  android:layout_centerVertical="true"
+  android:layout_below="@id/review_title_TV"
+  android:text="@string/review_writeReview_Btn"
+  android:textColor="#ffffff"
+  android:textSize="12sp"
+  android:padding="2dip"
+  android:maxLength="15"
+  android:maxLines="1"
+  android:ellipsize="end"
+  android:background="@drawable/post_review_normal1"
+  />
+  </RelativeLayout>
+  <ListView
+  android:id="@+id/review_LV"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:scrollingCache="false"
+  android:dividerHeight="1.5dip"
+  android:divider="@drawable/strip_image"
+  android:background="@drawable/account_bg"
+  android:layout_below="@+id/review_title_RL"
+  android:fadingEdge="none"
+  />
+</RelativeLayout>
