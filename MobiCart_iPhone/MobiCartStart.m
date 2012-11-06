@@ -3,7 +3,7 @@
 //  MobicartApp
 //
 //  Created by Mobicart on 12/2/11.
-//  Copyright 2010 Mobicart. All rights reserved.
+//  Copyright 2010 Mobicart.
 //
 
 /** This Class handles methods for initial start of the application. Initialy the application store user details, user preferences, tabs preferences, color schemes and other related details. **/
