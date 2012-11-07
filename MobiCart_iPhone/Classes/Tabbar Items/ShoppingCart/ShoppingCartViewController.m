@@ -23,6 +23,8 @@ extern BOOL *isLoadingTableFooter;
 @implementation ShoppingCartViewController
 BOOL isLoadingTableFooter2ndTime;
 BOOL isFirstTime;
+@synthesize isEditCommit=_isEditCommit;
+@synthesize  isFomCheckout=_isFomCheckout;
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 
@@ -33,12 +35,15 @@ BOOL isFirstTime;
 
 - (void)viewDidLoad
 {
-	isFirstTime=YES; 
+	isFirstTime=YES;
+    
 	strEditButtonTitle = [[NSString alloc ]initWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.edit"]];
 	strDoneButtonTitle = [[NSString alloc]initWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.done"]];
-    contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];	
-		
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 396)];
+    
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
+    
+	
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30, 320, 396) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
@@ -65,7 +70,7 @@ BOOL isFirstTime;
 	
     UILabel *lblShoppingCart=[[UILabel alloc]initWithFrame:CGRectMake(48,8,100,14)];
     [lblShoppingCart setBackgroundColor:[UIColor clearColor]];
-	[lblShoppingCart setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.yourcart"]];	
+	[lblShoppingCart setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.yourcart"]];
     [lblShoppingCart setTextColor:[UIColor whiteColor]];
 	[lblShoppingCart setFont:[UIFont boldSystemFontOfSize:13]];
 	[viewTopBar addSubview:lblShoppingCart];
@@ -90,7 +95,7 @@ BOOL isFirstTime;
 	
 	for (int i=0;i<[arrTemp count];i++)
 	{
-	    if (![[interDict valueForKey:@"sCountry"] containsObject:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+	    if (![[interDict valueForKey:@"sCountry"] containsObject:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]])
         {
 			[interDict addObject:[arrTemp objectAtIndex:i]];
 		}
@@ -98,7 +103,7 @@ BOOL isFirstTime;
 	}
 	for (int i=0;i<[arrTempShippingCountries count];i++)
 	{
-	    if (![[interDict valueForKey:@"sCountry"] containsObject:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]]) 
+	    if (![[interDict valueForKey:@"sCountry"] containsObject:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]])
         {
 			[interDict addObject:[arrTempShippingCountries objectAtIndex:i]];
 		}
@@ -109,7 +114,7 @@ BOOL isFirstTime;
     {
         countryID=[[[interDict valueForKey:@"territoryId"]objectAtIndex:0]intValue];
     }
-		
+    
 	[arrStates removeAllObjects];
 	for (int index=0;index<[arrTemp count];index++)
 	{
@@ -143,7 +148,7 @@ BOOL isFirstTime;
 	
 	arrQuantity = [[NSMutableArray alloc] init];
 	[self performSelector:@selector(hideBottomBar) onThread:[NSThread currentThread] withObject:nil waitUntilDone:NO];
-
+    
 }
 - (void)hideBottomBar
 {
@@ -160,7 +165,7 @@ BOOL isFirstTime;
 
 - (void)reloadMe
 {
-			
+    
 	[arrShoppingCart removeAllObjects];
 	
 	arrInfoAccount=[[NSMutableArray alloc]init];
@@ -175,7 +180,7 @@ BOOL isFirstTime;
 		stateID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"stateID"]intValue];
 		lcountryID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"countryID"]intValue];
 	}
-	else 
+	else
 	{
 		for(int i=0;i<[arrTemp count];i++)
 		{
@@ -190,7 +195,7 @@ BOOL isFirstTime;
 				[tempDict addObject:[arrTempShppingStates objectAtIndex:i]];
 			}
 			
-		}        
+		}
 		
 		if([tempDict count]>0)
 			lcountryID=[[[tempDict valueForKey:@"territoryId"]objectAtIndex:0]intValue];
@@ -207,7 +212,7 @@ BOOL isFirstTime;
 		[tempDict release];
 	}
 	
-	countryID=lcountryID;	
+	countryID=lcountryID;
 	[arrStates removeAllObjects];
 	
 	for (int index=0; index<[arrTemp count]; index++)
@@ -233,7 +238,7 @@ BOOL isFirstTime;
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		int productId = [[[arrDatabaseCart objectAtIndex:i] valueForKey:@"id"] intValue];
 		
-		// Fetch data from server
+		// Fetch data from server0
 		NSDictionary *dictProductDetails = [[ServerAPI fetchProductDetails:productId :lcountryID :stateID] objectForKey:@"product"];
 		if([dictProductDetails isKindOfClass:[NSDictionary class]])
 		{
@@ -252,11 +257,11 @@ BOOL isFirstTime;
 						else
 						{
 							[[SqlQuery shared] deleteItemFromShoppingCart:productId :[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"]];
-							[GlobalPreferences setCurrentItemsInCart:NO];  
+							[GlobalPreferences setCurrentItemsInCart:NO];
 							
 						}
 					}
-					else 
+					else
 					{
 						[arrShoppingCart addObject:dictProductDetails];
 					}
@@ -274,7 +279,7 @@ BOOL isFirstTime;
 						[dictOptionID addObject:[[dictOption objectAtIndex:j] valueForKey:@"id"]];
 					}
 					NSString *strOptions=[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"];
-					NSArray *arrOptions=[strOptions componentsSeparatedByString:@","];		
+					NSArray *arrOptions=[strOptions componentsSeparatedByString:@","];
 					
 					int optionIndex[100];
 					
@@ -305,21 +310,27 @@ BOOL isFirstTime;
 					else
 					{
 						[[SqlQuery shared] deleteItemFromShoppingCart:productId :[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"]];
-						[GlobalPreferences setCurrentItemsInCart:NO];  
+						[GlobalPreferences setCurrentItemsInCart:NO];
 						
 					}
 					[dictOptionID release];
 				}
 			}
-	
+			
+			
+			
+			
 		}
 		
 		else {
-			[[SqlQuery shared] deleteItemFromShoppingCart:productId :[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"]];	
-			[GlobalPreferences setCurrentItemsInCart:NO]; 
+			[[SqlQuery shared] deleteItemFromShoppingCart:productId :[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"]];
+			[GlobalPreferences setCurrentItemsInCart:NO];
 			
 		}
-
+		
+		
+		
+		
 		[pool release];
 	}
 	
@@ -348,7 +359,7 @@ BOOL isFirstTime;
 		isEditing=YES;
 		self.navigationItem.rightBarButtonItem.title = strDoneButtonTitle;
 		[tableView setEditing:YES animated:YES];
-	} 
+	}
     else if ([self.navigationItem.rightBarButtonItem.title isEqualToString: strDoneButtonTitle])
     {
 		isEditing=NO;
@@ -358,7 +369,7 @@ BOOL isFirstTime;
 	}
     
 	// Disallowing the viewForFooterInSection to be executed
-	(!isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=1:0; 
+	(!isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=1:0;
     
 	[tableView reloadData];
     
@@ -367,13 +378,14 @@ BOOL isFirstTime;
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
- 
+    _isFomCheckout=NO;
+    
 	if(controllersCount>5&&_objMobicartAppDelegate.tabController.selectedIndex>3)
 	{
 		moreTabCount=[self.navigationController.viewControllers count];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
-	
-	}	
+        
+	}
 	
 	for(int i = 0; i < [_objMobicartAppDelegate.tabController.moreNavigationController.view.
 						subviews count]; i++) {
@@ -388,7 +400,8 @@ BOOL isFirstTime;
 	
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
     
-  	(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0; 
+    // Allowing the viewForFooterInSection to be executed
+	(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0;
 	
 	if (isLoadingTableFooter)
     {
@@ -402,7 +415,7 @@ BOOL isFirstTime;
 	
 	isShoppingCart_TableStyle = TRUE;
 	
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
     {
 		UIButton *btnTemp = (UIButton *)view;
 		if (([view isKindOfClass:[UIButton class]]) && !([btnTemp.titleLabel.text isEqualToString:strEditButtonTitle] ||[btnTemp.titleLabel.text isEqualToString:strDoneButtonTitle]))
@@ -423,8 +436,22 @@ BOOL isFirstTime;
 	if (isCheckout)
 	{
 		isCheckout = NO;
-
+        
 		isCheckForCheckout=NO;
+        _isFomCheckout=YES;
+        isEditing=NO;
+        
+        if ([self.navigationItem.rightBarButtonItem.title isEqualToString: strDoneButtonTitle])
+        {
+            isEditing=NO;
+            self.navigationItem.rightBarButtonItem.title = strEditButtonTitle;
+            [tableView setEditing:NO animated:YES];
+            (!isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=1:0;
+            
+            [tableView reloadData];
+        }
+		
+        
 		CheckoutViewController *objCheckout=[[CheckoutViewController alloc]init];
 		
 		NSMutableArray *arrTemp = [[NSMutableArray alloc] init];
@@ -446,7 +473,8 @@ BOOL isFirstTime;
 		objCheckout.arrProductIds = arrTemp;
 		
 		[arrTemp release];
-		
+		[self tableView:tableView viewForFooterInSection:1];
+        [tableView reloadData];
 		[self.navigationController pushViewController:objCheckout animated:NO];
 		[objCheckout release];
 		
@@ -454,38 +482,42 @@ BOOL isFirstTime;
 	
 	
 	else {
-    arrDatabaseCart = [[SqlQuery shared]getShoppingCartProductIDs:NO];
-	
-	if ([arrDatabaseCart count]>0)
-    {
-        selectedQuantity=[[[arrDatabaseCart objectAtIndex:0]valueForKey:@"quantity"]intValue];
-		[self reloadMe];
-	}
-    
-  	
-	else 
-    {
-		[tableView removeFromSuperview];
-		[tableView release];
-		tableView=nil;
-	}
-	
-	
-
-	
-	if ([arrDatabaseCart count]>0) 
-	{
-		barBtnEdit = [[UIBarButtonItem alloc] initWithTitle:strEditButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(btnEdit_clicked)];
-		[self.navigationItem setRightBarButtonItem:barBtnEdit animated:YES];
-		if (isEditing==YES)
+		
+        
+        
+        arrDatabaseCart = [[SqlQuery shared]getShoppingCartProductIDs:NO];
+        
+        if ([arrDatabaseCart count]>0)
         {
-            [barBtnEdit setTitle:strDoneButtonTitle];
+            selectedQuantity=[[[arrDatabaseCart objectAtIndex:0]valueForKey:@"quantity"]intValue];
+            if(!_isFomCheckout)
+                [self reloadMe];
         }
-		else
+        
+        
+        else
         {
-            [barBtnEdit setTitle:strEditButtonTitle]; 
+            [tableView removeFromSuperview];
+            [tableView release];
+            tableView=nil;
         }
-	}
+        
+        
+        
+        
+        if ([arrDatabaseCart count]>0)
+        {
+            barBtnEdit = [[UIBarButtonItem alloc] initWithTitle:strEditButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(btnEdit_clicked)];
+            [self.navigationItem setRightBarButtonItem:barBtnEdit animated:YES];
+            if (isEditing==YES)
+            {
+                [barBtnEdit setTitle:strDoneButtonTitle];
+            }
+            else
+            {
+                [barBtnEdit setTitle:strEditButtonTitle];
+            }
+        }
 	}
 }
 
@@ -495,7 +527,7 @@ BOOL isFirstTime;
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"poweredByMobicart" object:nil];
 	
     isShoppingCart_TableStyle = FALSE;
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
     {
 		UIButton *btnTemp = (UIButton *)view;
 		if (([view isKindOfClass:[UIButton class]]) && !([btnTemp.titleLabel.text isEqualToString:strEditButtonTitle] ||[btnTemp.titleLabel.text isEqualToString:strDoneButtonTitle]))
@@ -513,9 +545,10 @@ BOOL isFirstTime;
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"addCartButton" object:nil];
-
+    
+    if(!_isFomCheckout)
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addCartButton" object:nil];
+    
 	isShoppingCart_TableStyle = FALSE;
 	isCheckForCheckout=NO;
 	
@@ -525,7 +558,7 @@ BOOL isFirstTime;
 
 - (void)createTableView
 {
-	UIView *viewFooter = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320,280)];
+	UIView *viewFooter = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320,280) chageHieght:YES]];
     viewFooter.backgroundColor = [UIColor colorWithRed:88.6/100 green:88.6/100 blue:88.6/100 alpha:1];
 	isLoadingTableFooter2ndTime=NO;
     UIImageView *imgFooterView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shopping_base_standard.png"]];
@@ -540,7 +573,7 @@ BOOL isFirstTime;
     }
     
 	if ([arrInfoAccount count]>0)
-	{  
+	{
 	    lcountryID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"countryID"]intValue];
 		stateID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"stateID"]intValue];
 		dicStates=[[ServerAPI fetchStatesOfCountryWithID:lcountryID] retain];
@@ -557,7 +590,8 @@ BOOL isFirstTime;
 	}
 	
     dictTaxAndShippingDetails = [[ServerAPI fetchTaxShippingDetails:lcountryID :stateID:iCurrentStoreId] retain];
-
+    
+    
 	[dictSettingsDetails retain];
 	
     NSString *strTemp=[NSString stringWithFormat:@"%@: ",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.subtotal"]];
@@ -570,10 +604,10 @@ BOOL isFirstTime;
         width=75;
     
 	UILabel *lblSubTotalFooterTitle=[[UILabel alloc]initWithFrame:CGRectMake(175, 14,width, 20)];
-	[lblSubTotalFooterTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.subtotal"]]]; 
+	[lblSubTotalFooterTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.subtotal"]]];
 	lblSubTotalFooterTitle.backgroundColor=[UIColor clearColor];
 	[lblSubTotalFooterTitle setTextAlignment:UITextAlignmentLeft];
-	 lblSubTotalFooterTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
+    lblSubTotalFooterTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
 	lblSubTotalFooterTitle.lineBreakMode = UILineBreakModeTailTruncation;
 	lblSubTotalFooterTitle.textColor=[UIColor darkGrayColor];
 	[viewFooter addSubview:lblSubTotalFooterTitle];
@@ -582,7 +616,7 @@ BOOL isFirstTime;
     
     [lblSubTotalFooterTitle release];
 	
-   
+    
     
 	lblSubTotalFooter=[[UILabel alloc]initWithFrame:CGRectMake(xCoord,14,320-xCoord,20)];
 	lblSubTotalFooter.backgroundColor=[UIColor clearColor];
@@ -601,16 +635,16 @@ BOOL isFirstTime;
 	[lblStars release];
 	
     
-     strTemp=[NSString stringWithFormat:@"%@: ",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.total"]];
+    strTemp=[NSString stringWithFormat:@"%@: ",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.total"]];
     
-     size =[strTemp sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0] constrainedToSize:CGSizeMake(1000, 20)];
+    size =[strTemp sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0] constrainedToSize:CGSizeMake(1000, 20)];
     
-     width=size.width;
+    width=size.width;
     
-     if(width>55)
+    if(width>55)
         width=55;
-   
-   
+    
+    
     UILabel *lblGrandTotalFooterTitle=[[UILabel alloc]initWithFrame:CGRectMake(175, 107,width,20)];
 	[lblGrandTotalFooterTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.total"]]];
 	lblGrandTotalFooterTitle.backgroundColor=[UIColor clearColor];
@@ -670,6 +704,8 @@ BOOL isFirstTime;
 	[btnStatesPicker addTarget:self action:@selector(getStatesTable:) forControlEvents:UIControlEventTouchUpInside];
 	[viewFooter addSubview:btnStatesPicker];
 	
+	
+    
     strTemp=[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.tax"]];
     
     size =[strTemp sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0] constrainedToSize:CGSizeMake(1000, 20)];
@@ -683,13 +719,13 @@ BOOL isFirstTime;
 	[lblTaxTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.tax"]]];
 	lblTaxTitle.backgroundColor=[UIColor clearColor];
 	[lblTaxTitle setTextAlignment:UITextAlignmentLeft];
-		lblTaxTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
+    lblTaxTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
 	lblTaxTitle.lineBreakMode = UILineBreakModeTailTruncation;
-     lblTaxTitle.textColor=[UIColor darkGrayColor];
+    lblTaxTitle.textColor=[UIColor darkGrayColor];
 	[viewFooter addSubview:lblTaxTitle];
 	
     xCoord=lblTaxTitle.frame.size.width+lblTaxTitle.frame.origin.x+2;
-
+    
     [lblTaxTitle release];
 	
 	lblTax=[[UILabel alloc]initWithFrame:CGRectMake(xCoord, 32,320-xCoord,20)];
@@ -700,7 +736,9 @@ BOOL isFirstTime;
 	lblTax.lineBreakMode = UILineBreakModeTailTruncation;
     lblTax.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
 	[viewFooter addSubview:lblTax];
-
+	
+	
+    
     strTemp=[NSString stringWithFormat:@"%@: ",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.shipping"]];
     
     size =[strTemp sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:11.0] constrainedToSize:CGSizeMake(1000, 20)];
@@ -710,7 +748,7 @@ BOOL isFirstTime;
     if(width>65)
         width=65;
     
-
+    
     UILabel *lblShippingChargesTitle=[[UILabel alloc]initWithFrame:CGRectMake(175,50,width, 20)];
 	[lblShippingChargesTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.shipping"]]];
 	lblShippingChargesTitle.backgroundColor=[UIColor clearColor];
@@ -721,7 +759,7 @@ BOOL isFirstTime;
 	[viewFooter addSubview:lblShippingChargesTitle];
 	
     xCoord=lblShippingChargesTitle.frame.size.width+lblShippingChargesTitle.frame.origin.x+2;
-
+    
     
     [lblShippingChargesTitle release];
 	
@@ -733,7 +771,7 @@ BOOL isFirstTime;
 	lblShippingCharges.lineBreakMode = UILineBreakModeTailTruncation;
 	lblShippingCharges.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
 	[viewFooter addSubview:lblShippingCharges];
-
+    
 	
     strTemp=[NSString stringWithFormat:@"%@: ",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.tax.shipping"]];
     
@@ -754,7 +792,7 @@ BOOL isFirstTime;
 	[viewFooter addSubview:lblShippingTaxTitle];
 	
     xCoord=lblShippingTaxTitle.frame.size.width+lblShippingTaxTitle.frame.origin.x+2;
-
+    
     
     [lblShippingTaxTitle release];
 	
@@ -776,7 +814,7 @@ BOOL isFirstTime;
 	[lblCountryName setText:@""];
 	lblCountryName.lineBreakMode = UILineBreakModeTailTruncation;
 	lblCountryName.font =[UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-	[viewFooter addSubview:lblCountryName];	
+	[viewFooter addSubview:lblCountryName];
 	
 	lblStateName=[[UILabel alloc]initWithFrame:CGRectMake(20, 93,99, 20)];
 	lblStateName.backgroundColor=[UIColor clearColor];
@@ -787,7 +825,7 @@ BOOL isFirstTime;
 	[lblStateName setText:@""];
 	lblStateName.lineBreakMode = UILineBreakModeTailTruncation;
 	lblStateName.font =[UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-	[viewFooter addSubview:lblStateName];	
+	[viewFooter addSubview:lblStateName];
 	
 	if ([arrInfoAccount count]>0)
 	{
@@ -815,7 +853,7 @@ BOOL isFirstTime;
 		lblCountryName.text=strCountryname;
 		[GlobalPreferences setUserCountryAndStateForTax_country:strCountryname countryID:countryID];
     }
-
+    
 	UIButton *btnCheckout=[UIButton buttonWithType:UIButtonTypeCustom];
 	btnCheckout.backgroundColor=navBarColor;
 	[btnCheckout setFrame:CGRectMake(10, 138, 303, 34)];
@@ -839,10 +877,11 @@ BOOL isFirstTime;
 		tableView=nil;
 	}
 	
-		
-	tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 30, 320, 340) style:UITableViewStylePlain];
+    
+	tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 30, 320, 340) chageHieght:YES] style:UITableViewStylePlain];
 	tableView.delegate=self;
 	tableView.dataSource=self;
+    tableView.backgroundView=nil;
 	[tableView setHidden:NO];
 	[tableView setTableFooterView:viewFooter];
 	[tableView setBackgroundColor:[UIColor clearColor]];
@@ -853,10 +892,10 @@ BOOL isFirstTime;
 	 	[tableView setEditing:YES];
 		istblEditing=NO;
 	}
-		else {
+    else {
 		[tableView setEditing:NO];
 	}
-
+    
 	
 	
 	if (tblCountries)
@@ -869,6 +908,7 @@ BOOL isFirstTime;
 	tblCountries=[[UITableView alloc]initWithFrame:CGRectMake(1, 45, 145, 200) style:UITableViewStyleGrouped];
 	tblCountries.delegate=self;
 	tblCountries.dataSource=self;
+    tblCountries.backgroundView=nil;
 	[tblCountries setHidden:YES];
     tblCountries.showsVerticalScrollIndicator = FALSE;
 	[tblCountries setBackgroundColor:[UIColor clearColor]];
@@ -888,11 +928,12 @@ BOOL isFirstTime;
     }
     else
     {
-      tblStates=[[UITableView alloc]initWithFrame:CGRectMake(1, 103, 145, 140) style:UITableViewStyleGrouped];  
+        tblStates=[[UITableView alloc]initWithFrame:CGRectMake(1, 103, 145, 140) style:UITableViewStyleGrouped];
     }
 	
 	tblStates.delegate=self;
 	tblStates.dataSource=self;
+    tblStates.backgroundView=nil;
 	tblStates.showsVerticalScrollIndicator = FALSE;
 	[tblStates setBackgroundColor:[UIColor clearColor]];
 	[viewFooter addSubview:tblStates];
@@ -938,27 +979,41 @@ BOOL isFirstTime;
 	[pool drain];
 	
 	
-}	
+}
 
 #pragma mark Checkout Handler
 - (void)checkoutMethod
 {
 	
 	isCheckForCheckout=YES;
-
-	 self.title=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.home.back"];
+    _isFomCheckout=YES;
+    if ([self.navigationItem.rightBarButtonItem.title isEqualToString: strDoneButtonTitle])
+    {
+        isEditing=NO;
+        self.navigationItem.rightBarButtonItem.title = strEditButtonTitle;
+        [tableView setEditing:NO animated:YES];
+        // Disallowing the viewForFooterInSection to be executed
+        (!isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=1:0;
+        
+        [tableView reloadData];
+    }
+	// Start loading indicator
+	self.title=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.home.back"];
 	if ([[GlobalPreferences getUserDefault_Preferences:@"userEmail"] length]==0)
 	{
 		DetailsViewController *_details = 	[[DetailsViewController alloc] init];
 		[self.navigationController pushViewController:_details animated:YES];
 		[_details release];
 	}
-	else 
+	else
 	{
 		
 		[NSThread detachNewThreadSelector:@selector(showIndicator) toTarget:self withObject:nil];
+        
 		
+        
 		CheckoutViewController *objCheckout=[[CheckoutViewController alloc]init];
+        
 		
 		NSMutableArray *arrTemp = [[NSMutableArray alloc] init];
 		
@@ -980,7 +1035,7 @@ BOOL isFirstTime;
 		[arrTemp release];
         self.title=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.home.back"];
 		[self.navigationController pushViewController:objCheckout animated:YES];
-		[objCheckout release];	
+		[objCheckout release];
 	}
 }
 #pragma mark TableView Delegate Method
@@ -1024,7 +1079,7 @@ BOOL isFirstTime;
 	else
     {
         return [arrShoppingCart count];
-    }	
+    }
 }
 
 
@@ -1038,7 +1093,7 @@ BOOL isFirstTime;
 		
 		NSDictionary *dictTemp = [interDict objectAtIndex:indexPath.row];
 		if (cell==nil)
-		{	
+		{
 			cell =[[[TableViewCell_Common alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier]autorelease];
 		}
 		
@@ -1051,7 +1106,7 @@ BOOL isFirstTime;
 	else if (tableview==tblStates)
 	{
 		if (cell==nil)
-		{	
+		{
 			cell = [[[TableViewCell_Common alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier]autorelease];
 		}
         
@@ -1059,7 +1114,7 @@ BOOL isFirstTime;
 		[cell.textLabel setTextAlignment:UITextAlignmentCenter];
 		cell.textLabel.font =[UIFont fontWithName:@"Helvetica" size:12.0];
 		[cell.textLabel setTextColor:[UIColor blackColor]];
-
+        
 	}
 	
 	else if (tableview==tableView)
@@ -1071,10 +1126,14 @@ BOOL isFirstTime;
 		productCost=[GlobalPreferences getRoundedOffValue:productCost];
 		productSubTotal=[GlobalPreferences getRoundedOffValue:productSubTotal];
 		
+        if(_isEditCommit){
+            cell=nil;
+            
+        }
 		if (cell==nil)
 		{
 			cell = [[TableViewCell_Common alloc] initWithStyleFor_Store_ProductView:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier];
-			
+            
 			UIImageView *imgCellBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 342,81.8)];
 			[imgCellBackground setImage:[UIImage imageNamed:@"shoppingcart_bar_stan.png"]];
 			[cell setBackgroundView:imgCellBackground];
@@ -1164,13 +1223,15 @@ BOOL isFirstTime;
 					[lblOptionName[count] release];
 					
 					yValue=yValue+15;
-				}	
+				}
 				
 				
 				
 			}
 			
-	        NSString *strText=[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, productSubTotal];
+			
+			
+            NSString *strText=[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, productSubTotal];
 			CGSize size=[strText sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:11] constrainedToSize:CGSizeMake(500,20) lineBreakMode:UILineBreakModeWordWrap];
 			int x=size.width;
 			if(x>65)
@@ -1203,7 +1264,7 @@ BOOL isFirstTime;
 			[productTotalPriceTitle release];
 			
 			int xTemp;
-		     xTemp=productTotalPrice.frame.origin.x+productTotalPrice.frame.size.width-25;			
+            xTemp=productTotalPrice.frame.origin.x+productTotalPrice.frame.size.width-25;
 			UILabel *lblQuantityTitle = [[UILabel alloc]initWithFrame:CGRectMake(xTemp,2, 25, 25)];
 			lblQuantityTitle.backgroundColor=[UIColor clearColor];
 			[lblQuantityTitle setTextAlignment:UITextAlignmentRight
@@ -1217,10 +1278,10 @@ BOOL isFirstTime;
 			[cell addSubview:lblQuantityTitle];
 			[lblQuantityTitle release];
             
-	            
             UILabel *lblQuantity = [[UILabel alloc]initWithFrame:CGRectMake(xTemp-2, 25, 26, 27)];
-
-           	lblQuantity.backgroundColor=[UIColor clearColor];
+            
+            
+			lblQuantity.backgroundColor=[UIColor clearColor];
 			[lblQuantity setTextAlignment:UITextAlignmentRight];
 			lblQuantity.textColor=[UIColor blackColor];
 			[lblQuantity setNumberOfLines:0];
@@ -1231,13 +1292,14 @@ BOOL isFirstTime;
 			[cell addSubview:lblQuantity];
 			
 			[lblQuantity release];
+            
 			UIButton *btnQuantity = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-			btnQuantity.frame=CGRectMake(xTemp,25, 26, 27); 
+			btnQuantity.frame=CGRectMake(xTemp,25, 26, 27);
 			btnQuantity.backgroundColor=[UIColor clearColor];
 			[btnQuantity setBackgroundImage:[UIImage imageNamed:@"shop_box.png"] forState:UIControlStateNormal];
 			[btnQuantity setTitle:[[arrDatabaseCart objectAtIndex:indexPath.row] valueForKey:@"quantity"] forState:UIControlStateNormal];
 			[btnQuantity setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-			 btnQuantity.titleLabel.font=	[UIFont fontWithName:@"Helvetica" size:15];
+            btnQuantity.titleLabel.font=	[UIFont fontWithName:@"Helvetica" size:15];
 			btnQuantity.tag = [[NSString stringWithFormat:@"%d0%d",indexPath.row+1, indexPath.row+1] intValue];
 			[btnQuantity addTarget:self action:@selector(btnQuantity_Clicked:) forControlEvents:UIControlEventTouchUpInside];
 			[cell addSubview:btnQuantity];
@@ -1250,220 +1312,146 @@ BOOL isFirstTime;
 			[imgPlaceHolder setTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]];
 			[cell addSubview:imgPlaceHolder];
 			
-			if([tableview isEditing])
-				[imgPlaceHolder setHidden:YES];
-			else {
-				[imgPlaceHolder setHidden:NO];
-			}
-
 			
-		     UIImageView * cellProductImage=[[UIImageView alloc]initWithFrame:CGRectMake(0 ,0, 60, 65)];
-			[cellProductImage setBackgroundColor:[UIColor clearColor]];
-			[imgPlaceHolder addSubview:cellProductImage];
-			[imgPlaceHolder release];
-			
-			UIImage *imgProduct;
+            
+            
 			
 			NSDictionary *dictTemp=[arrShoppingCart objectAtIndex:indexPath.row];
 			NSArray  *arrImagesUrls = [dictTemp objectForKey:@"productImages"];
 			
 			if ([arrImagesUrls count]!=0)
 			{
-				NSData *data = [ServerAPI fetchBannerImage:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
-				imgProduct = [UIImage imageWithData:data];
+                NSString* strImage=[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"];
+                cellProductImageView=  [[CustomImageView alloc] initWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ServerAPI getImageUrl],strImage]] frame:CGRectMake(0,0, 67, 67) isFrom:1];
+                
+                [imgPlaceHolder addSubview:cellProductImageView];
 			}
-			else
-			{
-				imgProduct =nil;
-			}
-			
-			int yImage=(67-imgProduct.size.height/2)/2;
-			int xImage=(67-imgProduct.size.width/2+5)/2;
-			if (![imgProduct isEqual:[NSNull null]])
-			{
-				[cellProductImage setFrame:CGRectMake(xImage, yImage+4, imgProduct.size.width/2-5, imgProduct.size.height/2-10)];
-				cellProductImage.image=imgProduct;
-			}
-			[cellProductImage release];
-			
-			
-			
-		}
-		
-		else
-		{    
-			
-			if([tableView isEditing])
-			{
-				[[cell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:YES];
-			}
-			else 
-			{
-				[[cell viewWithTag: [[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:NO];
-				
-				UIImageView * cellProductImage=[[UIImageView alloc]initWithFrame:CGRectMake(0 ,0, 60, 65)];
-				[cellProductImage setBackgroundColor:[UIColor clearColor]];
-			
-				UIImage *imgProduct;
-				
-				NSDictionary *dictTemp=[arrShoppingCart objectAtIndex:indexPath.row];
-				NSArray  *arrImagesUrls = [dictTemp objectForKey:@"productImages"];
-				
-				if ([arrImagesUrls count]!=0)
-				{
-					NSData *data = [ServerAPI fetchBannerImage:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
-					imgProduct = [UIImage imageWithData:data];
-				}
-				else
-				{
-					imgProduct =nil;
-				}
-				
-				int yImage=(67-imgProduct.size.height/2)/2;
-				int xImage=(67-imgProduct.size.width/2+5)/2;
-				if (![imgProduct isEqual:[NSNull null]])
-				{
-					[cellProductImage setFrame:CGRectMake(xImage, yImage+4, imgProduct.size.width/2-5, imgProduct.size.height/2-10)];
-					cellProductImage.image=imgProduct;
-				}
-				
-				[[cell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]] addSubview:cellProductImage];
-				
-			
-				[cellProductImage release];
-				
-			}
-				
-	
-			NSString *strText=[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, productSubTotal];
-			CGSize size=[strText sizeWithFont:[UIFont fontWithName:@"Helvetica" size:11.00] constrainedToSize:CGSizeMake(500,20) lineBreakMode:UILineBreakModeWordWrap];
-			int x=size.width;
-			if(x>65)
-				x=65;
             
-			UILabel *lblProductTotalPrice = (UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"1000%d",indexPath.row]intValue]];
-			[lblProductTotalPrice setFrame:CGRectMake(310-x,55,x,20)];
+            if([tableview isEditing])
+				[imgPlaceHolder setHidden:YES];
+			else {
+				[imgPlaceHolder setHidden:NO];
+			}
+            
 			
-			UILabel *lblProductTitleSubTotal =(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"999%d",indexPath.row] intValue]];
-			
-			[lblProductTitleSubTotal setFrame:CGRectMake(lblProductTotalPrice.frame.origin.x-68, 55, 60,20)];
-					
-			
-    		lblProductTotalPrice.text = [NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, productSubTotal];
-			
-			int xTemp;
-			xTemp=lblProductTotalPrice.frame.origin.x+lblProductTotalPrice.frame.size.width-25;
-
-			UILabel *imgViewTemp = (UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"99%d0%d",indexPath.row+1,indexPath.row+1] intValue]];
-			[imgViewTemp setFrame:CGRectMake(xTemp-2, 25, 26, 27)];
-			UILabel *lblTitleQuantity = (UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"88%d0%d",indexPath.row+1,indexPath.row+1] intValue]];
-			[lblTitleQuantity setFrame:CGRectMake(xTemp,2, 25, 25)];
-			
-			UIButton *btnQuantity_Temp = (UIButton *)[cell viewWithTag:[[NSString stringWithFormat:@"%d0%d",indexPath.row+1, indexPath.row+1] intValue]];
-			[btnQuantity_Temp setFrame:CGRectMake(xTemp,25, 26, 27)];
-			
-		}
-		
-		UIButton *btnQuantity_Temp = (UIButton *)[cell viewWithTag:[[NSString stringWithFormat:@"%d0%d",indexPath.row+1, indexPath.row+1] intValue]];
+            
+            NSString *srtTaxType;
+            srtTaxType=[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sTaxType"];
+            
+            
+            if([[[arrShoppingCart objectAtIndex:indexPath.row]valueForKey:@"bTaxable"]intValue]==1)
+            {
+                if([srtTaxType isEqualToString:@"default"])
+                    srtTaxType=@"";
+                else
+                    srtTaxType=[NSString stringWithFormat:@"(Inc %@)",srtTaxType];
+            }
+            else
+                srtTaxType=@"";
+            
+            
+            
+            if([[[arrShoppingCart objectAtIndex:indexPath.row]valueForKey:@"bTaxable"]intValue]==1){
+                
+                
+                [cell setProductName:[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f %@", _savedPreferences.strCurrencySymbol, productCost, srtTaxType]:@"":@"":nil];
+            }
+            else
+            {
+                [cell setProductName:[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f ", _savedPreferences.strCurrencySymbol, productCost] :@"":@"":nil];
+            }
+            
+            ([tableView isEditing])?(btnQuantity.hidden = FALSE):(btnQuantity.hidden = TRUE);
+        }
+        
+        if([tableView isEditing])
+        {
+            [[cell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:YES];
+            [[cell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setBackgroundColor:[UIColor whiteColor]];
+        }
+        else
+        {
+            [[cell viewWithTag: [[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:NO];
+            [[cell viewWithTag: [[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setBackgroundColor:[UIColor clearColor]];
+            
+            
+        }
+        UIButton *btnQuantity_Temp = (UIButton *)[cell viewWithTag:[[NSString stringWithFormat:@"%d0%d",indexPath.row+1, indexPath.row+1] intValue]];
 		
 		([tableView isEditing])?(btnQuantity_Temp.hidden = FALSE):(btnQuantity_Temp.hidden = TRUE);
-			NSString *srtTaxType;
-		srtTaxType=[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sTaxType"];
-	
-		if ([[[arrShoppingCart objectAtIndex:indexPath.row]valueForKey:@"bTaxable"]intValue]==1)
-		{
-			if ([srtTaxType isEqualToString:@"default"])
-            {
-                srtTaxType=@"";
-            }
-			else 
-            {
-                srtTaxType=[NSString stringWithFormat:@"(Inc %@)",srtTaxType];
-            }
-		}
-		else
-        {
-            srtTaxType=@"";
-        }
 		
-		if ([[[arrShoppingCart objectAtIndex:indexPath.row]valueForKey:@"bTaxable"]intValue]==1)
-        {
-            [cell setProductName:[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f %@", _savedPreferences.strCurrencySymbol, productCost, srtTaxType]:nil:@"":nil];
-        }
-		else
-        {
-            [cell setProductName:[[arrShoppingCart objectAtIndex:indexPath.row] valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f ", _savedPreferences.strCurrencySymbol, productCost] :nil:@"":nil];
-        }
+		
 		
 		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		cell.shouldIndentWhileEditing = NO;
-	}
+    }
 	return  cell;
 }
 
-#pragma mark Footer 
+#pragma mark Footer
 // Custom view for footer. will be adjusted to default or specified footer height
-- (UIView *)tableView:(UITableView *)tableView1 viewForFooterInSection:(NSInteger)section;   
+- (UIView *)tableView:(UITableView *)tableView1 viewForFooterInSection:(NSInteger)section;
 {
-  
+    
+    
+	
 	if (!isLoadingTableFooter2ndTime)
 	{
 		// Calcuating the subtotal for all the items, added in the shopping cart
 		float subTotal=0;
 		mainTotal=0;
-    
-		 float totalTaxApplied=0;
+        
+        float totalTaxApplied=0;
         
 		float fShippingCharges=0,fShippingtax=0;
 		float tax=[[[dictTaxAndShippingDetails valueForKey:@"tax"]valueForKey:@"fTax"]floatValue];
 		
-		for (int i=0; i<[arrDatabaseCart count]; i++) 
+		for (int i=0; i<[arrDatabaseCart count]; i++)
         {
-			    float optionPrice=0;
-                float productCost=0;
-              
+            float optionPrice=0;
+            float productCost=0;
             
             
-                if (!([[[arrDatabaseCart objectAtIndex:i]  valueForKey:@"pOptionId"] intValue]==0))
-                {    
-                    NSMutableArray *dictOption = [[arrShoppingCart objectAtIndex:i]  objectForKey:@"productOptions"];
-                    
-                    NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
-                    
-                    for (int j=0; j<[dictOption count]; j++)
-                    {
-                        [arrProductOptionSize addObject:[[dictOption objectAtIndex:j] valueForKey:@"id"]];
-                                               
-                        
-                    }
-                    
-                    NSArray *arrSelectedOptions=[[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
-                    int optionSizesIndex[100];
-                    if([arrProductOptionSize count]!=0 && [arrSelectedOptions count]!=0)
-                    {
-                        for(int count=0;count<[arrSelectedOptions count];count++)
-                        {
-                            if ([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrSelectedOptions objectAtIndex:count] integerValue]]])
-                            {
-                                optionSizesIndex[count] = [arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrSelectedOptions objectAtIndex:count]  intValue]]];
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                    for(int count=0;count<[arrSelectedOptions count];count++)
-                    {
-                                                                  
-                        optionPrice =optionPrice+[[[dictOption objectAtIndex:optionSizesIndex[count]]valueForKey:@"pPrice"]floatValue];
-                        
-                    }
+            
+            if (!([[[arrDatabaseCart objectAtIndex:i]  valueForKey:@"pOptionId"] intValue]==0))
+            {
+                NSMutableArray *dictOption = [[arrShoppingCart objectAtIndex:i]  objectForKey:@"productOptions"];
+                
+                NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
+                
+                for (int j=0; j<[dictOption count]; j++)
+                {
+                    [arrProductOptionSize addObject:[[dictOption objectAtIndex:j] valueForKey:@"id"]];
                     
                     
                 }
-            
-            NSLog(@"%f",optionPrice);
                 
+                NSArray *arrSelectedOptions=[[[arrDatabaseCart objectAtIndex:i] valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
+                int optionSizesIndex[100];
+                if([arrProductOptionSize count]!=0 && [arrSelectedOptions count]!=0)
+                {
+                    for(int count=0;count<[arrSelectedOptions count];count++)
+                    {
+                        if ([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrSelectedOptions objectAtIndex:count] integerValue]]])
+                        {
+                            optionSizesIndex[count] = [arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrSelectedOptions objectAtIndex:count]  intValue]]];
+                        }
+                    }
+                }
+                
+                
+                
+                for(int count=0;count<[arrSelectedOptions count];count++)
+                {
+                    
+                    optionPrice =optionPrice+[[[dictOption objectAtIndex:optionSizesIndex[count]]valueForKey:@"pPrice"]floatValue];
+                    
+                }
+                
+                
+            }
+            
+            
             if ([arrShoppingCart count]>0)
 			{
 				NSString *discount = [NSString stringWithFormat:@"%@",[[arrShoppingCart objectAtIndex:i]valueForKey:@"fDiscountedPrice"]];
@@ -1476,13 +1464,13 @@ BOOL isFirstTime;
 						productCost=[discount floatValue];
 						totalTaxApplied+=((([discount floatValue]+0)*productQuantity)*tax)/100;
 					}
-					else 
+					else
 					{
 						productCost=[[[arrShoppingCart objectAtIndex:i]valueForKey:@"fPrice"] floatValue];
 						totalTaxApplied=(totalTaxApplied+((([[[arrShoppingCart objectAtIndex:i]valueForKey:@"fPrice"] floatValue]+0)*productQuantity)*tax)/100);
 					}
 				}
-				else 
+				else
                 {
 					if ([[[arrShoppingCart objectAtIndex:i]valueForKey:@"fPrice"] floatValue]>[discount floatValue])
                     {
@@ -1493,14 +1481,14 @@ BOOL isFirstTime;
                         productCost=[[[arrShoppingCart objectAtIndex:i]valueForKey:@"fPrice"] floatValue]+optionPrice;
                     }
 				}
- 
+                
 				productCost+=optionPrice;
                 subTotal =	(productCost) * [[[arrDatabaseCart objectAtIndex:i]valueForKey:@"quantity"] intValue];
 				
 				if (!isLoadingTableFooter2ndTime)
                 {
                     mainTotal += subTotal;
-                   
+                    
                 }
 			}
 		}
@@ -1508,15 +1496,13 @@ BOOL isFirstTime;
 		if (!isLoadingTableFooter2ndTime)
         {
             grandTotal = mainTotal;
-        
+            
         }
-
-         NSLog(@"tax apll %f",totalTaxApplied); 
-         NSLog(@"%f",tax);
         
-			NSLog(@"%f",grandTotal);
-	
-		isLoadingTableFooter2ndTime = TRUE; 
+        
+        
+		// Stopping the viewForFooterInSection delegate call again, when table reload
+		isLoadingTableFooter2ndTime = TRUE;
 		
 		if ([arrShoppingCart count]>1)
 		{
@@ -1536,11 +1522,11 @@ BOOL isFirstTime;
 		
 		fShippingtax=(fShippingCharges*tax)/100;
 		
-		if ([[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"bTaxShipping"]intValue]==0) 
+		if ([[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"bTaxShipping"]intValue]==0)
         {
 			fShippingtax=0;
 		}
-		if ([[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"bIncludeTax"]intValue]==0) 
+		if ([[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"bIncludeTax"]intValue]==0)
         {
 			totalTaxApplied=0;
 		}
@@ -1548,6 +1534,7 @@ BOOL isFirstTime;
 		fShippingtax=[GlobalPreferences getRoundedOffValue:fShippingtax];
 		fShippingCharges=[GlobalPreferences getRoundedOffValue:fShippingCharges];
 		totalTaxApplied=[GlobalPreferences getRoundedOffValue:totalTaxApplied];
+        
 		grandTotal=grandTotal+fShippingtax+fShippingCharges+totalTaxApplied;
 		
 		[lblShippingCharges setText:[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, fShippingCharges]];
@@ -1571,12 +1558,12 @@ BOOL isFirstTime;
 	if (tableview==tblCountries)
 	{
 		NSDictionary *dictTemp = [interDict objectAtIndex:indexPath.row];
-
+        
 		countryID=[[dictTemp valueForKey:@"territoryId"]intValue];
 		
 		NSDictionary *contentDict = [dictSettingsDetails objectForKey:@"store"];
 		NSArray* arrTemp = [contentDict objectForKey:@"taxList"];
-
+        
 		[arrStates removeAllObjects];
 		for (int index=0;index<[arrTemp count];index++)
 		{
@@ -1590,13 +1577,13 @@ BOOL isFirstTime;
 		{
 			if (countryID==[[[arrTempShippingCountries valueForKey:@"territoryId"]objectAtIndex:index]intValue])
 			{
-				if (![[arrStates valueForKey:@"sState"]containsObject:[[arrTempShippingCountries valueForKey:@"sState"]objectAtIndex:index]]) 
+				if (![[arrStates valueForKey:@"sState"]containsObject:[[arrTempShippingCountries valueForKey:@"sState"]objectAtIndex:index]])
                 {
                     [arrStates  addObject:[arrTempShippingCountries objectAtIndex:index]];
                 }
 			}
 		}
-
+        
 		int stateID=0;
 		isLoadingTableFooter2ndTime=NO;
 		
@@ -1614,7 +1601,7 @@ BOOL isFirstTime;
 		dictTaxAndShippingDetails = [ServerAPI fetchTaxShippingDetails:countryID:stateID:iCurrentStoreId];
 		[tblStates reloadData];
 		[tableView reloadData];
-	
+        
 	}
 	else if (tableview==tblStates)
 	{
@@ -1630,12 +1617,12 @@ BOOL isFirstTime;
 		[tblStates setHidden:YES];
 		[lblStateName setText:[[arrStates valueForKey:@"sState"]objectAtIndex:indexPath.row]];
 		[tableView reloadData];
-	}	
+	}
 }
 
 - (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;	
+    return NO;
 }
 
 - (BOOL)tableView:(UITableView *)tableView1 canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1643,12 +1630,12 @@ BOOL isFirstTime;
 	
 	UITableViewCell *tblViewCell=(UITableViewCell *)[tableView1 cellForRowAtIndexPath:indexPath];
 	if([tableView isEditing])
-	   [[tblViewCell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:YES];
+        [[tblViewCell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:YES];
 	else {
 		[[tblViewCell viewWithTag: [[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:NO];
-
+        
 	}
-
+    
 	return [tableView isEditing];
 }
 
@@ -1662,11 +1649,11 @@ static int kAnimationType;
 {
 	// For changing th animation style for every odd.even row
 	(kAnimationType == 6)?kAnimationType = 0:0;
-	kAnimationType += 1; 
+	kAnimationType += 1;
 	
-	if (editingStyle == UITableViewCellEditingStyleDelete) 
+	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
-		[[SqlQuery shared] deleteItemFromShoppingCart:[[[arrDatabaseCart objectAtIndex:indexPath.row] valueForKey:@"id"]integerValue] :[[arrDatabaseCart objectAtIndex:indexPath.row] valueForKey:@"pOptionId"]];		
+		[[SqlQuery shared] deleteItemFromShoppingCart:[[[arrDatabaseCart objectAtIndex:indexPath.row] valueForKey:@"id"]integerValue] :[[arrDatabaseCart objectAtIndex:indexPath.row] valueForKey:@"pOptionId"]];
 		[arrShoppingCart removeObjectAtIndex:indexPath.row];
 	    
 		[arrDatabaseCart removeObjectAtIndex:indexPath.row];
@@ -1674,16 +1661,18 @@ static int kAnimationType;
 		if ([arrShoppingCart count]==0)
 			self.navigationItem.rightBarButtonItem=nil;
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:kAnimationType];
- 
+        
         /// USING "NO" TO REDUCE ONE ELEMENT FROM THE SHOPPING CART's COUNTER
-		[GlobalPreferences setCurrentItemsInCart:NO];  
+		[GlobalPreferences setCurrentItemsInCart:NO];
 		
-   		(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0; 
-	
-		mainTotal =0.0; 
+        // Allowing the viewForFooterInSection to be executed
+		(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0;
+		[self tableView:tableView viewForFooterInSection:1];
+        // It will be again calculated while reloading the table
+		mainTotal =0.0;
 		
 		if ([arrDatabaseCart count]>0)
-        {
+        {    _isEditCommit=YES;
             [tableView reloadData];
         }
 		else
@@ -1722,7 +1711,7 @@ static int kAnimationType;
 			max=[[[arrShoppingCart objectAtIndex:selectedRow] objectForKey:@"iAggregateQuantity"] intValue];
 			if (max==-1)
             {
-				max=100; 
+				max=100;
             }
 		}
 		else
@@ -1741,7 +1730,8 @@ static int kAnimationType;
 			
 			NSArray *arrOptions=[[[arrDatabaseCart objectAtIndex:selectedRow] valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
 			
-
+			//int optionSizeIndex=555545;
+			
 			int optionIndexes[100];
 			for(int count=0;count<[arrOptions count];count++)
 			{
@@ -1750,7 +1740,7 @@ static int kAnimationType;
 				{
 					optionIndexes[count] = [arrProductOptionId indexOfObject:[NSNumber numberWithInt:[[arrOptions objectAtIndex:count]intValue]]];
 				}
-			}							  
+			}
 			
 			NSMutableArray * arrSameProductOptions=[[NSMutableArray alloc]init];
 			if([arrDatabaseCart count]>0)
@@ -1763,10 +1753,10 @@ static int kAnimationType;
 						
 						if([[[arrDatabaseCart objectAtIndex:count] valueForKey:@"id"]intValue]==[[[arrDatabaseCart objectAtIndex:selectedRow] valueForKey:@"id"]intValue])
 						{
-							[arrSameProductOptions addObject:[arrDatabaseCart objectAtIndex:count]];	
+							[arrSameProductOptions addObject:[arrDatabaseCart objectAtIndex:count]];
 							
-						}	
-					}	
+						}
+					}
 					
 				}
 			}
@@ -1776,14 +1766,14 @@ static int kAnimationType;
 			
 			for(int i=0;i<=[arrOptions count] ;i++)
 			{
-				quantityAdded[i]=0;	
-				minQuantityCheck[i]=100;	
+				quantityAdded[i]=0;
+				minQuantityCheck[i]=100;
 				
-			}	
+			}
 			
 			for(int i=0;i<[arrOptions count];i++)
 			{
-				for(int j=0;j<[arrSameProductOptions count];j++)     	
+				for(int j=0;j<[arrSameProductOptions count];j++)
 				{
 				 	
 					NSArray *arrayOptions=[[[arrSameProductOptions objectAtIndex:j]valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
@@ -1795,18 +1785,19 @@ static int kAnimationType;
 						{
 							
 							quantityAdded[i]=quantityAdded[i]+[[[arrSameProductOptions objectAtIndex:j]objectForKey:@"quantity"]intValue];
-							NSLog(@"%d",quantityAdded[i]);
-						}	
+							
+						}
 					}
 					
-				}	
+				}
 			}
 			if(arrSameProductOptions)
 				[arrSameProductOptions release];
 			
 			for(int count=0;count<[arrOptions count];count++)
 			{
-                minQuantityCheck[count]=[[[dictOption objectAtIndex:optionIndexes[count]]objectForKey:@"iAvailableQuantity"]intValue];
+                
+				minQuantityCheck[count]=[[[dictOption objectAtIndex:optionIndexes[count]]objectForKey:@"iAvailableQuantity"]intValue];
 				if((quantityAdded[count]<100&&quantityAdded[count]>0))
 				{
 					
@@ -1819,26 +1810,27 @@ static int kAnimationType;
 			}
 			
 			
-			if ([arrOptions count]>0) 
+			if ([arrOptions count]>0)
 			{
 				if(minQuantityCheck[0]<100&&minQuantityCheck[0]>0)
-					max=minQuantityCheck[0];	
+					max=minQuantityCheck[0];
 			}
 			for(int i=1;i<[arrOptions count];i++)
 			{
 				if(max>minQuantityCheck[i])
 					max=minQuantityCheck[i];
 				
-			}	
+			}
 			
 			if(max<[[[arrDatabaseCart objectAtIndex:selectedRow]objectForKey:@"quantity"]intValue])
 			{
 			  	max=[[[arrDatabaseCart objectAtIndex:selectedRow]objectForKey:@"quantity"]intValue];
 				
-			}	
+			}
 			
-				
-		}            
+            
+			
+		}
 		for (int i=0; i<max; i++)
         {
             [arrQuantity addObject:[NSString stringWithFormat:@"%d",i+1]];
@@ -1853,7 +1845,7 @@ static int kAnimationType;
 	{
 		int i=0;
 		[arrQuantity addObject:[NSString stringWithFormat:@"%d",i+1]];
-	}	
+	}
 	
 	
 	UIPickerView *pickerViewQuantity = [[UIPickerView alloc]initWithFrame:CGRectMake( 0, 44.0, 0.0, 0.0)];
@@ -1899,7 +1891,7 @@ static int kAnimationType;
 {
 	[actionSheetForPicker dismissWithClickedButtonIndex:0 animated:YES];
 	
-	UIButton *btnTemp = (UIButton *) [tableView viewWithTag:iTagOfCurrentQuantityBtn];	
+	UIButton *btnTemp = (UIButton *) [tableView viewWithTag:iTagOfCurrentQuantityBtn];
 	
 	[[SqlQuery shared] updateTblShoppingCart:[btnTemp.titleLabel.text intValue] :[[[arrDatabaseCart objectAtIndex:(iTagOfCurrentQuantityBtn%10)-1] valueForKey:@"id"] intValue] :[[arrDatabaseCart objectAtIndex:(iTagOfCurrentQuantityBtn%10)-1] valueForKey:@"pOptionId"] ];
 	
@@ -1908,35 +1900,37 @@ static int kAnimationType;
 	lblTemp.text = btnTemp.titleLabel.text;
 	
 	// Allowing the viewForFooterInSection to be executed
-	(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0; 
+	(isLoadingTableFooter2ndTime)?isLoadingTableFooter2ndTime=0:0;
     
-       
+    
     [self tableView:tableView viewForFooterInSection:1];
-
-  	mainTotal = 0.0f; 
+    
+    // It will be again calculated in viewForFooterInSection
+	mainTotal = 0.0f;
     tableView.delegate=self;
+    _isEditCommit=YES;
 	[tableView reloadData];
     
 	
 }
 #pragma mark Picker View Delegates method
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView 
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView
 {
 	return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component 
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component
 {
 	return [arrQuantity count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component 
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	return [arrQuantity objectAtIndex:row];
 }
 
-- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component 
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 	UIButton *btnTemp = (UIButton *) [tableView viewWithTag:iTagOfCurrentQuantityBtn];
 	UILabel *lblTemp = (UILabel *)[tableView viewWithTag:iTagOfCurrentQuantityLabel];
@@ -1967,7 +1961,7 @@ static int kAnimationType;
 }
 
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -1975,7 +1969,7 @@ static int kAnimationType;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -1983,7 +1977,7 @@ static int kAnimationType;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	
 	
@@ -2007,7 +2001,7 @@ static int kAnimationType;
 	}
 	
 	if (arrShoppingCart)
-	{	
+	{
 		[arrShoppingCart release];
 		arrShoppingCart=nil;
 	}

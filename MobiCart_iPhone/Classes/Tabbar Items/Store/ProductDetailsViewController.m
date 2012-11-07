@@ -44,35 +44,34 @@ extern int categoryCount;
 		dropDownCount=0;
 		strTitle= [NSString stringWithFormat:@"%@",[[arrTempOptions objectAtIndex:0] objectForKey:@"sTitle"]];
 		strTitle=[[strTitle  stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]]lowercaseString];
-		//NSLog(@"%@",strTitle);
-	}	
+    }
 	
 	
 	for(int count=0;count<[arrTempOptions count];count++)
 	{
         if([[[[NSString stringWithFormat:@"%@",[[arrTempOptions objectAtIndex:count]objectForKey:@"sTitle"]]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] lowercaseString] isEqualToString:strTitle])
-            { 
-                if(!arrDropDown[dropDownCount])
-                    arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];
+        {
+            if(!arrDropDown[dropDownCount])
+                arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];
 			
-                [arrDropDown[dropDownCount] addObject:[arrTempOptions objectAtIndex:count]];
+            [arrDropDown[dropDownCount] addObject:[arrTempOptions objectAtIndex:count]];
 			
-            }
+        }
 		
-            else 
+        else
+        {
+            BOOL isValueSet=NO;
+            for(int countTemp=0;countTemp<=dropDownCount;countTemp++)
             {
-                BOOL isValueSet=NO;
-                for(int countTemp=0;countTemp<=dropDownCount;countTemp++)
+				
+                if([[[[[arrDropDown[countTemp] objectAtIndex:0]objectForKey:@"sTitle"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]lowercaseString]isEqualToString:[[[[arrTempOptions objectAtIndex:count]objectForKey:@"sTitle"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]lowercaseString]])
                 {
+                    [arrDropDown[countTemp] addObject:[arrTempOptions objectAtIndex:count]];
+                    isValueSet=YES;
+                    break;
+                }
 				
-                    if([[[[[arrDropDown[countTemp] objectAtIndex:0]objectForKey:@"sTitle"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]lowercaseString]isEqualToString:[[[[arrTempOptions objectAtIndex:count]objectForKey:@"sTitle"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]lowercaseString]])
-                    {
-                        [arrDropDown[countTemp] addObject:[arrTempOptions objectAtIndex:count]];
-                        isValueSet=YES;
-                        break;
-                    }			
-				
-                }	
+            }
 			
 			if(isValueSet==NO)
 			{
@@ -81,9 +80,9 @@ extern int categoryCount;
 				dropDownCount++;
 				
 				if(!arrDropDown[dropDownCount])
-					arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];	
+					arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];
 				
-				[arrDropDown[dropDownCount] addObject:[arrTempOptions objectAtIndex:count]];			
+				[arrDropDown[dropDownCount] addObject:[arrTempOptions objectAtIndex:count]];
 				
 		    }
 		}
@@ -94,31 +93,31 @@ extern int categoryCount;
     
 	if(!resetIndex)
 	{
-	
-	for(int count=0;count<=dropDownCount;count++)
-	 {
-		selectedIndex[count]=-1;	
-		
-	 }	    }
-		
+        
+        for(int count=0;count<=dropDownCount;count++)
+        {
+            selectedIndex[count]=-1;
+            
+        }	    }
+    
 	resetIndex=YES;
-}	
+}
 
 
 - (void)viewWillAppear:(BOOL)animated
-{	
+{
 	
 	self.title=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.home.back"];
 	if([GlobalPreferences getPersonLoginStatus])
     {
-	
-	if(shouldNavigateToWriteReview)
-	{
-		shouldNavigateToWriteReview=NO;
-		[self navigateToPostReview];
-		
-	}	
-}	
+        
+        if(shouldNavigateToWriteReview)
+        {
+            shouldNavigateToWriteReview=NO;
+            [self navigateToPostReview];
+            
+        }
+    }
 	
     self.navigationItem.leftBarButtonItem=nil;
 	
@@ -130,11 +129,10 @@ extern int categoryCount;
 	[btn setFrame:CGRectMake(35, 0, 69,36)];
 	
 	UIBarButtonItem *btnBack=[[UIBarButtonItem alloc] initWithCustomView:btn];
-	[btnBack setStyle:UIBarButtonItemStyleBordered]; 
+	[btnBack setStyle:UIBarButtonItemStyleBordered];
 	
-	 [self.navigationItem setLeftBarButtonItem:btnBack];	
-	  NSLog(@"%d",iNumOfItemsInShoppingCart);
-	 lblCart.text =[NSString stringWithFormat:@"%d",iNumOfItemsInShoppingCart];
+    [self.navigationItem setLeftBarButtonItem:btnBack];
+    lblCart.text =[NSString stringWithFormat:@"%d",iNumOfItemsInShoppingCart];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateLabelStore" object:nil];
 	for(UILabel *lblTemp in [self.navigationController.navigationBar subviews])
 	{
@@ -147,20 +145,20 @@ extern int categoryCount;
 	
 	
 	FeaturedProductFromHomePage=[GlobalPreferences isClickedOnFeaturedProductFromHomeTab];
-
+    
 	if ([GlobalPreferences isClickedOnFeaturedProductFromHomeTab])
 	{
 		[GlobalPreferences setIsClickedOnFeaturedImage:NO];
 		[GlobalPreferences setCanPopToRootViewController:YES];
 	}
-	else 
+	else
 	{
 		[GlobalPreferences setCanPopToRootViewController:NO];
 	}
     
 	[self performSelectorInBackground:@selector(markStarRating) withObject:nil];
 	[self performSelector:@selector(dismissLoadingBar_AtBottom) onThread:[NSThread currentThread] withObject:nil waitUntilDone:NO];
-		
+    
 	
 }
 
@@ -169,32 +167,32 @@ extern int categoryCount;
     if(FeaturedProductFromHomePage==YES)
     {
         
-        [self.navigationController popToRootViewControllerAnimated:YES]; 
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else
     {
-    if (isFeaturedProductWithoutCatogery==YES)
-	{
-		isFeaturedProductWithoutCatogery=NO;
-		if (FeaturedProductFromHomePage==YES)
-		{
-			FeaturedProductFromHomePage=NO;	
-			[[self navigationController]popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-		}
-		else
+        if (isFeaturedProductWithoutCatogery==YES)
         {
-            [[self navigationController]popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            isFeaturedProductWithoutCatogery=NO;
+            if (FeaturedProductFromHomePage==YES)
+            {
+                FeaturedProductFromHomePage=NO;
+                [[self navigationController]popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+            }
+            else
+            {
+                [[self navigationController]popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            }
         }
-	}
-	else
-    {
-		[[self navigationController]popViewControllerAnimated:YES];
-	}
+        else
+        {
+            [[self navigationController]popViewControllerAnimated:YES];
+        }
     }
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.title=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.home.back"];
 	if (![GlobalPreferences isInternetAvailable])
@@ -204,8 +202,8 @@ extern int categoryCount;
 		[errorAlert show];
 		[errorAlert release];
 	}
-	else 
-	{	
+	else
+	{
 		
 		
 		arrDropDownTable=[[NSArray alloc]init];
@@ -217,13 +215,16 @@ extern int categoryCount;
 		loadingStatus=YES;
 		[GlobalPreferences setCurrentNavigationController:self.navigationController];
 		self.navigationItem.titleView = [GlobalPreferences createLogoImage];
-		contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
-		contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"product_details_bg.png"]];
+		contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
+        UIImageView * bgImage=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
+		[bgImage setImage:[UIImage imageNamed:@"product_details_bg.png"]];
+		[contentView addSubview:bgImage];
+        
 		self.view=contentView;
 		
 		UIView *viewRemoveLine = [[UIView alloc] initWithFrame:CGRectMake( 0, 43, 320,1)];
 		[viewRemoveLine setBackgroundColor:self.navigationController.navigationBar.tintColor];
-
+        
 		[self.navigationController.navigationBar addSubview:viewRemoveLine];
 		[viewRemoveLine release];
 		
@@ -232,7 +233,7 @@ extern int categoryCount;
 		
 		[self performSelectorOnMainThread:@selector(createBasicControls) withObject:nil waitUntilDone:NO];
 		[self allocateMemoryToObjects];
-
+        
 	}
 	
 }
@@ -246,7 +247,7 @@ extern int categoryCount;
     {
         [self displayProductImage:arrImagesUrls picToShowAtAIndex:0 willZoom:isHandlingZoomImage];
     }
-			
+    
 	[pool release];
 }
 
@@ -258,7 +259,7 @@ extern int categoryCount;
 		loadingStatus=NO;
 		imageCheck=YES;
 	}
-	else 
+	else
 	{
         // Checking if the data is to be fetched for medium sized image, or large image
 		if (!isHandlingZoomImage)
@@ -273,7 +274,7 @@ extern int categoryCount;
     
 	if (!dataForProductImage)
 	{
-		dataForProductImage=nil;//[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"noImage_S_New" ofType:@"png"]];
+		dataForProductImage=nil;
 		imageCheck=YES;
 	}
     
@@ -282,25 +283,25 @@ extern int categoryCount;
 }
 - (void)navigateToPostReview
 {
-		
+    
 	if ([[GlobalPreferences getUserDefault_Preferences:@"userEmail"] length]==0)
-	{  
+	{
 		shouldNavigateToWriteReview=YES;
-
+        
 		fromProductDetails = YES;
 		DetailsViewController *_details = 	[[DetailsViewController alloc] init];
 		_details.isReview=YES;
 		[self.navigationController pushViewController:_details animated:YES];
 		[_details release];
 	}
-	else 
+	else
 	{
 		PostReviewsViewController *objPost = [[PostReviewsViewController alloc] init];
 		[self.navigationController pushViewController:objPost animated:YES];
 		objPost.productId = [[dicProduct objectForKey:@"id"]intValue];
 		[objPost release];
 	}
-}	
+}
 - (void)allocateMemoryToObjects
 {
 	if(optionArray)
@@ -312,7 +313,7 @@ extern int categoryCount;
 	optionArray = [dicProduct objectForKey:@"productOptions"];
 	
 	[optionArray retain];
-    [self createDropDowns]; 
+    [self createDropDowns];
 	
 	
 }
@@ -345,14 +346,14 @@ extern int categoryCount;
 	[objRead release];
 }
 
-//reload the image of product , once it is loaded from the server	 
+//reload the image of product , once it is loaded from the server
 - (void)resetControls
 {
 	if ((productImg) || (productImg.image==nil))
     {
         [productImg setImage:[UIImage imageWithData:dataForProductImage]];
     }
-
+    
 	[productImg setContentMode:UIViewContentModeScaleAspectFit];
 }
 
@@ -362,12 +363,12 @@ extern int categoryCount;
 	
 	if (!contentView)
 	{
-		contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
+		contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 		contentView.backgroundColor=[UIColor colorWithRed:248.0/256 green:248.0/256 blue:248.0/256 alpha:1];
 		[GlobalPreferences setGradientEffectOnView:contentView:contentView.backgroundColor:[UIColor lightGrayColor]];
 		
 		self.view=contentView;
-	}	
+	}
 	
 	int xValue=12;
 	float rating;
@@ -390,14 +391,14 @@ extern int categoryCount;
             rating = [[[dictProducts valueForKey:@"product"]valueForKey:@"fAverageRating"] floatValue];
         }
     }
-		
+    
 	float tempRating;
 	tempRating=floor(rating);
 	tempRating=rating-tempRating;
 	
 	for(int i=0; i<5; i++)
 	{
-		imgRatingsTemp[i] = [[[UIImageView alloc] initWithFrame:CGRectMake(xValue, 336, 20,20)] autorelease];
+		imgRatingsTemp[i] = [[[UIImageView alloc] initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(xValue, 336, 20,20) chageHieght:NO]] autorelease];
         imgRatingsTemp[i].clipsToBounds = TRUE;
 		[imgRatingsTemp[i] setImage:[UIImage imageNamed:@"grey_star1.png"]];
 		[imgRatingsTemp[i] setBackgroundColor:[UIColor clearColor]];
@@ -425,7 +426,7 @@ extern int categoryCount;
         {
             iLastStarValue = iTemp + 1;
         }
-			
+        
 		viewRatingBG[iLastStarValue] = [[[UIView  alloc] initWithFrame:CGRectMake(0, 0, tempRating * 20, 20)] autorelease];
 		viewRatingBG[iLastStarValue].clipsToBounds = TRUE;
 		[imgRatingsTemp[iLastStarValue] addSubview:viewRatingBG[iLastStarValue]];
@@ -448,10 +449,13 @@ extern int categoryCount;
 {
 	if(!contentScrollView)
 	{
-		contentScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 360)];
+		contentScrollView=[[UIScrollView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320, 360) chageHieght:YES]];
 		[contentScrollView setBackgroundColor:[UIColor clearColor]];
-		[contentScrollView setContentSize:CGSizeMake( 320, 370)];
-		[contentView addSubview:contentScrollView];
+        if([GlobalPreferences isScreen_iPhone5])
+            [contentScrollView setContentSize:CGSizeMake( 320, 370+88)];
+        else
+            [contentScrollView setContentSize:CGSizeMake( 320, 370)];
+        [contentView addSubview:contentScrollView];
 	}
     
 	UIImageView *imgPlaceholder=[[UIImageView alloc]initWithFrame:CGRectMake(6, 20, 133, 150)];
@@ -493,7 +497,7 @@ extern int categoryCount;
 	[loadingIndicator release];
 	
     // Stop loading indicator if display image is displayed
-	imgTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(CheckImageLoading) userInfo:nil repeats:YES]; 
+	imgTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(CheckImageLoading) userInfo:nil repeats:YES];
 	
 	NSString *strText=[NSString stringWithFormat:@"%@",[dicProduct valueForKey:@"sName"]];
 	CGSize size=[strText sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size :16] constrainedToSize:CGSizeMake(160,500) lineBreakMode:UILineBreakModeWordWrap];
@@ -503,7 +507,7 @@ extern int categoryCount;
     {
         yName=40;
     }
-		
+    
 	UILabel *lblProductName = [[UILabel	alloc]initWithFrame:CGRectMake(152,17,160,yName)];
 	[lblProductName setBackgroundColor:[UIColor clearColor]];
 	lblProductName.textColor=_savedPreferences.headerColor;
@@ -521,14 +525,14 @@ extern int categoryCount;
 	[lblProductPrice setTextAlignment:UITextAlignmentLeft];
     lblProductPrice.font=[UIFont boldSystemFontOfSize:14];
 	[contentScrollView addSubview:lblProductPrice];
-
+    
 	lblStock = [[UILabel alloc]initWithFrame:CGRectMake(245, 40,160, 20)];
 	[lblStock setBackgroundColor:[UIColor clearColor]];
-	[lblStock layer].cornerRadius=8.0; 
+	[lblStock layer].cornerRadius=8.0;
 	lblStock.textColor=[UIColor whiteColor];
 	[lblStock setTextAlignment:UITextAlignmentCenter];
 	lblStock.font=[UIFont boldSystemFontOfSize:10.0];
-		
+    
 	lblProductDiscount = [[UILabel alloc]initWithFrame:CGRectMake(148,lblProductPrice.frame.origin.y+lblProductPrice.frame.size.height+1, 160, 20)];
 	[lblProductDiscount setBackgroundColor:[UIColor clearColor]];
 	lblProductDiscount.textColor=_savedPreferences.labelColor;
@@ -536,7 +540,6 @@ extern int categoryCount;
 	lblProductDiscount.font=[UIFont boldSystemFontOfSize:14];
     
     NSString *strPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation calculateProductPrice:dicProduct] ];
- 
     [lblProductPrice setText:strPrice];
 	
     // Display Stock Availability
@@ -545,7 +548,7 @@ extern int categoryCount;
         if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[[dicProduct valueForKey:@"fDiscountedPrice"] floatValue])
         {
             NSString *strFinalProductPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation calculateDiscountedPrice:dicProduct]];
-           [lblProductDiscount setText:[NSString stringWithFormat:@"\n%@%@", _savedPreferences.strCurrencySymbol, strFinalProductPrice]];
+            [lblProductDiscount setText:[NSString stringWithFormat:@"\n%@%@", _savedPreferences.strCurrencySymbol, strFinalProductPrice]];
         }
     }
 	[contentScrollView addSubview:lblProductDiscount];
@@ -554,7 +557,7 @@ extern int categoryCount;
 	{
 		imgStock=[[UIImageView alloc]initWithFrame:CGRectMake(151,lblProductPrice.frame.origin.y+lblProductPrice.frame.size.height+4,56,17)];
 	}
-	else 
+	else
     {
 		imgStock=[[UIImageView alloc]initWithFrame:CGRectMake(151,lblProductDiscount.frame.origin.y+lblProductDiscount.frame.size.height+4,56,17)];
 	}
@@ -568,20 +571,23 @@ extern int categoryCount;
 	[contentScrollView addSubview:imgStock];
 	[contentScrollView addSubview:lblImgStock];
 	
-
+	
+    // Displaying Cut Line on Discounted Price
 	NSString *discount = [NSString stringWithFormat:@"%@", [dicProduct objectForKey:@"fDiscountedPrice"]];
+	
     CGSize sizeDiscount = [[ProductPriceCalculation productActualPrice:dicProduct] sizeWithFont:[UIFont boldSystemFontOfSize:14]];
-
- 	
+    
+    
+	
 	if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
 	{
 		if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[discount floatValue])
 		{
 			UIImageView *imgCutLine = [[UIImageView alloc]initWithFrame:CGRectMake(150,lblProductPrice.frame.origin.y+lblProductPrice.frame.size.height/2, sizeDiscount.width+4,2)];
-
+            
             [imgCutLine setBackgroundColor:_savedPreferences.labelColor];
-
-      		[contentScrollView addSubview:imgCutLine];
+            
+            [contentScrollView addSubview:imgCutLine];
 			[imgCutLine release];
 		}
 	}
@@ -598,7 +604,8 @@ extern int categoryCount;
 	
 	BOOL isToBeCartShown;
 	
-  	NSString *striPhoneStatus = [dicProduct objectForKey:@"sIPhoneStatus"];
+    // Determine Product Status for iPhone
+	NSString *striPhoneStatus = [dicProduct objectForKey:@"sIPhoneStatus"];
 	
 	if ((striPhoneStatus!=nil) &&(![striPhoneStatus isEqual:[NSNull null]]))
 	{
@@ -612,7 +619,7 @@ extern int categoryCount;
 			isComingSoonCheck=YES;
 		}
 		else if ([striPhoneStatus isEqualToString:@"sold"] || [striPhoneStatus isEqualToString:@"Sold Out"])
-		{  	
+		{
 			[imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
 			[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
 			[addToCartBtn setHidden:YES];
@@ -645,8 +652,8 @@ extern int categoryCount;
 	[btnZoom setBackgroundColor:[UIColor clearColor]];
 	[btnZoom addTarget:self action:@selector(zoomMethod) forControlEvents:UIControlEventTouchUpInside];
     [contentScrollView addSubview:btnZoom];
-		
-
+    
+    
 	optionBtn[0]=[UIButton buttonWithType:UIButtonTypeCustom];
 	[optionBtn[0] setBackgroundColor:[UIColor clearColor]];
 	[optionBtn[0] setFrame:CGRectMake(130,imgStock.frame.origin.y+imgStock.frame.size.height+15,210,29)];
@@ -687,118 +694,124 @@ extern int categoryCount;
 		
 		[contentScrollView addSubview:lblOption[countTemp]];
 		
-	}	
+	}
 	
+    
 	if ([[dicProduct valueForKey:@"bUseOptions"] boolValue]==TRUE)
 	{
 		if(isWishlist)
 		{
-			[imgStock setHidden:NO];	
+			[imgStock setHidden:NO];
 			[lblImgStock setHidden:NO];
 			if(isComingSoonCheck==NO)
 			{
-			NSArray *arrOptions=[optionIndex componentsSeparatedByString:@","];
-			if([arrOptions count]==0||[optionArray count]==0)
-			{
-				[addToCartBtn setHidden:YES];
-				[imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
-				[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
-				
-				
-			}
-			
-			
-			NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
-			
-			for(int i=0; i<[optionArray count]; i++)
-			{
-				[arrProductOptionSize addObject:[[optionArray objectAtIndex:i] valueForKey:@"id"]];
-			}
-			BOOL isContained=YES;	
-			int optionSizeIndex[100];
-                float optionPrice=0;
-			for(int i=0;i<[arrOptions count];i++)
-			{
-				if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrOptions objectAtIndex:i] integerValue]]])
-				{ 
-					optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrOptions objectAtIndex:i]intValue]]];
-			
-                     optionPrice+=[[[optionArray objectAtIndex:optionSizeIndex[i]]valueForKey:@"pPrice"]floatValue];
-                                       
-
-                
-                }
-				else {
-					[addToCartBtn setHidden:YES];
-					[imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
-					[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
-					
-					isContained=NO;
-					
-				}
-                //-----------setoption price---------------
-                
-               
-                
-                NSString *strPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluatePriceOptionProduct: dicProduct pPrice:optionPrice] ];
-                
-                if (![[dicProduct valueForKey:@"fDiscountedPrice"] isEqual:[NSNull null]])
-                {   
+                NSArray *arrOptions=[optionIndex componentsSeparatedByString:@","];
+                if([arrOptions count]==0||[optionArray count]==0)
+                {
+                    [addToCartBtn setHidden:YES];
+                    [imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
+                    [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
                     
-                    if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[[dicProduct valueForKey:@"fDiscountedPrice"] floatValue])
-                    {               
-                        [lblProductDiscount setText:[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluateOriginalPriceOptionProduct: dicProduct pPrice:optionPrice] ]];  
+                    
+                }
+                
+                
+                NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
+                
+                for(int i=0; i<[optionArray count]; i++)
+                {
+                    [arrProductOptionSize addObject:[[optionArray objectAtIndex:i] valueForKey:@"id"]];
+                }
+                BOOL isContained=YES;
+                int optionSizeIndex[100];
+                float optionPrice=0;
+                for(int i=0;i<[arrOptions count];i++)
+                {
+                    if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrOptions objectAtIndex:i] integerValue]]])
+                    {
+                        optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrOptions objectAtIndex:i]intValue]]];
+                        
+                        optionPrice+=[[[optionArray objectAtIndex:optionSizeIndex[i]]valueForKey:@"pPrice"]floatValue];
+                        
+                        
+                        
+                    }
+                    else {
+                        [addToCartBtn setHidden:YES];
+                        [imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
+                        [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
+                        
+                        isContained=NO;
+                        
+                    }
+                    //-----------setoption price---------------
+                    
+                    
+                    
+                    NSString *strPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluatePriceOptionProduct: dicProduct pPrice:optionPrice] ];
+                    
+                    if (![[dicProduct valueForKey:@"fDiscountedPrice"] isEqual:[NSNull null]])
+                    {
+                        
+                        if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[[dicProduct valueForKey:@"fDiscountedPrice"] floatValue])
+                        {
+                            [lblProductDiscount setText:[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluateOriginalPriceOptionProduct: dicProduct pPrice:optionPrice] ]];
+                        }
+                        
+                        [lblProductPrice setText:strPrice];
+                        
+                        
+                        
+                    }else
+                    {
+                        [lblProductPrice setText:strPrice];
                     }
                     
-                    [lblProductPrice setText:strPrice]; 
                     
                     
                     
-                }else
-                {   
-                    [lblProductPrice setText:strPrice];  
+                    
+                    
                 }
-
-  			}
-			if(![optionArray isKindOfClass:[NSNull class]])
-			{
-				if([optionArray count]>0)
-				{
-					if(isContained==YES)
-					{
-						for(int count=0;count<[arrOptions count];count++)
-						{
-							if([[[optionArray objectAtIndex:optionSizeIndex[count]] valueForKey:@"iAvailableQuantity"] intValue] == 0)
-							{
-								[addToCartBtn setHidden:YES];
-								[imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
-								[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
-								break;
-								
-							}
-							else {
-								[imgStock setImage:[UIImage imageNamed:@"instock_btn.png"]];
-								[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"]];
-								[addToCartBtn setHidden:NO];
-							}
-							
-						}
-					}
-				}
-				
-				
-			}
-		}
-		
+                if(![optionArray isKindOfClass:[NSNull class]])
+                {
+                    if([optionArray count]>0)
+                    {
+                        if(isContained==YES)
+                        {
+                            for(int count=0;count<[arrOptions count];count++)
+                            {
+                                if([[[optionArray objectAtIndex:optionSizeIndex[count]] valueForKey:@"iAvailableQuantity"] intValue] == 0)
+                                {
+                                    [addToCartBtn setHidden:YES];
+                                    [imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
+                                    [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
+                                    break;
+                                    
+                                }
+                                else {
+                                    [imgStock setImage:[UIImage imageNamed:@"instock_btn.png"]];
+                                    [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"]];
+                                    [addToCartBtn setHidden:NO];
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
 			else {
 				[addToCartBtn setHidden:YES];
 				
 			}
-		}	
-	
-	}	
+		}
+        
+	}
     
-	else 
+	else
 	{
 		[imgStock setHidden:NO];
 		[lblImgStock setHidden:NO];
@@ -819,7 +832,7 @@ extern int categoryCount;
 				
 				if ([[dicProduct valueForKey:@"iAggregateQuantity"]intValue]!=0 && isToBeCartShown==YES)
 				{
-					[addToCartBtn setHidden:NO]; 
+					[addToCartBtn setHidden:NO];
                     
 				}
 				else
@@ -830,7 +843,7 @@ extern int categoryCount;
 					
 				}
 			}
-			else 
+			else
             {
 				
 				[optionBtn[0] setHidden:YES];
@@ -844,7 +857,7 @@ extern int categoryCount;
 			}
 		}
 		
-	  		
+        
 	}
     NSDictionary* dict=[dicProduct valueForKey:@"productOptions"];
     
@@ -859,7 +872,7 @@ extern int categoryCount;
                 [lblOption[0] setHidden:YES];
                 [imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
                 [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
-               [addToCartBtn setHidden:YES];                
+                [addToCartBtn setHidden:YES];
                 
             }
         }
@@ -879,7 +892,7 @@ extern int categoryCount;
 		
 		
 		
-	}	
+	}
 	if (!isWishlist)
 	{
 		addToWishBtn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -896,14 +909,14 @@ extern int categoryCount;
 		[lblWishlist setTextAlignment:UITextAlignmentLeft];
 		[lblWishlist setLineBreakMode:UILineBreakModeWordWrap];
 		[lblWishlist setNumberOfLines:2];
-		[lblWishlist setTextColor:[UIColor whiteColor]];	
+		[lblWishlist setTextColor:[UIColor whiteColor]];
     }
 	
 	if (optionBtn[0].hidden==YES)
     {
         [addToCartBtn setFrame:CGRectMake(154,imgStock.frame.origin.y+imgStock.frame.size.height+20, 162, 37)];
     }
-	else 
+	else
     {
         [addToCartBtn setFrame:CGRectMake(154,optionBtn[dropDownCount].frame.origin.y+optionBtn[dropDownCount].frame.size.height+20, 162, 37)];
     }
@@ -933,7 +946,7 @@ extern int categoryCount;
 		{
 			[lblDescriptionDetails setFrame:CGRectMake(frame.origin.x,addToCartBtn.frame.origin.y+addToCartBtn.frame.size.height+20, frame.size.width-20, frame.size.height)];
 		}
-	}	
+	}
 	else if(optionBtn[0].hidden==NO)
 	{
 		int y=optionBtn[dropDownCount].frame.origin.y+optionBtn[dropDownCount].frame.size.height;
@@ -942,7 +955,7 @@ extern int categoryCount;
 			[lblDescriptionDetails setFrame:CGRectMake(frame.origin.x,optionBtn[dropDownCount].frame.size.height+optionBtn[dropDownCount].frame.origin.y+20, frame.size.width, frame.size.height)];
 		}
 		
-	}	
+	}
 	else {
 		[lblDescriptionDetails setFrame:CGRectMake(frame.origin.x,185, frame.size.width, frame.size.height)];
 	}
@@ -1004,11 +1017,11 @@ extern int categoryCount;
 	[addToWishBtn setFrame:CGRectMake(220,lblDescriptionDetails.frame.origin.y+lblDescriptionDetails.frame.size.height+20,96,40)];
 	[lblWishlist setFrame:CGRectMake(addToWishBtn.frame.origin.x+38, addToWishBtn.frame.origin.y+2, 55, 32)];
 	[lblWishlist release];
-	UIView *viewBottomBar=[[UIView alloc]initWithFrame:CGRectMake(0,330, 320, 40)];
-	[viewBottomBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bar.png"]]]; 
+	UIView *viewBottomBar=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,330, 320, 40) chageHieght:NO]];
+	[viewBottomBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bar.png"]]];
     [contentView addSubview:viewBottomBar];
 	
-	lblReadReviews=[[UILabel alloc]initWithFrame:CGRectMake(145, 338, 85,20)];
+	lblReadReviews=[[UILabel alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(145, 338, 85,20) chageHieght:NO]];
     [lblReadReviews setTextColor:[UIColor whiteColor]];
 	[lblReadReviews setTextAlignment:UITextAlignmentCenter];
     [lblReadReviews setFont:[UIFont boldSystemFontOfSize:14.00]];
@@ -1026,14 +1039,14 @@ extern int categoryCount;
     [contentView addSubview:lblReadReviews];
 	
     UIButton *btnReadReviews=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnReadReviews setFrame:CGRectMake(140, 338, 70, 20)];
+    [btnReadReviews setFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(140, 338, 70, 20) chageHieght:NO]];
     [[btnReadReviews layer]setCornerRadius:20.0];
 	[btnReadReviews setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[btnReadReviews addTarget:self action:@selector(navigateToReadReview) forControlEvents:UIControlEventTouchUpInside];
 	[contentView addSubview:btnReadReviews];
-
+    
     UIButton *btnPostReview=[UIButton buttonWithType:UIButtonTypeCustom];
-	[btnPostReview setFrame:CGRectMake(233,338, 83, 21)];
+	[btnPostReview setFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(233,338, 83, 21) chageHieght:NO]];
     [btnPostReview setBackgroundImage:[UIImage imageNamed:@"post_review.png"] forState:UIControlStateNormal];
 	[btnPostReview setTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.mainproduct.postreview"] forState:UIControlStateNormal];
 	[btnPostReview.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
@@ -1041,9 +1054,10 @@ extern int categoryCount;
 	
 	[contentView addSubview:btnPostReview];
 	[btnPostReview setShowsTouchWhenHighlighted:YES];
-	
-	[contentScrollView setContentSize:CGSizeMake(320, sendMailBtn.frame.origin.y+sendMailBtn.frame.size.height+40)];
-
+    if([GlobalPreferences isScreen_iPhone5])
+        [contentScrollView setContentSize:CGSizeMake(320, sendMailBtn.frame.origin.y+sendMailBtn.frame.size.height+40+88)];
+    else
+        [contentScrollView setContentSize:CGSizeMake(320, sendMailBtn.frame.origin.y+sendMailBtn.frame.size.height+40)];
 	NSArray  *arrImagesUrls = [dicProduct objectForKey:@"productImages"];
 	if ([arrImagesUrls count]>1)
 	{
@@ -1077,14 +1091,14 @@ extern int categoryCount;
 		[imgZoom setHidden:YES];
 		[btnZoom setHidden:YES];
 		
-
+        
 	}
 	else {
 		[imgZoom setHidden:NO];
 		[btnZoom setHidden:NO];
 		
 	}
-
+    
 	
 	
 }
@@ -1109,8 +1123,8 @@ extern int categoryCount;
 			[arrDropDownTable	release];
 			arrDropDownTable=nil;
 			
-		}	
-		arrDropDownTable=[[NSArray alloc]initWithArray:arrDropDown[index]];	
+		}
+		arrDropDownTable=[[NSArray alloc]initWithArray:arrDropDown[index]];
 		
 		
 		
@@ -1118,13 +1132,14 @@ extern int categoryCount;
 																	 ,optionBtn[index].frame.origin.y+optionBtn[index].frame.size.height-15, 180, 200) style:UITableViewStyleGrouped];
 		optionTableView.delegate=self;
 		optionTableView.dataSource=self;
+        optionTableView.backgroundView=nil;
 		[optionTableView setBackgroundColor:[UIColor clearColor]];
 		pastIndex=index;
 		[contentScrollView addSubview:optionTableView];
 		
 		
 	}
-	else 
+	else
 	{
 		pastIndex=-1;
 	}
@@ -1142,7 +1157,7 @@ extern int categoryCount;
     {
         _webViewVideo.navigationItem.title = @"Video";
     }
-	else 
+	else
     {
         _webViewVideo.navigationItem.title=	[dicProduct objectForKey:@"sVideoTitle"];
     }
@@ -1163,15 +1178,15 @@ extern int categoryCount;
 		{
 			
 			for(int i=0;i<=dropDownCount;i++)
-		{
-			
-			if([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0]objectForKey:@"sTitle"]]lowercaseString]])
-			{
-				
-			    isAllOptionsSelected=NO;
-				break;
-			}
-		}
+            {
+                
+                if([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0]objectForKey:@"sTitle"]]lowercaseString]])
+                {
+                    
+                    isAllOptionsSelected=NO;
+                    break;
+                }
+            }
 		}
 		
 		if(isAllOptionsSelected==NO)
@@ -1193,8 +1208,8 @@ extern int categoryCount;
 			
 			BOOL isContained =NO;
 			BOOL isTobeAdded=YES;
-
-		
+            
+            
 			if ([[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
 			{
 				if ([arrProductSize count] !=0)
@@ -1213,139 +1228,138 @@ extern int categoryCount;
 			
 			else {
 				
-		    if([arrProductSize count]>0)
-			{
-				
-			    for(int count=0;count<[arrProductSize count];count++)
-				{
-					if(isContained==NO)
-					{
-						
-						NSArray *arrOptions=[[arrProductSize objectAtIndex:count] componentsSeparatedByString:@","];
-						if([arrOptions count]==dropDownCount+1)
-						{
-							for(int count=0;count<=dropDownCount;count++)
-								
-							{
-								NSLog(@"%d",selectedIndex[count]);
-								NSNumber *optionID = [NSNumber numberWithInt:[[[arrDropDown[count] objectAtIndex:selectedIndex[count]] valueForKey:@"id"] intValue]];
-								
-								
-								if ([arrOptions containsObject:[optionID stringValue]])
-									
-								{
-									isContained=YES;	
-								}	
-								else 
-								{
-									isContained=NO;
-									break;
-								}
-							}	
-						}
-						
-						
-					}
-					else 
-					{
-						break;
-					}
-					
-				}
-			}
-			
-			
-						
-			
-			NSMutableArray * arrSameProductOptions=[[NSMutableArray alloc]init];
-			if([arrAddedToShoppingCart count]>0)
-			{
-				for(int count=0;count<[arrAddedToShoppingCart count];count++)
-				{
-				 	if([[[arrAddedToShoppingCart objectAtIndex:count] valueForKey:@"id"]intValue]==[[dicProduct objectForKey:@"id"]intValue])
-					{
-						[arrSameProductOptions addObject:[arrAddedToShoppingCart objectAtIndex:count]];	
-						
-					}	
-					
-					
-				}
-				
-			}
-			
-			int quantityAdded[100];
-			int minQuantityCheck[100];
-			for(int i=0;i<=dropDownCount;i++)
-			{
-				quantityAdded[i]=0;	
-				minQuantityCheck[i]=0;
-				
-			}	
-			
-			for(int i=0;i<=dropDownCount;i++)
-			{
-				for(int j=0;j<[arrSameProductOptions count];j++)     	
-				{
-				 	
-					NSArray *arrayOptions=[[[arrSameProductOptions objectAtIndex:j]valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
-					
-					for(int k=0;k<[arrayOptions count];k++)
-					{
-						
-						if([[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"id"]intValue]==[[arrayOptions objectAtIndex:k]intValue])
-						{
-							
-							quantityAdded[i]=quantityAdded[i]+[[[arrSameProductOptions objectAtIndex:j]objectForKey:@"quantity"]intValue];
-							NSLog(@"%d",quantityAdded[i]);
-						}	
-					}
-					
-				}	
-			}
-			for(int count=0;count<=dropDownCount;count++)
-			{
-				minQuantityCheck[count]=[[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"iAvailableQuantity"]intValue];
-				
-				if((quantityAdded[count]<100&&quantityAdded[count]>0))
-				{
-					
-					minQuantityCheck[count]=[[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"iAvailableQuantity"]intValue]-quantityAdded[count];
-					
-					
-				}
-				NSLog(@"%d", minQuantityCheck[count]);
-				
-			}
-			
-
-			if (!([[dicProduct valueForKey:@"bUseOptions"] intValue]==0))
-			{
-			int max=0;
-			
-            if (dropDownCount>=0) 
-			{
-				max=minQuantityCheck[0];	
-			}
-			
-			for(int i=1;i<=dropDownCount;i++)
-			{
-				if(max>minQuantityCheck[i])
-					max=minQuantityCheck[i];
-				
-			}
-			
-			
-			if(max<=0)
-			{
-				
-				isTobeAdded=NO;
-				
-			}
-						
-			}
-			
-		}
-		if ([arrProductID containsObject:[NSString stringWithFormat:@"%@", [dicProduct objectForKey:@"id"]]] && isContained)
+                if([arrProductSize count]>0)
+                {
+                    
+                    for(int count=0;count<[arrProductSize count];count++)
+                    {
+                        if(isContained==NO)
+                        {
+                            
+                            NSArray *arrOptions=[[arrProductSize objectAtIndex:count] componentsSeparatedByString:@","];
+                            if([arrOptions count]==dropDownCount+1)
+                            {
+                                for(int count=0;count<=dropDownCount;count++)
+                                    
+                                {
+                                    NSLog(@"%d",selectedIndex[count]);
+                                    NSNumber *optionID = [NSNumber numberWithInt:[[[arrDropDown[count] objectAtIndex:selectedIndex[count]] valueForKey:@"id"] intValue]];
+                                    
+                                    
+                                    if ([arrOptions containsObject:[optionID stringValue]])
+                                        
+                                    {
+                                        isContained=YES;
+                                    }
+                                    else
+                                    {
+                                        isContained=NO;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                            
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
+                    }
+                }
+                
+                
+                
+                
+                NSMutableArray * arrSameProductOptions=[[NSMutableArray alloc]init];
+                if([arrAddedToShoppingCart count]>0)
+                {
+                    for(int count=0;count<[arrAddedToShoppingCart count];count++)
+                    {
+                        if([[[arrAddedToShoppingCart objectAtIndex:count] valueForKey:@"id"]intValue]==[[dicProduct objectForKey:@"id"]intValue])
+                        {
+                            [arrSameProductOptions addObject:[arrAddedToShoppingCart objectAtIndex:count]];
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+                int quantityAdded[100];
+                int minQuantityCheck[100];
+                for(int i=0;i<=dropDownCount;i++)
+                {
+                    quantityAdded[i]=0;
+                    minQuantityCheck[i]=0;
+                    
+                }
+                
+                for(int i=0;i<=dropDownCount;i++)
+                {
+                    for(int j=0;j<[arrSameProductOptions count];j++)
+                    {
+                        
+                        NSArray *arrayOptions=[[[arrSameProductOptions objectAtIndex:j]valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
+                        
+                        for(int k=0;k<[arrayOptions count];k++)
+                        {
+                            
+                            if([[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"id"]intValue]==[[arrayOptions objectAtIndex:k]intValue])
+                            {
+                                
+                                quantityAdded[i]=quantityAdded[i]+[[[arrSameProductOptions objectAtIndex:j]objectForKey:@"quantity"]intValue];
+                            }
+                        }
+                        
+                    }
+                }
+                for(int count=0;count<=dropDownCount;count++)
+                {
+                    minQuantityCheck[count]=[[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"iAvailableQuantity"]intValue];
+                    
+                    if((quantityAdded[count]<100&&quantityAdded[count]>0))
+                    {
+                        
+                        minQuantityCheck[count]=[[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"iAvailableQuantity"]intValue]-quantityAdded[count];
+                        
+                        
+                    }
+                    NSLog(@"%d", minQuantityCheck[count]);
+                    
+                }
+                
+                
+                if (!([[dicProduct valueForKey:@"bUseOptions"] intValue]==0))
+                {
+                    int max=0;
+                    
+                    if (dropDownCount>=0)
+                    {
+                        max=minQuantityCheck[0];
+                    }
+                    
+                    for(int i=1;i<=dropDownCount;i++)
+                    {
+                        if(max>minQuantityCheck[i])
+                            max=minQuantityCheck[i];
+                        
+                    }
+                    
+                    
+                    if(max<=0)
+                    {
+                        
+                        isTobeAdded=NO;
+                        
+                    }
+                    
+                }
+                
+            }
+            if ([arrProductID containsObject:[NSString stringWithFormat:@"%@", [dicProduct objectForKey:@"id"]]] && isContained)
 			{
 				UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.product.alreadyadded.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 				[alert show];
@@ -1359,12 +1373,12 @@ extern int categoryCount;
 				[alert show];
 				[alert release];
 				
-			}	
+			}
 			
 			
 			else
 			{
-				NSString *strProductOptions=@"";	
+				NSString *strProductOptions=@"";
 				
 				// Convert product image into NSData, so it can be saved into the sqlite3 database
 				if ([[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
@@ -1382,11 +1396,11 @@ extern int categoryCount;
 						{
 							if(count==dropDownCount)
 							{
-								strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];	
+								strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];
 							}
 							else
 							{
-								strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];	
+								strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];
 							}
 						}
 						[[SqlQuery shared] setTblShoppingCart:[[dicProduct objectForKey:@"id"] intValue]:1:strProductOptions];
@@ -1395,12 +1409,12 @@ extern int categoryCount;
 						
 						
 						
-					}		
-					else 
+					}
+					else
 					{
 						UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.title"] message:@"This product can not be added to cart" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 						[alert show];
-						[alert release];				
+						[alert release];
 					}
 				}
 				
@@ -1424,7 +1438,7 @@ extern int categoryCount;
 				[contentScrollView addSubview:viewForAnimationEffect];
 				
 				UIImageView* rotatingImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-				if ([dicProduct count]>0) 
+				if ([dicProduct count]>0)
 				{
 					[rotatingImage setImage:productImg.image];
 				}
@@ -1453,7 +1467,7 @@ extern int categoryCount;
 				[UIView setAnimationDidStopSelector:@selector(animationEnded:)];
 				[UIView commitAnimations];
 				
-				[rotatingImage release];   
+				[rotatingImage release];
 				
 				
 				
@@ -1479,7 +1493,7 @@ extern int categoryCount;
 	  	
 		BOOL isContained =NO;
 		BOOL isTobeAdded=YES;
-
+        
 		
 		if ([[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
 		{
@@ -1502,152 +1516,152 @@ extern int categoryCount;
 			
 			if([arrProductSize count]>0)
 		    {
-			
-			for(int count=0;count<[arrProductSize count];count++)
-			{
-				if(isContained==NO)
-				{
-					
-					NSArray *arrOptions=[[arrProductSize objectAtIndex:count] componentsSeparatedByString:@","];
-				    if([arrOptions count]==[wishlistOptions count])
-					{
-						for(int count=0;count<[wishlistOptions count];count++)
-							
-						{
-							NSNumber *optionID = [NSNumber numberWithInt:[[wishlistOptions objectAtIndex:count] intValue]];
-							
-							
-							if ([arrOptions containsObject:[optionID stringValue]])
-								
-							{
-								isContained=YES;	
-							}	
-							else 
-							{
-								isContained=NO;
-								break;
-							}
-						}	
-					}
-					
-					
-				}
-				else 
-				{
-					break;
-				}
-				
-			}
-		}
-		
-		
-		
-		
-		int optionSizeIndex[100];
-		
-		
-		
-		NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
-		
-		for(int i=0; i<[optionArray count]; i++)
-		{
-			[arrProductOptionSize addObject:[[optionArray objectAtIndex:i] valueForKey:@"id"]];
-		}
-		
-		
-		
-		for(int i=0;i<[wishlistOptions count];i++)
-		{
-			
-			if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[wishlistOptions objectAtIndex:i] integerValue]]])
-			{
-				optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[wishlistOptions objectAtIndex:i]intValue]]];
-				NSLog(@"%d",optionSizeIndex[i]);
-				
-			}
-		}
-		
-		
-		
-		NSMutableArray * arrSameProductOptions=[[NSMutableArray alloc]init];
-		
-		if([arrAddedToShoppingCart count]>0)
-		{
-			for(int count=0;count<[arrAddedToShoppingCart count];count++)
-			{
-				if([[[arrAddedToShoppingCart objectAtIndex:count] valueForKey:@"id"]intValue]==[[dicProduct objectForKey:@"id"]intValue])
-				{
-					[arrSameProductOptions addObject:[arrAddedToShoppingCart objectAtIndex:count]];	
-					
-				}	
-				
-				
-			}
-			
-		}
-		
-		int quantityAdded[100];
-		
-		for(int i=0;i<[wishlistOptions count];i++)
-			
-		{
-			quantityAdded[i]=0;	
-		}	
-		
-		
-		
-		for(int i=0;i<[wishlistOptions count];i++)
-		{
-			for(int j=0;j<[arrSameProductOptions count];j++)     	
-			{
-				
-				NSArray *arrayOptions=[[[arrSameProductOptions objectAtIndex:j]valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
-				
-				for(int k=0;k<[arrayOptions count];k++)
-				{
-					
-					if([[wishlistOptions objectAtIndex:i]intValue]==[[arrayOptions objectAtIndex:k]intValue])
-					{
-						
-						quantityAdded[i]=quantityAdded[i]+[[[arrSameProductOptions objectAtIndex:j]objectForKey:@"quantity"]intValue];
-						NSLog(@"%d",quantityAdded[i]);
-					}	
-				}
-				
-			}	
-		}
-		
-		int minimumQuantity=0;
-		
-		if ([wishlistOptions count]>0) 
-		{
-			NSLog(@"%d",optionSizeIndex[0]);
-			
-			
-			minimumQuantity=[[[optionArray objectAtIndex:optionSizeIndex[0]]objectForKey:@"iAvailableQuantity"]intValue];
-		}
-		for(int i=1;i<[wishlistOptions count];i++)
-		{
-			NSLog(@"%d",optionSizeIndex[i]);
-			
-			if(minimumQuantity>[[[optionArray objectAtIndex:optionSizeIndex[i]]objectForKey:@"iAvailableQuantity"]intValue])		
-				minimumQuantity=[[[optionArray objectAtIndex:optionSizeIndex[i]]objectForKey:@"iAvailableQuantity"]intValue];	
-		}	
-		
-		for(int i=0;i<[wishlistOptions count];i++)
-		{
-			if(quantityAdded[i]<100 && quantityAdded[i]>0)
-			{	
-				if(quantityAdded[i]>=minimumQuantity)
-					
-				{
-					isTobeAdded=NO;
-					break;
-				}			
-			}
-		}
-		
-	 }
+                
+                for(int count=0;count<[arrProductSize count];count++)
+                {
+                    if(isContained==NO)
+                    {
+                        
+                        NSArray *arrOptions=[[arrProductSize objectAtIndex:count] componentsSeparatedByString:@","];
+                        if([arrOptions count]==[wishlistOptions count])
+                        {
+                            for(int count=0;count<[wishlistOptions count];count++)
+                                
+                            {
+                                NSNumber *optionID = [NSNumber numberWithInt:[[wishlistOptions objectAtIndex:count] intValue]];
+                                
+                                
+                                if ([arrOptions containsObject:[optionID stringValue]])
+                                    
+                                {
+                                    isContained=YES;
+                                }
+                                else
+                                {
+                                    isContained=NO;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                }
+            }
+            
+            
+            
+            
+            int optionSizeIndex[100];
+            
+            
+            
+            NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
+            
+            for(int i=0; i<[optionArray count]; i++)
+            {
+                [arrProductOptionSize addObject:[[optionArray objectAtIndex:i] valueForKey:@"id"]];
+            }
+            
+            
+            
+            for(int i=0;i<[wishlistOptions count];i++)
+            {
+                
+                if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[wishlistOptions objectAtIndex:i] integerValue]]])
+                {
+                    optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[wishlistOptions objectAtIndex:i]intValue]]];
+                    NSLog(@"%d",optionSizeIndex[i]);
+                    
+                }
+            }
+            
+            
+            
+            NSMutableArray * arrSameProductOptions=[[NSMutableArray alloc]init];
+            
+            if([arrAddedToShoppingCart count]>0)
+            {
+                for(int count=0;count<[arrAddedToShoppingCart count];count++)
+                {
+                    if([[[arrAddedToShoppingCart objectAtIndex:count] valueForKey:@"id"]intValue]==[[dicProduct objectForKey:@"id"]intValue])
+                    {
+                        [arrSameProductOptions addObject:[arrAddedToShoppingCart objectAtIndex:count]];
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            int quantityAdded[100];
+            
+            for(int i=0;i<[wishlistOptions count];i++)
+                
+            {
+                quantityAdded[i]=0;
+            }
+            
+            
+            
+            for(int i=0;i<[wishlistOptions count];i++)
+            {
+                for(int j=0;j<[arrSameProductOptions count];j++)
+                {
+                    
+                    NSArray *arrayOptions=[[[arrSameProductOptions objectAtIndex:j]valueForKey:@"pOptionId"] componentsSeparatedByString:@","];
+                    
+                    for(int k=0;k<[arrayOptions count];k++)
+                    {
+                        
+                        if([[wishlistOptions objectAtIndex:i]intValue]==[[arrayOptions objectAtIndex:k]intValue])
+                        {
+                            
+                            quantityAdded[i]=quantityAdded[i]+[[[arrSameProductOptions objectAtIndex:j]objectForKey:@"quantity"]intValue];
+                            NSLog(@"%d",quantityAdded[i]);
+                        }
+                    }
+                    
+                }
+            }
+            
+            int minimumQuantity=0;
+            
+            if ([wishlistOptions count]>0)
+            {
+                NSLog(@"%d",optionSizeIndex[0]);
+                
+                
+                minimumQuantity=[[[optionArray objectAtIndex:optionSizeIndex[0]]objectForKey:@"iAvailableQuantity"]intValue];
+            }
+            for(int i=1;i<[wishlistOptions count];i++)
+            {
+                NSLog(@"%d",optionSizeIndex[i]);
+                
+                if(minimumQuantity>[[[optionArray objectAtIndex:optionSizeIndex[i]]objectForKey:@"iAvailableQuantity"]intValue])
+                    minimumQuantity=[[[optionArray objectAtIndex:optionSizeIndex[i]]objectForKey:@"iAvailableQuantity"]intValue];
+            }
+            
+            for(int i=0;i<[wishlistOptions count];i++)
+            {
+                if(quantityAdded[i]<100 && quantityAdded[i]>0)
+                {
+                    if(quantityAdded[i]>=minimumQuantity)
+                        
+                    {
+                        isTobeAdded=NO;
+                        break;
+                    }
+                }
+            }
+            
+        }
 		
 		if ([arrProductID containsObject:[NSString stringWithFormat:@"%@", [dicProduct objectForKey:@"id"]]] && isContained)
 		{
@@ -1660,13 +1674,13 @@ extern int categoryCount;
 			
 			UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:@"Product cannot be added to  cart" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 			[alert show];
-			[alert release];	
+			[alert release];
 			
-		}	
+		}
 		
 		else
 		{
-			NSString *strProductOptions=@"";	
+			NSString *strProductOptions=@"";
 			
 			// Convert product image into NSData, so it can be saved into the sqlite3 database
 			if ([[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
@@ -1684,19 +1698,19 @@ extern int categoryCount;
 					{
 						if(count==[wishlistOptions count]-1)
 						{
-							strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[wishlistOptions objectAtIndex:count]];	
+							strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[wishlistOptions objectAtIndex:count]];
 						}
 						else
 						{
-							strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[wishlistOptions objectAtIndex:count]];	
+							strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[wishlistOptions objectAtIndex:count]];
 						}
 					}
 					[[SqlQuery shared] setTblShoppingCart:[[dicProduct objectForKey:@"id"] intValue]:1:strProductOptions];
 					
 				    [GlobalPreferences setCurrentItemsInCart:YES];
 					
-				}		
-				else 
+				}
+				else
 	            {
 					UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.title"] message:@"This product can not be added to cart" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 					[alert show];
@@ -1725,7 +1739,7 @@ extern int categoryCount;
 			[contentScrollView addSubview:viewForAnimationEffect];
 			
 			UIImageView* rotatingImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-			if ([dicProduct count]>0) 
+			if ([dicProduct count]>0)
 			{
 				[rotatingImage setImage:productImg.image];
 			}
@@ -1754,7 +1768,7 @@ extern int categoryCount;
 			[UIView setAnimationDidStopSelector:@selector(animationEnded:)];
 			[UIView commitAnimations];
 			
-			[rotatingImage release];   
+			[rotatingImage release];
 			
 			
 			
@@ -1773,23 +1787,23 @@ extern int categoryCount;
 	}
 }
 
-#pragma mark Add To Wishlist 
+#pragma mark Add To Wishlist
 - (void)addToWishMethod
 {
 	BOOL isAllOptionsSelected=YES;
 	
 	if (![[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
 	{
-	for(int i=0;i<=dropDownCount;i++)
-	{
-		
-		if([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0]objectForKey:@"sTitle"]]lowercaseString]])
-		{
-			
-			isAllOptionsSelected=NO;
-			break;
-		}
-	}
+        for(int i=0;i<=dropDownCount;i++)
+        {
+            
+            if([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0]objectForKey:@"sTitle"]]lowercaseString]])
+            {
+                
+                isAllOptionsSelected=NO;
+                break;
+            }
+        }
 	}
 	if(isAllOptionsSelected==NO)
 		
@@ -1833,19 +1847,19 @@ extern int categoryCount;
 							if ([arrOptions containsObject:[optionID stringValue]])
 								
 							{
-								isContained=YES;	
-							}	
-							else 
+								isContained=YES;
+							}
+							else
 							{
 								isContained=NO;
 								break;
 							}
-						}	
+						}
 					}
 					
 					
 				}
-				else 
+				else
 				{
 					break;
 				}
@@ -1863,7 +1877,7 @@ extern int categoryCount;
 					isContained = YES;
 				}
 			}
-		} 
+		}
 		
 		if ([arrProductID containsObject:[NSString stringWithFormat:@"%@", [dicProduct objectForKey:@"id"]]] && isContained)
 		{
@@ -1873,14 +1887,14 @@ extern int categoryCount;
 		}
 		else
 		{
-			NSString *strProductOptions=@"";	
+			NSString *strProductOptions=@"";
 			
 			// Convert product image into NSData, so it can be saved into the sqlite3 database
 			if ([[dicProduct valueForKey:@"bUseOptions"] intValue]==0)
 			{
 				strProductOptions=@"0";
 				[[SqlQuery shared] setTblWishlist:[[dicProduct objectForKey:@"id"] intValue] :1 :strProductOptions];
-			   UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:@"Product has been added \n to the wishlist" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:@"Product has been added \n to the wishlist" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 				[alert show];
 				
 				[alert release];
@@ -1893,16 +1907,16 @@ extern int categoryCount;
 					{
 						if(count==dropDownCount)
 						{
-							strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];	
+							strProductOptions=[strProductOptions   stringByAppendingFormat:@"%@",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];
 						}
 						else
 						{
-							strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];	
+							strProductOptions=[strProductOptions stringByAppendingFormat:@"%@,",[[arrDropDown[count] objectAtIndex:selectedIndex[count]]objectForKey:@"id"]];
 						}
 					}
 					[[SqlQuery shared] setTblWishlist:[[dicProduct objectForKey:@"id"] intValue] :1 :strProductOptions];
 					
-				UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:@"Product has been added \n to the wishlist" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.selectopt.product.title"] message:@"Product has been added \n to the wishlist" delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 					[alert show];
 					
 					[alert release];
@@ -1927,9 +1941,9 @@ extern int categoryCount;
 }
 
 - (void)showLoadingbar
-{   
+{
 	
-	if (loadingActionSheet1) 
+	if (loadingActionSheet1)
 	{
 		[loadingActionSheet1 release];
 		loadingActionSheet1 = nil;
@@ -1938,13 +1952,13 @@ extern int categoryCount;
 	[loadingActionSheet1 showInView:self.tabBarController.view];
 	
 	
-}	
+}
 
 
 #pragma mark -Zoom Image
 - (void)zoomMethod
 {
-		
+    
 	[NSThread detachNewThreadSelector:@selector(showLoadingbar) toTarget:self withObject:nil];
     NSMutableArray  *arrImagesUrls;
 	arrImagesUrls = [dicProduct objectForKey:@"productImages"];
@@ -1953,7 +1967,7 @@ extern int categoryCount;
 	[self.navigationController pushViewController:objFlowCover animated:YES];
 	[objFlowCover release];
 	
-
+    
 	
 	
 }
@@ -1973,13 +1987,13 @@ extern int categoryCount;
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section
 {
-	 
+    
 	if (![arrDropDownTable isKindOfClass:[NSNull class]])
 	{
 		return [arrDropDownTable count];
 	}
 	
-	else 
+	else
     {
 		return 0;
 	}
@@ -2006,7 +2020,7 @@ extern int categoryCount;
 - (void)tableView:(UITableView*)tableview didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
 	[tableview setHidden:YES];
-	 pastIndex=-1;
+    pastIndex=-1;
 	
 	iSelectedProductSize_Index = indexPath.row;
 	selectedIndex[index]=indexPath.row;
@@ -2019,80 +2033,80 @@ extern int categoryCount;
 	
 	if(isComingSoonCheck==NO)
 	{
-	float pOtionPrice=0;
-	for(int i=0;i<=dropDownCount;i++)
-	{
-		
-	    if(!([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0] objectForKey:@"sTitle"]] lowercaseString]]))
-		{
-			
-            pOtionPrice= pOtionPrice+[[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"pPrice"]floatValue];
-                  
-            NSString *strPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluatePriceOptionProduct: dicProduct pPrice:pOtionPrice] ];
-            if (![[dicProduct valueForKey:@"fDiscountedPrice"] isEqual:[NSNull null]])
-            {   
+        float pOtionPrice=0;
+        for(int i=0;i<=dropDownCount;i++)
+        {
+            
+            if(!([[lblOption[i].text lowercaseString]  isEqualToString:[[NSString stringWithFormat:@"Select %@",[[arrDropDown[i] objectAtIndex:0] objectForKey:@"sTitle"]] lowercaseString]]))
+            {
                 
-                if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[[dicProduct valueForKey:@"fDiscountedPrice"] floatValue])
-                {   
-                     lblProductDiscount.frame = CGRectMake(152,lblProductPrice.frame.origin.y+lblProductPrice.frame.size.height+1, 160, 20);
-                    NSString *str;
-                    str=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluateOriginalPriceOptionProduct: dicProduct pPrice:pOtionPrice] ];
+                pOtionPrice= pOtionPrice+[[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"pPrice"]floatValue];
+                
+                NSString *strPrice=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluatePriceOptionProduct: dicProduct pPrice:pOtionPrice] ];
+                if (![[dicProduct valueForKey:@"fDiscountedPrice"] isEqual:[NSNull null]])
+                {
                     
-                  [lblProductDiscount setText:str];  
-                  
+                    if ([[dicProduct objectForKey:@"fPrice"] floatValue]>[[dicProduct valueForKey:@"fDiscountedPrice"] floatValue])
+                    {
+                        lblProductDiscount.frame = CGRectMake(152,lblProductPrice.frame.origin.y+lblProductPrice.frame.size.height+1, 160, 20);
+                        NSString *str;
+                        str=[NSString stringWithFormat:@"%@",[ProductPriceCalculation caluateOriginalPriceOptionProduct: dicProduct pPrice:pOtionPrice] ];
+                        
+                        [lblProductDiscount setText:str];
+                        
+                    }
+                    
+                    [lblProductPrice setText:strPrice];
+                    
+                    
+                    
+                }else
+                {
+                    [lblProductPrice setText:strPrice];
                 }
-                
-                [lblProductPrice setText:strPrice]; 
-                
-                
-                
-            }else
-            {   
-                [lblProductPrice setText:strPrice];  
+                if([[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"iAvailableQuantity"]intValue]<=0)
+                {
+                    [imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
+                    [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
+                    canShowAddToCart=NO;
+                    break;
+                }
+                else
+                {
+                    [imgStock setImage:[UIImage imageNamed:@"instock_btn.png"]];
+                    [lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"]];
+                    canShowAddToCart=YES;
+                }
             }
-            if([[[arrDropDown[i] objectAtIndex:selectedIndex[i]]valueForKey:@"iAvailableQuantity"]intValue]<=0)
-			{
-				[imgStock setImage:[UIImage imageNamed:@"sold_out.png"]];
-				[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"]];
-				canShowAddToCart=NO;
-				break;
-			}	
-			else 
-			{
-				[imgStock setImage:[UIImage imageNamed:@"instock_btn.png"]];
-				[lblImgStock setText:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"]];
-				canShowAddToCart=YES;				
-			}
-		}
-	}
-  }
+        }
+    }
 	
 	imgStock.hidden=NO;
 	[lblImgStock setHidden:NO];
-
+    
 	if(isComingSoonCheck==NO)
 	{
-	if (canShowAddToCart)
-	{
-		[addToCartBtn setHidden:NO];
+        if (canShowAddToCart)
+        {
+            [addToCartBtn setHidden:NO];
+        }
+        else
+        {
+            [addToCartBtn setHidden:YES];
+        }
 	}
 	else
 	{
 		[addToCartBtn setHidden:YES];
-	}	 
-	}
-	else
-	{
-		[addToCartBtn setHidden:YES];
-
+        
 		
-	}	
+	}
 	
 	
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	UITouch *touch = [touches anyObject]; 
+	UITouch *touch = [touches anyObject];
 	
 	CGPoint startLocation	= [touch locationInView:self.view];
 	
@@ -2102,8 +2116,8 @@ extern int categoryCount;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{	
-	UITouch *touch = [touches anyObject]; 
+{
+	UITouch *touch = [touches anyObject];
 	
 	CGPoint currentLocation	= [touch locationInView:self.view];
 	
@@ -2113,7 +2127,7 @@ extern int categoryCount;
 	if (currentX-startX>45)
     {
         [self previousImageSwap];
-    }		
+    }
 	else if (startX-currentX>45)
     {
         [self nextImageSwap];
@@ -2125,15 +2139,15 @@ extern int categoryCount;
 	if (iCurrentThumbnailNum>0 && moveONSwap)
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CATransition *animation = [CATransition animation]; 
-		[animation setDelegate:self]; 
+		CATransition *animation = [CATransition animation];
+		[animation setDelegate:self];
 		[animation setType: kCATransitionPush];
-		[animation setSubtype:kCATransitionFromLeft]; 
-		[animation setDuration:0.5f]; 
+		[animation setSubtype:kCATransitionFromLeft];
+		[animation setDuration:0.5f];
 		[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 		[UIView beginAnimations:nil context:context];
 		[[zoomProduct layer] addAnimation:animation forKey:kCATransition];
-		[UIView commitAnimations]; 
+		[UIView commitAnimations];
 		
 		iCurrentThumbnailNum--;
 		
@@ -2163,14 +2177,14 @@ extern int categoryCount;
 
 - (void)nextImageSwap
 {
-	if (iCurrentThumbnailNum<([[dicProduct objectForKey:@"productImages"] count] -1) && moveONSwap)		
+	if (iCurrentThumbnailNum<([[dicProduct objectForKey:@"productImages"] count] -1) && moveONSwap)
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CATransition *animation = [CATransition animation]; 
-		[animation setDelegate:self]; 
+		CATransition *animation = [CATransition animation];
+		[animation setDelegate:self];
 		[animation setType: kCATransitionPush];
-		[animation setSubtype:kCATransitionFromRight]; 
-		[animation setDuration:0.5f]; 
+		[animation setSubtype:kCATransitionFromRight];
+		[animation setDuration:0.5f];
 		[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 		[UIView beginAnimations:nil context:context];
 		[[zoomProduct layer] addAnimation:animation forKey:kCATransition];
@@ -2178,7 +2192,7 @@ extern int categoryCount;
 		iCurrentThumbnailNum++;
 		NSArray  *arrImagesUrls = [dicProduct objectForKey:@"productImages"];
 		
-		[self displayProductImage:arrImagesUrls picToShowAtAIndex:iCurrentThumbnailNum willZoom:(NSNumber *)0];		
+		[self displayProductImage:arrImagesUrls picToShowAtAIndex:iCurrentThumbnailNum willZoom:(NSNumber *)0];
 		
 		[zoomProduct setImage:[UIImage imageWithData:dataForProductImage]];
 		
@@ -2198,10 +2212,10 @@ extern int categoryCount;
 		}
 		
 		moveONSwap=NO;
-		[UIView commitAnimations]; 
+		[UIView commitAnimations];
 		
-	} 
-	else 
+	}
+	else
     {
 		btnRightArrow.hidden = TRUE;
 		[contentScrollView sendSubviewToBack:btnRightArrow];
@@ -2211,29 +2225,28 @@ extern int categoryCount;
 
 #pragma mark Mail Composer
 - (void)sendFeedBack
-{		
+{
 	UIAlertView *theAlert=[[UIAlertView alloc]initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tapscreen.keyboard.title"] message:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tapscreen.keyboard.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 	[theAlert show];
 	[theAlert release];
 	
 	if ([MFMailComposeViewController canSendMail])
 	{
-		MFMailComposeViewController *mcvc =	[[MFMailComposeViewController alloc] init]; 
-		mcvc.mailComposeDelegate =self; 
+		MFMailComposeViewController *mcvc =	[[MFMailComposeViewController alloc] init];
+		mcvc.mailComposeDelegate =self;
 		
 		NSDictionary *dicAppSettings = [GlobalPreferences getSettingsOfUserAndOtherDetails];
 		
 		[mcvc setSubject:[NSString stringWithFormat:@"%@ - %@", [dicProduct objectForKey:@"sName"], [[dicAppSettings objectForKey:@"store"] objectForKey:@"sSName"]]];
 		
-		//NSString *strEmailBody = [NSString stringWithFormat:@"Hello,<br><br>I’ve just seen this great %@ product on the %@ m-commerce store. You can buy it from your phone!<br><br>Thank you.", [dicProduct objectForKey:@"sName"], [[dicAppSettings objectForKey:@"store"] objectForKey:@"sSName"]];
 		
 		NSString *strEmailBody = [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.product.detail.email.content"]];
 		
-		[mcvc setMessageBody:strEmailBody isHTML:YES]; 
+		[mcvc setMessageBody:strEmailBody isHTML:YES];
 		[self presentModalViewController:mcvc animated:YES];
 		[mcvc release];
 	}
-	else 
+	else
 	{
 		[self newEmailTo:[NSArray  arrayWithObject:@""] withSubject:[dicProduct objectForKey:@"sName"] body:@""];
 	}
@@ -2286,7 +2299,7 @@ extern int categoryCount;
     {
         body = theEmailBody;
     }
-			
+    
 	NSString *mailString = [NSString stringWithFormat:@"mailto:?to=%@&subject=%@&body=%@", [to stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],[subject stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],[body	stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailString]];

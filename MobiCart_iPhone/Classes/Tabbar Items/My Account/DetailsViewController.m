@@ -35,7 +35,7 @@ BOOL isLoadingTableFooter;
 	if(_objMobicartAppDelegate.tabController.selectedIndex>3)
 	{
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
-    }	
+    }
 	
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateLabelAccount" object:nil];
@@ -51,32 +51,32 @@ BOOL isLoadingTableFooter;
     }
     
 	
-}	
+}
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	UIColor *tempColor = [UIColor colorWithRed:248.0/256 green:248.0/256 blue:248.0/256 alpha:1];
 	UIColor *tempColor1 = [UIColor colorWithRed:203.0/256 green:203.0/256 blue:203.0/256 alpha:1];
 	
 	isLoadingFirstTime=YES;
-	contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 372)];
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 372) chageHieght:YES]];
 	contentView.backgroundColor=tempColor;
 	self.view=contentView;
 	
-	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:CGRectMake(0,30,320,350)];
+	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30,320,350) chageHieght:YES]];
 	[imgContentView setBackgroundColor:[UIColor clearColor]];
 	[imgContentView setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgContentView];
 	[imgContentView release];
     
-	viewForRegistration = [[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 372)];
+	viewForRegistration = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 372) chageHieght:YES]];
 	viewForRegistration.backgroundColor=tempColor;
 	viewForRegistration.hidden = TRUE;
 	[contentView addSubview:viewForRegistration];
 	
-	UIImageView *imgViewForRegistration=[[UIImageView alloc]initWithFrame:CGRectMake(0, 40,320,350)];
+	UIImageView *imgViewForRegistration=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 40,320,350) chageHieght:YES]];
 	[imgViewForRegistration setBackgroundColor:[UIColor clearColor]];
 	[imgViewForRegistration setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[viewForRegistration addSubview:imgViewForRegistration];
@@ -84,12 +84,12 @@ BOOL isLoadingTableFooter;
 	
 	[GlobalPreferences setGradientEffectOnView:viewForRegistration:tempColor:tempColor1];
 	
-	viewForLogin =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 372)];
+	viewForLogin =  [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320, 372) chageHieght:YES]];
 	viewForLogin.backgroundColor=tempColor;
 	viewForLogin.hidden = TRUE;
 	[contentView addSubview:viewForLogin];
 	
-	UIImageView *imgViewForLogin=[[UIImageView alloc]initWithFrame:CGRectMake(0, 40,320,350)];
+	UIImageView *imgViewForLogin=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 40,320,350) chageHieght:YES]];
 	[imgViewForLogin setBackgroundColor:[UIColor clearColor]];
 	[imgViewForLogin setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[viewForLogin addSubview:imgViewForLogin];
@@ -136,7 +136,7 @@ BOOL isLoadingTableFooter;
         
 		
 		int yAxis=20;
-		for (int i=0; i<6; i++) 
+		for (int i=0; i<6; i++)
         {
 			lblDetails[i] = [[UILabel alloc]initWithFrame:CGRectMake( 13, yAxis, 150, 30)];
 			[lblDetails[i] setBackgroundColor:[UIColor clearColor]];
@@ -152,7 +152,7 @@ BOOL isLoadingTableFooter;
 			[txtDetails[i] setDelegate:self];
 			[txtDetails[i] setEnabled:NO];
 			[contentScrollView addSubview:txtDetails[i]];
-
+            
 			if ([arrInfoAccount count]!=0)
 			{
 				txtDetails[i].text = [arrInfoAccount objectAtIndex:i];
@@ -219,7 +219,7 @@ BOOL isLoadingTableFooter;
 		
 		yAxis=290;
 		
-        for (int i=0; i<5; i++) 
+        for (int i=0; i<5; i++)
         {
 			lblDeliveryDetails[i] = [[UILabel alloc]initWithFrame:CGRectMake( 13, yAxis, 150, 30)];
 			[lblDeliveryDetails[i] setBackgroundColor:[UIColor clearColor]];
@@ -293,7 +293,7 @@ BOOL isLoadingTableFooter;
 		
 		
 		
-		toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake( 0, 160, 320, 40)];
+		toolBar=[[UIToolbar alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 160, 320, 40) chageHieght:NO]];
 		[toolBar setTintColor:[UIColor blackColor]];
 		[toolBar setHidden:YES];
 		[contentView addSubview:toolBar];
@@ -317,7 +317,7 @@ BOOL isLoadingTableFooter;
 	[self createPickerView];
 }
 
-// Load Picker Views for Country and States and Hide them initially 
+// Load Picker Views for Country and States and Hide them initially
 - (void)createPickerView
 {
 	pickerViewCountry = [[UIPickerView alloc]initWithFrame:CGRectMake( 0, 200, 320, 160)];
@@ -353,7 +353,7 @@ BOOL isLoadingTableFooter;
     
 	for(int i=0;i<[arrTempComp count];i++)
 	{
-	    if (![[arrayCountryTemp valueForKey:@"sCountry"] containsObject:[[arrTempComp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+	    if (![[arrayCountryTemp valueForKey:@"sCountry"] containsObject:[[arrTempComp objectAtIndex:i]valueForKey:@"sCountry"]])
         {
 			[arrayCountryTemp addObject:[arrTempComp objectAtIndex:i]];
 			[arrcountryCodes addObject:[[arrTempComp objectAtIndex:i] valueForKey:@"territoryId"]];
@@ -362,7 +362,7 @@ BOOL isLoadingTableFooter;
 	}
 	for(int i=0;i<[interShippingDict count];i++)
 	{
-	    if (![[arrayCountryTemp valueForKey:@"sCountry"] containsObject:[[interShippingDict objectAtIndex:i]valueForKey:@"sCountry"]]) 
+	    if (![[arrayCountryTemp valueForKey:@"sCountry"] containsObject:[[interShippingDict objectAtIndex:i]valueForKey:@"sCountry"]])
         {
 			[arrayCountryTemp addObject:[interShippingDict objectAtIndex:i]];
 			[arrcountryCodes addObject:[[interShippingDict objectAtIndex:i] valueForKey:@"territoryId"]];
@@ -422,7 +422,7 @@ BOOL isLoadingTableFooter;
 		currentCountryIdForDelivery = [[[NSUserDefaults standardUserDefaults]valueForKey:@"countryID"]intValue];
 		currentStateIdForDelivery=[[[NSUserDefaults standardUserDefaults]valueForKey:@"stateID"]intValue];
 		NSString *strCountry=txtDetails[5].text;
-	
+        
 		if ([arrayCountry containsObject:strCountry])
 		{
 			index=[arrayCountry indexOfObject:strCountry];
@@ -446,7 +446,7 @@ BOOL isLoadingTableFooter;
 				}
 			}
 			
-			if (i<5) 
+			if (i<5)
 			{
 				if (i<4)
                 {
@@ -487,7 +487,7 @@ BOOL isLoadingTableFooter;
 					}
 				}
 				
-				if (i<5) 
+				if (i<5)
 				{
 					if (i<4)
                     {
@@ -505,7 +505,7 @@ BOOL isLoadingTableFooter;
 			
             
             
-           
+            
 			[[SqlQuery shared] updateTblAccountDetails:txtDetails[1].text :txtDetails[2].text :txtDetails[4].text :txtDetails[3].text :txtDetails[5].text :txtDeliveryDetails[0].text :txtDeliveryDetails[1].text :txtDeliveryDetails[2].text :txtDeliveryDetails[3].text :txtDeliveryDetails[4].text :txtDetails[0].text];
 			
 			NSDictionary *contentDict = [dicSettings objectForKey:@"store"];
@@ -516,15 +516,15 @@ BOOL isLoadingTableFooter;
 			NSString *strCountryCode;
 			for(int i=0;i<[arrTemp count];i++)
 			{
-				if ([txtDeliveryDetails[3].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+				if ([txtDeliveryDetails[3].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]])
 				{
 					strCountryCode = [[arrTemp objectAtIndex:i] valueForKey:@"territoryId"];
-
+                    
 				}
 			}
 			for(int i=0;i<[arrTempShippingCountries count];i++)
 			{
-				if ([txtDeliveryDetails[2].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]]) 
+				if ([txtDeliveryDetails[2].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]])
 				{
 					strCountryCode = [[arrTempShippingCountries objectAtIndex:i] valueForKey:@"territoryId"];
 				}
@@ -542,7 +542,7 @@ BOOL isLoadingTableFooter;
 			UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.info.update.title"] message:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.info.update.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 			[alert show];
 			[alert release];
-		}		
+		}
 	}
 }
 
@@ -573,7 +573,7 @@ BOOL isLoadingTableFooter;
 	
 	int yAxis=16;
 	
-	toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake( 0, 160, 320, 40)];
+	toolBar=[[UIToolbar alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 160, 320, 40) chageHieght:NO]];
 	[toolBar setTintColor:[UIColor blackColor]];
 	[toolBar setHidden:YES];
 	[viewForRegistration addSubview:toolBar];
@@ -640,7 +640,7 @@ BOOL isLoadingTableFooter;
 		[txtBillingField[i] setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 		[contentScrollView addSubview:txtBillingField[i]];
 		
-		if (i==6) 
+		if (i==6)
 		{
 			[txtBillingField[i] setKeyboardType:UIKeyboardTypeDefault];
             [txtBillingField[i] setFrame:CGRectMake( 100, yAxis-73, 200, 30)];
@@ -667,7 +667,7 @@ BOOL isLoadingTableFooter;
 			[txtBillingField[i] setEnabled:NO];
 			
 			[txtBillingField[i] setFrame:CGRectMake( 100, yAxis+37, 200, 30)];
-
+            
 			UIButton *btnShowPickerView = [UIButton buttonWithType:UIButtonTypeCustom];
 			[btnShowPickerView setFrame:txtBillingField[i].frame];
 			[btnShowPickerView setBackgroundColor:[UIColor clearColor]];
@@ -751,7 +751,7 @@ BOOL isLoadingTableFooter;
 		[txtDeliveryField[i] setReturnKeyType:UIReturnKeyDone];
 		[txtDeliveryField[i] setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 		[deliveryView addSubview:txtDeliveryField[i]];
-		if (i==4) 
+		if (i==4)
 		{
 			[txtDeliveryField[i] setKeyboardType:UIKeyboardTypeDefault];
 			
@@ -787,7 +787,7 @@ BOOL isLoadingTableFooter;
 		[txtDeliveryField[i] setBorderStyle:UITextBorderStyleRoundedRect];
 		yAxis+=37;
 	}
-   
+    
     if([arrayCountry count]>0)
 	{
 		NSString *strCountry=[GlobalPreferences getUserCountryFortax];
@@ -820,7 +820,7 @@ BOOL isLoadingTableFooter;
 
 // Called when submit button is tapped
 - (void)createAccount
-{   
+{
 	
     if (([txtPassword[0].text length]==0) || ([txtBillingField[0].text length]==0) || ([txtBillingField[1].text length]==0) || ([txtBillingField[2].text length]==0) || ([txtBillingField[3].text length]==0) || ([txtBillingField[4].text length]==0) || ([txtBillingField[5].text length]==0) || ([txtBillingField[6].text length]==0))
     {
@@ -836,7 +836,7 @@ BOOL isLoadingTableFooter;
         [alert release];
         
         
-    }	
+    }
     
     else if (![GlobalPreferences validateEmail:txtBillingField[1].text])
     {
@@ -858,7 +858,7 @@ BOOL isLoadingTableFooter;
                     {
                         if (!isReview)
                         {
-                            [self performSelectorInBackground:@selector(showLoadingbar) withObject:nil];	
+                            [self performSelectorInBackground:@selector(showLoadingbar) withObject:nil];
                         }
                         
                     }
@@ -867,7 +867,7 @@ BOOL isLoadingTableFooter;
                 
                 [GlobalPreferences setUserDefault_Preferences:txtBillingField[1].text :@"userEmail"];
                 
-             
+                
                 [GlobalPreferences setUserDefault_Preferences:txtBillingField[1].text :@"userEmail"];
                 NSDictionary *contentDict = [dicSettings objectForKey:@"store"];
                 NSArray* arrTemp =[contentDict objectForKey:@"taxList"];
@@ -877,15 +877,15 @@ BOOL isLoadingTableFooter;
                 NSString *strCountryCode;
                 for(int i=0;i<[arrTemp count];i++)
                 {
-                    if ([txtBillingField[4].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+                    if ([txtBillingField[4].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]])
                     {
                         strCountryCode = [[arrTemp objectAtIndex:i] valueForKey:@"territoryId"];
-    
+                        
                     }
                 }
                 for(int i=0;i<[arrTempShippingCountries count];i++)
                 {
-                    if ([txtBillingField[4].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]]) 
+                    if ([txtBillingField[4].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]])
                     {
                         strCountryCode = [[arrTempShippingCountries objectAtIndex:i] valueForKey:@"territoryId"];
                     }
@@ -940,7 +940,7 @@ BOOL isLoadingTableFooter;
                     {
                         if (!isAccount)
                         {
-                 
+                            
                         }
                     }
                     
@@ -957,16 +957,16 @@ BOOL isLoadingTableFooter;
                     for(int i=0;i<[arrTemp count];i++)
                     {
                         
-                        if ([txtDeliveryField[2].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+                        if ([txtDeliveryField[2].text isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]])
                         {
                             strCountryCode = [[arrTemp objectAtIndex:i] valueForKey:@"territoryId"];
-                           
+                            
                         }
                         
                     }
                     for(int i=0;i<[arrTempShippingCountries count];i++)
                     {
-                        if ([txtDeliveryField[2].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]]) 
+                        if ([txtDeliveryField[2].text isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]])
                         {
                             strCountryCode = [[arrTempShippingCountries objectAtIndex:i] valueForKey:@"territoryId"];
                             
@@ -1020,7 +1020,7 @@ BOOL isLoadingTableFooter;
 {
 	if (!isDeliveryShown)
 	{
-      [deliveryView setHidden:NO];
+        [deliveryView setHidden:NO];
 		[contentScrollView setContentSize:CGSizeMake(320,850)];
 		[btnSameAddress setImage:[UIImage imageNamed:@"block.png"] forState:UIControlStateNormal];
 		isDeliveryShown=YES;
@@ -1033,12 +1033,12 @@ BOOL isLoadingTableFooter;
 			if (!strCountry)
             {
                 txtDeliveryField[2].text = [NSString stringWithFormat:@"%@", [[arrayCountry valueForKey:@"sCountry"]objectAtIndex:rowValue]];
-               
+                
                 
             }
 			else
             {
-                txtDeliveryField[2].text=strCountry;	
+                txtDeliveryField[2].text=strCountry;
             }
 		}
 		if ([arrayStates count]>0)
@@ -1048,7 +1048,7 @@ BOOL isLoadingTableFooter;
         }
 	}
 	else
-	{  
+	{
 		[deliveryView setHidden:YES];
 		[contentScrollView setContentSize:CGSizeMake(320,580)];
 		isDeliveryShown=NO;
@@ -1066,7 +1066,7 @@ BOOL isLoadingTableFooter;
         {
             isDeliveryCountries = TRUE;
         }
-		else 
+		else
         {
 			isDeliveryCountries = FALSE;
 		}
@@ -1100,21 +1100,21 @@ BOOL isLoadingTableFooter;
 			[self setStatesCountry];
 			[pickerViewCountry setHidden:NO];
             if(!isEditMode){
-            if([sender tag]==1)
-            {
-                if([txtBillingField[4].text length] != 0)
+                if([sender tag]==1)
                 {
-                    [pickerViewCountry selectRow:[[arrayCountry valueForKey:@"sCountry"] indexOfObject:txtBillingField[4].text] inComponent:0 animated:YES];
+                    if([txtBillingField[4].text length] != 0)
+                    {
+                        [pickerViewCountry selectRow:[[arrayCountry valueForKey:@"sCountry"] indexOfObject:txtBillingField[4].text] inComponent:0 animated:YES];
+                    }
                 }
-            }
-            else
-            {
-                if([txtDeliveryField[2].text length] != 0)
+                else
                 {
-                    [pickerViewCountry selectRow:[[arrayCountry valueForKey:@"sCountry"] indexOfObject:txtDeliveryField[2].text] inComponent:0 animated:YES];
+                    if([txtDeliveryField[2].text length] != 0)
+                    {
+                        [pickerViewCountry selectRow:[[arrayCountry valueForKey:@"sCountry"] indexOfObject:txtDeliveryField[2].text] inComponent:0 animated:YES];
+                    }
                 }
-            }
-            }else 
+            }else
             {
                 if([sender tag]==3)
                 {
@@ -1130,7 +1130,7 @@ BOOL isLoadingTableFooter;
                         [pickerViewCountry selectRow:[[arrayCountry valueForKey:@"sCountry"] indexOfObject:txtDeliveryDetails[2].text] inComponent:0 animated:YES];
                     }
                 }
-
+                
             }
 			[toolBar setHidden:NO];
 			[contentView bringSubviewToFront:pickerViewCountry];
@@ -1151,12 +1151,12 @@ BOOL isLoadingTableFooter;
 			if ([sender tag]==5 || [sender tag]==7)
             { isfromTag=1;
                 if(!isEditMode){
-                  
+                    
                     [self getStatesOfaCountry:[txtBillingField[4] text]];
                 }else{
-                    [self getStatesOfaCountry:[txtDetails[3] text]]; 
-                   
-
+                    [self getStatesOfaCountry:[txtDetails[3] text]];
+                    
+                    
                     
                     
                 }
@@ -1174,10 +1174,10 @@ BOOL isLoadingTableFooter;
 			}
 			else
             {
-               
+                
                 isfromTag=0;
                 if(!isEditMode){
-                    [self getStatesOfaCountry:txtDeliveryField[2].text]; 
+                    [self getStatesOfaCountry:txtDeliveryField[2].text];
                 }
 				
                 selectPicker=YES;
@@ -1188,7 +1188,7 @@ BOOL isLoadingTableFooter;
 				if (i<2)
                 {
                     [txtPassword[i] setEnabled:NO];
-                }				
+                }
 				if (i<4)
 				{
 					[txtDeliveryDetails[i] setEnabled:NO];
@@ -1202,7 +1202,7 @@ BOOL isLoadingTableFooter;
 			[self setStatesCountry];
             
             
-                        
+            
             
             
             
@@ -1237,7 +1237,7 @@ BOOL isLoadingTableFooter;
 		for(int i=0;i<[arrTemp count];i++)
 		{
 			
-			if ([strCountry isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]]) 
+			if ([strCountry isEqualToString:[[arrTemp objectAtIndex:i]valueForKey:@"sCountry"]])
 			{
 				strCountryCode = [[arrTemp objectAtIndex:i] valueForKey:@"territoryId"];
             }
@@ -1245,7 +1245,7 @@ BOOL isLoadingTableFooter;
 		}
 		for(int i=0;i<[arrTempShippingCountries count];i++)
 		{
-			if ([strCountry isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]]) 
+			if ([strCountry isEqualToString:[[arrTempShippingCountries objectAtIndex:i]valueForKey:@"sCountry"]])
 			{
 				strCountryCode = [[arrTempShippingCountries objectAtIndex:i] valueForKey:@"territoryId"];
 				
@@ -1288,7 +1288,7 @@ BOOL isLoadingTableFooter;
 	[pickerViewStates reloadAllComponents];
 	[pickerViewStates selectRow:0 inComponent:0 animated:YES];
     
-	}
+}
 
 // Called when Done is tapped for resigning pickerviews and textfields
 - (void)resignTextField
@@ -1413,7 +1413,7 @@ BOOL isLoadingTableFooter;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{    
+{
 	if (alertView==alertView1)
 	{
 		if (!isCheckout||isWishlistLogin || isOrderLogin)
@@ -1443,7 +1443,7 @@ BOOL isLoadingTableFooter;
 	
 	else if (alertView == alertMain)
 	{
-		switch (buttonIndex) 
+		switch (buttonIndex)
         {
 			case 0:
 				if (!isCheckout)
@@ -1588,7 +1588,7 @@ BOOL isLoadingTableFooter;
 
 #pragma mark Picker View Delegates method
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView 
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView
 {
 	return 1;
 }
@@ -1603,7 +1603,7 @@ BOOL isLoadingTableFooter;
 	return [arrayCountry count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component 
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	if (thePickerView == pickerViewStates)
     {
@@ -1613,14 +1613,14 @@ BOOL isLoadingTableFooter;
     return [[arrayCountry valueForKey:@"sCountry"]objectAtIndex:row];
 }
 
-- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component 
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 	currentSelectedRow=row;
     
     
 	if (thePickerView == pickerViewCountry)
 	{
-			
+        
 		if (!selectPicker)
         {
             txtBillingField[4].text = [NSString stringWithFormat:@"%@", [[arrayCountry valueForKey:@"sCountry"]objectAtIndex:row]];
@@ -1628,13 +1628,13 @@ BOOL isLoadingTableFooter;
 		else
         {
             if(isDeliveryShown)
-              {
-            if(!isEditMode){
-                
-                
-                txtDeliveryField[2].text = [NSString stringWithFormat:@"%@", [[arrayCountry valueForKey:@"sCountry"]objectAtIndex:row]];  
+            {
+                if(!isEditMode){
+                    
+                    
+                    txtDeliveryField[2].text = [NSString stringWithFormat:@"%@", [[arrayCountry valueForKey:@"sCountry"]objectAtIndex:row]];
+                }
             }
-         }
             
         }
 		
@@ -1670,30 +1670,30 @@ BOOL isLoadingTableFooter;
 		{
 			if ([arrayStates count]>0)
 			{     if(isDeliveryShown)
-                    {   
-                        if(isfromTag==1)
-                        {
-                            txtBillingField[5].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]]; 
-                            
-   
-                        }else
-                        {
-                            txtDeliveryField[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
-                            
-  
-                        }
-                       
-                                                                         
-                
-                       }else{
-                     if(!isEditMode)
-                         {
-                       txtBillingField[5].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];      
+            {
+                if(isfromTag==1)
+                {
+                    txtBillingField[5].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
+                    
+                    
+                }else
+                {
                     txtDeliveryField[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
-                             
+                    
+                    
+                }
+                
+                
+                
+            }else{
+                if(!isEditMode)
+                {
+                    txtBillingField[5].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
+                    txtDeliveryField[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
+                    
                     currentStateIdForDelivery=[[[arrayStates valueForKey:@"stateId"]objectAtIndex:row]intValue];
                     
-                         }
+                }
             }
 			}
 		}
@@ -1711,14 +1711,14 @@ BOOL isLoadingTableFooter;
 				if ([arrayStates count]>0)
                 {
                     if(!isEditMode){
-                    
-                    
-                    txtDeliveryDetails[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
-					currentStateIdForDelivery=[[[arrayStates valueForKey:@"stateId"]objectAtIndex:row]intValue];
+                        
+                        
+                        txtDeliveryDetails[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
+                        currentStateIdForDelivery=[[[arrayStates valueForKey:@"stateId"]objectAtIndex:row]intValue];
                     }else{
                         if(isfromTag==1)
                         {
-                           txtDetails[4].text  = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]]; 
+                            txtDetails[4].text  = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
                             
                             
                         }else
@@ -1726,7 +1726,7 @@ BOOL isLoadingTableFooter;
                             txtDeliveryDetails[3].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:row]];
                             
                             
-                        } 
+                        }
                         
                     }
                 }
@@ -1780,7 +1780,7 @@ BOOL isLoadingTableFooter;
 	[arrayStates retain];
 	
 	if (!selectPicker)
-	{	
+	{
 		if ([arrayStates count]>0)
         {
             txtBillingField[5].text = [NSString stringWithFormat:@"%@", [[arrayStates valueForKey:@"sState"]objectAtIndex:0]];
@@ -1844,7 +1844,7 @@ BOOL isLoadingTableFooter;
 	
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -1852,7 +1852,7 @@ BOOL isLoadingTableFooter;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -1860,7 +1860,7 @@ BOOL isLoadingTableFooter;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	for(int i=0; i<7; i++)
 	{

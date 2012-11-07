@@ -15,9 +15,9 @@
 
 static GlobalPreferences *shared;
 
-- (id)init 
+- (id)init
 {
-	if (shared) 
+	if (shared)
     {
         [self autorelease];
         return shared;
@@ -25,16 +25,16 @@ static GlobalPreferences *shared;
 	
 	if (![super init])
     {
-        return nil;   
+        return nil;
     }
 	
 	shared = self;
 	return self;
 }
 
-+ (id)shared 
++ (id)shared
 {
-    if (!shared) 
+    if (!shared)
     {
         [[GlobalPreferences alloc] init];
     }
@@ -58,7 +58,7 @@ NSString *strDeviceToken;
 	if (!strDeviceToken)
     {
         strDeviceToken=[[NSString alloc]init];
-    }	
+    }
 	strDeviceToken=_token;
 }
 
@@ -67,7 +67,7 @@ NSString *strDeviceToken;
 	return strDeviceToken;
 }
 
-#pragma mark ----Reachibility Check 
+#pragma mark ----Reachibility Check
 +(BOOL) updateInterfaceWithReachability: (Reachability*) curReach
 {
 	NetworkStatus netStatus = [curReach currentReachabilityStatus];
@@ -78,7 +78,7 @@ NSString *strDeviceToken;
     {
         case NotReachable:
         {
-            connectionRequired = NO;  
+            connectionRequired = NO;
 			connectionStatus = NO;
             break;
         }
@@ -99,7 +99,7 @@ NSString *strDeviceToken;
 }
 
 +(BOOL)isInternetAvailable
-{ 
+{
 	return ([self updateInterfaceWithReachability:internetReach]);
 }
 #pragma mark -
@@ -116,13 +116,13 @@ SBJSON *_JSONParser;
     {
         _JSONParser = [[SBJSON alloc]init];
     }
-			
+    
 	// Initializing savedPreferences object
-	if (!_savedPreferences) 
+	if (!_savedPreferences)
     {
         _savedPreferences = [[savedPreferences alloc] init];
     }
-			
+    
 	// NSOperationQueue for handling Various threads
 	if (!queue)
     {
@@ -165,7 +165,7 @@ NSMutableArray *arrSelectedTitles;
 		arrSelectedTabs = [[NSMutableArray alloc] init];
 	}
     
-	if (!arrSelectedTitles) 
+	if (!arrSelectedTitles)
     {
 		arrSelectedTitles = [[NSMutableArray alloc] init];
 	}
@@ -209,51 +209,51 @@ NSMutableArray *arrSelectedTitles;
 	_savedPreferences.strTitlePage1 = @"";
 	_savedPreferences.strTitlePage2 = @"";
 	
-	if ([arrSelected_Titles count]>0) 
+	if ([arrSelected_Titles count]>0)
     {
-		for (int i=0; i<[arrSelected_Titles count]; i++) 
+		for (int i=0; i<[arrSelected_Titles count]; i++)
         {
-			if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Home"])
+			if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Home"])
             {
                 _savedPreferences.strTitleHome = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.home"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Store"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Store"])
             {
-               _savedPreferences.strTitleStore = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.store"];
+                _savedPreferences.strTitleStore = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.store"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"News"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"News"])
             {
-                 _savedPreferences.strTitleNews = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.news"];
+                _savedPreferences.strTitleNews = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.news"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"My Account"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"My Account"])
             {
                 _savedPreferences.strTitleMyAccount = @"My Account";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"About Us"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"About Us"])
             {
                 _savedPreferences.strTitleAboutUs = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.aboutus"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Contact Us"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Contact Us"])
             {
-                 _savedPreferences.strTitleContactUs = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.contactus"];
+                _savedPreferences.strTitleContactUs = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.contactus"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Shopping Cart"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Shopping Cart"])
             {
                 _savedPreferences.strTitleShoppingCart = @"Shopping Cart";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Terms"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Terms"])
             {
-                 _savedPreferences.strTitleTerms_Conditions = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.tandc"];
+                _savedPreferences.strTitleTerms_Conditions = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.tandc"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Privacy"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Privacy"])
             {
-				_savedPreferences.strTitlePrivacy = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.privacy"];                
+				_savedPreferences.strTitlePrivacy = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.more.privacy"];
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Page 1"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Page 1"])
             {
                 _savedPreferences.strTitlePage1 = @"Page 1";
             }
-			else if ([[arrSelected_Titles objectAtIndex:i] isEqualToString:@"Page 2"])
+			else if ([[arrSelected_Titles objectAtIndex:i] isEqual:@"Page 2"])
             {
                 _savedPreferences.strTitlePage2 = @"Page 2";
             }
@@ -263,14 +263,13 @@ NSMutableArray *arrSelectedTitles;
 
 +(NSArray *)getAllNavigationTitles
 {
-
-	NSArray *arrAllData = [[ServerAPI fetchTabbarPreferences :iCurrentAppId]objectForKey:@"features"];	
     
-	// Set Title of "Privacy View Controller"	
+    NSArray *arrAllData = [[ServerAPI fetchTabbarPreferences :iCurrentAppId]objectForKey:@"features"];
+    
+	// Set Title of "Privacy View Controller"
 	if (![arrAllData isKindOfClass:[NSNull class]])
 	{
-
-		for (int i=0;i<[arrAllData count]; i++) 
+        for (int i=0;i<[arrAllData count]; i++)
         {
 			NSDictionary *dictTemp = [arrAllData objectAtIndex:i];
 			if ([[dictTemp objectForKey:@"sIphoneHandle"]isEqualToString:@"Page1ViewController"])
@@ -281,10 +280,10 @@ NSMutableArray *arrSelectedTitles;
 			if ([[dictTemp objectForKey:@"sIphoneHandle"]isEqualToString:@"Page2ViewController"])
             {
                 _savedPreferences.strTitlePage2 = [dictTemp objectForKey:@"tabTitle"];
-            }			
+            }
 		}
 		
-		if ([arrAllData count] >8) 
+		if ([arrAllData count] >8)
 		{
 			NSDictionary *dictTemp = [arrAllData objectAtIndex:8];
 			if ((![[dictTemp objectForKey:@"sTitle"] isEqualToString:@""]) && (![[dictTemp objectForKey:@"sTitle"] isEqual:[NSNull null]]))
@@ -310,8 +309,8 @@ NSMutableArray *arrSelectedTitles;
 			}
 		}
         
-		
-		if ([arrAllData count] >9) 
+		//Set title of "Page 2 View Controller"
+		if ([arrAllData count] >9)
 		{
 			NSDictionary *dictTemp = [arrAllData objectAtIndex:9];
 			if ((![[dictTemp objectForKey:@"sName"] isEqualToString:@""]) && (![[dictTemp objectForKey:@"sName"] isEqual:[NSNull null]]))
@@ -323,7 +322,7 @@ NSMutableArray *arrSelectedTitles;
 						if (!([[dictTemp objectForKey:@"tabTitle"] isEqualToString:@""]))
 						{
 							_savedPreferences.strTitlePage2 = [dictTemp objectForKey:@"tabTitle"];
-						}   
+						}
 						else
 						{
 							_savedPreferences.strTitlePage2 = [dictTemp objectForKey:@"sName"];
@@ -345,84 +344,83 @@ NSMutableArray *arrSelectedTitles;
 #pragma mark - Color Schemes
 
 // This method converts any hexadevmal string into RGB colors
-+ (UIColor *) colorWithHexString: (NSString *)stringToConvert  
-{  
-    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];  
++ (UIColor *) colorWithHexString: (NSString *)stringToConvert
+{
+    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 	
-    // String should be 6 or 8 characters  
-    if ([cString length] < 6) return [UIColor redColor];  
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor redColor];
 	
-    // strip 0X if it appears  
-    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];  
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
 	
-    if ([cString length] != 6) return [UIColor redColor];  
+    if ([cString length] != 6) return [UIColor redColor];
 	
-    // Separate into r, g, b substrings  
-    NSRange range;  
-    range.location = 0;  
-    range.length = 2;  
-    NSString *rString = [cString substringWithRange:range];  
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
 	
-    range.location = 2;  
-    NSString *gString = [cString substringWithRange:range];  
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
 	
-    range.location = 4;  
-    NSString *bString = [cString substringWithRange:range];  
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
 	
-    // Scan values  
-    unsigned int r, g, b;  
-    [[NSScanner scannerWithString:rString] scanHexInt:&r];  
-    [[NSScanner scannerWithString:gString] scanHexInt:&g];  
-    [[NSScanner scannerWithString:bString] scanHexInt:&b];  
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
 	
-    return [UIColor colorWithRed:((float) r / 255.0f)  
-                           green:((float) g / 255.0f)  
-                            blue:((float) b / 255.0f)  
-                           alpha:1.0f];  
-} 
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
+}
 
-+ (UIColor *) lightColorWithHexString: (NSString *)stringToConvert  
-{  
-    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];  
++ (UIColor *) lightColorWithHexString: (NSString *)stringToConvert
+{
+    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 	
-    // String should be 6 or 8 characters  
-    if ([cString length] < 6) return [UIColor redColor];  
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor redColor];
 	
-    // strip 0X if it appears  
-    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];  
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
 	
-    if ([cString length] != 6) return [UIColor redColor];  
+    if ([cString length] != 6) return [UIColor redColor];
 	
-    // Separate into r, g, b substrings  
-    NSRange range;  
-    range.location = 0;  
-    range.length = 2;  
-    NSString *rString = [cString substringWithRange:range];  
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
 	
-    range.location = 2;  
-    NSString *gString = [cString substringWithRange:range];  
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
 	
-    range.location = 4;  
-    NSString *bString = [cString substringWithRange:range];  
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
 	
-    // Scan values  
-    unsigned int r, g, b;  
-    [[NSScanner scannerWithString:rString] scanHexInt:&r];  
-    [[NSScanner scannerWithString:gString] scanHexInt:&g];  
-    [[NSScanner scannerWithString:bString] scanHexInt:&b];  
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
 	
-    return [UIColor colorWithRed:((float) r / 255.0f)  
-                           green:((float) g / 255.0f)  
-                            blue:((float) b / 255.0f)  
-                           alpha:0.5f];  
-} 
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:0.5f];
+}
 
 
 
 +(void)setColorScheme_SelectedByUser:(NSDictionary *)dictFeatures
 {
 	
-    #define colorDict [dictFeatures objectForKey:@"colorscheme"]
+#define colorDict [dictFeatures objectForKey:@"colorscheme"]
 	if (![colorDict isEqual:[NSNull null]])
 	{
 		if ([colorDict objectForKey:@"theme_color"])
@@ -435,7 +433,7 @@ NSMutableArray *arrSelectedTitles;
 		}
 		
 		if ([colorDict objectForKey:@"search_bar_bg_color"])
-		{			
+		{
 			if (!([[colorDict objectForKey:@"search_bar_bg_color"] isKindOfClass:[NSNull class]]||[[colorDict objectForKey:@"search_bar_bg_color"] isEqualToString:@""]))
 			{
 				UIColor *searchBgColor = [GlobalPreferences colorWithHexString:[[dictFeatures objectForKey:@"colorscheme"]objectForKey:@"search_bar_bg_color"]];
@@ -455,10 +453,7 @@ NSMutableArray *arrSelectedTitles;
         
         if ([colorDict objectForKey:@"sub_header_color"])
 		{
-			//UIColor *bgColor = [GlobalPreferences colorWithHexString:[[dictFeatures objectForKey:@"colorscheme"]objectForKey:@"sub_header_color"]];
-			
 			_savedPreferences.subHeaderColor = [[dictFeatures objectForKey:@"colorscheme"]objectForKey:@"sub_header_color"];
-            
             
             
 		}
@@ -469,29 +464,28 @@ NSMutableArray *arrSelectedTitles;
 			_savedPreferences.labelColor = bgColor;
 			_savedPreferences.strHexadecimalColor = [[dictFeatures objectForKey:@"colorscheme"]objectForKey:@"label_color"];
 		}
-	
-       
+        
+        
 		if (![[colorDict objectForKey:@"sPriceTagBgColor"] isEqual:[NSNull null]])
-		{   
+		{
             UIColor *priceBackcolor=[GlobalPreferences colorWithHexString:[[dictFeatures objectForKey:@"colorscheme"]objectForKey:@"sPriceTagBgColor"]];
 			_savedPreferences.priceBackgroundColor = priceBackcolor;
 		}
-	
-	}
+    }
 	
 }
 
 
 #pragma mark Gradient Effect
 +(void)setGradientEffectOnView:(UIView *)view:(UIColor *)mainColor:(UIColor *)secondaryColor
-{ 
+{
 	CAGradientLayer *gradient = [CAGradientLayer layer];
 	if (([view isKindOfClass:[UITableViewCell class]]) || ([view isKindOfClass:[UILabel class]]))
     {
         gradient.frame = CGRectMake(0, 0, view.frame.size.width, 100);
     }
-		
-	else 
+    
+	else
     {
 		gradient.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
 	}
@@ -515,14 +509,13 @@ int userStateID=0;
 	else {
 		[_searchBar setBackgroundColor:_savedPreferences.searchBgColor];
 	}
-
-  
-	NSString *str = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.common.search"];
+    
+    NSString *str = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.common.search"];
 	[_searchBar setPlaceholder:str];
 	[_searchBar setTranslucent:YES];
    	[[_searchBar.subviews objectAtIndex:0] removeFromSuperview];
     
-  
+    
     
 }
 
@@ -625,7 +618,6 @@ NSDictionary *dicAppVitals;
 }
 
 // Current Selected Product Details
-
 NSDictionary *dictCurrentProduct;
 
 +(void)setCurrentProductDetails:(NSDictionary *)_dictTemp
@@ -661,13 +653,14 @@ NSDictionary *dictCurrentProduct;
 	NSDecimalNumberHandler *roundingStyle = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundBankers scale:2 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
 	NSDecimalNumber *roundedNumber = [testNumber decimalNumberByRoundingAccordingToBehavior:roundingStyle];
 	NSString *stringValue = [roundedNumber descriptionWithLocale:[NSLocale currentLocale]];
+	//NSLog(@"numberString  %@", stringValue);
 	float finalValue=[stringValue floatValue];
 	return finalValue;
 }
 
-+(BOOL) validateEmail: (NSString *) candidate 
++(BOOL) validateEmail: (NSString *) candidate
 {
-	NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
+	NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
 	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
 	return [emailTest evaluateWithObject:candidate];
 }
@@ -684,9 +677,7 @@ NSDictionary *dictCurrentProduct;
         {
             iNumOfItemsInShoppingCart -=1;
         }
-		
-		
-		
+        
 	}
 }
 
@@ -715,14 +706,14 @@ NSDictionary *dictCurrentProduct;
 
 +(void)setShadowOnView:(UIView *)_view:(UIColor *)_shadowColor:(BOOL)_includeGradient:(UIColor *)mainColor:(UIColor *)secondaryColor
 {
-	if (_includeGradient) 
+	if (_includeGradient)
     {
 		CAGradientLayer *gradient = [CAGradientLayer layer];
 		if (([_view isKindOfClass:[UITableViewCell class]]) || ([_view isKindOfClass:[UILabel class]]))
         {
             gradient.frame = CGRectMake(0, 0, _view.frame.size.width, 70);
         }
-		else 
+		else
         {
 			gradient.frame = CGRectMake(0, 0, _view.frame.size.width, _view.frame.size.height);
         }
@@ -760,7 +751,7 @@ NSDictionary *dictCurrentProduct;
 }
 
 
-#pragma mark User Settings And Tax Details 
+#pragma mark User Settings And Tax Details
 NSDictionary *dictUserSettings;
 
 // Set the dictionary of the setting (like Country's tax type, ta charges, user email address, currency type, shopping list details, etc)
@@ -770,17 +761,17 @@ NSDictionary *dictUserSettings;
     {
         dictUserSettings = [[NSDictionary alloc] init];
     }
-		if(_dictSettings==nil)
-            _dictSettings=[ServerAPI fetchSettings:iCurrentStoreId];
+    if(_dictSettings==nil)
+        _dictSettings=[ServerAPI fetchSettings:iCurrentStoreId];
 	dictUserSettings = _dictSettings;
 	
 	[dictUserSettings retain];
 	
 	_savedPreferences.strCurrency = [[dictUserSettings valueForKey:@"store"] valueForKey:@"sCurrency"];
     [_savedPreferences.strCurrency retain];
-
+    
 	if ((_savedPreferences.strCurrency==nil)||([_savedPreferences.strCurrency isKindOfClass:[NSNull class]]))
-	{	
+	{
 		_savedPreferences.strCurrency=@"";
 	}
 	
@@ -824,12 +815,12 @@ int iMerchantCountryID;
 {
     
 	NSString *strCode =@"";
-  
+    NSLog(@"%@",_savedPreferences.strCurrency);
 	if ([_savedPreferences.strCurrency length]>=3)
     {
         strCode=  [_savedPreferences.strCurrency substringFromIndex:3];
     }
-		
+    
 	if ([strCode isEqualToString:@"USD"])
     {
         _savedPreferences.strCurrencySymbol = @"$";
@@ -852,7 +843,7 @@ int iMerchantCountryID;
         {
             _savedPreferences.strCurrencySymbol = strCode;
         }
-	}	
+	}
 	if (!strCode)
     {
         _savedPreferences.strCurrencySymbol=@"";
@@ -868,7 +859,7 @@ int iMerchantCountryID;
         queue = [[NSOperationQueue alloc] init];
     }
 	
-	[queue addOperation:_opertion];	
+	[queue addOperation:_opertion];
 }
 
 CustomLoadingIndicator *_loadingIndicator;
@@ -917,7 +908,7 @@ UIActionSheet *loadingActionSheet;
 
 +(void)addLoadingBar_AtBottom:(UIView *)showInView withTextToDisplay:(NSString *)strText
 {
-	if (loadingActionSheet) 
+	if (loadingActionSheet)
 	{
 		[loadingActionSheet release];
 		loadingActionSheet = nil;
@@ -931,13 +922,13 @@ UIActionSheet *loadingActionSheet;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	if (loadingActionSheet)
     {
-      [loadingActionSheet dismissWithClickedButtonIndex:0 animated:YES];
-     }
-		
+        [loadingActionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    
 	[pool release];
 }
 
-#pragma mark - Current Shopping Cart Num 
+#pragma mark - Current Shopping Cart Num
 NSInteger iCurrentShoppingCartNum;
 +(void) setCurrentShoppingCartNum:(NSInteger)_num
 {
@@ -1018,7 +1009,7 @@ NSString *ISAPPTOKENLIVE;
 }
 +(NSString *) getPaypal_TOKEN_CHECK
 {
-  	return ISAPPTOKENLIVE;
+    return ISAPPTOKENLIVE;
 }
 
 NSString *SECRETKEY;
@@ -1032,4 +1023,52 @@ NSString *SECRETKEY;
 	return SECRETKEY;
 }
 
++(BOOL)isScreen_iPhone5
+{
+    BOOL isiPhone5;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        if(result.height == 480)
+        {
+            isiPhone5= NO;
+        }
+        if(result.height == 568)
+        {
+            isiPhone5= YES;
+            
+        }
+    }
+    
+    return isiPhone5;
+    
+}
+
++(CGRect)setDimensionsAsPerScreenSize:(CGRect)tempRect chageHieght:(BOOL)changeHeight
+{
+    CGRect retrunRect =tempRect;
+    
+    if([GlobalPreferences isScreen_iPhone5])
+    {
+        if(changeHeight)
+            retrunRect.size.height=tempRect.size.height+88;
+        else
+            retrunRect.origin.y=tempRect.origin.y+88;
+        
+    }
+    else
+    {
+        retrunRect =tempRect;
+    }
+    
+    return retrunRect;
+}
+
+
++(float)getCureentSystemVersion{
+    
+    
+    float currSysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
+    return currSysVer;
+}
 @end

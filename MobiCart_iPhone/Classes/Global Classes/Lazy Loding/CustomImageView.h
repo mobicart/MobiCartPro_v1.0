@@ -2,8 +2,6 @@
 //  CustomImageView.h
 
 //
-//  Created by MobiCart.
-//
 
 #import <UIKit/UIKit.h>
 
@@ -13,11 +11,13 @@
     NSURL * _imageUrl;
     UIImage * _imageObject;
     UIActivityIndicatorView * _indicator;
+    
 }
 
 @property (nonatomic, retain) UIImage * imageObject;
+@property (nonatomic) int isFromCart;
 
-- (id)initWithUrl:(NSURL *)url frame:(CGRect)frame;
+- (id)initWithUrl:(NSURL *)url frame:(CGRect)frame isFrom:(int)isFromCart;
 - (void) showImage:(NSURL *)url;
 
 @end

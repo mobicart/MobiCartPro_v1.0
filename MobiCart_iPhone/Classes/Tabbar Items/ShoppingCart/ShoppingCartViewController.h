@@ -8,19 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "CustomImageView.h"
 
 BOOL isShoppingCart_TableStyle;
 BOOL isCheckForCheckout;
 @interface ShoppingCartViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
 {
 	UITableView *tableView,*tblStates,*tblCountries;
-
+    
 	NSMutableArray *arrShoppingCart, *arrDatabaseCart;
 	UILabel *lblSubTotalFooter;
 	UILabel *lblTax;
-
+    
 	UILabel *lblGrandTotalFooter;
-
+    
 	UILabel *lblCountryName,*lblStateName;
 	UIView *contentView;
 	UILabel *lblShippingCharges,*lblShippingTax;
@@ -47,8 +48,10 @@ BOOL isCheckForCheckout;
 	
 	NSString *strEditButtonTitle;
 	NSString *strDoneButtonTitle;
-	
+    CustomImageView * cellProductImageView;
 }
+@property(readwrite)int isEditCommit;
+@property(nonatomic)BOOL isFomCheckout;
 
 - (void)createTableView;
 - (void)hideBottomBar;

@@ -21,7 +21,7 @@ extern BOOL isWishlistLogin;
 {
 	objDetails=[[DetailsViewController alloc]init];
 	
-	viewForLogin =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 372)];
+	viewForLogin =  [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320, 372) chageHieght:YES]];
 	viewForLogin.backgroundColor=navBarColor;
 	viewForLogin.hidden = TRUE;
 	
@@ -31,15 +31,18 @@ extern BOOL isWishlistLogin;
 	[self.navigationItem setRightBarButtonItem:barBtnEdit animated:YES];
 	[barBtnEdit release];
 	
-	contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 	contentView.backgroundColor=navBarColor;
 	self.view = contentView;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 396)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
-
+	
+	
+	
+	
 	viewForLogin =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 372)];
 	viewForLogin.backgroundColor=navBarColor;
 	viewForLogin.hidden = TRUE;
@@ -68,14 +71,14 @@ extern BOOL isWishlistLogin;
 		[contentView addSubview:noItemLbl];
 		[noItemLbl release];
 	}
-	else 
+	else
 	{
 		[self createTableView];
 	}
 	
 	UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
     [viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
-    [contentView addSubview:viewTopBar];	
+    [contentView addSubview:viewTopBar];
     
     UIImageView *imgWishlist=[[UIImageView alloc]initWithFrame:CGRectMake(10,6,15,15)];
     [imgWishlist setImage:[UIImage imageNamed:@"whishlist_star.png"]];
@@ -89,14 +92,14 @@ extern BOOL isWishlistLogin;
 	[wishlistLbl setFont:[UIFont boldSystemFontOfSize:13]];
 	[viewTopBar addSubview:wishlistLbl];
 	[wishlistLbl release];
-    [viewTopBar release]; 
-}	
+    [viewTopBar release];
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
 	return YES;
-}	
+}
 
 - (void)createTableView
 {
@@ -106,12 +109,14 @@ extern BOOL isWishlistLogin;
 		tableView=nil;
 	}
 	
-	tableView=[[UITableView alloc]initWithFrame:CGRectMake(0,20, 320, 360) style:UITableViewStyleGrouped];
+	tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,20, 320, 360) chageHieght:YES] style:UITableViewStyleGrouped];
 	tableView.delegate=self;
 	tableView.dataSource=self;
+    tableView.backgroundView=nil;
 	[tableView setBackgroundColor:[UIColor clearColor]];
 	[contentView addSubview:tableView];
 }
+
 
 #pragma mark View Controller Delegates
 - (void)viewWillAppear:(BOOL)animated
@@ -120,7 +125,7 @@ extern BOOL isWishlistLogin;
 	
 	isWishlist_TableStyle=YES;
 	
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
 	{
 		UIButton *btnTemp = (UIButton *)view;
 		
@@ -159,7 +164,7 @@ extern BOOL isWishlistLogin;
 		stateID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"stateID"]intValue];
 	    countryID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"countryID"]intValue];
 	}
-	else 
+	else
     {
 		countryID=[[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"territoryId"]intValue];
 		NSArray *arrtaxCountries=[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"taxList"];
@@ -184,7 +189,7 @@ extern BOOL isWishlistLogin;
 		int productId = [[[arrWishlist objectAtIndex:i] valueForKey:@"id"] intValue];
 		
        	NSDictionary *dictProductDetails=[[ServerAPI fetchDetailsOfProductWithID:productId countryID:countryID stateID:stateID]objectForKey:@"product"];
-			
+        
 		[showWishlistArray addObject:dictProductDetails];
 		
 		[pool release];
@@ -199,7 +204,7 @@ extern BOOL isWishlistLogin;
 - (void)viewWillDisappear:(BOOL)animated
 {
 	isWishlist_TableStyle=NO;
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
 	{
 		UIButton *btnTemp = (UIButton *)view;
 		if (([view isKindOfClass:[UIButton class]]) && !([btnTemp.titleLabel.text isEqualToString:@"Edit"] ||[btnTemp.titleLabel.text isEqualToString:@"Done"]))
@@ -213,14 +218,14 @@ extern BOOL isWishlistLogin;
 		}
 	}
 	
-	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];	
-}	
+	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
+}
 #pragma mark -
 
 - (void)btnBack_clicked
 {
 	[self.navigationController popViewControllerAnimated:YES];
-}	
+}
 
 - (void)btnEdit_clicked
 {
@@ -228,7 +233,7 @@ extern BOOL isWishlistLogin;
     {
 		self.navigationItem.rightBarButtonItem.title = @"Done";
 		[tableView setEditing:YES animated:YES];
-	} 
+	}
     else if ([self.navigationItem.rightBarButtonItem.title isEqualToString: @"Done"])
     {
 		self.navigationItem.rightBarButtonItem.title = @"Edit";
@@ -257,20 +262,20 @@ extern BOOL isWishlistLogin;
 
 static int kAnimationType;
 
-- (void)tableView:(UITableView *)_tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)_tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	// For changing the animation style for every odd.even row
 	(kAnimationType == 6)?kAnimationType = 0:0;
-	kAnimationType += 1; 
+	kAnimationType += 1;
 	
-	if (editingStyle == UITableViewCellEditingStyleDelete) 
-	{		
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
 		if([[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"pOptionId"]isEqualToString:@"0"])
 			[[SqlQuery shared] deleteItemFromWishList:[[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"id"]integerValue]];
 		else
 			[[SqlQuery shared] deleteItemFromWishList:[[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"id"]integerValue]:[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"pOptionId"]];
 		
-      
+        
 		[showWishlistArray removeObjectAtIndex:indexPath.row];
 		[arrWishlist removeObjectAtIndex:indexPath.row];
 		[_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:kAnimationType];
@@ -285,10 +290,10 @@ static int kAnimationType;
 	float rating;
 	NSDictionary *dictProducts=[showWishlistArray objectAtIndex:index];
   	
-   /* if ([[dictProducts valueForKey:@"categoryName"] isEqual:[NSNull null]])
-	{
-		isFeaturedProductWithoutCatogery=YES;
-	}*/
+    /* if ([[dictProducts valueForKey:@"categoryName"] isEqual:[NSNull null]])
+     {
+     isFeaturedProductWithoutCatogery=YES;
+     }*/
     
 	if (![dictProducts isKindOfClass:[NSNull class]])
 	{
@@ -298,10 +303,10 @@ static int kAnimationType;
 		}
 		else
 		{
-			rating = [[dictProducts valueForKey:@"fAverageRating"] floatValue];		
+			rating = [[dictProducts valueForKey:@"fAverageRating"] floatValue];
 		}
 	}
-
+    
 	float tempRating;
 	tempRating=floor(rating);
 	tempRating=rating-tempRating;
@@ -337,7 +342,7 @@ static int kAnimationType;
 		{
 			iLastStarValue = iTemp + 1;
 		}
-			
+        
         
         viewRatingBG[iLastStarValue] = [[[UIView  alloc] initWithFrame:CGRectMake(0, 0, tempRating * 12, 12)] autorelease];
         viewRatingBG[iLastStarValue].clipsToBounds = TRUE;
@@ -396,10 +401,10 @@ static int kAnimationType;
 		[cellProductImage setBackgroundColor:[UIColor clearColor]];
 		[cellProductImage setTag:[[NSString stringWithFormat:@"9911%d0%d",indexPath.row+1,indexPath.row+1] intValue]];
 		[imgPlaceHolder addSubview:cellProductImage];
-		[imgPlaceHolder release];		
+		[imgPlaceHolder release];
 		
 		
-				
+        
 		NSString *discount = [NSString stringWithFormat:@"%@", [[showWishlistArray objectAtIndex:indexPath.row] objectForKey:@"fDiscountedPrice"]];
 		
 		NSString *tempDiscount;
@@ -425,9 +430,9 @@ static int kAnimationType;
         {
             tempDiscount = [NSString stringWithFormat:@"%@%@",_savedPreferences.strCurrencySymbol, [[showWishlistArray objectAtIndex:indexPath.row]  objectForKey:@"fPrice"]];
         }
-
-         CGSize size=[[ProductPriceCalculation productActualPrice:[showWishlistArray objectAtIndex:indexPath.row]] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13] constrainedToSize:CGSizeMake(100000,20) lineBreakMode:UILineBreakModeWordWrap];
-
+        
+        CGSize size=[[ProductPriceCalculation productActualPrice:[showWishlistArray objectAtIndex:indexPath.row]] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13] constrainedToSize:CGSizeMake(100000,20) lineBreakMode:UILineBreakModeWordWrap];
+        
         
 		if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
 		{
@@ -435,7 +440,7 @@ static int kAnimationType;
 			{
 				UIImageView *imgCutLine = [[UIImageView alloc]initWithFrame:CGRectMake(83, 41, size.width+4,2)];
                 [imgCutLine setBackgroundColor:_savedPreferences.labelColor];
-
+                
                	[cell addSubview:imgCutLine];
 				[imgCutLine release];
 			}
@@ -468,7 +473,7 @@ static int kAnimationType;
 	}
 	if([tableView isEditing])
 		[[cell viewWithTag:[[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:YES];
-	else 
+	else
 		[[cell viewWithTag: [[NSString stringWithFormat:@"9900%d0%d",indexPath.row+1,indexPath.row+1] intValue]]setHidden:NO];
 	
 	float	finalProductPrice=0,actualPrice=0;
@@ -484,18 +489,18 @@ static int kAnimationType;
             {
                 finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
             }
-			else 
+			else
             {
 				finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
 			}
 		}
-		else 
+		else
         {
 			if([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
             {
                 finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue];
             }
-			else 
+			else
             {
 				finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue];
 			}
@@ -513,7 +518,7 @@ static int kAnimationType;
 	{
 		if([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"coming"])
         {
-             strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.comming.soon"];
+            strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.comming.soon"];
 			
 			isComingSoonChecked=YES;
 			
@@ -524,7 +529,7 @@ static int kAnimationType;
         }
 		else if([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"active"])
         {
-            strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"]; 
+            strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
         }
 		else
         {
@@ -540,119 +545,119 @@ static int kAnimationType;
 	
 	if(isComingSoonChecked==NO)
 	{
-	
-	NSArray *interOptionDict = [[NSArray alloc]init];
-	interOptionDict = [dictTemp objectForKey:@"productOptions"];
-	
-	[interOptionDict retain];
-	
-	NSString *strProductOptions=[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"pOptionId"];
-	NSArray *arrOptions=[strProductOptions componentsSeparatedByString:@","];
-	
-	
-	
-	NSMutableArray *dictOption = [[showWishlistArray objectAtIndex:indexPath.row] objectForKey:@"productOptions"];
-	
-	NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
-	
-	for(int i=0; i<[dictOption count]; i++)
-    {
-        [arrProductOptionSize addObject:[[dictOption objectAtIndex:i] valueForKey:@"id"]];
-    }
-	BOOL isContained=YES;	
-	int optionSizeIndex[100];
-	for(int i=0;i<[arrOptions count];i++)
-	{
-		 float optionPrice=0;
-       	if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrOptions objectAtIndex:i] integerValue]]])
-		{ 
-			optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrOptions objectAtIndex:i]intValue]]];
-		
-            optionPrice+=[[[dictOption objectAtIndex:optionSizeIndex[i]]valueForKey:@"pPrice"]floatValue];
-                     
-           
-            
-        }
-       
-		else {
-			strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
-			isContained=NO;
-			
-		}
-       
         
-        finalProductPrice+=optionPrice; 
-        actualPrice+=optionPrice;
-	}
-	if([arrProductOptionSize count]==0)
-	{
-		strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
-		isContained=NO;
-		
-	}	
-	
-    if([[dictTemp valueForKey:@"bUseOptions"] boolValue]==TRUE)
-    {
-        if(![interOptionDict isKindOfClass:[NSNull class]])
+        NSArray *interOptionDict = [[NSArray alloc]init];
+        interOptionDict = [dictTemp objectForKey:@"productOptions"];
+        
+        [interOptionDict retain];
+        
+        NSString *strProductOptions=[[arrWishlist objectAtIndex:indexPath.row] valueForKey:@"pOptionId"];
+        NSArray *arrOptions=[strProductOptions componentsSeparatedByString:@","];
+        
+        
+        
+        NSMutableArray *dictOption = [[showWishlistArray objectAtIndex:indexPath.row] objectForKey:@"productOptions"];
+        
+        NSMutableArray *arrProductOptionSize = [[[NSMutableArray alloc] init] autorelease];
+        
+        for(int i=0; i<[dictOption count]; i++)
         {
-            
-			if([interOptionDict count]>0)
-			{
-				if(isContained==YES)
-				{
-					for(int count=0;count<[arrOptions count];count++)
-					{
-						if([[[interOptionDict objectAtIndex:optionSizeIndex[count]] valueForKey:@"iAvailableQuantity"] intValue] == 0)
-						{
-							strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
-							break;
-							
-						}
-						
-						else {
-							strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
-						}
-						
-					}
-				}
-			}
-			
-			
+            [arrProductOptionSize addObject:[[dictOption objectAtIndex:i] valueForKey:@"id"]];
         }
-    }
-	
-    if([[dictTemp valueForKey:@"bUseOptions"] intValue]==0)
-	{
-		NSString *strDicTemp=[dictTemp valueForKey:@"iAggregateQuantity"];
-		if(![strDicTemp isKindOfClass:[NSNull class]])
-		{
-			if([strDicTemp intValue]!=0)
-			{
-                strStatus=[dictTemp objectForKey:@"sIPhoneStatus"];
-				if([strStatus isEqualToString:@"sold"])
+        BOOL isContained=YES;
+        int optionSizeIndex[100];
+        for(int i=0;i<[arrOptions count];i++)
+        {
+            float optionPrice=0;
+            if([arrProductOptionSize containsObject: [NSNumber numberWithInt:[[arrOptions objectAtIndex:i] integerValue]]])
+            {
+                optionSizeIndex[i] =[arrProductOptionSize indexOfObject:[NSNumber numberWithInt:[[arrOptions objectAtIndex:i]intValue]]];
+                
+                optionPrice+=[[[dictOption objectAtIndex:optionSizeIndex[i]]valueForKey:@"pPrice"]floatValue];
+                
+                
+                
+            }
+            
+            else {
+                strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                isContained=NO;
+                
+            }
+            
+            
+            finalProductPrice+=optionPrice;
+            actualPrice+=optionPrice;
+        }
+        if([arrProductOptionSize count]==0)
+        {
+            strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+            isContained=NO;
+            
+        }
+        
+        if([[dictTemp valueForKey:@"bUseOptions"] boolValue]==TRUE)
+        {
+            if(![interOptionDict isKindOfClass:[NSNull class]])
+            {
+                
+                if([interOptionDict count]>0)
+                {
+                    if(isContained==YES)
+                    {
+                        for(int count=0;count<[arrOptions count];count++)
+                        {
+                            if([[[interOptionDict objectAtIndex:optionSizeIndex[count]] valueForKey:@"iAvailableQuantity"] intValue] == 0)
+                            {
+                                strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                                break;
+                                
+                            }
+                            
+                            else {
+                                strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
+                            }
+                            
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+        
+        if([[dictTemp valueForKey:@"bUseOptions"] intValue]==0)
+        {
+            NSString *strDicTemp=[dictTemp valueForKey:@"iAggregateQuantity"];
+            if(![strDicTemp isKindOfClass:[NSNull class]])
+            {
+                if([strDicTemp intValue]!=0)
+                {
+                    strStatus=[dictTemp objectForKey:@"sIPhoneStatus"];
+                    if([strStatus isEqualToString:@"sold"])
+                    {
+                        strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                    }
+                    else if([strStatus isEqualToString:@"coming"])
+                    {
+                        strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
+                    }
+                    else
+                    {
+                        strStatus=[dictTemp objectForKey:@"sIPhoneStatus"];
+                    }
+                }
+                else
                 {
                     strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
                 }
-				else if([strStatus isEqualToString:@"coming"])
-                {
-                    strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
-                }
-				else	
-                {
-                    strStatus=[dictTemp objectForKey:@"sIPhoneStatus"];
-                }
-			}
-            else
-            {
-				strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
             }
-		}
-	}
+        }
 	}
     if([strStatus isEqualToString:@"active"])
     {
         strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
-
+        
     }
 	
     NSString *strFinalProductPrice=@"";
@@ -673,14 +678,14 @@ static int kAnimationType;
         {
             strFinalProductPrice=[NSString stringWithFormat:@"%0.2f (inc %@)",finalProductPrice,[dictTemp objectForKey:@"sTaxType"]];
         }
-		else 
+		else
         {
 			strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 		}
 	}
-	else 
+	else
     {
-		strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice]; 
+		strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 	}
 	NSString *discount = [NSString stringWithFormat:@"%@", [[showWishlistArray objectAtIndex:indexPath.row] objectForKey:@"fDiscountedPrice"]];
 	
@@ -701,7 +706,7 @@ static int kAnimationType;
 				
 				
 			}
-			else 
+			else
 			{
 				[cell setProductName:[[showWishlistArray objectAtIndex:indexPath.row] valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, (actualPrice+[[[showWishlistArray objectAtIndex:indexPath.row]valueForKey:@"fTaxOnFPrice"] floatValue])]:strStatus :[NSString stringWithFormat:@"%@", strFinalProductPrice]:nil];
 			}

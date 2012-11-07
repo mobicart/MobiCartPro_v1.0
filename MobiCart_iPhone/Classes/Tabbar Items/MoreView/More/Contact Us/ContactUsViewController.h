@@ -12,11 +12,11 @@
 #import <MapKit/MKReverseGeocoder.h>
 #import "Annotation.h"
 
-@interface ContactUsViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate> 
+@interface ContactUsViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>
 {
 	MKMapView *_mapView;
 	CLLocationCoordinate2D coord;
-
+    
 	CSMapAnnotation *annot;
 	
 	UITextView *contactDetailsLbl;

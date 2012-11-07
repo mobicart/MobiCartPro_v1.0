@@ -13,19 +13,19 @@
 #import "EbookScrollView.h"
 #import "ProductPriceCalculation.h"
 
-
+#define urlMainServer1 @"http://www.mobi-cart.com"
 
 BOOL isSortShown;
 BOOL isPromotionalItem;
 
 @implementation HomeViewController
 @synthesize arrAppRecordsAllEntries;
-@synthesize imageDownloadsInProgress,arrTemp; 
+@synthesize imageDownloadsInProgress,arrTemp;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         // Custom initialization
 		self.tabBarItem.image = [UIImage imageNamed:@"home_icon.png"];
@@ -38,14 +38,14 @@ BOOL isPromotionalItem;
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
 }
 
-#pragma mark Fetchers 
+#pragma mark Fetchers
 /** Multithreaded Selectors to fetch data from server **/
 - (void)fetchDataFromServer
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [NSThread detachNewThreadSelector:@selector(fetchBannerImages) toTarget:self withObject:nil];
     [NSThread detachNewThreadSelector:@selector(fetchFeaturedProducts) toTarget:self withObject:nil];
-  	[pool release];
+   	[pool release];
 }
 
 
@@ -54,10 +54,11 @@ BOOL isPromotionalItem;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	dictBanners=[ServerAPI fetchBannerProducts:iCurrentStoreId];
 	[dictBanners retain];
-
+    
     [self performSelectorOnMainThread:@selector(updateImage) withObject:nil waitUntilDone:NO];
     
-    [self performSelector:@selector(updateControls)];      
+    [self performSelector:@selector(updateControls)];
+    
 	[pool release];
 }
 
@@ -96,48 +97,42 @@ BOOL isPromotionalItem;
     
 	[arrInfoAccount release];
 	
-	 dictFeaturedProducts = [ServerAPI fetchFeaturedproducts: countryID: stateID:iCurrentAppId];
+    
+    // Fetching Featured Products Details From Mobi-cart Server
+    dictFeaturedProducts = [ServerAPI fetchFeaturedproducts: countryID: stateID:iCurrentAppId];
     
 	[self performSelector:@selector(createDynamicControls)];
+	
+    //	[pool release];
 	
 	if (!dictFeaturedProducts)
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CATransition *animation = [CATransition animation]; 
-		[animation setDelegate:self]; 
+		CATransition *animation = [CATransition animation];
+		[animation setDelegate:self];
 		[animation setType: kCATransitionPush];
-		[animation setSubtype:kCATransitionFromLeft]; 
-		[animation setDuration:1.0f]; 
+		[animation setSubtype:kCATransitionFromLeft];
+		[animation setDuration:1.0f];
 		[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 		[UIView beginAnimations:nil context:context];
 		[[bottomHorizontalView layer] addAnimation:animation forKey:kCATransition];
-		
-		UILabel *lblErrorMsg =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 95)];
-		lblErrorMsg.textColor=[UIColor lightTextColor];
-		[lblErrorMsg setNumberOfLines:0];
-		[lblErrorMsg setFont:[UIFont boldSystemFontOfSize:15]];
-		[lblErrorMsg setTextAlignment:UITextAlignmentCenter];
-		[lblErrorMsg setLineBreakMode:UILineBreakModeWordWrap];
-		[lblErrorMsg setBackgroundColor:[UIColor clearColor]];
-		[lblErrorMsg setText:@"No Featured Product Available"];
-		[bottomHorizontalView addSubview:lblErrorMsg];
-		[lblErrorMsg release];
-		[UIView commitAnimations]; 
-	}	
+		[UIView commitAnimations];
+	}
+    
     [pooll release];
-}	
+}
 
 //  Set the user setting into the global preferences (like tax type, tax charges for user's country etc)
 - (void)fetchSettingsFromServer
-{	
+{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary *dicTemp=[[NSDictionary alloc] init];
     
     // Fetching Featured Products Details From Mobi-cart Server
-	dicTemp=[ServerAPI fetchSettings:iCurrentStoreId];	
+	dicTemp=[ServerAPI fetchSettings:iCurrentStoreId];
 	
 	[GlobalPreferences setSettingsOfUserAndOtherDetails:dicTemp];
-	[pool release];	
+	[pool release];
 }
 
 #pragma mark -
@@ -150,7 +145,7 @@ BOOL isPromotionalItem;
     float currSysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
 	
     NSString* tempString;
-     isUpdateControlsCalled=false;
+    isUpdateControlsCalled=false;
 	if (backgroundImg && !isUpdateControlsCalled)
 	{
         arrTemp = [dictBanners objectForKey:@"gallery-images"];
@@ -161,7 +156,7 @@ BOOL isPromotionalItem;
 				tempString=[[arrTemp objectAtIndex:0 ] objectForKey:@"galleryImageIphone4"];
             
             
-			else 
+			else
 				tempString=[[arrTemp objectAtIndex:0 ] objectForKey:@"galleryImageIphone"];
             
             
@@ -179,15 +174,15 @@ BOOL isPromotionalItem;
             
             [backgroundImg setImage:[UIImage imageWithData:[arrBanners objectAtIndex:0]]];
             [backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
-            [ZoomScrollView addSubview:backgroundImg];  
+            [ZoomScrollView addSubview:backgroundImg];
         }
     }
     [arrTemp retain];
     [pool release];
-
+    
 }
 - (void)updateControls
-{ 
+{
 	int i;
 	float currSysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
 	NSString *string=nil;
@@ -200,11 +195,12 @@ BOOL isPromotionalItem;
 			NSDictionary *dictTemp=[arrTemp1 objectAtIndex:i];
 			if(currSysVer>4)
 				string=[dictTemp objectForKey:@"galleryImageIphone4"];
-			else 
+			else
 				string=[dictTemp objectForKey:@"galleryImageIphone"];
             
             
-          NSData *dataBannerImage = [ServerAPI fetchBannerImage:string];
+            
+            NSData *dataBannerImage = [ServerAPI fetchBannerImage:string];
             if(!dataBannerImage)
                 dataBannerImage = [ServerAPI fetchBannerImage:string];
 			
@@ -212,12 +208,11 @@ BOOL isPromotionalItem;
             {
                 [arrBanners addObject:dataBannerImage] ;
             }
-			else 
+			else
 			{
 				NSData *dataBannerTemp1=nil;
 				if(dataBannerTemp1==nil)
-                    [arrBanners addObject:@""
-                     ];
+                    [arrBanners addObject:@""];
 			}
 		}
 		if ([arrBanners count]>0)
@@ -227,28 +222,28 @@ BOOL isPromotionalItem;
 				[backgroundImg setBackgroundColor:[UIColor clearColor]];
                 
                 UIImage *imgTemp=[UIImage imageWithData:[arrBanners objectAtIndex:0]];
-                [backgroundImg setFrame:CGRectMake((320-imgTemp.size.width/2)/2,(235-imgTemp.size.height/2)/2-2.5,imgTemp.size.width/2,imgTemp.size.height/2)];              
-     
+                [backgroundImg setFrame:CGRectMake((320-imgTemp.size.width/2)/2,(235-imgTemp.size.height/2)/2-2.5,imgTemp.size.width/2,imgTemp.size.height/2)];
+                
                 [backgroundImg setImage:[UIImage imageWithData:[arrBanners objectAtIndex:0]]];
                 [backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
                 
             }
 		}
-	}	
+	}
 	if ((isUpdateControlsCalled) && (![arrBanners count]>0))
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CATransition *animation = [CATransition animation]; 
-		[animation setDelegate:self]; 
+		CATransition *animation = [CATransition animation];
+		[animation setDelegate:self];
 		[animation setType: kCATransitionMoveIn];
-		[animation setSubtype:kCATransitionFromTop]; 
-		[animation setDuration:2.0f]; 
+		[animation setSubtype:kCATransitionFromTop];
+		[animation setDuration:2.0f];
 		[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 		[UIView beginAnimations:nil context:context];
 		[[backgroundImg layer] addAnimation:animation forKey:kCATransition];
 		backgroundImg.backgroundColor=[UIColor clearColor];
-      
-		[UIView commitAnimations]; 
+        
+		[UIView commitAnimations];
 	}
 	isUpdateControlsCalled = TRUE;
 }
@@ -293,7 +288,7 @@ BOOL isPromotionalItem;
 		
 		if ((![arrAllData isEqual:[NSNull null]]) && (arrAllData !=nil))
 		{
-			int newFeturedCount=[arrAllData count];
+		    int newFeturedCount=[arrAllData count];
             
             if(newFeturedCount>7){
                 newFeturedCount=7;
@@ -317,29 +312,20 @@ BOOL isPromotionalItem;
 				
 				NSDictionary *dictTemp = [arrAllData objectAtIndex:i];
 				NSString *strImageUrl;
-				NSData *dataBannerImage;
+                
 				
-						
+				//img[i]=[[CustomImageView alloc]initWithFrame:CGRectMake(12, 9, 60, 65)];
+				
 				if ([[dictTemp objectForKey:@"productImages"] count] >0)
 				{
-					strImageUrl = [[[dictTemp objectForKey:@"productImages"] objectAtIndex:0] objectForKey:@"productImageSmallIphone4"];                                     
+					strImageUrl = [[[dictTemp objectForKey:@"productImages"] objectAtIndex:0] objectForKey:@"productImageSmallIphone4"];
                     
-                    img[i] = [[CustomImageView alloc] initWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ServerAPI getImageUrl],strImageUrl]] frame:CGRectMake(12, 9, 60, 65)];
+                    img[i] = [[CustomImageView alloc] initWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ServerAPI getImageUrl],strImageUrl]] frame:CGRectMake(12, 9, 60, 65) isFrom:0];
                     [img[i] setClipsToBounds:YES];
                     [btnBlue[i] addSubview:img[i]];
                     
 				}
-				else 
-				{
-					dataBannerImage =nil;
-				}
                 
-				if (!dataBannerImage)
-				{
-					dataBannerImage =nil; 
-				}
-                
-				
 			    [bottomHorizontalView addSubview:btnBlue[i]];
                 
 				
@@ -349,12 +335,13 @@ BOOL isPromotionalItem;
 				[bottomHorizontalView addSubview:imgBgPrice[i]];
 				
 				
-				if ([_savedPreferences.strPriceBackground isEqualToString:@"null"]) 
+				if ([_savedPreferences.strPriceBackground isEqualToString:@"null"])
 				{
                     
 					[imgBgPrice[i] setBackgroundColor:[UIColor colorWithRed:39.0/255.0 green:39.0/255.0 blue:39.0/255.0 alpha:1]];
                     
-        		}
+                    
+				}
 				else {
 					[imgBgPrice[i] setBackgroundColor:_savedPreferences.searchBgColor];
 				}
@@ -377,7 +364,7 @@ BOOL isPromotionalItem;
                     _savedPreferences.strCurrencySymbol=@"";
                 }
                 
-                if (![[dictTemp objectForKey:@"bTaxable"]isEqual:[NSNull null]])	
+                if (![[dictTemp objectForKey:@"bTaxable"]isEqual:[NSNull null]])
                 {
                     if ([[dictTemp objectForKey:@"bTaxable"] intValue]==1)
                     {
@@ -412,27 +399,29 @@ BOOL isPromotionalItem;
                         [lblPrice[i] setFont:[UIFont boldSystemFontOfSize:9]];
                     }
                 }
-							
+                
                 [lblPrice[i] setText:[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, [ProductPriceCalculation discountedPrice:dictTemp]]];
-  				[lblPrice[i] setTextColor:[UIColor whiteColor]];
+                
+				[lblPrice[i] setTextColor:[UIColor whiteColor]];
 				[bottomHorizontalView addSubview:lblPrice[i]];
+				//x+=102;
 				x+=96;
 			}
 			
 			[bottomHorizontalView setContentSize:CGSizeMake(x, 70)];
-			[GlobalPreferences setGradientEffectOnView:bottomHorizontalView :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :_savedPreferences.searchBgColor]; 
+			[GlobalPreferences setGradientEffectOnView:bottomHorizontalView :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :_savedPreferences.searchBgColor];
 			CGContextRef context = UIGraphicsGetCurrentContext();
-			CATransition *animation = [CATransition animation]; 
-			[animation setDelegate:self]; 
+			CATransition *animation = [CATransition animation];
+			[animation setDelegate:self];
 			[animation setType: kCATransitionPush];
-			[animation setSubtype:kCATransitionFromLeft]; 
-			[animation setDuration:1.0f]; 
+			[animation setSubtype:kCATransitionFromLeft];
+			[animation setDuration:1.0f];
 			[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 			[UIView beginAnimations:nil context:context];
 			[[bottomHorizontalView layer] addAnimation:animation forKey:kCATransition];
-			[UIView commitAnimations]; 
-            
-            // Calling this method again to update aal the images recenlty fetct, if in case, this method has called already
+			[UIView commitAnimations];
+			
+			// Calling this method again to update all the images recenlty fetct, if in case, this method has called already
 			if (isUpdateControlsCalled)
             {
                 [self performSelectorOnMainThread:@selector(updateControls) withObject:nil waitUntilDone:NO];
@@ -458,7 +447,7 @@ BOOL isPromotionalItem;
 	return backgroundImg;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale 
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     // Scale between minimum and maximum. called after any 'bounce' animations
 	if (scale == 1.0)
@@ -478,7 +467,7 @@ BOOL isPromotionalItem;
 #pragma mark - Image Thumbnail selected
 // This method handles the selection of Featured Product
 - (void)imageDetails:(id)sender
-{	
+{
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"popViewController" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"popViewControllerRead" object:nil];
 	
@@ -500,7 +489,7 @@ BOOL isPromotionalItem;
 		stateID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"stateID"]intValue];
 	    countryID=[[[NSUserDefaults standardUserDefaults] valueForKey:@"countryID"]intValue];
 	}
-	else 
+	else
     {
 		countryID=[[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"territoryId"]intValue];
 		NSArray *arrtaxCountries=[[dictSettingsDetails valueForKey:@"store"]valueForKey:@"taxList"];
@@ -526,11 +515,11 @@ BOOL isPromotionalItem;
 	{
         if ([[dictTemp objectForKey:@"categoryId"] intValue]>0)
         {
-            dictDataForCurrentProduct =  [ServerAPI fetchProductsWithCategories:[[dictTemp objectForKey:@"departmentId"] intValue]:[[dictTemp objectForKey:@"categoryId"] intValue]:countryID:stateID:iCurrentStoreId];	
+            dictDataForCurrentProduct =  [ServerAPI fetchProductsWithCategories:[[dictTemp objectForKey:@"departmentId"] intValue]:[[dictTemp objectForKey:@"categoryId"] intValue]:countryID:stateID:iCurrentStoreId];
         }
-        else 
+        else
         {
-            dictDataForCurrentProduct = [ServerAPI fetchProductsWithoutCategories:[[dictTemp objectForKey:@"departmentId"] intValue]:countryID:stateID:iCurrentStoreId];	
+            dictDataForCurrentProduct = [ServerAPI fetchProductsWithoutCategories:[[dictTemp objectForKey:@"departmentId"] intValue]:countryID:stateID:iCurrentStoreId];
         }
 	}
 	else
@@ -561,20 +550,20 @@ BOOL isPromotionalItem;
 
 #pragma mark Search Bar Delegates
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar 
-{  
-    searchBar.showsCancelButton = YES;  
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    searchBar.showsCancelButton = YES;
 	return YES;
-}  
+}
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar 
-{  
-    searchBar.showsCancelButton = NO;  
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    searchBar.showsCancelButton = NO;
 	return YES;
-}  
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{	
+{
 	[searchBar resignFirstResponder];
 	
 	GlobalSearchViewController *_globalSearch = [[GlobalSearchViewController alloc] initWithProductName:searchBar.text];
@@ -599,7 +588,7 @@ BOOL isPromotionalItem;
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
 	// If a valid search was entered but the user wanted to cancel, bring back the main list content
-	searchBar.showsCancelButton = NO; 
+	searchBar.showsCancelButton = NO;
 	[searchBar resignFirstResponder];
 	searchBar.text = @"";
 }
@@ -607,7 +596,7 @@ BOOL isPromotionalItem;
 #pragma mark View Controller Delegates
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
@@ -627,8 +616,7 @@ BOOL isPromotionalItem;
 	[GlobalPreferences addToOpertaionQueue:operationFetchMainData];
 	[operationFetchMainData release];
     
-   
-	 [self performSelector:@selector(createBasicControls) withObject:nil];
+    [self performSelector:@selector(createBasicControls) withObject:nil];
 }
 
 // View For ScrollView and Search Bar
@@ -643,12 +631,22 @@ BOOL isPromotionalItem;
 	lblCart.textColor = [UIColor whiteColor];
 	[self.navigationController.navigationBar addSubview:lblCart];
 	
-	contentView = [[UIView	alloc]initWithFrame:CGRectMake( 0, 0, 320, 370)];
+	contentView = [[UIView	alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 370) chageHieght:NO]];
+    
 	[contentView setBackgroundColor:navBarColor];
 	self.view = contentView;
-	
-	ZoomScrollView = [[EbookScrollView alloc]initWithFrame:CGRectMake(0, 40, 320, 235)];
-	ZoomScrollView.contentSize = CGSizeMake(320, 460);
+	if([GlobalPreferences isScreen_iPhone5])
+    {
+        ZoomScrollView = [[EbookScrollView alloc]initWithFrame:CGRectMake(0, 40+40, 320, 235)];
+        
+        
+    }else{
+        ZoomScrollView = [[EbookScrollView alloc]initWithFrame:CGRectMake(0, 40, 320, 235)];
+        
+        
+    }
+    ZoomScrollView.contentSize = CGSizeMake(320, 460);
+    
 	[ZoomScrollView setBackgroundColor:[UIColor clearColor]];
 	ZoomScrollView.showsHorizontalScrollIndicator = YES;
 	ZoomScrollView.showsVerticalScrollIndicator = YES;
@@ -660,31 +658,36 @@ BOOL isPromotionalItem;
 	ZoomScrollView.pagingEnabled=YES;
 	[ZoomScrollView setUserInteractionEnabled:YES];
 	[contentView addSubview:ZoomScrollView];
-   
     
-   
-	
-    UIView *viewforscrollview = [[UIView alloc] initWithFrame:CGRectMake(0, 266, 320, 101)];
+    
+    UIView *viewforscrollview;
+    viewforscrollview = [[UIView alloc] initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 266, 320, 101) chageHieght:NO]];
+    
+    
 	if(!((_savedPreferences.searchBgColor)||[_savedPreferences.searchBgColor isEqual:[NSNull null]]) )
 	{
-		[GlobalPreferences setGradientEffectOnView:viewforscrollview :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :[UIColor darkGrayColor]]; 
+		[GlobalPreferences setGradientEffectOnView:viewforscrollview :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :[UIColor darkGrayColor]];
 	}
 	else {
-		[GlobalPreferences setGradientEffectOnView:viewforscrollview :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :_savedPreferences.searchBgColor]; 
+		[GlobalPreferences setGradientEffectOnView:viewforscrollview :[UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1] :_savedPreferences.searchBgColor];
 	}
     
 	
     [contentView addSubview:viewforscrollview];
+    bottomHorizontalView.backgroundColor=[UIColor clearColor];
+    
+    
+    
+    bottomHorizontalView=[[UIScrollView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 266, 320, 101) chageHieght:NO]];
+    [bottomHorizontalView setContentSize:CGSizeMake(320, 70)];
+    
 	
-	bottomHorizontalView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 266, 320, 101)];
-	bottomHorizontalView.backgroundColor=[UIColor clearColor];
+    
 	
-	[bottomHorizontalView setContentSize:CGSizeMake(320, 70)];
 	[bottomHorizontalView setShowsHorizontalScrollIndicator:NO];
     [contentView addSubview:bottomHorizontalView];
     [viewforscrollview release];
-	
-	//_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(11,0,309,44)];
+    
     _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,320,44)];
     [GlobalPreferences setSearchBarDefaultSettings:_searchBar];
 	[_searchBar setDelegate:self];
@@ -695,18 +698,10 @@ BOOL isPromotionalItem;
 	[self.navigationController.navigationBar addSubview:viewRemoveLine];
 	[self.navigationController.navigationBar bringSubviewToFront:viewRemoveLine];
 	[viewRemoveLine release];
-	
-	
-	
-	
-    
-	/*UIImageView *imgSearchBar=[[UIImageView alloc]initWithFrame:CGRectMake(-10,0,53,44)];
-     [imgSearchBar setBackgroundColor:navBarColor];
-     [imgSearchBar setImage:[UIImage imageNamed:@"search_new.png"]];
-     [contentView addSubview:imgSearchBar];
-     [imgSearchBar release];
-     */
-	backgroundImg=[[CustomImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 235)];
+	if([GlobalPreferences isScreen_iPhone5])
+        backgroundImg=[[CustomImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 235+40)];
+    else
+        backgroundImg=[[CustomImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 235)];
     backgroundImg.backgroundColor=[UIColor blackColor];
     [ZoomScrollView addSubview:backgroundImg];
     [pool release];
@@ -718,10 +713,10 @@ BOOL isPromotionalItem;
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resignSearchBar) name:@"resignSearchBarFromHome" object:nil];
 	
-	// Setting the current navigation controller in Global preferences 
+	// Setting the current navigation controller in Global preferences
 	[NSThread detachNewThreadSelector:@selector(setCurrentNavigationController:) toTarget:[GlobalPreferences class] withObject:self.navigationController];
     
-
+ 	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isDataInShoppingCartQueue"] == TRUE)
 	{
         // Fetch Shopping Cart Queue from local DB,  (and send it to the server, If internet is available now)
@@ -738,9 +733,8 @@ BOOL isPromotionalItem;
 {
 	[_searchBar resignFirstResponder];
 }
-
 - (void)viewWillAppear:(BOOL)animated
-{ 
+{
 	[super viewWillAppear:animated];
 	
 	
@@ -749,14 +743,14 @@ BOOL isPromotionalItem;
 		[GlobalPreferences setPersonLoginStatus:NO];
 		[self fetchFeaturedProducts];
     }
-	
+	NSLog(@"cart%d",iNumOfItemsInShoppingCart);
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
 	isPromotionalItem=NO;
-	   
+    
     
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -764,7 +758,7 @@ BOOL isPromotionalItem;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -772,9 +766,9 @@ BOOL isPromotionalItem;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
-	for (int i=0; i<15; i++) 
+	for (int i=0; i<15; i++)
     {
 		[btnBlue[i] release];
 		btnBlue[i]=nil;
@@ -816,7 +810,7 @@ BOOL isPromotionalItem;
     [super dealloc];
 }
 
-#pragma mark fetch Shopping Cart Queue 
+#pragma mark fetch Shopping Cart Queue
 
 // Fetch Shopping cart details. These are saved in case Internet is unavailable, once payment has been made succesfully, but before placing/sending the order to the server
 - (void)fetchQueue_ShoppingCart
@@ -825,7 +819,7 @@ BOOL isPromotionalItem;
 	if ((arrShoppingCart_Queue) && ([GlobalPreferences isInternetAvailable]))
 	{
 		if ([arrShoppingCart_Queue count]>0)
-		{	
+		{
 			// Send data to the server, If internet is available now)
 			NSInvocationOperation *operationSendDataToServer= [[NSInvocationOperation alloc]  initWithTarget:self selector:@selector(sendDataToServer:) object:[arrShoppingCart_Queue objectAtIndex:0]];
 			
@@ -837,13 +831,13 @@ BOOL isPromotionalItem;
 
 #pragma mark Send Data To Server
 
-// The data for placing/sending the order to Server, if Internet was Unavailable 
+// The data for placing/sending the order to Server, if Internet was Unavailable
 - (void)sendDataToServer:(NSDictionary *)dictShoppingCartQueueData
-{	
+{
     NSString *strDataToPost = [dictShoppingCartQueueData objectForKey:@"sDataToSend"];
 	NSString *reponseRecieved = [ServerAPI SQLServerAPI:[dictShoppingCartQueueData objectForKey:@"sUrl"] :strDataToPost];
     
-	// Now send data to the server for this recently made order 
+	// Now send data to the server for this recently made order
 	if ([reponseRecieved isKindOfClass:[NSString class]])
 	{
 		int iCurrentOrderId = [[[[[reponseRecieved componentsSeparatedByString:@":"] objectAtIndex:1] componentsSeparatedByString:@"}"] objectAtIndex:0] intValue];
@@ -858,7 +852,8 @@ BOOL isPromotionalItem;
 			
 			if ([GlobalPreferences isInternetAvailable])
 			{
-   
+               	
+				// Delete sold item from the cart
 				[[SqlQuery shared] deleteItemFromIndividualQueue:[[[arrIndividualProducts objectAtIndex:i] objectForKey:@"iProductId"] intValue]];
 				
 				if (([arrIndividualProducts count]-1)==i)
@@ -871,9 +866,9 @@ BOOL isPromotionalItem;
 				}
 			}
 			
-			if (iCurrentOrderId>0) 
+			if (iCurrentOrderId>0)
 			{
-				[ServerAPI product_order_NotifyURLSend:@"Sending Order Number Last Time" :iCurrentOrderId];
+                [ServerAPI product_order_NotifyURLSend:@"Sending Order Number Last Time" :iCurrentOrderId];
 			}
 			else
 			{

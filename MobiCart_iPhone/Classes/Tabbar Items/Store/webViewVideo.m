@@ -13,7 +13,7 @@
 @synthesize strVideo;
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
@@ -23,7 +23,7 @@
 	contentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 372)];
 	[contentView setBackgroundColor:[UIColor blackColor]];
 	self.view=contentView;
-	if ([self.strVideo isEqual:[NSNull null]]) 
+	if ([self.strVideo isEqual:[NSNull null]])
     {
 		self.strVideo=@"http://www.youtube.com/watch?v=CmSCh5ZkMqk&feature=related";
 	}
@@ -40,22 +40,56 @@
 }
 
 - (UIWebView *)embedYouTube:(NSString *)urlString frame:(CGRect)frame {
-	NSString *embedHTML = @"\
+    
+    
+    
+    if([urlString rangeOfString:@"watch?v="].location==NSNotFound)
+    {
+        NSLog(@"not found");
+    }
+    else
+    {
+        
+        if([urlString rangeOfString:@"&"].location==NSNotFound)
+        {
+            NSLog(@"not found");
+        }
+        else
+        {
+            
+            NSRange range = [urlString rangeOfString:@"&"];
+            urlString = [urlString substringToIndex:range.location-1+range.length];
+            
+            NSLog(@"%@",urlString);
+        }
+        
+        
+        urlString= [urlString stringByReplacingOccurrencesOfString:@"watch?v="
+                                                        withString:@"embed/"];
+        
+    }
+    
+    
+    NSLog(@"%@",urlString);
+    
+    NSString *embedHTML = @"\
     <html><head>\
-	<style type=\"text/css\">\
-	body {\
-	background-color: transparent;\
-	color: white;\
-	}\
-	</style>\
-	</head><body style=\"margin:0\">\
-    <embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
-	width=\"%0.0f\" height=\"%0.0f\"></embed>\
+    <style type=\"text/css\">\
+    body {\
+    background-color: transparent;\
+    color: white;\
+    }\
+    </style>\
+    </head><body style=\"margin:0\">\
+    <iframe width=\"260\" height=\"120\"src=\"%@\" frameborder=\"0\" allowfullscreen\
+    ></iframe>\
     </body></html>";
-	NSString *html = [NSString stringWithFormat:embedHTML, urlString, frame.size.width, frame.size.height];
-	videoWeb = [[UIWebView alloc] initWithFrame:frame];
-	[videoWeb loadHTMLString:html baseURL:nil];
-	return videoWeb;
+    NSString *html = [NSString stringWithFormat:embedHTML, urlString];
+    videoWeb = [[UIWebView alloc] initWithFrame:frame];
+    [videoWeb loadHTMLString:html baseURL:nil];
+    return videoWeb;
+    
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -71,7 +105,7 @@
 	[[self navigationController]popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -79,7 +113,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -87,7 +121,7 @@
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	[contentView release];
 	contentView=nil;

@@ -14,7 +14,7 @@
 @interface MobicartAppAppDelegate : NSObject <UIApplicationDelegate,CLLocationManagerDelegate, UITabBarControllerDelegate, UINavigationControllerDelegate> 
 {
     UIWindow *window;
-    MobicartAppViewController *viewController;
+    MobicartAppViewController *viewControllery;
 	UITabBarController *tabController;
 	NSArray *arrAllData;
 	CLLocationManager *userLocation;

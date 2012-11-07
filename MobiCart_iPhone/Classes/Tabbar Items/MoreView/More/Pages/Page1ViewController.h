@@ -10,7 +10,7 @@
 
 
 @interface Page1ViewController : UIViewController<UIWebViewDelegate> {
-
+    
 	UILabel *aboutDetailLblText;
     UIWebView *aboutDetailLbl;
 	NSArray *arrAllData;
