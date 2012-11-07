@@ -47,27 +47,26 @@ extern int controllersCount;
 	[pool release];
 }
 
-- (void)viewWillAppear:(BOOL)animated 
-{ 
+- (void)viewWillAppear:(BOOL)animated
+{ [NSThread detachNewThreadSelector:@selector(showLoadingbar) toTarget:self withObject:nil];
 	[super viewWillAppear:animated];
 	if(controllersCount>5)
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
-	
-	[self addCartButtonAndLabel];
-    
+	//[self performSelectorInBackground:@selector(addCartButtonAndLabel) withObject:nil];
+	//[self addCartButtonAndLabel];
 	[GlobalPreferences setCurrentNavigationController:self.navigationController];
     
     NSInvocationOperation *operationFetchDataFromServer= [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchDataFromServer) object:nil];
 	[GlobalPreferences addToOpertaionQueue:operationFetchDataFromServer];
 	[operationFetchDataFromServer release];
 	
-	UIView *contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
+	UIView *contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 	contentView.backgroundColor=[UIColor colorWithRed:200.0/256 green:200.0/256 blue:200.0/256 alpha:1];
 	contentView.tag = 101010;
 	[GlobalPreferences setGradientEffectOnView:contentView:[UIColor whiteColor]:contentView.backgroundColor];
 	self.view=contentView;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 350)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30, 320, 350) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
@@ -89,14 +88,10 @@ extern int controllersCount;
 	[viewTopBar addSubview:aboutLbl];
 	[aboutLbl release];
 	
-	
-    if(controllersCount<=5)
-        contentScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0,30, 320,330)];
-    else
-        contentScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0,30, 320,330)];
+	//contentScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0,40, 320,318)];
+    
+    contentScrollView=[[UIScrollView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30, 320,330) chageHieght:YES]];
 	[contentScrollView setBackgroundColor:[UIColor clearColor]];
-	[contentScrollView setContentSize:CGSizeMake(320, 340)];
-	[contentView addSubview:contentScrollView];
 	
 	aboutDetailLblText=[[UILabel alloc]initWithFrame:CGRectMake( 10, 0, 305, 50)];
 	aboutDetailLblText.textColor=_savedPreferences.labelColor;
@@ -108,17 +103,20 @@ extern int controllersCount;
 	[contentScrollView addSubview:aboutDetailLblText];
 	
     
-    aboutDetailLbl=[[UIWebView alloc]initWithFrame:CGRectMake(5,5, 320,330)];
+    aboutDetailLbl=[[UIWebView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(5,5, 310,330) chageHieght:YES]];
     [aboutDetailLbl setOpaque:0];
     
 	[aboutDetailLbl setBackgroundColor:[UIColor clearColor]];
     aboutDetailLbl.dataDetectorTypes= UIDataDetectorTypeAll;
     aboutDetailLbl.delegate=self;
-   
+    
     [contentScrollView addSubview:aboutDetailLbl];
-
-	[contentScrollView setContentSize:CGSizeMake(320, 330)];
-	
+	if([GlobalPreferences isScreen_iPhone5])
+        [contentScrollView setContentSize:CGSizeMake(320, 330+88)];
+    else
+        [contentScrollView setContentSize:CGSizeMake(320, 330)];
+	[contentView addSubview:contentScrollView];
+    
 	[contentView release];
     
     
@@ -133,7 +131,7 @@ extern int controllersCount;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"addCartButton" object:nil];
     
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
     {
 		if (([view isKindOfClass:[UIButton class]]) || ([view isKindOfClass:[UILabel class]]))
         {
@@ -144,7 +142,7 @@ extern int controllersCount;
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
@@ -169,21 +167,26 @@ extern int controllersCount;
 
 #pragma mark updateControls
 - (void)updateControls
-{  
-   
-	if ([arrAllData count] >0) 
+{
+    
+	if ([arrAllData count] >0)
 	{
 		NSDictionary *dictTemp = [arrAllData objectAtIndex:0];
 		if ((![[dictTemp objectForKey:@"sDescription"] isEqualToString:@""]) && (![[dictTemp objectForKey:@"sDescription"] isEqual:[NSNull null]]))
 		{
 			aboutDetailLblText.hidden=YES;
-      
+            //[dictTemp objectForKey:@"sDescription"];
+			
+            // strnew = [NSString stringWithFormat:@"<html><head><style type='text/css'>body { color:%@;}</style></head><body><font face='Helvetica' size=2.55>%@</font></body></html>",_savedPreferences.strHexadecimalColor, [dictTemp objectForKey:@"sDescription"]];
             NSString * htmlString = [NSString stringWithFormat:@"<html><head><script> document.ontouchmove = function(event) { if (document.body.scrollHeight == document.body.clientHeight) event.preventDefault(); } </script><style type='text/css'>* { margin:0; padding:0; } p { color:%@; font-family:Helvetica; font-size:14px; } a { color:%@; text-decoration:none; }</style></head><body><p>%@</p></body></html>", _savedPreferences.strHexadecimalColor,_savedPreferences.subHeaderColor,[dictTemp objectForKey:@"sDescription"]];
             
-           
+            
             
             [aboutDetailLbl loadHTMLString:htmlString baseURL:nil];
-         [contentScrollView setContentSize:CGSizeMake(320, 360)];
+            if([GlobalPreferences isScreen_iPhone5])
+                [contentScrollView setContentSize:CGSizeMake(320, 360+88)];
+            else
+                [contentScrollView setContentSize:CGSizeMake(320, 360)];
 		}
 		else
 		{
@@ -204,7 +207,7 @@ extern int controllersCount;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -212,8 +215,8 @@ extern int controllersCount;
 }
 
 
-- (void)dealloc 
-{   
+- (void)dealloc
+{
 	
 	[contentScrollView release];
 	[aboutDetailLbl release];
@@ -224,15 +227,15 @@ extern int controllersCount;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 
 {
-   
     
-   
+    
+    
     
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-   
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     [NSThread detachNewThreadSelector:@selector(showLoadingbar) toTarget:self withObject:nil];
@@ -241,9 +244,9 @@ extern int controllersCount;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-     
-    aboutDetailLbl.scalesPageToFit=YES; 
-   
+    
+    aboutDetailLbl.scalesPageToFit=YES;
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     [NSThread detachNewThreadSelector:@selector(hideIndicator1) toTarget:self withObject:nil];
@@ -258,7 +261,7 @@ extern int controllersCount;
 
 
 - (void)showLoadingbar
-{   
+{
 	if (!loadingActionSheet1.superview)
     {
         loadingActionSheet1 = [[UIActionSheet alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.LoaderText"] delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
@@ -268,7 +271,7 @@ extern int controllersCount;
     }
     
 	
-}	
+}
 
 -(void)hideIndicator1
 

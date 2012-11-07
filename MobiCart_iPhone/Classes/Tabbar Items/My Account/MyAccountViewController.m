@@ -20,7 +20,7 @@ BOOL isAccount;
 @implementation MyAccountViewController
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
@@ -33,10 +33,10 @@ BOOL isAccount;
 -(void)updateDataForCurrent_Navigation_And_View_Controller
 {
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
-}	
+}
 
-- (void)viewWillAppear:(BOOL)animated 
-{ 
+- (void)viewWillAppear:(BOOL)animated
+{
 	[super viewWillAppear:animated];
 	
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
@@ -64,9 +64,9 @@ BOOL isAccount;
 			[tableView setFrame:CGRectMake(10,40, 300,190)];
 			[showArray addObject:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.myaccount.logout"]];
 			[tableView reloadData];
-        }    
+        }
     }
-	else 
+	else
     {
 		[tableView setFrame:CGRectMake(10,40, 300,140)];
 	}
@@ -78,7 +78,7 @@ BOOL isAccount;
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
@@ -90,11 +90,11 @@ BOOL isAccount;
 	lblCart.textColor = [UIColor whiteColor];
 	[self.navigationController.navigationBar addSubview:lblCart];
 	
-	contentView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320,480)];
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320,480) chageHieght:YES]];
 	contentView.backgroundColor=[UIColor colorWithRed:200.0/256 green:200.0/256 blue:200.0/256 alpha:1];
 	self.view=contentView;
 	
-	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 27,320,350)];
+	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 27,320,350) chageHieght:YES]];
 	[imgContentView setBackgroundColor:[UIColor clearColor]];
 	[imgContentView setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgContentView];
@@ -193,7 +193,7 @@ BOOL isAccount;
 
 - (void)tableView:(UITableView*)tableview didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	switch (indexPath.row) 
+	switch (indexPath.row)
 	{
 		case 0:
 		{
@@ -223,7 +223,7 @@ BOOL isAccount;
 				[_details release];
 			}
 			else
-			{				
+			{
 				OrderHistroyViewController *objOrder=[[OrderHistroyViewController alloc]init];
 				[self.navigationController pushViewController:objOrder animated:YES];
 				[objOrder release];
@@ -244,7 +244,7 @@ BOOL isAccount;
 	}
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -259,7 +259,7 @@ BOOL isAccount;
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc 
+- (void)dealloc
 {
 	[contentView release];
 	contentView=nil;

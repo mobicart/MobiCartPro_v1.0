@@ -48,7 +48,7 @@
 	[self.view addSubview:lblNoReview];
 	[lblNoReview release];
 }
-	
+
 
 
 - (void)setLabelNames:(NSDictionary *)dictProduct
@@ -76,23 +76,30 @@
 	
     self.arrReviews = [[NSArray alloc] initWithArray:[dictProductDetails valueForKey:@"productReviews"]];
 	
-	if ([self.arrReviews count]) 
+	if ([self.arrReviews count])
 	{
 		if(tblReviews)
 			[tblReviews removeFromSuperview];
 		
-		tblReviews = [[UITableView alloc]initWithFrame:CGRectMake(-10,57, 345,296) style:UITableViewStyleGrouped];
+		tblReviews = [[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(-10,57, 345,296) chageHieght:YES] style:UITableViewStyleGrouped];
 		[tblReviews setDelegate:self];
 		[tblReviews setDataSource:self];
 		[tblReviews setTag:12321];
 		[tblReviews setBackgroundColor:[UIColor clearColor]];
+        tblReviews.backgroundView=nil;
 		[self.view addSubview:tblReviews];
 		[tblReviews setSeparatorColor:[UIColor darkGrayColor]];
         [tblReviews reloadData];
 		[self.view bringSubviewToFront:[self.view viewWithTag:11111]];
 		
+		
+		/*UITableView *_tableView = (UITableView *) [self.view viewWithTag:12321];
+         if (_tableView)
+         {
+         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+         }*/
 	}
-	else 
+	else
     {
         [self performSelectorOnMainThread:@selector(addNoReviewLabel) withObject:nil waitUntilDone:YES];
     }
@@ -119,7 +126,7 @@
             rating = [[[dictProducts valueForKey:@"product"]valueForKey:@"fAverageRating"] floatValue];
         }
     }
-		
+    
 	float tempRating;
 	tempRating=floor(rating);
 	tempRating=rating-tempRating;
@@ -156,7 +163,7 @@
         {
             iLastStarValue = iTemp + 1;
         }
-			       
+        
         viewRatingBGMain[iLastStarValue] = [[[UIView  alloc] initWithFrame:CGRectMake(0, 0, tempRating * 20, 20)] autorelease];
         viewRatingBGMain[iLastStarValue].clipsToBounds = TRUE;
         [imgRatingsTempMain[iLastStarValue] addSubview:viewRatingBGMain[iLastStarValue]];
@@ -169,7 +176,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
 	
-	isReadReviews=NO;	
+	isReadReviews=NO;
 }
 
 - (void)popViewRoot
@@ -177,16 +184,16 @@
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popViewRoot) name:@"popViewControllerRead" object:nil];
-
+    
 	
-	self.view.backgroundColor=navBarColor;
+    self.view.backgroundColor=navBarColor;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,60, 320,480)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,60, 320,480) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[self.view addSubview:imgBg];
 	[imgBg release];
@@ -195,7 +202,7 @@
 	
 	UIView *viewProductNameBar=[[UIView alloc]initWithFrame:CGRectMake(0,0, 320, 31)];
 	[viewProductNameBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
- 	[self.view addSubview:viewProductNameBar];	
+ 	[self.view addSubview:viewProductNameBar];
     
     lblProductName=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 310, 25)];
 	[lblProductName setBackgroundColor:[UIColor clearColor]];
@@ -203,7 +210,7 @@
 	[lblProductName setFont:[UIFont boldSystemFontOfSize:12]];
 	[viewProductNameBar addSubview:lblProductName];
 	
-
+    
     UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0,29 ,320 ,40)];
    	[viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bar.png"]]];
     [viewTopBar setTag:11111];
@@ -237,17 +244,17 @@
 		[self.navigationController pushViewController:_details animated:YES];
 		[_details release];
 	}
-	else 
+	else
 	{
 		PostReviewsViewController *objPost = [[PostReviewsViewController alloc] init];
 		[self.navigationController pushViewController:objPost animated:YES];
 		objPost.productId =productId;
 		[objPost release];
 	}
-}	
+}
 
 - (void)back
-{    
+{
 	isReadReviews=NO;
 	
 	[[self navigationController]popViewControllerAnimated:YES];
@@ -289,13 +296,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.arrReviews count];	
+	return [self.arrReviews count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *CellIdentifier =[NSString stringWithFormat:@"Cell%d",indexPath.row];
-
+    
 	TableViewCell_Common *cell =  (TableViewCell_Common *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (cell==nil)
@@ -322,11 +329,11 @@
 		
 		CGSize titleSize = [titleString sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:14.0] constrainedToSize:CGSizeMake(300, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
 		CGSize detailSize = [detailString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0] constrainedToSize:CGSizeMake(300, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-	
+        
 		UIImageView *imgCellBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,320,detailSize.height+titleSize.height+37)];
 		[imgCellBackground setImage:[UIImage imageNamed:@"shoppingcart_bar_stan.png"]];
 		[imgCellBackground setTag:121212];
-       [cell setBackgroundView:imgCellBackground];
+        [cell setBackgroundView:imgCellBackground];
 		[imgCellBackground release];
 		NSString *strText = [[self.arrReviews objectAtIndex:indexPath.row] valueForKey:@"sReview"];
 		if ([strText isEqualToString:@"(null)"])
@@ -351,7 +358,7 @@
 		[lblName setBackgroundColor:[UIColor clearColor]];
 		[lblName setNumberOfLines:0];
 		lblName.text = [NSString stringWithFormat:@"%@ %@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.read.reviews.by"] , [[self.arrReviews objectAtIndex:indexPath.row] objectForKey:@"sReveiwerName"]];
-		lblName.font =[UIFont fontWithName:@"Helvetica-Bold" size:13.0];	
+		lblName.font =[UIFont fontWithName:@"Helvetica-Bold" size:13.0];
 		[cell addSubview:lblName];
 		
 		CGSize size1=[strText sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0] constrainedToSize:CGSizeMake(300, MAXFLOAT)];
@@ -359,7 +366,7 @@
 		[lblDetail setBackgroundColor:[UIColor clearColor]];
 		lblDetail.text = strText;
 		lblDetail.textColor = _savedPreferences.labelColor;
-
+        
 		lblDetail.font =[UIFont fontWithName:@"Helvetica" size:12.0];
 		
 		lblDetail.numberOfLines = ceilf([strText sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0] constrainedToSize:CGSizeMake(300, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap].height/20.0);
@@ -375,7 +382,7 @@
 		int yValueCell=0;
 		
 		for(int i = 0; i < 5; i++)
-		{   
+		{
 			yValueCell=[[yValue objectAtIndex:indexPath.row]intValue];
 			imgRatings[i] =[[UIImageView alloc] initWithFrame:CGRectMake(xValue,yValueCell+2,15,15)];
 			
@@ -393,14 +400,14 @@
 			
 			xValue +=18;
 		}
-	}		
+	}
 	
-
+    
     return cell;
 }
 
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -408,20 +415,16 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
-	//[]
-	
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
-- (void)dealloc 
-{   
+- (void)dealloc
+{
 	isReadReviews=NO;
-
+    
 	[lblProductName release];
 	[arrReviews release];
     [lblReviewCount release];

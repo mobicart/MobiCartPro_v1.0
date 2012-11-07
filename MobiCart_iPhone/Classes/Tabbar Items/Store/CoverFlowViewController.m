@@ -14,13 +14,13 @@
 @synthesize PickerPopover;
 @synthesize arrImages, dataForProductImage,tempdic;
 
-- (void)displayProductImage:(NSMutableArray *)arrImagesUrls picToShowAtAIndex:(NSInteger)_picNum 
+- (void)displayProductImage:(NSMutableArray *)arrImagesUrls picToShowAtAIndex:(NSInteger)_picNum
 {
 	if ([arrImagesUrls count]==0)
 	{
 		dataForProductImage = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"noImage_M" ofType:@"png"]];
 	}
-	else 
+	else
 	{
 		dataForProductImage = [ServerAPI fetchBannerImage:[[arrImages objectAtIndex:_picNum] objectForKey:@"productImageCoverFlowIpad"]];
 	}
@@ -44,14 +44,12 @@
     [super viewDidLoad];
     self.navigationItem.titleView = [GlobalPreferences createLogoImage];
     
-    //    [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(callbutton) userInfo:nil repeats:NO];
-    
-    coverflowBackView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
+    coverflowBackView=[[UIView alloc] initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320, 400) chageHieght:YES]];
     coverflowBackView.backgroundColor=[UIColor blackColor];
     [self.view addSubview:coverflowBackView];
     
     
-    viewAF=[[AFOpenFlowView alloc]initWithFrame:CGRectMake(0,-15,320,400)];
+    viewAF=[[AFOpenFlowView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,-15,320,400) chageHieght:YES]];
 	viewAF.dataSource=self;
 	viewAF.viewDelegate=self;
 	[coverflowBackView addSubview:viewAF];
@@ -95,7 +93,7 @@
     for(int j=0;j<[arrImages  count];j++)
 	{
         [self displayProductImage:arrImages picToShowAtAIndex:j];
-       UIImage *result=[UIImage  imageWithData:dataForProductImage];
+        UIImage *result=[UIImage  imageWithData:dataForProductImage];
         // UIImage *result=[UIImage imageNamed:@"cover_4.jpg"];
         [viewAF setImage:result forIndex:j];
         
@@ -112,11 +110,11 @@
     [self displayProductImage:arrImages picToShowAtAIndex:index];
 }
 -(void)viewWillAppear:(BOOL)animated
-{        
-	[NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(hideIndicator) userInfo:nil repeats:YES];	
+{
+	[NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(hideIndicator) userInfo:nil repeats:YES];
 	[self performSelectorOnMainThread:@selector(hideIndicator) withObject:nil waitUntilDone:NO];
     
-}	
+}
 
 -(void)hideIndicator
 
@@ -128,5 +126,5 @@
     }
 	
 	
-}	
+}
 @end

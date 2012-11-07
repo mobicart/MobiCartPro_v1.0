@@ -17,9 +17,9 @@
 @implementation StoreViewController
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         // Custom initialization
 		[self.tabBarItem setTitle:@"Account"];
@@ -30,13 +30,13 @@
 
 #pragma mark -
 - (void)viewWillAppear:(BOOL)animated
-{ 
+{
 	[super viewWillAppear:animated];
 	
 	categoryCount=0;
     
     isStoreSearch=NO;
-
+    
 	if(isCatogeryEmpty==YES)
     {
         isCatogeryEmpty=NO;
@@ -73,7 +73,7 @@
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
 }
 
-#pragma mark - 
+#pragma mark -
 - (void)updateDataForCurrent_Navigation_And_View_Controller
 {
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
@@ -85,7 +85,7 @@
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resignSearchBar) name:@"resignSearchBarFromStore" object:nil];
 	
@@ -102,13 +102,12 @@
 	lblCart.textColor = [UIColor whiteColor];
 	[self.navigationController.navigationBar addSubview:lblCart];
 	
-	contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
-
-	self.view=contentView;
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396)chageHieght:YES]];
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 396)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30, 320, 396) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
+    self.view=contentView;
 	[imgBg release];
 	
 	if(![GlobalPreferences isInternetAvailable])
@@ -122,10 +121,11 @@
 	{
 		_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,
 																  320 ,44)];
-		[GlobalPreferences setSearchBarDefaultSettings:_searchBar];	
+		[GlobalPreferences setSearchBarDefaultSettings:_searchBar];
 		[_searchBar setDelegate:self];
 		[_searchBar setTag:1001];
 		[contentView addSubview:_searchBar];
+        
 		UIView *viewRemoveLine = [[UIView alloc] initWithFrame:CGRectMake( 0, 43, 320,1)];
 		[viewRemoveLine setBackgroundColor:self.navigationController.navigationBar.tintColor];
 		[self.navigationController.navigationBar addSubview:viewRemoveLine];
@@ -134,7 +134,7 @@
 		[self allocateMemoryToObjects];
 		
 		[self createTableView];
-				
+        
 		UIView *selectDeptView=[[UIView alloc]initWithFrame:CGRectMake(0,44, 320, 28)];
 		[contentView addSubview:selectDeptView];
 		[selectDeptView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"select_dept_bar.png"]]];
@@ -166,42 +166,42 @@
     {
         showArray=[[NSMutableArray alloc]init];
     }
-		
+    
 	if(!showNoArray)
     {
         showNoArray=[[NSMutableArray alloc]init];
     }
-		
+    
 	if(!arrDeptIDs)
     {
         arrDeptIDs = [[NSMutableArray alloc] init];
     }
-		
+    
 	if(!showArray_Searched)
     {
         showArray_Searched=[[NSMutableArray alloc]init];
     }
-		
+    
 	if(!showNoArray_Searched)
     {
         showNoArray_Searched=[[NSMutableArray alloc]init];
     }
-		
+    
 	if(!arrDeptIDs_Searched)
     {
         arrDeptIDs_Searched = [[NSMutableArray alloc] init];
     }
-		
+    
 	if(!arrNumberofProducts)
     {
         arrNumberofProducts=[[NSMutableArray alloc]init];
     }
-		
+    
 	if(!arrNumberofProducts_Search)
     {
         arrNumberofProducts_Search=[[NSMutableArray alloc]init];
     }
-		
+    
 }
 
 BOOL isTryingSecondTime;
@@ -240,7 +240,7 @@ BOOL isTryingSecondTime;
 		else
 		{
 			if (!isTryingSecondTime)
-			{ 
+			{
 				NSLog (@"No Data Available for this Store (StoreViewContoller)  --> TRYING AGAIN TO FETCH DATA ");
 				isTryingSecondTime = TRUE;
 				[self fetchDataFromServer];
@@ -251,7 +251,7 @@ BOOL isTryingSecondTime;
             }
 		}
 	}
-	else 
+	else
 	{
 		NSLog(@"No Data Returned from server (StoreViewContoller)");
 	}
@@ -270,12 +270,13 @@ BOOL isTryingSecondTime;
 		[tableView release];
 		tableView=nil;
 	}
-	tableView=[[UITableView alloc]initWithFrame:CGRectMake(0,70, 320, 295) style:UITableViewStylePlain];
+	tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,70, 320, 295) chageHieght:YES] style:UITableViewStylePlain];
 	tableView.delegate=self;
 	tableView.dataSource=self;
    	
 	tableView.showsVerticalScrollIndicator = FALSE;
-	[tableView setBackgroundColor:[UIColor clearColor]];
+	tableView.backgroundView=nil;
+    tableView.backgroundColor=[UIColor clearColor];
 	[tableView setSeparatorStyle:UITableViewCellSelectionStyleNone];
 	[contentView addSubview:tableView];
 }
@@ -307,7 +308,7 @@ BOOL isTryingSecondTime;
 {
 	NSString *SimpleTableIdentifier = [NSString stringWithFormat:@"SimpleTableIdentifier%d", indexPath.row];
 	UITableViewCell *cell= [tableview dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
-
+    
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: SimpleTableIdentifier]autorelease];
 		
@@ -326,7 +327,7 @@ BOOL isTryingSecondTime;
 	[lblTitle setBackgroundColor:[UIColor clearColor]];
 	[cell addSubview:lblTitle];
 	UILabel *lblQyantity = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 46, 28)];
-	UIImageView *cellImage =[[UIImageView alloc]initWithFrame:CGRectMake(232, 13, 46, 28)];                                 
+	UIImageView *cellImage =[[UIImageView alloc]initWithFrame:CGRectMake(232, 13, 46, 28)];
 	cellImage.image  = [UIImage imageNamed:@"oval_shape.png"];
 	
 	if ([[showNoArray_Searched objectAtIndex:indexPath.row]intValue]==0)
@@ -347,7 +348,7 @@ BOOL isTryingSecondTime;
 	[lblQyantity setTextAlignment:UITextAlignmentCenter];
 	[lblQyantity setBackgroundColor:[UIColor clearColor]];
 	[lblQyantity setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13]];
-	lblQyantity.textColor = _savedPreferences.headerColor;        
+	lblQyantity.textColor = _savedPreferences.headerColor;
 	[cell addSubview:cellImage];
 	
 	[cellImage addSubview:lblQyantity];
@@ -368,10 +369,10 @@ BOOL isTryingSecondTime;
         }
 	}
 	else
-    {  
+    {
         lblTitle.text=@"";
         lblTitle.text=[NSString stringWithFormat:@"%@", [showArray_Searched objectAtIndex:indexPath.row]];
-        }
+    }
 	[lblTitle release];
 	UIImageView *imgViewCellAcccesory=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow.png"]];
 	[cell setAccessoryView:imgViewCellAcccesory];
@@ -390,7 +391,7 @@ BOOL isTryingSecondTime;
 	if([[showNoArray_Searched objectAtIndex:indexPath.row]intValue]==0)
 	{
 		if([[arrNumberofProducts_Search objectAtIndex:indexPath.row]intValue]>0)
-		{			
+		{
 			
 			ProductViewController *objProducts = [[ProductViewController alloc]init];
 			isCatogeryEmpty=YES;
@@ -400,12 +401,12 @@ BOOL isTryingSecondTime;
 			[objProducts release];
 		}
 	}
-	else 
+	else
     {
 		CategoryViewController *objCategory = [[CategoryViewController alloc]init];
 		isCatogeryEmpty=NO;
         objCategory.categoryId=0;
-    
+        
 		// Hide keyboard, if visible, when navigating to the next view controller
 		UISearchBar *searchbar = (UISearchBar *)[contentView viewWithTag:1001];
 		if([searchbar isFirstResponder])
@@ -421,22 +422,22 @@ BOOL isTryingSecondTime;
 }
 
 #pragma mark Search Bar Delegates
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar 
-{  
-    searchBar.showsCancelButton = YES;  
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    searchBar.showsCancelButton = YES;
 	isStoreSearch=YES;
 	return YES;
-}  
+}
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar 
-{  
-    searchBar.showsCancelButton = NO;  
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    searchBar.showsCancelButton = NO;
 	isStoreSearch=NO;
 	return YES;
-}  
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{	
+{
 	[_searchBar resignFirstResponder];
 	isStoreSearch=NO;
 }
@@ -459,7 +460,7 @@ BOOL isTryingSecondTime;
 	[showNoArray_Searched removeAllObjects];
 	[arrNumberofProducts_Search removeAllObjects];
     [tableView reloadData];
-
+    
 	if ([searchText isEqualToString:@""] || searchText==nil)
 	{
 		[showArray_Searched addObjectsFromArray:showArray];
@@ -489,7 +490,7 @@ BOOL isTryingSecondTime;
 		[pool release];
 	}
 	[tableView reloadData];
-   
+    
 }
 
 // Called when cancel button pressed
@@ -511,14 +512,14 @@ BOOL isTryingSecondTime;
 	{
 		
 	}
-	searchBar.showsCancelButton = NO; 
+	searchBar.showsCancelButton = NO;
 	[searchBar resignFirstResponder];
 	searchBar.text = @"";
 }
 
 #pragma mark -
 #pragma mark Memory Management
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -526,7 +527,7 @@ BOOL isTryingSecondTime;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -534,7 +535,7 @@ BOOL isTryingSecondTime;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	[showArray release];
 	showArray=nil;
@@ -551,7 +552,7 @@ BOOL isTryingSecondTime;
     if(arrDeptIDs)
     {
         [arrDeptIDs release];
-    }	
+    }
     [super dealloc];
 }
 

@@ -16,11 +16,11 @@ extern UIScrollView *ZoomScrollView;
 extern UIImageView* backgroundImg;
 BOOL moveON;
 
-@interface EbookScrollView : UIScrollView 
+@interface EbookScrollView : UIScrollView
 {
 	int imgNumber;
 	int startX;
-	int startY;	
+	int startY;
 	int currentY;
 	int currentX;
 	BOOL isMoved;

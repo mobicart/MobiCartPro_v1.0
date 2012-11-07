@@ -18,21 +18,22 @@ extern BOOL isOrderLogin;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateLabelAccount" 
-                                          object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateLabelAccount"
+                                                        object:nil];
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
 	isOrderLogin=NO;
 	
-	contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
+	//contentView.backgroundColor=navBarColor;
 	self.view = contentView;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 396)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
@@ -46,7 +47,7 @@ extern BOOL isOrderLogin;
 	[self performSelectorOnMainThread:@selector(createTableView) withObject:nil waitUntilDone:YES];
 	
 	UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320,40)];
-	[viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]]; 	
+	[viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
 	[viewTopBar setTag:1010101010];
 	[contentView addSubview:viewTopBar];
 	
@@ -68,8 +69,8 @@ extern BOOL isOrderLogin;
     {
         self.arrAllOrderHistory = [[NSArray alloc] init];
     }
-		
-	self.arrAllOrderHistory = [[ServerAPI fetchOrderDetails:[GlobalPreferences getUserDefault_Preferences:@"userEmail"]:iCurrentAppId:iCurrentStoreId] objectForKey:@"product-orders"]; 
+    
+	self.arrAllOrderHistory = [[ServerAPI fetchOrderDetails:[GlobalPreferences getUserDefault_Preferences:@"userEmail"]:iCurrentAppId:iCurrentStoreId] objectForKey:@"product-orders"];
 	
 	if(![self.arrAllOrderHistory isEqual:[NSNull null]])
 	{
@@ -79,12 +80,12 @@ extern BOOL isOrderLogin;
             {
                 [tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
             }
-			else 
+			else
             {
 				[self performSelectorOnMainThread:@selector(createTableView) withObject:nil waitUntilDone:YES];
 			}
 		}
-		else 
+		else
         {
             NSLog (@"No Order History Available for this Buyer (OrderHistoryViewContoller)");
         }
@@ -101,17 +102,18 @@ extern BOOL isOrderLogin;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	[self.navigationController popViewControllerAnimated:YES];
-}	
+}
 
 - (void)createTableView
 {
 	if([self.arrAllOrderHistory count]>0)
 	{
 		if(!tableView)
-		{		
-			tableView=[[UITableView alloc]initWithFrame:CGRectMake( 0, 40, 320, 335) style:UITableViewStylePlain];
+		{
+			tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 40, 320, 335) chageHieght:YES]style:UITableViewStylePlain];
 			tableView.delegate=self;
 			tableView.dataSource=self;
+            tableView.backgroundView=nil;
 			tableView.showsVerticalScrollIndicator = FALSE;
 			[tableView setBackgroundColor:[UIColor clearColor]];
 			[tableView setSeparatorColor:[UIColor clearColor]];
@@ -119,9 +121,9 @@ extern BOOL isOrderLogin;
 		}
         
 		//Removing label, if Data returned
-		for (UILabel *lbl in [contentView subviews]) 
+		for (UILabel *lbl in [contentView subviews])
         {
-			if ([lbl isKindOfClass:[UILabel class]]) 
+			if ([lbl isKindOfClass:[UILabel class]])
             {
 				if([lbl.text isEqualToString:@"There are no items in order history"])
                 {
@@ -203,7 +205,7 @@ extern BOOL isOrderLogin;
 		[cell addSubview:lblOrderText];
 		[lblOrderText release];
 		
-			
+        
 		UILabel *lblOrderProcessTitle = [[UILabel alloc]initWithFrame:CGRectMake(40,45,120,20)];
 		lblOrderProcessTitle.backgroundColor=[UIColor clearColor];
 		[lblOrderProcessTitle setTextAlignment:UITextAlignmentLeft];
@@ -215,7 +217,7 @@ extern BOOL isOrderLogin;
 		[cell addSubview:lblOrderProcessTitle];
 		[lblOrderProcessTitle release];
 		
-				
+        
 		UILabel *showOrderTotalText = [[UILabel alloc]initWithFrame:CGRectMake(40, 65, 120, 20)];
 		showOrderTotalText .backgroundColor=[UIColor clearColor];
 		[showOrderTotalText setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.history.order.total"]]];
@@ -248,24 +250,24 @@ extern BOOL isOrderLogin;
     			
 				
 				if(!([[[arrAllOrderHistory objectAtIndex:indexPath.row]valueForKey:@"sStatus"] isEqual:[NSNull null]]))
-				{   
+				{
 					if([strOrderStatus isEqualToString:@"pending"])
 					{
-                      strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.pending"]];
-        
-					}					
+                        strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.pending"]];
+                        
+					}
 					else if([strOrderStatus isEqualToString:@"completed"])
 					{
-					 strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.completed"]];
+                        strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.completed"]];
 			 		}
 					else if([strOrderStatus isEqualToString:@"cancel"])
 					{
-					 strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.cancelled"]];
-					}                    
-					else 
+                        strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.cancelled"]];
+					}
+					else
 					{
-					strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.processing"]];
-					}		
+                        strOrderStatus= [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.status.processing"]];
+					}
                     UILabel *lblOrderStatus = [[UILabel alloc]initWithFrame:CGRectMake(150,45,150,20)];
                     lblOrderStatus.text=[NSString stringWithFormat:@"%@",strOrderStatus];
                     lblOrderStatus .backgroundColor=[UIColor clearColor];
@@ -277,37 +279,37 @@ extern BOOL isOrderLogin;
                     [cell addSubview:lblOrderStatus];
                     [lblOrderStatus release];
                     
-		                  
-				}	
+                    
+				}
 				
-				else 
+				else
 				{
-				               
+                    
 				}
 				
 				if(!([[[arrAllOrderHistory objectAtIndex:indexPath.row]valueForKey:@"formattedOrderDate"] isEqual:[NSNull null]]))
 				{
-					[lblShowDateText setText:[NSString stringWithFormat:@"%@",strOrderDate]];			
-				}	
-				else 
+					[lblShowDateText setText:[NSString stringWithFormat:@"%@",strOrderDate]];
+				}
+				else
 				{
 					[lblShowDateText setText:@"N.A"];
 				}
 				
 				if(!([[[arrAllOrderHistory objectAtIndex:indexPath.row]valueForKey:@"id"] isEqual:[NSNull null]]))
 				{
-					[lblOrderText setText:[NSString stringWithFormat:@"%@",strOrder]];		
-				}	
-				else 
+					[lblOrderText setText:[NSString stringWithFormat:@"%@",strOrder]];
+				}
+				else
                 {
 					[lblOrderText setText:@"N.A"];
 				}
 				
 				if(!([[[arrAllOrderHistory objectAtIndex:indexPath.row]valueForKey:@"fTotalAmount"] isEqual:[NSNull null]]))
 				{
-					[lblOrderTotalText setText:[NSString stringWithFormat:@"%@%0.2f",_savedPreferences.strCurrencySymbol , [strOrderTotal floatValue]]];			
-				}	
-				else 
+					[lblOrderTotalText setText:[NSString stringWithFormat:@"%@%0.2f",_savedPreferences.strCurrencySymbol , [strOrderTotal floatValue]]];
+				}
+				else
 				{
 					[lblOrderTotalText setText:@"N.A"];
 				}
@@ -321,7 +323,7 @@ extern BOOL isOrderLogin;
 }
 
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -329,7 +331,7 @@ extern BOOL isOrderLogin;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -337,7 +339,7 @@ extern BOOL isOrderLogin;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	[tableView release];
 	tableView =nil;
