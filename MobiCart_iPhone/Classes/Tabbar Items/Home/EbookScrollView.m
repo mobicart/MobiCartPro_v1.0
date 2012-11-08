@@ -4,7 +4,7 @@
 //
 //  Created by Mobicart on 13/08/09.
 //  Copyright 2009 Mobicart. All rights reserved.
-// 
+//
 
 /** This Class handles the swiping around of Banner Images **/
 
@@ -18,28 +18,28 @@
 {
 	NSSet *allTouches = [event allTouches];
 	
-	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];	
+	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
 	
 	if ([allTouches count] == 1)
     {
         [ZoomScrollView setScrollEnabled:NO];
     }
 	
-	CGPoint startLocation	= [touch locationInView:self];	
+	CGPoint startLocation	= [touch locationInView:self];
 	startX = startLocation.x;
 	startY = startLocation.y;
 	moveON=YES;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{	
+{
 	NSSet *allTouches = [event allTouches];
-	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];	 
+	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
 	CGPoint currentLocation	= [touch locationInView:self];
 	
 	if (ZoomScrollView.zoomScale >1)
     {
-        [ZoomScrollView setScrollEnabled:YES];	
+        [ZoomScrollView setScrollEnabled:YES];
     }
 	
 	if ([allTouches count] == 1 && ZoomScrollView.zoomScale== 1)
@@ -63,7 +63,7 @@
 {
 	NSSet *allTouches = [event allTouches];
 	
-	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];	
+	UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
 	if ([touch tapCount] == 2)
 	{
 		[self setZoomScale:1.0];
@@ -78,26 +78,26 @@
 		if (imgNumber>0 && moveON)
 		{
 			CGContextRef context = UIGraphicsGetCurrentContext();
-			CATransition *animation = [CATransition animation]; 
-			[animation setDelegate:self]; 
+			CATransition *animation = [CATransition animation];
+			[animation setDelegate:self];
 			[animation setType: kCATransitionPush];
-			[animation setSubtype:kCATransitionFromLeft]; 
-			[animation setDuration:0.5f]; 
+			[animation setSubtype:kCATransitionFromLeft];
+			[animation setDuration:0.5f];
 			[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 			[UIView beginAnimations:nil context:context];
 			[[backgroundImg layer] addAnimation:animation forKey:kCATransition];
-			[UIView commitAnimations]; 
+			[UIView commitAnimations];
 			
 			imgNumber--;
 			if ([arrBanners objectAtIndex:imgNumber])
             {
-            UIImage *imgTemp=[UIImage imageWithData:[arrBanners objectAtIndex:imgNumber]];
-               [backgroundImg setFrame:CGRectMake((320-imgTemp.size.width/2)/2,(235-imgTemp.size.height/2)/2-2.5,imgTemp.size.width/2,imgTemp.size.height/2)];
-               [backgroundImg setImage:[UIImage imageWithData:[arrBanners objectAtIndex:imgNumber]]];
+                UIImage *imgTemp=[UIImage imageWithData:[arrBanners objectAtIndex:imgNumber]];
+                [backgroundImg setFrame:CGRectMake((320-imgTemp.size.width/2)/2,(235-imgTemp.size.height/2)/2-2.5,imgTemp.size.width/2,imgTemp.size.height/2)];
+                [backgroundImg setImage:[UIImage imageWithData:[arrBanners objectAtIndex:imgNumber]]];
 				[backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
                 
-               				[backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
-               
+                [backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
+                
                 
                 
 				
@@ -112,18 +112,18 @@
 {
 	if ([arrBanners count]>0)
 	{
-		if (imgNumber<([arrBanners count]-1) && moveON)		
+		if (imgNumber<([arrBanners count]-1) && moveON)
 		{
 			CGContextRef context = UIGraphicsGetCurrentContext();
-			CATransition *animation = [CATransition animation]; 
-			[animation setDelegate:self]; 
+			CATransition *animation = [CATransition animation];
+			[animation setDelegate:self];
 			[animation setType: kCATransitionPush];
-			[animation setSubtype:kCATransitionFromRight]; 
-			[animation setDuration:0.5f]; 
+			[animation setSubtype:kCATransitionFromRight];
+			[animation setDuration:0.5f];
 			[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
 			[UIView beginAnimations:nil context:context];
 			[[backgroundImg layer] addAnimation:animation forKey:kCATransition];
-			[UIView commitAnimations]; 
+			[UIView commitAnimations];
 			
 			imgNumber++;
 			if ([arrBanners objectAtIndex:imgNumber])
@@ -132,13 +132,13 @@
                 [backgroundImg setFrame:CGRectMake((320-imgTemp.size.width/2)/2,(235-imgTemp.size.height/2)/2-2.5,imgTemp.size.width/2,imgTemp.size.height/2)];
                 [backgroundImg setImage:[UIImage imageWithData:[arrBanners objectAtIndex:imgNumber]]];
 				[backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
-              
+                
 				[backgroundImg setContentMode:UIViewContentModeScaleAspectFit];
-               
+                
             }
-				
+            
 			moveON=NO;
-						
+            
 		}
 	}
 }

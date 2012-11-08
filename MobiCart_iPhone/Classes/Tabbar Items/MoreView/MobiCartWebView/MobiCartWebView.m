@@ -1,4 +1,4 @@
-    //
+//
 //  MobiCartWebView.m
 //  MobicartApp
 //
@@ -10,10 +10,10 @@
 
 @implementation MobiCartWebView
 
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         // Custom initialization
     }
@@ -21,13 +21,13 @@
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
 	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"copyright_logo.png"]];
 	self.navigationItem.titleView = imgView;
 	[imgView release];
 	
-	UIWebView *mobiCartWebView = [[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, 380)] autorelease];
+	UIWebView *mobiCartWebView = [[[UIWebView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 320, 380) chageHieght:YES]] autorelease];
 	[mobiCartWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mobi-cart.com"]]];
 	[mobiCartWebView setScalesPageToFit:YES];
 	[mobiCartWebView setDelegate:self];
@@ -67,7 +67,7 @@
 	
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -75,7 +75,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.

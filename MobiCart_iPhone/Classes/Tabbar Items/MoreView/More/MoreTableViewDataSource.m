@@ -30,22 +30,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [originalDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-   // cell.textLabel.textColor=[UIColor darkGrayColor];
+    // cell.textLabel.textColor=[UIColor darkGrayColor];
 	cell.textLabel.textColor=_savedPreferences.headerColor;
-   [cell.textLabel setFont:[UIFont boldSystemFontOfSize:15]];
-
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    
     cell.backgroundColor=cellBackColor;
-
+    
 	UIImageView *imgCellBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320,60)];
 	if(isMobicartBrand==YES)
 	{
 		[imgCellBackground setFrame:CGRectMake(0, 0, 320,50)];
 		[imgCellBackground setImage:[UIImage imageNamed:@"320-50.png"]];
 	}
-	else 
+	else
 	{
 		[imgCellBackground setImage:[UIImage imageNamed:@"320-60.png"]];
-
+        
 	}
 	[cell setBackgroundView:imgCellBackground];
 	[imgCellBackground release];

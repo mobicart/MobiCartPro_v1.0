@@ -22,11 +22,12 @@ BOOL isOnlyTwitter;
 @synthesize imageDownloadsInProgress;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
-       	self.tabBarItem.image = [UIImage imageNamed:@"news_icon.png"];
+        // Custom initialization
+		self.tabBarItem.image = [UIImage imageNamed:@"news_icon.png"];
 	}
     return self;
 }
@@ -35,11 +36,12 @@ BOOL isOnlyTwitter;
 - (void)viewWillDisappear:(BOOL)animated
 {
 	isNewsSection = NO;
+	// Stoping the loading indicator
 	[GlobalPreferences stopLoadingIndicator];
 	
 }
-- (void)viewWillAppear:(BOOL)animated 
-{ 
+- (void)viewWillAppear:(BOOL)animated
+{
 	[super viewWillAppear:animated];
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
 	isNewsSection=YES;
@@ -54,14 +56,14 @@ BOOL isOnlyTwitter;
 - (void)updateDataForCurrent_Navigation_And_View_Controller
 {
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
-}	
+}
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	
 	
-
+    
 	[GlobalPreferences addLoadingBar_AtBottom:self.tabBarController.view withTextToDisplay:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.LoaderText"]];
 	
 	[GlobalPreferences startLoadingIndicator];
@@ -95,10 +97,10 @@ BOOL isOnlyTwitter;
 	
 	[self.navigationController.navigationBar addSubview:lblCart];
 	
-    contentView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,420)];
+    contentView = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,0,320,420) chageHieght:YES]];
 	self.view = contentView;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320,420)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,0,320,420) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
@@ -117,22 +119,24 @@ BOOL isOnlyTwitter;
 	
 	UIView *topSortToolBar=[[UIView alloc]initWithFrame:CGRectMake(0, -1, 320,40)];
     [topSortToolBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
-    [contentView addSubview:topSortToolBar];	
+    [contentView addSubview:topSortToolBar];
 	topSortToolBar.tag = 10101010;
 	
 	[contentView addSubview:topSortToolBar];
-
-    tblNews = [[UITableView alloc]initWithFrame:CGRectMake(-10,30,342,344) style:UITableViewStyleGrouped];
+    
+    tblNews = [[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(-10,30,342,344) chageHieght:YES] style:UITableViewStyleGrouped];
 	[tblNews setDelegate:self];
 	[tblNews setDataSource:self];
+    tblNews.backgroundView=nil;
 	[tblNews setHidden:YES];
 	[tblNews setBackgroundColor:[UIColor clearColor]];
 	[contentView addSubview:tblNews];
 	
-	tblTweets = [[UITableView alloc]initWithFrame:CGRectMake(0,41,320,325) style:UITableViewStylePlain];
+	tblTweets = [[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,41,320,325) chageHieght:YES] style:UITableViewStylePlain];
 	[tblTweets setDelegate:self];
 	[tblTweets setDataSource:self];
 	[tblTweets setHidden:YES];
+    tblTweets.backgroundView=nil;
 	[tblTweets setSeparatorColor:[UIColor clearColor]];
 	[tblTweets setBackgroundColor:[UIColor clearColor]];
 	[contentView addSubview:tblTweets];
@@ -147,19 +151,19 @@ BOOL isOnlyTwitter;
 	[lblSegmentControllerSelected setText:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.news.news"]];
     [lblSegmentControllerSelected setTextColor:[UIColor whiteColor]];
     [topSortToolBar addSubview:lblSegmentControllerSelected];
-
-	 viewLoading=[[UIView alloc]initWithFrame:CGRectMake(0,30, 320,480)];
+    
+    viewLoading=[[UIView alloc]initWithFrame:CGRectMake(0,30, 320,480)];
 	[viewLoading setBackgroundColor:[UIColor whiteColor]];
 	[contentView addSubview:viewLoading];
 	[viewLoading setHidden:YES];
 	
 	
-  [self performSelectorInBackground:@selector(fetchDataFromServer) withObject:nil];
+    [self performSelectorInBackground:@selector(fetchDataFromServer) withObject:nil];
 	
-	if ([Twitter count]!=0) 
+	if ([Twitter count]!=0)
 	{
 		[self fetchDataFromTwitter];
-	}	
+	}
 	[contentView bringSubviewToFront:topSortToolBar];
 	[topSortToolBar release];
 }
@@ -168,8 +172,9 @@ BOOL isOnlyTwitter;
 // Fetching Twitter Feed if defined for store
 - (void)fetchDataFromTwitter
 {
-	NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];	
-   
+	NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
+    
+    
 	NSDictionary *dictTemp = [ServerAPI fetchTwitterFeedFor:iCurrentStoreId];
 	self.arrTwitter = [dictTemp objectForKey:@"results"];
 	
@@ -201,20 +206,20 @@ BOOL isOnlyTwitter;
     
 	[arrCountTweets addObjectsFromArray:arrEntriesCount];
 	
-	 if ([News count]==0 &&[Twitter count]!=0)
-	 {
-         if (arrayData)
-         {
-             [arrayData release];
-         }
-         
+    if ([News count]==0 &&[Twitter count]!=0)
+    {
+        if (arrayData)
+        {
+            [arrayData release];
+        }
+        
         arrayData =[[NSArray alloc]initWithArray:self.arrTwitter];
         isTwitter=YES;
         isTwitterSelected=YES;
         [tblNews setHidden:YES];
         [tblNews removeFromSuperview];
         [tblTweets setHidden:NO];
-	 }
+    }
 	viewLoading.hidden=YES;
 	[tblTweets setHidden:NO];
 	[GlobalPreferences dismissLoadingBar_AtBottom];
@@ -236,7 +241,7 @@ BOOL isOnlyTwitter;
 	for (int i =0; i<count; i++)
 	{
 		NSDictionary *dictcontent = [arrdict objectAtIndex:i];
-		NSString *strType = [[NSString alloc] init];	
+		NSString *strType = [[NSString alloc] init];
 		strType = [strType stringByAppendingString:[dictcontent objectForKey:@"sType"]];
 		
 		if ([strType isEqualToString:@"custom"])
@@ -260,7 +265,8 @@ BOOL isOnlyTwitter;
 					}
 				}
             }
-						
+            
+			
 			if (![[dictcontent objectForKey:@"bTwitterStatus"] isEqual:[NSNull null]])
             {
                 if ([[dictcontent objectForKey:@"bTwitterStatus"] intValue]==1)
@@ -270,23 +276,23 @@ BOOL isOnlyTwitter;
 				}
             }
 		}
-	}	
+	}
 	if ([News count]>0)
 	{
 		arrayData =[[NSArray alloc]initWithArray:News];
 	    [tblNews setHidden:NO];
-	} 
-  
-   if ([News count]==0 &&[Twitter count]!=0)
-   {
-	   [tblTweets setHidden:NO];   
+	}
+    
+    if ([News count]==0 &&[Twitter count]!=0)
+    {
+        [tblTweets setHidden:NO];
 	    [lblSegmentControllerSelected setText:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.news.twitter"]];
-	   [imgSegmentControllerStatus setImage:[UIImage imageNamed:@"twitter_icon.png"]];
-	   NSInvocationOperation *operationFetchMainData = [[NSInvocationOperation alloc] initWithTarget:self	selector:@selector(fetchDataFromTwitter) object:nil];
-	   
-	   [GlobalPreferences addToOpertaionQueue:operationFetchMainData];
-	   [operationFetchMainData release];
-   }  
+        [imgSegmentControllerStatus setImage:[UIImage imageNamed:@"twitter_icon.png"]];
+        NSInvocationOperation *operationFetchMainData = [[NSInvocationOperation alloc] initWithTarget:self	selector:@selector(fetchDataFromTwitter) object:nil];
+        
+        [GlobalPreferences addToOpertaionQueue:operationFetchMainData];
+        [operationFetchMainData release];
+    }
 	
 	[arrayData retain];
 	[arrSearch removeAllObjects];
@@ -317,7 +323,7 @@ BOOL isOnlyTwitter;
 	else if ([Twitter count]!=0)
 	{
 	    toggleItems = [[NSArray alloc] initWithObjects:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.news.twitter"],nil];
-	}	
+	}
 	else
 	{
 		toggleItems = [[NSArray alloc] initWithObjects:nil];
@@ -328,9 +334,11 @@ BOOL isOnlyTwitter;
 	
     if([toggleItems count]>1)
     {
-	CustomSegmentControl *sortSegCtrl = [[CustomSegmentControl alloc] initWithItems:toggleItems offColor:[UIColor colorWithRed:81.6/100 green:81.6/100 blue:81.6/100 alpha:1.0] onColor:[UIColor colorWithRed:78.6/100 green:78.3/100 blue:78.3/100 alpha:1.0]];
-	
-	[sortSegCtrl addTarget:self action:@selector(sortSegementChanged:) forControlEvents:UIControlEventValueChanged];
+        CustomSegmentControl *sortSegCtrl = [[CustomSegmentControl alloc] initWithItems:toggleItems offColor:[UIColor colorWithRed:81.6/100 green:81.6/100 blue:81.6/100 alpha:1.0] onColor:[UIColor colorWithRed:78.6/100 green:78.3/100 blue:78.3/100 alpha:1.0]];
+        
+        [sortSegCtrl addTarget:self action:@selector(sortSegementChanged:) forControlEvents:UIControlEventValueChanged];
+        if([GlobalPreferences getCureentSystemVersion]>=6.0)
+            sortSegCtrl.tintColor=[UIColor colorWithRed:81.6/100 green:81.6/100 blue:81.6/100 alpha:1.0];
         
         [self setTextColors:sortSegCtrl];
         
@@ -340,7 +348,7 @@ BOOL isOnlyTwitter;
         }
         else if ([News count]!=0 || [Twitter count]!=0)
         {
-            [sortSegCtrl setFrame:CGRectMake(241, 5, 75, 30)];	
+            [sortSegCtrl setFrame:CGRectMake(241, 5, 75, 30)];
         }
         else
         {
@@ -352,7 +360,7 @@ BOOL isOnlyTwitter;
         [topSortToolBar addSubview:lblSegmentControllerSelected];
         [sortSegCtrl release];
         [toggleItems release];
-
+        
     }
 	
 }
@@ -367,20 +375,21 @@ BOOL isOnlyTwitter;
 		[tblNews release];
 		tblNews = nil;
 	}
-	tblNews = [[UITableView alloc]initWithFrame:CGRectMake(-10,30,342,344) style:UITableViewStyleGrouped];
+	tblNews = [[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(-10,30,342,344) chageHieght:YES] style:UITableViewStyleGrouped];
 	[tblNews setDelegate:self];
 	[tblNews setDataSource:self];
+    tblNews.backgroundView=nil;
 	[tblNews setBackgroundColor:[UIColor clearColor]];
 	[contentView addSubview:tblNews];
 	
 	UIToolbar *topSortToolBar =  (UIToolbar *)[contentView viewWithTag:10101010];
 	[contentView bringSubviewToFront:topSortToolBar];
 	
-	switch (sender.selectedSegmentIndex) 
+	switch (sender.selectedSegmentIndex)
     {
 		case 0:
 		{
-            isTwitterSelected=NO; 
+            isTwitterSelected=NO;
             [lblSegmentControllerSelected setText:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.news.news"]];
 			[imgSegmentControllerStatus setImage:[UIImage imageNamed:@"news_icon_top.png"]];
 			if (arrayData)
@@ -397,7 +406,7 @@ BOOL isOnlyTwitter;
 			
 		case 1:
 		{
-            isTwitterSelected=YES; 
+            isTwitterSelected=YES;
 			
             [lblSegmentControllerSelected setText:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.news.twitter"]];
             [imgSegmentControllerStatus setImage:[UIImage imageNamed:@"twitter_icon.png"]];
@@ -414,7 +423,7 @@ BOOL isOnlyTwitter;
 			[GlobalPreferences addLoadingBar_AtBottom:viewLoading withTextToDisplay:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.LoaderText"]];
 			[viewLoading setHidden:NO];
 			[tblNews setHidden:YES];
-			[tblNews removeFromSuperview];					
+			[tblNews removeFromSuperview];
 			arrayData=[[NSArray alloc]initWithArray:self.arrTwitter];
 			isTwitter=YES;
 			break;
@@ -440,7 +449,7 @@ BOOL isOnlyTwitter;
 #pragma mark XML_Parsing
 // Called to parse twitter feed
 - (void)parseXMLFileAtURL:(NSString *)URL
-{	
+{
 	
 	NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
 	
@@ -467,11 +476,11 @@ static BOOL isErrorShowed1stTime = YES;
 }
 
 - (void)setTextColors:(id)sender
-{	
+{
 	UISegmentedControl *sg = (UISegmentedControl*)sender;
 	
 	int eg=0;
-    for (id seg in [sg subviews]) 
+    for (id seg in [sg subviews])
     {
         int gg=sg.selectedSegmentIndex;
         if(gg==2)
@@ -480,7 +489,7 @@ static BOOL isErrorShowed1stTime = YES;
             gg=2;
         if(eg==gg && eg!=1)
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
                 {
                     [label setTextAlignment:UITextAlignmentCenter];
@@ -490,7 +499,7 @@ static BOOL isErrorShowed1stTime = YES;
         }
         else if(eg==1)
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
                 {
                     [label setTextAlignment:UITextAlignmentCenter];
@@ -500,7 +509,7 @@ static BOOL isErrorShowed1stTime = YES;
         }
         else
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
                 {
                     [label setTextAlignment:UITextAlignmentCenter];
@@ -598,13 +607,13 @@ static BOOL isErrorShowed1stTime = YES;
 	
 	if(tableView==tblNews)
 	{
-		NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d",indexPath.row]; 
-			
+		NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d",indexPath.row];
+        
 		cell= (TableViewCell_Common*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 		if (cell==nil)
 		{
 			cell = [[[TableViewCell_Common alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier: CellIdentifier]autorelease];
-		
+            
 			
 			UIImageView *imgCellBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 342,55)];
 			[imgCellBackground setImage:[UIImage imageNamed:@"store_cell_bg.png"]];
@@ -645,18 +654,18 @@ static BOOL isErrorShowed1stTime = YES;
 				
 				if (dataCellImage && [[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sImage"] length]!=0)
 				{
-									
+                    
 					imgCellView.image=[UIImage imageWithData:dataCellImage];
 					[imgCellView setHidden:NO];
 					UILabel *lblText=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"00101%d",indexPath.row]intValue]];
 					[lblText setFrame:CGRectMake(80,10,230,20)];
-					  UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];  
+                    UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];
 					[lblDetailCell setFrame:CGRectMake(80,31,230,
 													   20)];
-
+                    
 				}
 			}
-			 
+            
 		}
 		if (!isTwitter)
 		{
@@ -665,12 +674,13 @@ static BOOL isErrorShowed1stTime = YES;
                 if (![[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"sTitle"] length]==0)
 				{
 					UILabel *lblText=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"00101%d",indexPath.row]intValue]];
-				   
-					lblText.text=[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sTitle"];					
+                    
+					lblText.text=[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sTitle"];
 					
+					//cell.textLabel.text=[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sTitle"];
 				}
             }
-				
+            
             if ([[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"type"] isEqualToString:@"feed"])
             {
 				if (![[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"date"] length]==0)
@@ -679,75 +689,75 @@ static BOOL isErrorShowed1stTime = YES;
 					NSCalendar *aCalendar = [NSCalendar currentCalendar];
 					NSDateComponents *adateComponents = [[NSDateComponents alloc] init];
 					int monCom=0;
-					if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jan"]) 
+					if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jan"])
 					{
 						monCom=1;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Feb"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Feb"])
 					{
 						monCom=2;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"March"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"March"])
 					{
 						monCom=3;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Mar"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Mar"])
 					{
 						monCom=3;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"April"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"April"])
 					{
 						monCom=4;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Apr"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Apr"])
 					{
 						monCom=4;
 					}
-
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"May"]) 
+                    
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"May"])
 					{
 						monCom=5;
 					}
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"June"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"June"])
 					{
 						monCom=6;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jun"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jun"])
 					{
 						monCom=6;
 					}
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"July"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"July"])
 					{
 						monCom=7;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jul"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jul"])
 					{
 						monCom=7;
 					}
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Aug"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Aug"])
 					{
 						monCom=8;
 					}
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Sep"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Sep"])
 					{
 						monCom=9;
 					}
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Oct"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Oct"])
 					{
 						monCom=10;
 					}
 					
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Nov"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Nov"])
 					{
 						monCom=11;
 					}
 					
-					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Dec"]) 
+					else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Dec"])
 					{
 						monCom=12;
 					}
@@ -756,34 +766,35 @@ static BOOL isErrorShowed1stTime = YES;
 					
 					
 					[adateComponents setYear:[[dateComponenentsTemp objectAtIndex:3] integerValue]];
-					[adateComponents setDay:[[dateComponenentsTemp objectAtIndex:1] integerValue]];    
+					[adateComponents setDay:[[dateComponenentsTemp objectAtIndex:1] integerValue]];
 					[adateComponents setMonth:monCom];
 					
-					NSDate *date = [aCalendar dateFromComponents:adateComponents];	
-				
+					NSDate *date = [aCalendar dateFromComponents:adateComponents];
+					
 					NSDateFormatter *prefixDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 					[prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 					[prefixDateFormatter setDateFormat:@"d"];
 					NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
 					NSDateFormatter *monthDayFormatter = [[[NSDateFormatter alloc] init] autorelease];
 					[monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-					[monthDayFormatter setDateFormat:@"d"];         
-					int date_day = [[monthDayFormatter stringFromDate:date] intValue];      
+					[monthDayFormatter setDateFormat:@"d"];
+					int date_day = [[monthDayFormatter stringFromDate:date] intValue];
 					NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
 					NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-					NSString *suffix = [suffixes objectAtIndex:date_day];  
+					NSString *suffix = [suffixes objectAtIndex:date_day];
 					suffix	=[suffix uppercaseString];
-				 	NSString *dateString = [prefixDateString stringByAppendingString:suffix]; 
+				 	NSString *dateString = [prefixDateString stringByAppendingString:suffix];
 					dateString=[dateString uppercaseString];
-										
+                    
 					NSDateFormatter *formatSuffix=[[NSDateFormatter alloc] init];
 					[formatSuffix setDateFormat:@"MMMM YYYY"];
 					NSString *suffix1=[formatSuffix stringFromDate:date];
 					suffix1=[suffix1 uppercaseString];
+                    
 					[suffix1 capitalizedString];
 					
 					NSString *strDateFinal=[NSString stringWithFormat:@"%@ %@",dateString,suffix1];
-				    UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];  
+				    UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];
 					lblDetailCell.text=strDateFinal;
 					
 					
@@ -795,115 +806,123 @@ static BOOL isErrorShowed1stTime = YES;
 				NSCalendar *aCalendar = [NSCalendar currentCalendar];
 				NSDateComponents *adateComponents = [[NSDateComponents alloc] init];
 				int monCom=0;
-				if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jan"]) 
+				if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jan"])
 				{
 					monCom=1;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Feb"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Feb"])
 				{
 					monCom=2;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"March"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"March"])
 				{
 					monCom=3;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Mar"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Mar"])
 				{
 					monCom=3;
 				}
-
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"April"]) 
+                
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"April"])
 				{
 					monCom=4;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Apr"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Apr"])
 				{
 					monCom=4;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"May"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"May"])
 				{
 					monCom=5;
 				}
 				
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"June"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"June"])
 				{
 					monCom=6;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jun"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jun"])
 				{
 					monCom=6;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"July"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"July"])
 				{
 					monCom=7;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jul"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Jul"])
 				{
 					monCom=7;
 				}
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Aug"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Aug"])
 				{
 					monCom=8;
 				}
 				
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Sep"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Sep"])
 				{
 					monCom=9;
 				}
 				
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Oct"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Oct"])
 				{
 					monCom=10;
 				}
 				
 				
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Nov"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Nov"])
 				{
 					monCom=11;
 				}
 				
-				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Dec"]) 
+				else if ([[dateComponenentsTemp objectAtIndex:2] isEqualToString:@"Dec"])
 				{
 					monCom=12;
 				}
-		
+				
+				
+				
+				
 				[adateComponents setYear:[[dateComponenentsTemp objectAtIndex:3] integerValue]];
-				[adateComponents setDay:[[dateComponenentsTemp objectAtIndex:1] integerValue]];    
+				[adateComponents setDay:[[dateComponenentsTemp objectAtIndex:1] integerValue]];
 				[adateComponents setMonth:monCom];
 				
-				NSDate *date = [aCalendar dateFromComponents:adateComponents];	
-	
+				NSDate *date = [aCalendar dateFromComponents:adateComponents];
+                
 				NSDateFormatter *prefixDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 				[prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 				[prefixDateFormatter setDateFormat:@"d"];
 				NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
 				NSDateFormatter *monthDayFormatter = [[[NSDateFormatter alloc] init] autorelease];
 				[monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-				[monthDayFormatter setDateFormat:@"d"];         
-				int date_day = [[monthDayFormatter stringFromDate:date] intValue];      
+				[monthDayFormatter setDateFormat:@"d"];
+				int date_day = [[monthDayFormatter stringFromDate:date] intValue];
 				NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
 				NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-				NSString *suffix = [suffixes objectAtIndex:date_day];  
+				NSString *suffix = [suffixes objectAtIndex:date_day];
 				suffix	=[suffix uppercaseString];
-				NSString *dateString = [prefixDateString stringByAppendingString:suffix]; 
+				NSString *dateString = [prefixDateString stringByAppendingString:suffix];
 				dateString=[dateString uppercaseString];
-							
+                
 				NSDateFormatter *formatSuffix=[[NSDateFormatter alloc] init];
 				[formatSuffix setDateFormat:@"MMMM YYYY"];
 				NSString *suffix1=[formatSuffix stringFromDate:date];
 				suffix1=[suffix1 uppercaseString];
-				[suffix1 capitalizedString];
+                [suffix1 capitalizedString];
 				
 				NSString *strDateFinal=[NSString stringWithFormat:@"%@ %@",dateString,suffix1];
-				UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];  
+				UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];
 				lblDetailCell.text=strDateFinal;
 				
 			}
-
+            
+			
+			
+			
+			
+            
 			if (isSearchClicked)
 			{
-				NSData *dataCellImage  = [ServerAPI fetchBannerImage:[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sImage"]];
-               
+                NSData *dataCellImage  = [ServerAPI fetchBannerImage:[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sImage"]];
+                
 				if (dataCellImage && [[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey: @"sImage"] length]!=0)
 				{
 					UIImageView *imgView=(UIImageView *)[cell viewWithTag:[[NSString stringWithFormat:@"004%d",indexPath.row]intValue]];
@@ -911,29 +930,31 @@ static BOOL isErrorShowed1stTime = YES;
 					[imgView setHidden:NO];
 					UILabel *lblText=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"00101%d",indexPath.row]intValue]];
 					[lblText setFrame:CGRectMake(80,10,230,20)];
-					UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];  
-					[lblDetailCell setFrame:CGRectMake(80,31,230,20)];
-					
+					UILabel *lblDetailCell=(UILabel *)[cell viewWithTag:[[NSString stringWithFormat:@"01010%d",indexPath.row]intValue]];
+					[lblDetailCell setFrame:CGRectMake(80,31,230,
+													   20)];
+                    
 				}
 			}
 		}
-		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];	
+		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	}
 	else if (tableView == tblTweets)
 	{
 		NSString *CellIdentifier = [NSString stringWithFormat:@"LazyTableCell%d%d",indexPath.row, indexPath.row];
-		
 		// Add a placeholder cell while waiting on table data
 		int nodeCount = [arrEntriesCount count];
-				
+        
 		cell = [tblTweets dequeueReusableCellWithIdentifier:CellIdentifier];
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
 									   reuseIdentifier:CellIdentifier] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
         
+		
 		// Setting gradient effect on view
-		if (nodeCount>0) 
+		if (nodeCount>0)
 		{
 			AppRecord *appRecord = [self.arrAppRecordsAllEntries objectAtIndex:[[arrEntriesCount objectAtIndex:indexPath.row] intValue]];
 			
@@ -967,7 +988,7 @@ static BOOL isErrorShowed1stTime = YES;
 			twitterName = nil;
 			
 			
-			}
+        }
 		
 		if(nodeCount > 0)
 		{
@@ -989,65 +1010,64 @@ static BOOL isErrorShowed1stTime = YES;
 			NSString *str=[strText stringByAppendingFormat:@" "];
 			NSRange range1=[str rangeOfString:strText];
 		    [strAttribute addAttribute:ZForegroundColorAttributeName value:_savedPreferences.labelColor range:range1];
-		 
+            
 			for (int i=0; i<str.length; i++)
-				{
+            {
 				
-						if ([str characterAtIndex:i]=='h')
-						{
-							if ([str characterAtIndex:i+1]=='t')
-							{
-								if ([str characterAtIndex:i+2]=='t')
-								{
-									if ([str characterAtIndex:i+3]=='p')
-									{
-										NSString *temp=[str substringFromIndex:i];
-										if ([temp rangeOfString:@" "].length) 
-										{
-											int beg=[temp rangeOfString:@" "].location;
-											NSString *st2=[temp substringToIndex:beg];
-											if ([st2 characterAtIndex:st2.length-1]==':'||[st2 characterAtIndex:st2.length-1]==','||[st2 characterAtIndex:st2.length-1]==')'||[st2 characterAtIndex:st2.length-1]=='\''||[st2 characterAtIndex:st2.length-1]=='?'||[st2 characterAtIndex:st2.length-1]=='.'||[st2 characterAtIndex:st2.length-1]=='-') 
-											{
-												st2=[st2 substringToIndex:st2.length-1];
-											}
-											NSRange range=[str rangeOfString:st2];
-											[strAttribute addAttribute:ZForegroundColorAttributeName value:_savedPreferences.headerColor range:range]; 
-										}
-									}
-								}
-							}
-						}
-						
-					
-					
-					
-				  else if ([str characterAtIndex:i]=='@')
-				    {
+                if ([str characterAtIndex:i]=='h')
+                {
+                    if ([str characterAtIndex:i+1]=='t')
+                    {
+                        if ([str characterAtIndex:i+2]=='t')
+                        {
+                            if ([str characterAtIndex:i+3]=='p')
+                            {
+                                NSString *temp=[str substringFromIndex:i];
+                                if ([temp rangeOfString:@" "].length)
+                                {
+                                    int beg=[temp rangeOfString:@" "].location;
+                                    NSString *st2=[temp substringToIndex:beg];
+                                    if ([st2 characterAtIndex:st2.length-1]==':'||[st2 characterAtIndex:st2.length-1]==','||[st2 characterAtIndex:st2.length-1]==')'||[st2 characterAtIndex:st2.length-1]=='\''||[st2 characterAtIndex:st2.length-1]=='?'||[st2 characterAtIndex:st2.length-1]=='.'||[st2 characterAtIndex:st2.length-1]=='-')
+                                    {
+                                        st2=[st2 substringToIndex:st2.length-1];
+                                    }
+                                    NSRange range=[str rangeOfString:st2];
+                                    [strAttribute addAttribute:ZForegroundColorAttributeName value:_savedPreferences.headerColor range:range];
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+                
+                
+                else if ([str characterAtIndex:i]=='@')
+                {
 					NSString *temp=[str substringFromIndex:i];
-					if ([temp rangeOfString:@" "].length) 
-					 {
-						 
+					if ([temp rangeOfString:@" "].length)
+                    {
+                        
 						
-						 
+                        
 						int beg=[temp rangeOfString:@" "].location;
 						NSString *st2=[temp substringToIndex:beg];
 						
-						if ([st2 characterAtIndex:st2.length-1]==':'||[st2 characterAtIndex:st2.length-1]==','||[st2 characterAtIndex:st2.length-1]==')'||[st2 characterAtIndex:st2.length-1]=='\''||[st2 characterAtIndex:st2.length-1]=='?'||[st2 characterAtIndex:st2.length-1]=='.'||[st2 characterAtIndex:st2.length-1]=='-') 
+						if ([st2 characterAtIndex:st2.length-1]==':'||[st2 characterAtIndex:st2.length-1]==','||[st2 characterAtIndex:st2.length-1]==')'||[st2 characterAtIndex:st2.length-1]=='\''||[st2 characterAtIndex:st2.length-1]=='?'||[st2 characterAtIndex:st2.length-1]=='.'||[st2 characterAtIndex:st2.length-1]=='-')
 						{
-						
+                            
 							
 							st2=[st2 substringToIndex:st2.length-1];
 						}
-						 NSRange range=[str rangeOfString:st2];
-						 [strAttribute addAttribute:ZForegroundColorAttributeName value:_savedPreferences.headerColor range:range]; 
+                        NSRange range=[str rangeOfString:st2];
+                        [strAttribute addAttribute:ZForegroundColorAttributeName value:_savedPreferences.headerColor range:range];
 						[arrAtTheRate addObject:st2];
 					}
 				}
-			
-		     }
-			 
+                
+            }
+            
 			label4.zAttributedText = strAttribute;
-			//[str release];
 			[label4 release];
 			
 			
@@ -1093,7 +1113,7 @@ static BOOL isErrorShowed1stTime = YES;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
 	if (tableView==tblNews)
 	{
 		if (!isTwitter)
@@ -1103,7 +1123,7 @@ static BOOL isErrorShowed1stTime = YES;
 			{
 				NewsDetail *objNewsDEtail = [[NewsDetail alloc]init];
 				objNewsDEtail.strNewsDetail = [[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"sBody"];
-				objNewsDEtail.strNewsTitle = [[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"sTitle"]; 
+				objNewsDEtail.strNewsTitle = [[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"sTitle"];
 				objNewsDEtail.strNewsDate=[[[arrSearch objectAtIndex:indexPath.row] valueForKey:@"value"] valueForKey:@"dDate2"];
 				[self.navigationController pushViewController:objNewsDEtail animated:YES];
 				[objNewsDEtail release];
@@ -1130,7 +1150,7 @@ static BOOL isErrorShowed1stTime = YES;
 - (void)startIconDownload:(AppRecord *)appRecord forIndexPath:(NSIndexPath *)indexPath
 {
     IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil) 
+    if (iconDownloader == nil)
     {
         iconDownloader = [[IconDownloader alloc] init];
         iconDownloader.appRecord = appRecord;
@@ -1138,7 +1158,7 @@ static BOOL isErrorShowed1stTime = YES;
         iconDownloader.delegate = self;
         [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
         [iconDownloader startDownload];
-        [iconDownloader release];   
+        [iconDownloader release];
     }
 }
 
@@ -1232,7 +1252,7 @@ static BOOL isErrorShowed1stTime = YES;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	
 	[arrCountTweets release];

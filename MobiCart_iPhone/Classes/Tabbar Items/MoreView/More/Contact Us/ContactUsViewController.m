@@ -51,23 +51,22 @@ extern int controllersCount;
 	[pool release];
 }
 - (void)viewWillAppear:(BOOL)animated
-{ 
+{
 	[super viewWillAppear:animated];
 	if(controllersCount>5)
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
-
-	//[self addCartButtonAndLabel];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
+    
 	[GlobalPreferences setCurrentNavigationController:self.navigationController];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	if(controllersCount>5)
-	  [[NSNotificationCenter defaultCenter] postNotificationName:@"poweredByMobicart" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"poweredByMobicart" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"addCartButton" object:nil];
-
+    
 	
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
     {
 		if (([view isKindOfClass:[UIButton class]]) || ([view isKindOfClass:[UILabel class]]))
         {
@@ -76,7 +75,7 @@ extern int controllersCount;
 	}
 }
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	
@@ -93,18 +92,18 @@ extern int controllersCount;
 	lblCart.textColor = [UIColor whiteColor];
 	[self.navigationController.navigationBar addSubview:lblCart];
 	
-	contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];	
+	contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 	contentView.backgroundColor=[UIColor colorWithRed:200.0/256 green:200.0/256 blue:200.0/256 alpha:1];
 	[GlobalPreferences setGradientEffectOnView:contentView:[UIColor whiteColor]:contentView.backgroundColor];
 	
 	self.view=contentView;
 	
-	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 350)];
+	UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30, 320, 350) chageHieght:YES]];
 	[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 	[contentView addSubview:imgBg];
 	[imgBg release];
 	
-	contactDetailsLbl=[[UITextView alloc]initWithFrame:CGRectMake(10, 30,310,104)];
+	contactDetailsLbl=[[UITextView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(10, 30,310,104) chageHieght:YES]];
 	contactDetailsLbl.textColor=_savedPreferences.labelColor;
 	contactDetailsLbl.font =[UIFont fontWithName:@"Helvetica" size:13.0];
 	[contactDetailsLbl setBackgroundColor:[UIColor clearColor
@@ -117,11 +116,19 @@ extern int controllersCount;
     
     if(controllersCount<=5)
     {
-    _mapView = [[MKMapView alloc]initWithFrame:CGRectMake(10,145,300,160)];
-
+        
+        _mapView = [[MKMapView alloc]initWithFrame:CGRectMake(10,145,300,160)];
+        
     }
     else
-     _mapView = [[MKMapView alloc]initWithFrame:CGRectMake(10,145,300,217)];   
+        _mapView = [[MKMapView alloc]initWithFrame:CGRectMake(10,145,300,217)];
+    
+    
+    if([GlobalPreferences isScreen_iPhone5])
+        _mapView.frame=CGRectMake(10,145,300,_mapView.frame.size.height+88);
+    else
+        _mapView.frame=CGRectMake(10,145,300,_mapView.frame.size.height);
+    
     
     [[_mapView layer]setBorderWidth:1.0];
     [[_mapView layer] setCornerRadius:10];
@@ -142,11 +149,11 @@ extern int controllersCount;
     {
         self.strStoreName = @"Store Location";
     }
-			
+    
 	[SingletonLocation sharedInstance].delegate = self;
 	[SingletonLocation sharedInstance].distanceFilter = 1000;
 	[SingletonLocation sharedInstance].desiredAccuracy = kCLLocationAccuracyBest;
-	[[SingletonLocation sharedInstance] startUpdatingLocation];	
+	[[SingletonLocation sharedInstance] startUpdatingLocation];
 	
 	UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0,-1, 320, 31)];
     [viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
@@ -179,7 +186,7 @@ extern int controllersCount;
         arrAllData = [[NSArray alloc] init];
     }
 	
-    arrAllData = [[ServerAPI fetchStaticPages:iCurrentAppId] objectForKey:@"static-pages"];	
+    arrAllData = [[ServerAPI fetchStaticPages:iCurrentAppId] objectForKey:@"static-pages"];
 	[self performSelectorOnMainThread:@selector(updateControls) withObject:nil waitUntilDone:YES];
 	[autoReleasePool release];
 	
@@ -188,12 +195,12 @@ extern int controllersCount;
 #pragma mark updateControls
 - (void)updateControls
 {
-	if ([arrAllData count] >0) 
+	if ([arrAllData count] >0)
     {
 		NSDictionary *dictTemp = [arrAllData objectAtIndex:1];
 		if ((![[dictTemp objectForKey:@"sDescription"] isEqual:[NSNull null]]))
 		{
-			if ((![[dictTemp objectForKey:@"sDescription"] isEqualToString:@""])) 
+			if ((![[dictTemp objectForKey:@"sDescription"] isEqualToString:@""]))
             {
 				contactDetailsLbl.text = [dictTemp objectForKey:@"sDescription"];
             }
@@ -208,12 +215,12 @@ extern int controllersCount;
     {
         contactDetailsLbl.text = @"";
     }
-		
+    
 	//Show Mobicart Logo at the bottom?
 }
 
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -221,7 +228,7 @@ extern int controllersCount;
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -231,10 +238,7 @@ extern int controllersCount;
 
 - (void)dealloc
 {
-	//_mapView.delegate = nil;
-	//[contentView release];
-//	[contactDetailsLbl release];
-//	[arrAllData release];
+    
     [super dealloc];
 }
 
@@ -246,7 +250,7 @@ extern int controllersCount;
 }
 
 
-- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated 
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
 	
 	
@@ -256,10 +260,10 @@ extern int controllersCount;
 		   fromLocation:(CLLocation *)oldLocation
 {
 	//Set Zoom level using Span
-	annot= [[CSMapAnnotation alloc]initWithCoordinate:coord title:self.strStoreName subTitle:nil]; 	
+	annot= [[CSMapAnnotation alloc]initWithCoordinate:coord title:self.strStoreName subTitle:nil];
 	[_mapView addAnnotation:annot];
 	
-	MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord,1000,1000); 	
+	MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord,1000,1000);
 	[_mapView setRegion:region animated:YES];
 }
 
@@ -301,7 +305,7 @@ extern int controllersCount;
 			latitude = [[listItems objectAtIndex:2] doubleValue];
 			longitude = [[listItems objectAtIndex:3] doubleValue];
 		}
-		else 
+		else
         {
             // Show Error
 		}

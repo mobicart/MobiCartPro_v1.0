@@ -2,7 +2,7 @@
 //  CheckoutViewController.m
 //  MobiCart
 //
-//  Created by Mobicart on 8/31/10.
+//  Created by MobiCart on 8/31/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //`
 
@@ -30,10 +30,10 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 -(void)setLabelsForFooter
 {
 	if([[[dictTax valueForKey:@"tax"] valueForKey:@"fTax"] isKindOfClass:[NSNull class]])
-	shippingtax=0.0;
+        shippingtax=0.0;
 	else
 	    shippingtax=[[[dictTax valueForKey:@"tax"] valueForKey:@"fTax"] floatValue];
-	    
+    
 	
 	fSubTotalAmount = grandTotalValue;
 	
@@ -50,14 +50,13 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 		taxOnShipping=((fShippingCharges *shippingtax)/100);
 	}
-		else
+    else
 	{
-		taxOnShipping=0;	
+		taxOnShipping=0;
 		shippingtax=0;
 	}
 	
 	taxOnShipping=[GlobalPreferences getRoundedOffValue:taxOnShipping];
-	
 	grandTotalValue=priceWithoutTax+fShippingCharges+taxOnShipping+fTaxAmount;
 	
 	
@@ -75,7 +74,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	lblGrandTotal.text = [NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, grandTotalValue];
 	
 	
-}	
+}
 - (void) tableView:(UITableView*)tableview didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
 	
@@ -221,7 +220,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 				[lblOptionName[count] release];
 				
 				yValue=yValue+15;
-			}	
+			}
 			
 			
 			
@@ -229,9 +228,6 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 		float productCost=0, productTax=0;
         
-        
-       
-		
 		NSString *discount = [NSString stringWithFormat:@"%@", [[arrProductIds objectAtIndex:indexPath.row]valueForKey:@"fDiscountedPrice"]];
 		
 		if((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
@@ -259,10 +255,10 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		productTotal=[GlobalPreferences getRoundedOffValue:productTotal];
 		_fSubTotal+=productTotal;
 		_fSubTotal=[GlobalPreferences getRoundedOffValue:_fSubTotal];
-				
+        
 		fTaxAmount=[GlobalPreferences getRoundedOffValue:fTaxAmount];
 		if([[[dicSettings valueForKey:@"store"]valueForKey:@"bIncludeTax"]intValue]==1)
-		{	
+		{
 			taxPercent = [[[dictTax valueForKey:@"tax"] valueForKey:@"fTax"] floatValue];
 			if(countryID==0)
 			{
@@ -282,7 +278,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 					productTax=(([[[arrProductIds objectAtIndex:indexPath.row]valueForKey:@"fPrice"] floatValue]+0)*taxPercent)/100;
 				productTax = (productTax * [[[arrProductIds objectAtIndex:indexPath.row] valueForKey:@"quantity"] intValue]);
 				fTaxAmount += productTax;
-				productTotal = productTotal; 
+				productTotal = productTotal;
 			}
 		}
 		else {
@@ -290,18 +286,22 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		}
 		
 		grandTotalValue += productTotal;
-			
+		
+		
 		UILabel *lblProductSubTotal = [[UILabel alloc] init];
 		lblProductSubTotal.frame = CGRectMake( 245,1, 70, 30);
 		[lblProductSubTotal setBackgroundColor:[UIColor clearColor]];
 		lblProductSubTotal.textColor =[UIColor blackColor];
 		lblProductSubTotal.font =[UIFont fontWithName:@"Helvetica-Bold" size:10];
 		lblProductSubTotal.textAlignment = UITextAlignmentLeft;
-      
+        
         lblProductSubTotal.text = [NSString stringWithFormat:@"%@%0.2f",_savedPreferences.strCurrencySymbol,productCost];
 		[cell.contentView addSubview:lblProductSubTotal];
 		[lblProductSubTotal release];
-				
+		
+		
+		
+		
 		UILabel *lblProductTax = [[UILabel alloc] init];
 		lblProductTax.frame = CGRectMake( 205,1, 53, 30);
 		[lblProductTax setBackgroundColor:[UIColor clearColor]];
@@ -325,27 +325,31 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 		if([strTemptaxType isEqualToString:@"default"])
 			strTemptaxType=@"tax";
-				
+		
+		
 		if(istaxToBeApplied==YES)
-			
 			lblProductTotal.text = [NSString stringWithFormat:@"%@%0.2f\n(inc. %@)", _savedPreferences.strCurrencySymbol, productTotal,strTemptaxType];
 		else
 			lblProductTotal.text = [NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, productTotal];
-			
+		
 		
 		[lblProductTotal release];
-
+		
+		
+		
+		
 	}
 	
 	if(indexPath.row==[arrProductIds count]-1)
 	{
-		[self setLabelsForFooter];	
+		[self setLabelsForFooter];
 		
-	}	
-		
+	}
+    
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	return  cell;
 }
+
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -356,25 +360,29 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 		int optionsCount=[arrSelectedOptions count];
 		return 50+(optionsCount-1)*15;
-		//return optionsCount*35;
-	}
+    }
 	
 	
 	else {
 		return 50;
 	}
-
+	
+	
+	
+	
+	
 }
 - (NSInteger) tableView:(UITableView*) _tableView numberOfRowsInSection:(NSInteger) section
 {
+	
 	return [arrProductIds count];
 }
 
 -(void)createTableView
 {
-	UIView *viewFooter = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300,350)];
+	UIView *viewFooter = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 0, 300,350) chageHieght:YES]];
     viewFooter.backgroundColor = [UIColor colorWithRed:88.6/100 green:88.6/100 blue:88.6/100 alpha:1];
-	UIImageView *imgFooterView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"check_out_bottom.png"]];	
+	UIImageView *imgFooterView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"check_out_bottom.png"]];
 	
     [viewFooter addSubview:imgFooterView];
     [imgFooterView release];
@@ -390,7 +398,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	UILabel *lblSubTotalChargesTitle = [[UILabel alloc] init];
 	lblSubTotalChargesTitle.frame = CGRectMake(165, 19,width, 20);
 	[lblSubTotalChargesTitle setBackgroundColor:[UIColor clearColor]];
-	lblSubTotalChargesTitle.textColor = [UIColor darkGrayColor];	
+	lblSubTotalChargesTitle.textColor = [UIColor darkGrayColor];
 	lblSubTotalChargesTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:13.0];
 	lblSubTotalChargesTitle.textAlignment = UITextAlignmentLeft;
 	lblSubTotalChargesTitle.text =[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.checkout.sub-total"]];
@@ -417,7 +425,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	lblTaxAmountTitle.frame = CGRectMake(165, 37,width, 20);
 	lblTaxAmountTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:13.0];
     [lblTaxAmountTitle setBackgroundColor:[UIColor clearColor]];
-	lblTaxAmountTitle.textColor =[UIColor darkGrayColor];	
+	lblTaxAmountTitle.textColor =[UIColor darkGrayColor];
 	lblTaxAmountTitle.textAlignment = UITextAlignmentLeft;
 	lblTaxAmountTitle.text =[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.tax"]];
 	[viewFooter addSubview:lblTaxAmountTitle];
@@ -443,7 +451,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	UILabel *lblShippingChargesTitle = [[UILabel alloc] init];
 	lblShippingChargesTitle.frame = CGRectMake( 165, 55,width, 20);
 	[lblShippingChargesTitle setBackgroundColor:[UIColor clearColor]];
-	lblShippingChargesTitle.textColor =[UIColor darkGrayColor];	
+	lblShippingChargesTitle.textColor =[UIColor darkGrayColor];
 	lblShippingChargesTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:13.0];
 	lblShippingChargesTitle.textAlignment = UITextAlignmentLeft;
 	lblShippingChargesTitle.text =[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.shipping"]];
@@ -454,7 +462,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	lblShippingCharges = [[UILabel alloc] init];
 	lblShippingCharges.frame = CGRectMake(xCoord, 55,320-xCoord, 20);
 	[lblShippingCharges setBackgroundColor:[UIColor clearColor]];
-	lblShippingCharges.textColor =[UIColor blackColor];	
+	lblShippingCharges.textColor =[UIColor blackColor];
 	lblShippingCharges.font =[UIFont fontWithName:@"Helvetica-Bold" size:10.0];
 	lblShippingCharges.textAlignment = UITextAlignmentLeft;
 	[viewFooter addSubview:lblShippingCharges];
@@ -470,7 +478,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	UILabel *lblShippingTaxTitle= [[UILabel alloc] init];
 	lblShippingTaxTitle.frame = CGRectMake(165,74,width, 20);
 	[lblShippingTaxTitle setBackgroundColor:[UIColor clearColor]];
-	lblShippingTaxTitle.textColor =[UIColor darkGrayColor];	
+	lblShippingTaxTitle.textColor =[UIColor darkGrayColor];
 	lblShippingTaxTitle.textAlignment = UITextAlignmentLeft;
 	[viewFooter addSubview:lblShippingTaxTitle];
 	[lblShippingTaxTitle setText:[NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.shoppingcart.tax.shipping"]]];
@@ -482,7 +490,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	lblShippingTax= [[UILabel alloc] init];
 	lblShippingTax.frame = CGRectMake(xCoord,74,320-xCoord, 20);
 	[lblShippingTax setBackgroundColor:[UIColor clearColor]];
-	lblShippingTax.textColor =[UIColor blackColor];	
+	lblShippingTax.textColor =[UIColor blackColor];
 	lblShippingTax.font =[UIFont fontWithName:@"Helvetica-Bold" size:10.0];
 	lblShippingTax.textAlignment = UITextAlignmentLeft;
     [viewFooter addSubview:lblShippingTax];
@@ -507,13 +515,13 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	UILabel *lblGrandTotalTitle = [[UILabel alloc] init];
 	lblGrandTotalTitle.frame = CGRectMake(165, 112,width, 20);
 	[lblGrandTotalTitle setBackgroundColor:[UIColor clearColor]];
-	lblGrandTotalTitle.textColor = [UIColor darkGrayColor];		
+	lblGrandTotalTitle.textColor = [UIColor darkGrayColor];
 	lblGrandTotalTitle.font =[UIFont fontWithName:@"Helvetica-Bold" size:15.0];
 	
 	lblGrandTotalTitle.textAlignment = UITextAlignmentLeft;
 	lblGrandTotalTitle.text = [NSString stringWithFormat:@"%@:",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.checkout.total"]];
 	[viewFooter addSubview:lblGrandTotalTitle];
-	[lblGrandTotalTitle release]; 
+	[lblGrandTotalTitle release];
 	
     xCoord=lblGrandTotalTitle.frame.size.width+lblGrandTotalTitle.frame.origin.x+2;
 	lblGrandTotal = [[UILabel alloc] init];
@@ -524,42 +532,42 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
     lblGrandTotal.textAlignment = UITextAlignmentLeft;
 	[viewFooter addSubview:lblGrandTotal];
 	
-	/**************************ZOOZ Gatway*******************************************************/	
+	/**************************ZOOZ Gatway*******************************************************/
     
     if(([[GlobalPreferences getPaypalLiveToken] isEqual:[NSNull null]]) || ([GlobalPreferences getPaypalLiveToken]==nil) || ([[GlobalPreferences getPaypalLiveToken] length]==0))
     {
     }else {
         
-    UIButton *btnPayPal=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnPayPal addTarget:self action:@selector(payWithZooz) forControlEvents:UIControlEventTouchUpInside];
-    [btnPayPal setTitle:[NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.PayWithPaypal"]] forState:UIControlStateNormal];
-    [btnPayPal setBackgroundImage:[UIImage imageNamed:@"checkout_btn.png"] forState:UIControlStateNormal];
-    btnPayPal.backgroundColor=navBarColor;
-    [btnPayPal layer].cornerRadius=5.0;
-	[btnPayPal.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
-    btnPayPal.frame=CGRectMake(20, 157, 278, 34);
-    
-    
-    [viewFooter addSubview:btnPayPal];
+        UIButton *btnPayPal=[UIButton buttonWithType:UIButtonTypeCustom];
+        [btnPayPal addTarget:self action:@selector(payWithZooz) forControlEvents:UIControlEventTouchUpInside];
+        [btnPayPal setTitle:[NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.PayWithPaypal"]] forState:UIControlStateNormal];
+        [btnPayPal setBackgroundImage:[UIImage imageNamed:@"checkout_btn.png"] forState:UIControlStateNormal];
+        btnPayPal.backgroundColor=navBarColor;
+        [btnPayPal layer].cornerRadius=5.0;
+        [btnPayPal.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+        btnPayPal.frame=CGRectMake(20, 157, 278, 34);
+        
+        
+        [viewFooter addSubview:btnPayPal];
     }
-  /**************************Cash On Delivery*******************************************************/
+    /**************************Cash On Delivery*******************************************************/
     
     if(![[[dicSettings valueForKey:@"store"] valueForKey:@"codEnabled"]isEqual:[NSNull null]])
     {
-    if([[[dicSettings valueForKey:@"store"] valueForKey:@"codEnabled"]intValue]==1)
-    {
-         
-    UIButton *cashOnDBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [cashOnDBtn addTarget:self action:@selector(cashOnDeveliery) forControlEvents:UIControlEventTouchUpInside];
-    cashOnDBtn.userInteractionEnabled=YES;
-    [cashOnDBtn setTitle:[NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.CashOnDelivery"]] forState:UIControlStateNormal];
-    [cashOnDBtn setBackgroundImage:[UIImage imageNamed:@"checkout_btn.png"] forState:UIControlStateNormal];
-    cashOnDBtn.backgroundColor=navBarColor;
-    [cashOnDBtn layer].cornerRadius=5.0;
-	[cashOnDBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
-    cashOnDBtn.frame=CGRectMake(20, 210, 278, 34);
-    [viewFooter addSubview:cashOnDBtn]; 
-     }
+        if([[[dicSettings valueForKey:@"store"] valueForKey:@"codEnabled"]intValue]==1)
+        {
+            
+            UIButton *cashOnDBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+            [cashOnDBtn addTarget:self action:@selector(cashOnDeveliery) forControlEvents:UIControlEventTouchUpInside];
+            cashOnDBtn.userInteractionEnabled=YES;
+            [cashOnDBtn setTitle:[NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.CashOnDelivery"]] forState:UIControlStateNormal];
+            [cashOnDBtn setBackgroundImage:[UIImage imageNamed:@"checkout_btn.png"] forState:UIControlStateNormal];
+            cashOnDBtn.backgroundColor=navBarColor;
+            [cashOnDBtn layer].cornerRadius=5.0;
+            [cashOnDBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+            cashOnDBtn.frame=CGRectMake(20, 210, 278, 34);
+            [viewFooter addSubview:cashOnDBtn];
+        }
     }
     
 	UILabel*lblCountryTitle=[[UILabel alloc] initWithFrame:CGRectMake(10, 19,100,25)];
@@ -588,14 +596,21 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	[lblStateTitle release];
 	
 	
-	UILabel*lblStateFooter=[[UILabel alloc] initWithFrame:CGRectMake(10,77,100, 25)];
+	UILabel*lblStateFooter=[[UILabel alloc] initWithFrame:CGRectMake(10,77
+																	 
+																	 
+																	 
+																	 ,100, 25)];
 	[lblStateFooter setText:[arrInfoAccount objectAtIndex:8]];
 	[lblStateFooter setBackgroundColor:[UIColor clearColor]];
 	[lblStateFooter setTextColor:[UIColor blackColor]];
 	lblStateFooter.font =[UIFont fontWithName:@"Helvetica-Bold" size:11.0];
 	[viewFooter addSubview:lblStateFooter];
 	[lblStateFooter release];
-
+	
+	
+    
+	
 	if(tableView)
 	{
 		[tableView removeFromSuperview];
@@ -603,16 +618,21 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		tableView=nil;
 	}
 	
-
-	tableView=[[UITableView alloc]initWithFrame:CGRectMake(0,62, 320,305) style:UITableViewStylePlain];
+	
+	
+	tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,62, 320,305) chageHieght:YES] style:UITableViewStylePlain];
 	tableView.delegate=self;
 	tableView.dataSource=self;
+    tableView.backgroundView=nil;
+    
 	[tableView setHidden:NO];
 	[tableView setTableFooterView:viewFooter];
 	[tableView setBackgroundColor:[UIColor clearColor]];
 	[contentView addSubview:tableView];
 	
 	[viewFooter release];
+	
+	
 	
 }
 
@@ -622,25 +642,41 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 {
     
     [super viewDidLoad];
-    
     isLoadingTableFooter = TRUE;
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
+    for(int i = 0; i < [_objMobicartAppDelegate.tabController.moreNavigationController.view.subviews count]; i++)
+	{
+		if ([[_objMobicartAppDelegate.tabController.moreNavigationController.view.subviews objectAtIndex:i] isKindOfClass:[UIButton class]])
+		{
+			[[_objMobicartAppDelegate.tabController.moreNavigationController.view.subviews objectAtIndex:i]removeFromSuperview];
+		}
+		
+		if ([[_objMobicartAppDelegate.tabController.moreNavigationController.view.subviews objectAtIndex:i] isKindOfClass:[UILabel class]])
+		{
+			[[_objMobicartAppDelegate.tabController.moreNavigationController.view.subviews objectAtIndex:i]removeFromSuperview];
+		}
+	}
+    
 	arrInfoAccount=[[NSMutableArray alloc]init];
 	arrInfoAccount=[[SqlQuery shared] getAccountData:[GlobalPreferences getUserDefault_Preferences:@"userEmail"]];
 	
-	contentView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,480)];
+	contentView = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,0,320,480) chageHieght:YES]];
 	contentView.backgroundColor=[UIColor colorWithRed:200.0/256 green:200.0/256 blue:200.0/256 alpha:1];
 	contentView.tag = 101010;
 	[GlobalPreferences setGradientEffectOnView:contentView:[UIColor whiteColor]:contentView.backgroundColor];
 	self.view = contentView;
 	
-	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:CGRectMake(0,30,320,480)];
+	UIImageView *imgContentView=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,30,320,480) chageHieght:YES]];
 	[imgContentView setBackgroundColor:[UIColor clearColor]];
 	[imgContentView setImage:[UIImage imageNamed:@"shoppingcart_bar_stan.png"]];
 	
 	[contentView addSubview:imgContentView];
 	[imgContentView release];
-	UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0,-1, 320,31)];
+	
+	
+	
+	UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0,-1
+															   , 320,31)];
 	[viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
     [viewTopBar setTag:1100110011];
 	[contentView addSubview:viewTopBar];
@@ -711,7 +747,9 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	lblProductSubTotal.text = [NSString stringWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.checkout.totalcost"]];
 	[contentView addSubview:lblProductSubTotal];
 	[lblProductSubTotal release];
-
+	
+	
+	
    	UIImageView *imgLineView=[[UIImageView alloc]initWithFrame:CGRectMake(0,60,320,2)];
 	[imgLineView setImage:[UIImage imageNamed:@"seperatorCheckOut.png"]];
 	[contentView addSubview:imgLineView];
@@ -737,7 +775,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	{
 		[interShippingDict addObject:[arrTax objectAtIndex:index]];
 	}
-	countryID=0; 
+	countryID=0;
 	stateID=0;
 	if([arrInfoAccount count]>0)
 	{
@@ -759,15 +797,23 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 				stateID=[[[dicStates valueForKey:@"id"]objectAtIndex:index]intValue];
 		}
 		
-    }
+		
+	}
+	
+	
+	
 	[dicSettings release];
 	[interShippingDict release];
 	
 	
-	dictTax =[ServerAPI fetchTaxShippingDetails:countryID :stateID:iCurrentStoreId];
+    dictTax =[ServerAPI fetchTaxShippingDetails:countryID :stateID:iCurrentStoreId];
     
 	[dictTax retain];
-	if([arrProductIds count]==1)   
+	
+	
+	
+	
+	if([arrProductIds count]==1)
 	{
 		
 		if ([[[arrProductIds objectAtIndex:0]valueForKey:@"quantity"]intValue]==1)
@@ -786,28 +832,42 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 	}
 	
+	
+	
+	
+	
 	[self fetchDataFromLocalDB];
     [self createTableView];
- }
+    
+	
+	
+	
+    
+    
+}
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-
+	
+    
 }
 - (void)hideLoadingBar
 {
-	 [GlobalPreferences dismissLoadingBar_AtBottom];
+    [GlobalPreferences dismissLoadingBar_AtBottom];
 }
+
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
 	
 	[super viewWillAppear:animated];
-    	
+    
 	if(controllersCount>5&&_objMobicartAppDelegate.tabController.selectedIndex>3)
 	{
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removedPoweredByMobicart" object:nil];
 	}
-	for (UIView *view in [self.navigationController.navigationBar subviews]) 
+	for (UIView *view in [self.navigationController.navigationBar subviews])
 	{
 		if ([view isKindOfClass:[UIButton class]])
 			view.hidden =TRUE;
@@ -832,6 +892,14 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	}
 }
 
+
+
+
+
+
+
+
+
 #pragma mark -Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -842,35 +910,36 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 
 #pragma mark Fetch Data From SQLite DB
 
--(void)fetchDataFromLocalDB 
+-(void)fetchDataFromLocalDB
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	if(!arrUserDetails)		
+	if(!arrUserDetails)
 		arrUserDetails = [[NSArray alloc] init];
 	
 	arrUserDetails = [[SqlQuery shared] getBuyerData:[GlobalPreferences getUserDefault_Preferences:@"userEmail"]];
 	NSDictionary *dictAppDetails = [[GlobalPreferences getSettingsOfUserAndOtherDetails] objectForKey:@"store"];
 	if(dictAppDetails)
-
-	{    
-		sMerchantPaypayEmail=[[NSString alloc]initWithFormat:@"%@",[dictAppDetails objectForKey:@"sPaypalEmail"]];
-	
-		if(([sMerchantPaypayEmail isEqual:[NSNull null]]) || ([sMerchantPaypayEmail isEqualToString:@"null"]) ||  ([sMerchantPaypayEmail isEqualToString:@""]))
-
+        
 	{
-		self.sMerchantPaypayEmail = [[NSString alloc] initWithFormat:@"%@",[dictAppDetails objectForKey:@"sPaypalEmail"]];
-		if(([self.sMerchantPaypayEmail isEqual:[NSNull null]]) || ([self.sMerchantPaypayEmail isEqualToString:@"null"]) ||  ([self.sMerchantPaypayEmail isEqualToString:@""]))
-
-		{
-            self.sMerchantPaypayEmail = merchantEmailId;
-		}
-		
-		
-	}
-
-   
-	[sMerchantPaypayEmail retain];
-	[pool release];
+		sMerchantPaypayEmail=[[NSString alloc]initWithFormat:@"%@",[dictAppDetails objectForKey:@"sPaypalEmail"]];
+		if(([sMerchantPaypayEmail isEqual:[NSNull null]]) || ([sMerchantPaypayEmail isEqualToString:@"null"]) ||  ([sMerchantPaypayEmail isEqualToString:@""]))
+            
+        {
+            self.sMerchantPaypayEmail = [[NSString alloc] initWithFormat:@"%@",[dictAppDetails objectForKey:@"sPaypalEmail"]];
+            if(([self.sMerchantPaypayEmail isEqual:[NSNull null]]) || ([self.sMerchantPaypayEmail isEqualToString:@"null"]) ||  ([self.sMerchantPaypayEmail isEqualToString:@""]))
+                
+            {
+                self.sMerchantPaypayEmail = merchantEmailId;
+            }
+            
+            
+        }
+        
+        
+        [sMerchantPaypayEmail retain];
+        
+        
+        [pool release];
 	}
 }
 /*
@@ -881,11 +950,11 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
  */
 
 
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -903,27 +972,28 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 
 
 - (void)dealloc {
-	[super dealloc];
+	
+    [super dealloc];
 }
 #pragma mark Zooz/PayPal Integration
 
 
 -(void)payWithZooz
 {
-   
     
- 	NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]); // this is the bundle ID value that you need to register in ZooZ portal
-	 NSString *strCode =[_savedPreferences.strCurrency substringFromIndex:3];
-       NSString *invRef;
+    
+ 	NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
+    NSString *strCode =[_savedPreferences.strCurrency substringFromIndex:3];
+    NSString *invRef;
     invRef=[NSString stringWithFormat:@"INV-%@", [NSDate new]] ;
-   
+    
 	totalShippingAmount=0.0;
 	
 	float shipping = fShippingCharges + taxOnShipping;
 	totalShippingAmount=shipping;
     
-  
-	    
+    
+    
     float totalAmount=priceWithoutTax+totalShippingAmount+[GlobalPreferences getRoundedOffValue:fTaxAmount];
     
 	ZooZ * zooz = [ZooZ sharedInstance];
@@ -945,8 +1015,8 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
     req.payerDetails.address.state=[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryState"];
     req.payerDetails.address.streetAddress=[[arrUserDetails objectAtIndex:0] objectForKey:@"sStreetAddress"];
     req.payerDetails.address.city=[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryCity"];
+    req.requireAddress=NO;
     
-        
     for (int i =0; i<[arrProductIds count];i++)
     {
         float price;
@@ -959,46 +1029,47 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
             price=[[[arrProductIds objectAtIndex:i] objectForKey:@"fDiscountedPrice"] floatValue];
             price+=[[productNameOpt objectAtIndex:1] floatValue];
         }
-        else 
+        else
         {
             price=[[[arrProductIds objectAtIndex:i] objectForKey:@"fPrice"] floatValue];
             price+=[[productNameOpt objectAtIndex:1] floatValue];
         }
         
-        ZooZInvoiceItem * item = [[[ZooZInvoiceItem alloc] initWithPrice:price quantity:[[[arrProductIds objectAtIndex:i] objectForKey:@"quantity"] intValue] name:[NSString stringWithFormat:@"%@", nameOption] ] autorelease];
+        ZooZInvoiceItem * item = [[[ZooZInvoiceItem alloc] initWithPrice:price quantity:[[[arrProductIds objectAtIndex:i] objectForKey:@"quantity"] intValue] name:[NSString stringWithFormat:@"%@", nameOption] ] autorelease];//Don't forget to release/autorelease
         
-        item.itemId =[NSString stringWithFormat:@"%d", [[[arrProductIds objectAtIndex:i] objectForKey:@"id"] intValue]];
+        item.itemId =[NSString stringWithFormat:@"%d", [[[arrProductIds objectAtIndex:i] objectForKey:@"id"] intValue]]; // optional
         
         
         [req addItem:item];
         
     }
-        
-            
+    
+    
     /* End of optional */
-        if(([[GlobalPreferences getPaypalLiveToken] isEqual:[NSNull null]]) || ([GlobalPreferences getPaypalLiveToken]==nil) || ([[GlobalPreferences getPaypalLiveToken] length]==0))
-          {
+    
+    if(([[GlobalPreferences getPaypalLiveToken] isEqual:[NSNull null]]) || ([GlobalPreferences getPaypalLiveToken]==nil) || ([[GlobalPreferences getPaypalLiveToken] length]==0))
+    {
 		
-           zooz.sandbox = YES;
-         [zooz openPayment:req forAppKey:@""];
+        zooz.sandbox = YES;
+        [zooz openPayment:req forAppKey:@""];
         
-          }
-        else
+    }
+    else
+    {
+        if([[GlobalPreferences getPaypal_TOKEN_CHECK] isEqualToString:@"YES"])
         {
-            if([[GlobalPreferences getPaypal_TOKEN_CHECK] isEqualToString:@"YES"])
-            { 
-                zooz.sandbox = NO;
-                [zooz openPayment:req forAppKey:[GlobalPreferences getPaypalLiveToken]];
-                
-                
-            } else
-            {    
-             zooz.sandbox = YES;
-             [zooz openPayment:req forAppKey:[GlobalPreferences getPaypalLiveToken]];
-            }
+            zooz.sandbox = NO;
+            [zooz openPayment:req forAppKey:[GlobalPreferences getPaypalLiveToken]];
+            
+            
+        } else
+        {
+            zooz.sandbox = YES;
+            [zooz openPayment:req forAppKey:[GlobalPreferences getPaypalLiveToken]];
         }
-	 
-    	
+    }
+    
+    
     
 }
 - (void)openPaymentRequestFailed:(ZooZPaymentRequest *)request withErrorCode:(int)errorCode andErrorMessage:(NSString *)errorMessage{
@@ -1013,11 +1084,13 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 
 - (void)paymentSuccessWithResponse:(ZooZPaymentResponse *)response{
 	NSLog(@"payment success with payment Id: %@, %@, %@, %f", response.transactionId, response.cardType, response.cardDisplayString, response.paidAmount);
+    
+    
+    
 }
 
 -(void)paymentSuccessDialogClosed{
-  
-    //see paymentSuccessWithResponse: for the response transaction ID. 
+    NSLog(@"Payment dialog closed after success");
     [self performSelectorInBackground:@selector(sendDataToServers:) withObject:@"0"];
 	
 	NSString *strTitle = [[NSString alloc] initWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.order.completed.sucess.title"] ];
@@ -1026,7 +1099,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	
 	NSString *strCancelButton = [[NSString alloc] initWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] ];
 	
-	if ([strTitle length]>0 && [strMessage length]>0 && [strCancelButton length]>0) 
+	if ([strTitle length]>0 && [strMessage length]>0 && [strCancelButton length]>0)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.completed.sucess.title"] message:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.completed.sucess.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 		
@@ -1035,7 +1108,6 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		[alert release];
 	}
 	else {
-        
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Order Approved" message:@"Thank you, your order has been completed successfully. Please visit the 'Account' tab for further details." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		
 		[alert show];
@@ -1050,7 +1122,9 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 }
 
 - (void)paymentCanceled{
-	   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.cancel.title"] message:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.cancel.text"] delegate:nil cancelButtonTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
+	NSLog(@"payment cancelled");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.cancel.title"] message:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.cancel.text"] delegate:nil cancelButtonTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 	
 	[alert show];
 	
@@ -1060,7 +1134,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 #pragma mark fetching option and name of product
 
 -(NSMutableArray *) fetchNameOptionProduct:(int)k
-{  
+{
     NSMutableString * newproductName ;
     
     NSMutableArray *test=[NSMutableArray new];
@@ -1098,33 +1172,40 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
                 }
             }
         }
+        
+        
+        
+        
         for(int count=0;count<[arrSelectedOptions count];count++)
         {
+            
+            
+            
             optionPrice+=[[[dictOption objectAtIndex:optionSizesIndex[count]]valueForKey:@"pPrice"]floatValue];
             
             
             [test addObject: [NSString stringWithFormat:@"%@: %@",[[dictOption objectAtIndex:optionSizesIndex[count]]valueForKey:@"sTitle"],[[dictOption objectAtIndex:optionSizesIndex[count]]valueForKey:@"sName"]]] ;
             
             
-        } 
-            
-        [strArray addObject:[NSString stringWithFormat:@"%@ [%@]",newproductName,[test componentsJoinedByString:@"," ]]]; 
+        }
+        
+        [strArray addObject:[NSString stringWithFormat:@"%@ [%@]",newproductName,[test componentsJoinedByString:@"," ]]];
         [strArray addObject:[NSString stringWithFormat:@"%f",optionPrice]];
         
         return strArray;
     }
-    else 
+    else
     {
         [strArray addObject:[NSString stringWithFormat:@"%@",newproductName]];
         [strArray addObject:[NSString stringWithFormat:@"%f",optionPrice]];
         return strArray;
     }
-  
+    
 }
 
 #pragma mark Cash on delivery
 -(void)cashOnDeveliery
-{   
+{
     
     
     [self performSelectorInBackground:@selector(sendDataToServers:) withObject:@"1"];
@@ -1135,7 +1216,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	
 	NSString *strCancelButton = [[NSString alloc] initWithFormat:@"%@",[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] ];
 	
-	if ([strTitle length]>0 && [strMessage length]>0 && [strCancelButton length]>0) 
+	if ([strTitle length]>0 && [strMessage length]>0 && [strCancelButton length]>0)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.completed.sucess.title"] message:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.order.completed.sucess.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 		
@@ -1153,18 +1234,18 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 	[strTitle release];
 	[strMessage release];
 	[strCancelButton release];
- 
+    
 }
 #pragma mark Send Data To Server
--(void) sendDataToServers:(NSString *)codEnabled 
+-(void) sendDataToServers:(NSString *)codEnabled
 {
     NSString *strCode =_savedPreferences.strCurrency;
-     
+    
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	NSString *strDataToPost = [NSString stringWithFormat:@"{\"storeId\":%d,\"appId\":%d,\"merchantId\":%d,\"fAmount\":%0.2f,\"sMerchantPaypalEmail\":\"%@\",\"fTaxAmount\":%0.2f,\"fShippingAmount\":%0.2f,\"fTotalAmount\":%0.2f,\"sBuyerName\":\"%@\",\"sBuyerEmail\":\"%@\",\"iBuyerPhone\":null,\"sShippingStreet\":\"%@\",\"sShippingCity\":\"%@\",\"sShippingState\":\"%@\",\"sShippingPostalCode\":\"%@\",\"sShippingCountry\":\"%@\",\"sBillingStreet\":\"%@\",\"sBillingCity\":\"%@\",\"sBillingState\":\"%@\",\"sBillingPostalCode\":\"%@\",\"sBillingCountry\":\"%@\",\"codEnabled\":%d,\"orderCurrency\":\"%@\"}",iCurrentStoreId,iCurrentAppId,iCurrentMerchantId, priceWithoutTax,self.sMerchantPaypayEmail,[GlobalPreferences getRoundedOffValue:fTaxAmount], totalShippingAmount,grandTotalValue, [[arrUserDetails objectAtIndex:0] objectForKey:@"sUserName"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sEmailAddress"], [[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryAddress"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryCity"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryState"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryPincode"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sDeliveryCountry"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sStreetAddress"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sCity"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sState"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sPincode"],[[arrUserDetails objectAtIndex:0] objectForKey:@"sCountry"],[codEnabled intValue],strCode];
 	
-
+    
 	if (![GlobalPreferences isInternetAvailable])
 	{
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDataInShoppingCartQueue"];
@@ -1173,10 +1254,7 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		
 		NSLog(@"INTERNET IS UNAVAILABLE, SAVING DATA IN THE LOCAL DATABASE");
 		
-	int queueID=	[[SqlQuery shared] addToQueue_Shoppingcart:strDataToPost sendAtUrl:[NSString stringWithFormat:@"/product-order/save"]];
-        [GlobalPreferences setCurrentShoppingCartNum:queueID];
-        
-        
+		[[SqlQuery shared] addToQueue_Shoppingcart:strDataToPost sendAtUrl:[NSString stringWithFormat:@"/product-order/save"]];
 		for (int i =0; i<[arrProductIds count];i++)
 		{
 			float price;
@@ -1185,12 +1263,12 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
             {
                 price=[[[arrProductIds objectAtIndex:i] objectForKey:@"fDiscountedPrice"] floatValue];
             }
-			else 
+			else
             {
 				price=[[[arrProductIds objectAtIndex:i] objectForKey:@"fPrice"] floatValue];
 			}
 			
-			NSString *dataToSave = [NSString stringWithFormat:@"{\"productId\":%d,\"fAmount\":%0.2f,\"orderId\":0,\"productOptionId\":%d,\"iQuantity\":%d,\"id\":null}",[[[arrProductIds objectAtIndex:i] objectForKey:@"id"] intValue],price, [[arrCartItems objectAtIndex:i] objectForKey:@"pOptionsId"], [[[arrProductIds objectAtIndex:i] objectForKey:@"quantity"] intValue]];
+			NSString *dataToSave = [NSString stringWithFormat:@"{\"productId\":%d,\"fAmount\":%0.2f,\"orderId\":0,\"productOptionId\":%@,\"iQuantity\":%d,\"id\":null}",[[[arrProductIds objectAtIndex:i] objectForKey:@"id"] intValue],price, [[arrCartItems objectAtIndex:i] objectForKey:@"pOptionsId"], [[[arrProductIds objectAtIndex:i] objectForKey:@"quantity"] intValue]];
 			
 			
 			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDataInIndividualProductsQueue"];
@@ -1199,15 +1277,15 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 		}
 	}
 	
-	else 
+	else
 	{
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isDataInShoppingCartQueue"];
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isDataInIndividualProductsQueue"];
 		
-		NSString *reponseRecieved = [ServerAPI product_orderSaveURLSend:strDataToPost]; 
+		NSString *reponseRecieved = [ServerAPI product_orderSaveURLSend:strDataToPost];
 		
-		// Now send data to the server for this recently made order 
-		if ([reponseRecieved isKindOfClass:[NSString class]]) 
+		// Now send data to the server for this recently made order
+		if ([reponseRecieved isKindOfClass:[NSString class]])
 		{
 			int iCurrentOrderId = [[[[[reponseRecieved componentsSeparatedByString:@":"] objectAtIndex:1] componentsSeparatedByString:@"}"] objectAtIndex:0] intValue];
 			
@@ -1235,10 +1313,10 @@ extern   MobicartAppAppDelegate *_objMobicartAppDelegate;
 				[[SqlQuery shared] deleteItemFromShoppingCart:[[[arrProductIds objectAtIndex:i] valueForKey:@"id"]integerValue] :[[arrCartItems objectAtIndex:i] valueForKey:@"pOptionId"]];
 			}
 			
-			if (iCurrentOrderId>0) 
+			if (iCurrentOrderId>0)
 			{
-				[ServerAPI product_order_NotifyURLSend:@"Sending Order Number Last Time":iCurrentOrderId];
-			}	
+                [ServerAPI product_order_NotifyURLSend:@"Sending Order Number Last Time":iCurrentOrderId];
+			}
 		}
 		else
         {

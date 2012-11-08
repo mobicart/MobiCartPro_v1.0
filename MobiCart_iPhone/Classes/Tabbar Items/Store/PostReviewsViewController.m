@@ -17,13 +17,13 @@ int rating=0;
 @synthesize productId;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad 
+- (void)viewDidLoad
 {
 	[GlobalPreferences setCurrentNavigationController:self.navigationController];
 	self.navigationItem.titleView = [GlobalPreferences createLogoImage];
 	self.view.backgroundColor=navBarColor;
 	
-    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0,0,320,480)];
+    UIView *contentView = [[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0,0,320,480) chageHieght:YES]];
 	contentView.backgroundColor=[UIColor colorWithRed:200.0/256 green:200.0/256 blue:200.0/256 alpha:1];
     
 	[GlobalPreferences setGradientEffectOnView:contentView:[UIColor whiteColor]:contentView.backgroundColor];
@@ -32,13 +32,12 @@ int rating=0;
 	
     UIView *viewTopBar=[[UIView alloc]initWithFrame:CGRectMake(0,0, 320, 32)];
 	[viewTopBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"barNews.png"]]];
-    [contentView addSubview:viewTopBar]; 
+    [contentView addSubview:viewTopBar];
 	
 	UIView *viewTopBar1=[[UIView alloc]initWithFrame:CGRectMake(0,43, 320, 2)];
 	[viewTopBar1 setBackgroundColor:[UIColor blackColor]];
-    //[self.navigationController.navigationBar addSubview:viewTopBar1];
     [self.view addSubview:viewTopBar1];
-
+    
     
     
 	UILabel *accountLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 310, 20)];
@@ -109,7 +108,7 @@ int rating=0;
 
 
 - (void)viewWillAppear:(BOOL)animated
-{  
+{
 	isPostReviews=YES;
 	rating=0;
 }
@@ -123,19 +122,19 @@ int rating=0;
 	NSArray *_arrTemp = [viewContent_Star subviews];
 	
 	int iSenderTag = [sender tag];
-	for (int i = 0; i<iSenderTag; i++) 
+	for (int i = 0; i<iSenderTag; i++)
 	{
 		UIButton *pBtn = [_arrTemp objectAtIndex:i];
 		[pBtn setImage:[UIImage imageNamed:@"yellow_star1.png"] forState:UIControlStateNormal];
 	}
 	
-	for (int j=iSenderTag+1; j<5; j++) 
+	for (int j=iSenderTag+1; j<5; j++)
 	{
 		UIButton *nBtn = [_arrTemp objectAtIndex:j];
 		[nBtn setImage:[UIImage imageNamed:@"grey_star1.png"] forState:UIControlStateNormal];
 	}
 	
-	if ([sender.currentImage isEqual:[UIImage imageNamed:@"yellow_star1.png"]]) 
+	if ([sender.currentImage isEqual:[UIImage imageNamed:@"yellow_star1.png"]])
 	{
 		[sender setImage:[UIImage imageNamed:@"grey_star1.png"] forState:UIControlStateNormal];
 		if(sender.tag==0)
@@ -164,7 +163,7 @@ int rating=0;
     {
         return NO;
     }
-		
+    
 	return YES;
 }
 
@@ -206,12 +205,12 @@ int rating=0;
 		[alert release];
 	}
 	
-	else 
+	else
 	{
-        NSString *reponseRecieved = [ServerAPI postReviewRatings:strDataToPost];		
+        NSString *reponseRecieved = [ServerAPI postReviewRatings:strDataToPost];
 		
-        // Now send data to the server for this recently made order 
-		if ([reponseRecieved isKindOfClass:[NSString class]]) 
+        // Now send data to the server for this recently made order
+		if ([reponseRecieved isKindOfClass:[NSString class]])
 		{
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.review.rating.posted.title"] message:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.review.rating.posted.text"] delegate:self cancelButtonTitle:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.nointernet.cancelbutton"] otherButtonTitles:nil];
 			[alert show];
@@ -263,14 +262,14 @@ int rating=0;
     // Release any cached data, images, etc. that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc 
+- (void)dealloc
 {
     [super dealloc];
 }

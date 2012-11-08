@@ -40,14 +40,14 @@ extern BOOL isNewsSection;
 	[btnStore setFrame:CGRectMake(35, 0, 69,36)];
 	
 	UIBarButtonItem *btnBack=[[UIBarButtonItem alloc] initWithCustomView:btnStore];
-	[btnBack setStyle:UIBarButtonItemStyleBordered]; 
+	[btnBack setStyle:UIBarButtonItemStyleBordered];
 	
-	[self.navigationItem setLeftBarButtonItem:btnBack];	
+	[self.navigationItem setLeftBarButtonItem:btnBack];
 	lblCart.text = [NSString stringWithFormat:@"%d", iNumOfItemsInShoppingCart];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"updateLabelStore" object:nil];
 	
-	isNewsSection = NO;	
+	isNewsSection = NO;
 	
 	if ([GlobalPreferences isClickedOnFeaturedProductFromHomeTab])
 	{
@@ -77,7 +77,7 @@ extern BOOL isNewsSection;
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView 
+- (void)loadView
 {
 	// The title is set to keep checks on Search Bar of this view controller
 	self.title = @"Products";
@@ -90,7 +90,7 @@ extern BOOL isNewsSection;
 		[errorAlert show];
 		[errorAlert release];
 	}
-	else 
+	else
 	{
 		[GlobalPreferences setCurrentNavigationController:self.navigationController];
 		
@@ -98,20 +98,20 @@ extern BOOL isNewsSection;
 		
 		UIView *viewRemoveLine = [[UIView alloc] initWithFrame:CGRectMake( 0, 43, 320,1)];
 		[viewRemoveLine setBackgroundColor:self.navigationController.navigationBar.tintColor];
-
+        
 		[self.navigationController.navigationBar addSubview:viewRemoveLine];
 		[viewRemoveLine release];
 		
 		[self allocateMemoryToObjects];
 		
-		contentView=[[UIView alloc]initWithFrame:CGRectMake( 0, 0, 320, 396)];
-		UIImageView *imgBg=[[UIImageView alloc]initWithFrame:CGRectMake(0,30, 320, 396)];
+		contentView=[[UIView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
+		UIImageView *imgBg=[[UIImageView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake( 0, 0, 320, 396) chageHieght:YES]];
 		[imgBg setImage:[UIImage imageNamed:@"product_details_bg.png"]];
 		[contentView addSubview:imgBg];
 		[imgBg release];
 		
-		//contentView.backgroundColor=navBarColor;
 		self.view=contentView;
+        
 		
 		[NSThread detachNewThreadSelector:@selector(fetchDataFromServer) toTarget:self withObject:nil];
 		
@@ -181,11 +181,11 @@ extern BOOL isNewsSection;
 	
 	if (isCatogeryEmpty==YES)
 	{
-    	dictCategories=[ServerAPI fetchProductsWithoutCategories_departmentID:iCurrentDepartmentId countryID:countryID stateID:stateID:iCurrentStoreId];	
+    	dictCategories=[ServerAPI fetchProductsWithoutCategories_departmentID:iCurrentDepartmentId countryID:countryID stateID:stateID:iCurrentStoreId];
     }
-	else 
-	{   
-         dictCategories=	[ServerAPI fetchProductsWithCategoriesAndSubCategories_departmentID:iCurrentDepartmentId categoryID:iCurrentCategoryId countyID:countryID stateID:stateID:iCurrentStoreId];
+	else
+	{
+        dictCategories=	[ServerAPI fetchProductsWithCategoriesAndSubCategories_departmentID:iCurrentDepartmentId categoryID:iCurrentCategoryId countyID:countryID stateID:stateID:iCurrentStoreId];
 	}
 	
 	arrAllData = [dictCategories objectForKey:@"products"];
@@ -225,7 +225,7 @@ extern BOOL isNewsSection;
             [self performSelectorOnMainThread:@selector(createTableView) withObject:nil waitUntilDone:YES];
         }
 	}
-	else 
+	else
 		NSLog (@"No Data Available for this Department (CategoryViewContoller)");
 	
 	[dictSettingsDetails release];
@@ -241,15 +241,16 @@ extern BOOL isNewsSection;
 }
 - (void)createSubViewsAndControls
 {
-		_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0 ,
+    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0 ,
 															  320 ,44)];
 	[GlobalPreferences setSearchBarDefaultSettings:_searchBar];
 	[_searchBar setDelegate:self];
 	[contentView addSubview:_searchBar];
+    
 	UIToolbar *topSortToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,44,320,40)];
-  
+    
     [topSortToolBar setTintColor:[UIColor lightGrayColor]];
-	
+	// Setting gradient effect on view
 	[GlobalPreferences setShadowOnView:topSortToolBar:[UIColor darkGrayColor]:YES:[UIColor whiteColor]:[UIColor lightGrayColor]];
 	topSortToolBar.tag = 10101010;
 	
@@ -258,8 +259,10 @@ extern BOOL isNewsSection;
 	NSArray *toggleItems = [[NSArray alloc] initWithObjects:[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.productlist.price"],[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.productlist.status"],[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.productlist.atoz"],nil];
 	
 	CustomSegmentControl *sortSegCtrl = [[CustomSegmentControl alloc] initWithItems:toggleItems offColor:[UIColor colorWithRed:81.6/100 green:81.6/100 blue:81.6/100 alpha:1.0] onColor:[UIColor colorWithRed:78.6/100 green:78.3/100 blue:78.3/100 alpha:1.0]];
+	if([GlobalPreferences getCureentSystemVersion]>=6.0)
+        [sortSegCtrl setTintColor:[UIColor colorWithRed:81.6/100 green:81.6/100 blue:81.6/100 alpha:1.0]];
 	
-	[self setTextColors:sortSegCtrl];
+    [self setTextColors:sortSegCtrl];
 	
 	[sortSegCtrl addTarget:self action:@selector(sortSegementChanged:) forControlEvents:UIControlEventValueChanged];
 	[sortSegCtrl setFrame:CGRectMake(95,5,220, 30)];
@@ -276,14 +279,15 @@ extern BOOL isNewsSection;
 	[topSortToolBar addSubview:lblSort];
 	[lblSort release];
 }
+
 #pragma mark Sort handlers
 //Called to Change The Text of Segment Controller when Clicked
 - (void)setTextColors:(id)sender
-{	
+{
 	UISegmentedControl *sg = (UISegmentedControl*)sender;
 	
 	int eg=0;
-    for (id seg in [sg subviews]) 
+    for (id seg in [sg subviews])
     {
         int gg=sg.selectedSegmentIndex;
         if(gg==2)
@@ -292,9 +296,9 @@ extern BOOL isNewsSection;
             gg=2;
         if(eg==gg && eg!=1)
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
-                {   
+                {
 					[label setTextAlignment:UITextAlignmentCenter];
                     [label setFont:[UIFont fontWithName:@"Helvetica" size:12]];
                     [label setTextColor:[UIColor colorWithRed:57.0/255.0 green:67.0/255.0 blue:67.0/255.0 alpha:1]];
@@ -302,7 +306,7 @@ extern BOOL isNewsSection;
         }
         else if(eg==1)
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
                 {
                     [label setTextAlignment:UITextAlignmentCenter];
@@ -312,7 +316,7 @@ extern BOOL isNewsSection;
         }
         else
         {
-            for (id label in [seg subviews]) 
+            for (id label in [seg subviews])
                 if ([label isKindOfClass:[UILabel class]])
                 {
                     [label setTextAlignment:UITextAlignmentCenter];
@@ -346,7 +350,7 @@ extern BOOL isNewsSection;
 	arrAllData = [arrAllData sortedArrayUsingDescriptors:descriptors];
 	[arrAllData retain];
 	if ([arrAllData count]>0)
-	{ 
+	{
 		arrSearch=[NSMutableArray arrayWithArray:arrAllData];
 		[arrSearch retain];
 	}
@@ -354,11 +358,11 @@ extern BOOL isNewsSection;
 }
 - (void)sortSegementChanged:(id)sender
 {
-	@try 
+	@try
 	{
 		[self setTextColors:sender];
 		UISegmentedControl *segTemp = sender;
-		switch (segTemp.selectedSegmentIndex) 
+		switch (segTemp.selectedSegmentIndex)
 		{
 			case 0:
 			{
@@ -372,7 +376,7 @@ extern BOOL isNewsSection;
 				NSArray *descriptors = [NSArray arrayWithObjects:statusDescriptor,priceDescriptor, nameDescriptor,nil];
 			    arrAllData = [arrAllData sortedArrayUsingDescriptors:descriptors];
 				arrSearch=[NSMutableArray arrayWithArray:arrAllData];
-				break;			
+				break;
 			}
 			case 2:
 			{
@@ -387,7 +391,7 @@ extern BOOL isNewsSection;
 		
 	}
 	
-	@catch (NSException * e) 
+	@catch (NSException * e)
     {
 		NSLog(@"Error While Sorting (ProductViewController)");
 	}
@@ -411,7 +415,7 @@ extern BOOL isNewsSection;
                 _currentRecord.requestImg=[ServerAPI createImageURLConnection:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
 				
             }
-			//_currentRecord.imageURLString = [NSString stringWithFormat:@"%@%@",urlMainServer,[[arrImagesUrls objectAtIndex:0] valueForKey:@"sLocationSmall"]];
+            
 			[self.arrAppRecordsAllEntries addObject:_currentRecord];
 			[_currentRecord release];
 		}
@@ -430,11 +434,13 @@ extern BOOL isNewsSection;
 		tableView=nil;
 	}
 	
-	tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 70,320, 295) style:UITableViewStyleGrouped];
+	tableView=[[UITableView alloc]initWithFrame:[GlobalPreferences setDimensionsAsPerScreenSize:CGRectMake(0, 70,320, 295) chageHieght:YES] style:UITableViewStyleGrouped];
 	tableView.delegate=self;
 	tableView.dataSource=self;
+    tableView.backgroundView=nil;
+    tableView.backgroundColor=[UIColor clearColor];
 	tableView.showsVerticalScrollIndicator = FALSE;
-	[tableView setBackgroundColor:[UIColor clearColor]];
+	
     [contentView addSubview:tableView];
 	
 	[self.imageDownloadsInProgress removeAllObjects];
@@ -442,19 +448,18 @@ extern BOOL isNewsSection;
 	UIToolbar *topSortToolBar =  (UIToolbar *)[contentView viewWithTag:10101010];
 	[contentView bringSubviewToFront:topSortToolBar];
 }
-
 #pragma mark Search Bar Delegates
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{  
-    searchBar.showsCancelButton = YES;  
+{
+    searchBar.showsCancelButton = YES;
 	return YES;
-}  
+}
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar 
-{  
-    searchBar.showsCancelButton = NO;  
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    searchBar.showsCancelButton = NO;
 	return YES;
-}  
+}
 
 // Called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
@@ -472,7 +477,7 @@ extern BOOL isNewsSection;
             _currentRecord.requestImg=[ServerAPI createImageURLConnection:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
 			
         }
-
+        
 		[self.arrAppRecordsAllEntries addObject:_currentRecord];
 		[_currentRecord release];
 	}
@@ -485,14 +490,14 @@ extern BOOL isNewsSection;
 	{
 		
 	}
-	searchBar.showsCancelButton = NO; 
+	searchBar.showsCancelButton = NO;
 	[searchBar resignFirstResponder];
 	searchBar.text = @"";
 	
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{	
+{
 	[searchBar resignFirstResponder];
 }
 
@@ -513,12 +518,12 @@ extern BOOL isNewsSection;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{   
+{
 	[arrSearch removeAllObjects];
 	
 	if ([searchText isEqualToString:@""] || searchText==nil)
-	{      
-		[arrSearch addObjectsFromArray:arrAllData];		
+	{
+		[arrSearch addObjectsFromArray:arrAllData];
 		
 		[self.arrAppRecordsAllEntries removeAllObjects];
 		
@@ -533,7 +538,7 @@ extern BOOL isNewsSection;
                 _currentRecord.requestImg=[ServerAPI createImageURLConnection:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
 				
             }
-
+            
 			[self.arrAppRecordsAllEntries addObject:_currentRecord];
 			[_currentRecord release];
 		}
@@ -550,7 +555,7 @@ extern BOOL isNewsSection;
 			NSRange r = [[[dictName objectForKey:@"sName"] uppercaseString] rangeOfString:[searchText uppercaseString]] ;
 			if (r.location != NSNotFound)
 			{
-				if (r.location==0) 
+				if (r.location==0)
 				{
 					[arrSearch addObject:dictName];
 				}
@@ -572,7 +577,7 @@ extern BOOL isNewsSection;
                 _currentRecord.requestImg=[ServerAPI createImageURLConnection:[[arrImagesUrls objectAtIndex:0] valueForKey:@"productImageSmallIphone4"]];
 				
             }
-
+            
 			[self.arrAppRecordsAllEntries addObject:_currentRecord];
 			[_currentRecord release];
 		}
@@ -623,7 +628,7 @@ extern BOOL isNewsSection;
 			{
 				cell.isTaxbale=YES;
 			}
-			else 
+			else
             {
 				cell.isTaxbale=NO;
 			}
@@ -671,18 +676,18 @@ extern BOOL isNewsSection;
         }
 		
 		CGSize size=[[ProductPriceCalculation productActualPrice:dictTemp] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:13] constrainedToSize:CGSizeMake(100000,20) lineBreakMode:UILineBreakModeWordWrap];
-
+        
 		
 		if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
 		{
 			if ([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
 			{
 				if ([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
-				{   
+				{
                     
 					UIImageView *imgCutLine = [[UIImageView alloc]initWithFrame:CGRectMake(93, 41, size.width+4,2)];
 					[imgCutLine setBackgroundColor:_savedPreferences.labelColor];
-                   [cell addSubview:imgCutLine];
+                    [cell addSubview:imgCutLine];
 					[imgCutLine release];
 				}
 			}
@@ -709,7 +714,7 @@ extern BOOL isNewsSection;
 				[loadingIndicator release];
             }
 			
- 			imgProduct = [UIImage imageNamed:@""]; 
+ 			imgProduct = [UIImage imageNamed:@""];
         }
         else
         {
@@ -739,7 +744,7 @@ extern BOOL isNewsSection;
         }
 		else if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"sold"])
         {
-             strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+            strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
         }
 		else if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"active"])
         {
@@ -800,7 +805,7 @@ extern BOOL isNewsSection;
 	if ([strStatus isEqualToString:@"active"])
     {
         strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.instock"];
-    }		
+    }
 	
 	float finalProductPrice=0;
 	
@@ -814,18 +819,18 @@ extern BOOL isNewsSection;
             {
                 finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
             }
-			else 
+			else
             {
 				finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
 			}
 		}
-		else 
+		else
         {
 			if ([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
             {
                 finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue];
             }
-			else 
+			else
             {
 				finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue];
 			}
@@ -841,15 +846,15 @@ extern BOOL isNewsSection;
 				
 				strOriginalPrice=[NSString stringWithFormat:@" (inc %@)",[dictTemp objectForKey:@"sTaxType"]];
 			}
-			else 
+			else
             {
 				strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 				strOriginalPrice=@"";
 			}
 		}
-		else 
+		else
         {
-			strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice]; 
+			strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 		}
 		
 		if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
@@ -858,14 +863,14 @@ extern BOOL isNewsSection;
 			{
 				if ([[dictTemp objectForKey:@"bTaxable"]intValue]==1)
 				{
-								
+                    
 					[cell setProductName:[dictTemp valueForKey:@"sName"] :[ProductPriceCalculation productActualPrice:dictTemp]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 					
 					
 				}
-				else 
+				else
                 {
-	
+                    
 					[cell setProductName:[dictTemp valueForKey:@"sName"] :[ProductPriceCalculation productActualPrice:dictTemp]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 					
 					
@@ -881,7 +886,7 @@ extern BOOL isNewsSection;
             [cell setProductName:[dictTemp objectForKey:@"sName"] :[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@%0.2f", _savedPreferences.strCurrencySymbol, [[dictTemp objectForKey:@"fPrice"] floatValue]]]:strStatus: [NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
         }
 	}
-	[self markStarRating:cell :indexPath.row];	
+	[self markStarRating:cell :indexPath.row];
 	UIImageView *imgViewCellAcccesory=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow.png"]];
 	[cell setAccessoryView:imgViewCellAcccesory];
 	[imgViewCellAcccesory release];
@@ -906,7 +911,7 @@ extern BOOL isNewsSection;
 	objProductDetails.isWishlist = NO;
 	
 	objProductDetails.dicProduct = dictTemp;
-	self.navigationItem.title = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.store"];						  
+	self.navigationItem.title = [[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.tabbar.store"];
 	[self.navigationController pushViewController:objProductDetails animated:YES];
 	[objProductDetails release];
 }
@@ -928,7 +933,7 @@ extern BOOL isNewsSection;
 - (void)startIconDownload:(AppRecord *)appRecord forIndexPath:(NSIndexPath *)indexPath
 {
     IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil) 
+    if (iconDownloader == nil)
     {
         iconDownloader = [[IconDownloader alloc] init];
         iconDownloader.appRecord = appRecord;
@@ -937,7 +942,7 @@ extern BOOL isNewsSection;
         [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
 		if (imageDownloadsInProgress!=nil)
 			[iconDownloader startDownload];
-        [iconDownloader release];   
+        [iconDownloader release];
     }
 }
 
@@ -993,7 +998,7 @@ extern BOOL isNewsSection;
 		{
 			if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"coming"])
             {
-               strStatus=[NSString stringWithFormat:@"%@    ",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.wishlist.comming.soon"]];
+                strStatus=[NSString stringWithFormat:@"%@    ",[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.wishlist.comming.soon"]];
             }
 			else if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"sold"])
             {
@@ -1031,7 +1036,7 @@ extern BOOL isNewsSection;
                 }
 				else
                 {
-                     strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                    strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
                 }
 			}
 		}
@@ -1051,7 +1056,7 @@ extern BOOL isNewsSection;
         }
 		else if ([strStatus isEqualToString:@"coming"])
         {
-             strStatus=[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.wishlist.comming.soon"];
+            strStatus=[[GlobalPreferences getLangaugeLabels]valueForKey:@"key.iphone.wishlist.comming.soon"];
         }
 		
 		float finalProductPrice=0;
@@ -1066,23 +1071,23 @@ extern BOOL isNewsSection;
                 {
                     finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
                 }
-				else 
+				else
                 {
 					finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
 				}
 				
 			}
-			else 
+			else
             {
 				if ([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
                 {
                     finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue];
                 }
-				else 
+				else
                 {
 					finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue];
 				}
-			}			
+			}
 			NSString *strFinalProductPrice=@"";
 			NSString *strOriginalPrice=@"";
 			if ([[dictTemp objectForKey:@"bTaxable"]intValue]==1)
@@ -1092,16 +1097,16 @@ extern BOOL isNewsSection;
 					strFinalProductPrice=[NSString stringWithFormat:@"%0.2f (inc %@)",finalProductPrice,[dictTemp objectForKey:@"sTaxType"]];
 					strOriginalPrice=[NSString stringWithFormat:@" (inc %@)",[dictTemp objectForKey:@"sTaxType"]];
 				}
-				else 
+				else
                 {
 					strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 					strOriginalPrice=@"";
 				}
 				
 			}
-			else 
+			else
             {
-				strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice]; 
+				strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 			}
 			
 			if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
@@ -1110,11 +1115,11 @@ extern BOOL isNewsSection;
 				{
 					if ([[dictTemp objectForKey:@"bTaxable"]intValue]==1)
 					{
-											
+                        
 						[cell setProductName:[dictTemp valueForKey:@"sName"] :[ProductPriceCalculation productActualPrice:dictTemp]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 						
 					}
-					else 
+					else
                     {
 						[cell setProductName:[dictTemp valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f ", _savedPreferences.strCurrencySymbol,( [[dictTemp valueForKey:@"fPrice"] floatValue])]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 					}
@@ -1126,7 +1131,7 @@ extern BOOL isNewsSection;
                 }
 			}
 			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];		
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 	}
 }
@@ -1152,13 +1157,13 @@ extern BOOL isNewsSection;
 		}
 		
         imgProduct=nil;
-				
+        
 		NSString *strStatus, *strTemp;
 		
 		if (dictTemp)
         {
             strTemp = [dictTemp objectForKey:@"sIPhoneStatus"];
-        }			
+        }
 		
 		if ((strTemp != nil) && (![strTemp isEqual:[NSNull null]]))
 		{
@@ -1168,7 +1173,7 @@ extern BOOL isNewsSection;
             }
 			else if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"sold"])
             {
-                 strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
             }
 			else if ([[dictTemp objectForKey:@"sIPhoneStatus"] isEqualToString:@"active"])
             {
@@ -1201,7 +1206,7 @@ extern BOOL isNewsSection;
                 }
 				else
                 {
-                     strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
+                    strStatus=[[GlobalPreferences getLangaugeLabels] valueForKey:@"key.iphone.wishlist.soldout"];
                 }
 			}
 		}
@@ -1236,18 +1241,18 @@ extern BOOL isNewsSection;
                 {
                     finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
                 }
-				else 
+				else
                 {
 					finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue]+[[dictTemp objectForKey:@"fTax"]floatValue];
 				}
 			}
-			else 
+			else
             {
 				if ([[dictTemp objectForKey:@"fPrice"] floatValue]>[discount floatValue])
                 {
                     finalProductPrice=[[dictTemp objectForKey:@"fDiscountedPrice"]floatValue];
                 }
-				else 
+				else
                 {
 					finalProductPrice=[[dictTemp objectForKey:@"fPrice"]floatValue];
 				}
@@ -1263,15 +1268,15 @@ extern BOOL isNewsSection;
 					strFinalProductPrice=[NSString stringWithFormat:@"%0.2f (inc %@)",finalProductPrice,[dictTemp objectForKey:@"sTaxType"]];
 					strOriginalPrice=[NSString stringWithFormat:@"( inc %@)",[dictTemp objectForKey:@"sTaxType"]];
 				}
-				else 
+				else
                 {
 					strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 					strOriginalPrice=@"";
 				}
 			}
-			else 
+			else
             {
-				strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice]; 
+				strFinalProductPrice=[NSString stringWithFormat:@"%0.2f",finalProductPrice];
 			}
 			
 			if ((![discount isEqual:[NSNull null]]) && (![discount isEqualToString:@"<null>"]) && ([discount length]!=0))
@@ -1283,7 +1288,7 @@ extern BOOL isNewsSection;
 						[cell setProductName:[dictTemp valueForKey:@"sName"] :[ProductPriceCalculation productActualPrice:dictTemp]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 						
 					}
-					else 
+					else
                     {
 						[cell setProductName:[dictTemp valueForKey:@"sName"] :[NSString stringWithFormat:@"%@%0.2f ", _savedPreferences.strCurrencySymbol,( [[dictTemp valueForKey:@"fPrice"] floatValue])]:strStatus :[NSString stringWithFormat:@"%@",strFinalProductPrice]:imgProduct];
 					}
@@ -1295,7 +1300,7 @@ extern BOOL isNewsSection;
 				
             }
 			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];		
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 	}
 }
@@ -1394,15 +1399,15 @@ extern BOOL isNewsSection;
 	{
 		dropDownCount=0;
 		strTitle= [NSString stringWithFormat:@"%@",[[arrOptionsData objectAtIndex:0] objectForKey:@"sTitle"]];
-		//NSLog(@"%@",strTitle);
-	}	
+		
+	}
 	
 	
 	for(int count=0;count<[arrOptionsData count];count++)
 	{
 		
 		if(([[NSString stringWithFormat:@"%@",[[arrOptionsData objectAtIndex:count]objectForKey:@"sTitle"]] isEqualToString:strTitle]))
-		{ 
+		{
 			if(!arrDropDown[dropDownCount])
 				arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];
 			
@@ -1410,15 +1415,15 @@ extern BOOL isNewsSection;
 			
 		}
 		
-		else 
+		else
 		{
 			strTitle=[NSString stringWithFormat:@"%@",[[arrOptionsData objectAtIndex:count]objectForKey:@"sTitle"]];
 			dropDownCount++;
 			
 			if(!arrDropDown[dropDownCount])
-				arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];	
+				arrDropDown[dropDownCount]=[[NSMutableArray alloc]init];
 			
-			[arrDropDown[dropDownCount] addObject:[arrOptionsData objectAtIndex:count]];			
+			[arrDropDown[dropDownCount] addObject:[arrOptionsData objectAtIndex:count]];
 			
 		}
 	}
@@ -1436,28 +1441,28 @@ extern BOOL isNewsSection;
 					isOutOfStock=NO;
 					break;
 					
-				}	
+				}
 				
-				else 
+				else
 					
 				{
 					isOutOfStock=YES;
 				}
 			}
 	    }
-		else 
+		else
 		{
 			break;
 		}
-	}	
+	}
 	
 	return isOutOfStock;
 	
-}	
+}
 
 
 
-- (void)didReceiveMemoryWarning 
+- (void)didReceiveMemoryWarning
 {
 	// Releases the view if it doesn't have a superview.
 	[super didReceiveMemoryWarning];
@@ -1467,7 +1472,7 @@ extern BOOL isNewsSection;
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
 	[super viewDidUnload];
 	// Release any retained subviews of the main view.
@@ -1475,7 +1480,7 @@ extern BOOL isNewsSection;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
 	[arrAppRecordsAllEntries release];
 	[imageDownloadsInProgress release];

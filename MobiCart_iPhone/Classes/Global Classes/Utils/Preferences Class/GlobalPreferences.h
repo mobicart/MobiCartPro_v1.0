@@ -21,7 +21,7 @@ BOOL isLoggedInStatuschanged;
 // The queue to run "ParseOperation"
 NSOperationQueue *queue;
 
-@interface GlobalPreferences:NSObject 
+@interface GlobalPreferences:NSObject
 {
 	UIColor *navigationBarColor;
 }
@@ -35,10 +35,6 @@ NSOperationQueue *queue;
 
 #pragma mark -
 +(void)initializeGlobalControllers;
-//+(NSDictionary *)fetchDataFromServer:(NSString *)strURL;
-//+(void)sendDataToServer:(NSString*)_url;
-
-
 
 #pragma mark -
 +(void)setCurrencySymbol;
@@ -59,7 +55,7 @@ NSOperationQueue *queue;
 +(void)setSearchBarDefaultSettings:(UISearchBar *)_searchBar;
 
 
-#pragma mark - Home 
+#pragma mark - Home
 +(BOOL)canPopToRootViewController;
 +(void)setCanPopToRootViewController:(BOOL) _canPop;
 
@@ -83,11 +79,6 @@ NSOperationQueue *queue;
 +(void)setCurrentFeaturedProductDetails:(NSDictionary *)_dictTemp;
 +(void)setIsClickedOnFeaturedImage:(BOOL)_isClicked;
 
-
-//+(NSString *)getDepartmentUrl;
-//+(NSString *)getCategoriesUrl:(NSInteger)_iCurrentDepartmentId;
-
-//+(NSString *)getProductsUrl:(NSInteger)_iCurrentProductId;
 +(NSDictionary *) getCurrentFeaturedDetails;
 +(void)setCurrentProductDetails:(NSDictionary *)_dictTemp;
 +(NSDictionary *) getCurrentProductDetails;
@@ -125,9 +116,7 @@ NSOperationQueue *queue;
 
 +(void)setAppVitalsAndCountries:(NSDictionary*)_dicVitals;
 +(NSDictionary *) getAppVitals;
-//+(NSString*)fetchStatesOfAcountryURL:(NSInteger)_iCountryCode;
 
-//*************************************
 +(void)goToShoppingCart:(UIViewController *)_currentViewController;
 
 +(void)setShadowOnView:(UIView *)_view:(UIColor *)_shadowColor:(BOOL)_includeGradient:(UIColor *)mainColor:(UIColor *)secondaryColor;
@@ -163,7 +152,7 @@ NSOperationQueue *queue;
 #pragma mark - API Settings
 +(void) setMerchantEmailID:(NSString *)_merchantEmail;
 +(NSString *)getMerchantEmailId;
-#pragma mark - Paypal/Zooz Live Token 
+#pragma mark - Paypal/Zooz Live Token
 +(void) setPaypal_Live_Token:(NSString *)_paypalToken;
 +(NSString *) getPaypalLiveToken;
 
@@ -181,6 +170,12 @@ NSOperationQueue *queue;
 +(void) setMerchant_Secret_Key:(NSString *)_secretKey;
 +(NSString *) getMerchant_Secret_Key;
 +(void)setAllNavigationTitles;
+
++(BOOL)isScreen_iPhone5;
+#pragma mark - Set Dimensions according to Screen Size iPhone/iPhone5
++(CGRect)setDimensionsAsPerScreenSize:(CGRect)tempRect chageHieght:(BOOL)changeHeight;
++(float)getCureentSystemVersion;
+
 
 @end
 
